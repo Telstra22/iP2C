@@ -1,0 +1,17 @@
+Please fill in the customer Questions,,
+Sr no.,Questions,Priority
+1,What is the business objective for using AI in this opportunity?,High
+2,Which processes or workflows are candidates for automation or augmentation?,High
+3,What data sources are available (internal/external) to enable the AI solution?,High
+4,"Are there data quality, privacy, or compliance considerations?",High
+5,What are the success metrics and how will we measure ROI?,High
+6,What are the latency and scalability requirements?,Medium
+7,Who are the key personas and users of the AI features?,Medium
+8,"Should the solution use generative AI, predictive models, or both?",Medium
+9,"Are there safety, bias, or explainability requirements?",High
+10,"What is the deployment target (cloud, on-prem, edge)?",Medium
+11,What existing systems must we integrate with?,Medium
+12,What is the expected go-live timeline and milestones?,Medium
+13,Who will own model monitoring and retraining?,Medium
+14,Do we need human-in-the-loop review or approvals?,Medium
+15,What is the budget and procurement process?,Medium
