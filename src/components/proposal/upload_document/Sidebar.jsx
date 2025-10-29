@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import IP2CLogoIcon from '../../../assets/icons/IP2CLogoIcon'
 import FolderIcon from '../../../assets/icons/FolderIcon'
 import DocumentIcon from '../../../assets/icons/DocumentIcon'
@@ -82,7 +82,7 @@ const Sidebar = ({ onStepClick, activeStep = 0, completedSteps = [] }) => {
                     height={step.iconHeight}
                     color='#505050'
                   />
-                  <span className="text-[#000000] font-['Inter',sans-serif] text-[22px] font-medium leading-[30px]">
+                  <span className="text-[#000000] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
                     {step.label}
                   </span>
                 </div>

@@ -71,10 +71,10 @@ const UploadProposalDocument = () => {
             </div>
 
             {/* Form Content */}
-            <div className='flex flex-col gap-[50px]'>
+            <div className='flex flex-col gap-[54px]'>
               {/* Opportunity ID Section */}
               <div className='flex flex-col gap-[9px]'>
-                <label className="text-[#050505] font-['Inter',sans-serif] text-[28px] font-semibold leading-[38px]">
+                <label className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-semibold leading-[30px]">
                   Add your Opportunity ID
                   <span className='text-[#FF0000]'>*</span>
                 </label>
@@ -85,7 +85,7 @@ const UploadProposalDocument = () => {
                       value={opportunityId}
                       onChange={e => setOpportunityId(e.target.value)}
                       placeholder='Enter Opportunity ID'
-                      className="w-full bg-transparent text-[#828282] font-['Inter',sans-serif] text-[24px] font-normal leading-[32px] placeholder:text-[#828282] focus:outline-none"
+                      className="w-full bg-transparent text-[#828282] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px] placeholder:text-[#828282] placeholder:font-normal focus:outline-none"
                     />
                     {opportunityId === '001K0132578HWb16AAD' && (
                       <div className='ml-[10px] w-[28px] h-[28px] rounded-full bg-[#56A72B] flex items-center justify-center flex-shrink-0'>
@@ -93,22 +93,22 @@ const UploadProposalDocument = () => {
                       </div>
                     )}
                   </div>
-                  <span className="text-[#828282] font-['Inter',sans-serif] text-[20px] font-light leading-[27px]">
+                  <span className="text-[#828282] font-['Inter',sans-serif] text-[18px] font-light leading-[24px]">
                     Only numeric values allowed
                   </span>
                 </div>
               </div>
 
               {/* Upload Documents Section */}
-              <div className='flex flex-col gap-[24px]'>
+              <div className='flex flex-col gap-[20px]'>
                 <div className='flex flex-col gap-[8px]'>
-                  <label className="text-[#050505] font-['Inter',sans-serif] text-[28px] font-semibold leading-[38px]">
+                  <label className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-semibold leading-[30px]">
                     Upload relevant opportunity documents
                     <span className='text-[#FF0000]'>*</span>
                   </label>
-                  <p className="text-[#505050] font-['Inter',sans-serif] text-[20px] font-normal leading-[27px]">
+                  <p className="text-[#505050] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px]">
                     Select a maximum of 5 files to upload. File format must be
-                    Word, Excel or PDF. Total file size maximum: 10 MB.
+                    Word, CSV or PDF. Total file size maximum: 10 MB.
                   </p>
                   {mainUploadCount === 5 && (
                     <p className="text-[#FF0000] font-['Inter',sans-serif] text-[18px] font-medium leading-[24px]">
@@ -121,7 +121,7 @@ const UploadProposalDocument = () => {
                   <FileUploadZone
                     onFilesChange={list => setMainUploadCount(list.length)}
                   />
-                  <p className="text-[#A0A0A0] font-['Inter',sans-serif] text-[20px] font-normal leading-[27px]">
+                  <p className="text-[#A0A0A0] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px]">
                     File name should not contain the following characters: " #
                     % & * : &lt; &gt; ? \ / &#123; &#125; ~ |
                   </p>
@@ -129,9 +129,9 @@ const UploadProposalDocument = () => {
               </div>
 
               {/* Optional Questionnaire Section */}
-              <div className='flex flex-col gap-[24px] pb-[50px]'>
+              <div className='flex flex-col gap-[20px] pb-[50px]'>
                 <div className='flex flex-col gap-[8px]'>
-                  <label className="text-[#050505] font-['Inter',sans-serif] text-[28px] font-semibold leading-[38px]">
+                  <label className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-semibold leading-[30px]">
                     Upload Customer Questionnaire.xlsx (Optional)
                   </label>
                   <p className="text-[#505050] font-['Inter',sans-serif] text-[20px] font-normal leading-[27px]">
@@ -141,18 +141,18 @@ const UploadProposalDocument = () => {
                 </div>
 
                 {/* Download Section */}
-                <div className='w-full bg-[#F5F5F5] rounded-[8px] px-[24px] py-[20px] flex items-center justify-between'>
-                  <span className="text-[#050505] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
+                <div className='w-full bg-[#EFEFEF] rounded-[9px] px-[24px] py-[20px] flex items-center justify-between'>
+                  <span className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-medium leading-[30px]">
                     Customer Questionnaire.csv (10KB)
                   </span>
                   <button
                     onClick={handleDownloadQuestionnaire}
-                    className='flex items-center gap-[8px] px-[20px] py-[10px] bg-white rounded-[6px] border-[1.5px] border-[#0D54FF] hover:bg-[#F0F7FF] transition-colors'
+                    className='flex items-center gap-[10px] px-[20px] py-[10px] bg-white rounded-[6px] border-[1.5px] border-[#0D54FF] hover:bg-[#F0F7FF] transition-colors'
                   >
-                    <span className="text-[#0D54FF] font-['Inter',sans-serif] text-[18px] font-medium leading-[24px]">
+                    <span className="text-[#0D54FF] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
                       Download
                     </span>
-                    <Download size={20} color='#0D54FF' strokeWidth={2} />
+                    <Download size={16} color='#0D54FF' strokeWidth={2} />
                   </button>
                 </div>
 
@@ -206,7 +206,7 @@ const UploadProposalDocument = () => {
         />
 
         {/* Main Form Content */}
-        <div className='flex-1 overflow-y-auto overflow-x-hidden pl-[68px] pr-[37px] py-[37px]'>
+        <div className='flex-1 overflow-y-auto overflow-x-hidden pl-[30px] pr-[37px] py-[37px]'>
           {renderStepContent()}
         </div>
       </div>
