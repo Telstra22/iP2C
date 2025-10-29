@@ -20,14 +20,14 @@ function FooterNav ({
   const label = isNextStep ? 'Next' : 'Generate Summary with AI'
 
   return (
-    <div className='flex flex-col w-[1920px] bg-[#FFF] shadow-[4px_0_8px_1px_rgba(0,0,0,0.08)] px-[37px] py-[29px] items-start gap-[10px]'>
+    <div className='flex flex-col w-[1920px] h-[84px] px-[37px] justify-center items-center gap-[10px] flex-shrink-0 bg-[#FFF] shadow-[4px_0_8px_1px_rgba(0,0,0,0.08)]'>
       <div className='flex items-center justify-end gap-[30px] w-full'>
         <button
           onClick={onPrevious}
           className='flex items-center gap-[14px] px-[20px] py-[12px] bg-white rounded-[6px] hover:bg-gray-50 transition-colors'
         >
-          <ChevronLeft width={29} height={29} color='#0D54FF' />
-          <span className="text-[#0D54FF] font-['Inter',sans-serif] text-[24px] font-semibold leading-[32px]">
+          <ChevronLeft width={24} height={24} color='#0D54FF' />
+          <span className="text-[#0D54FF] font-['Inter',sans-serif] text-[20px] font-semibold leading-[27px]">
             Previous
           </span>
         </button>
@@ -37,10 +37,10 @@ function FooterNav ({
           disabled={!enabled}
           className={
             isNextStep
-              ? `flex h-[71px] py-[14px] px-[80px] flex-row justify-center items-center gap-[10px] rounded-[6px] text-white transition-all ${
+              ? `flex h-[62px] pt-[15px] pr-[26px] pb-[15px] pl-[30px] flex-row justify-center items-center gap-[10px] rounded-[6px] text-white transition-all ${
                   enabled ? '' : 'opacity-50 cursor-not-allowed'
                 }`
-              : `flex items-center gap-[10px] h-[71px] px-[40px] rounded-[6px] transition-all ${
+              : `flex h-[62px] pt-[15px] pr-[26px] pb-[15px] pl-[30px] flex-row justify-center items-center gap-[11px] rounded-[6px] transition-all ${
                   enabled
                     ? 'hover:opacity-95'
                     : 'bg-[var(--blacks-20,#C6C6C6)] cursor-not-allowed'
@@ -57,19 +57,19 @@ function FooterNav ({
               : undefined
           }
         >
-          <span className="text-[var(--blacks-0,#FFF)] font-['Inter',sans-serif] text-[24px] font-semibold leading-[32.184px] whitespace-nowrap">
+          <span className="text-[var(--blacks-0,#FFF)] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px] whitespace-nowrap">
             {label}
           </span>
           {isNextStep ? (
             <ChevronRight
-              width={30}
-              height={30}
+              width={24}
+              height={24}
               color='#FFFFFF'
               className='rotate-0'
             />
           ) : (
-            <div className='w-[27.76px] h-[30.419px] flex-shrink-0'>
-              <GenerateAiIcon width={28} height={31} />
+            <div className='w-[28px] h-[30px] flex-shrink-0'>
+              <GenerateAiIcon width={28} height={30} />
             </div>
           )}
         </button>
