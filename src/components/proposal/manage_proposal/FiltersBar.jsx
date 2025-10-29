@@ -167,13 +167,13 @@ function FiltersBar ({
           <div className="absolute left-0 top-[calc(100%+8px)] z-50 w-[320px] max-h-[320px] overflow-hidden rounded-[10px] border border-[#D9D9D9] bg-white shadow-md">
             <div className="p-3 border-b border-[#E5E5E5]">
               <div className="flex items-center gap-2 px-3 py-2 rounded-[8px] border border-[#D9D9D9]">
-                <Search size={14} color="#505050" />
+                <Search size={25} color="#505050" />
                 <input
                   type="text"
                   value={customerQuery}
                   onChange={(e) => setCustomerQuery(e.target.value)}
                   placeholder="Search customer"
-                  className="flex-1 bg-transparent outline-none text-[14px]"
+                  className="flex-1 bg-transparent outline-none text-[20px] placeholder:text-[#000] placeholder:text-[20px] placeholder:font-semibold placeholder:leading-[1.341] placeholder:font-['Inter',sans-serif]"
                 />
               </div>
             </div>
@@ -198,8 +198,9 @@ function FiltersBar ({
                             customers: customers.filter((v) => v !== c),
                           });
                       }}
+                      className="w-6 h-6"
                     />
-                    <span className="text-[#505050] text-[14px]">{c}</span>
+                    <span className="text-[#505050] text-[20px]">{c}</span>
                   </label>
                 ))}
             </div>
@@ -251,13 +252,13 @@ function FiltersBar ({
           <div className="absolute left-0 top-[calc(100%+8px)] z-50 w-[320px] max-h-[320px] overflow-hidden rounded-[10px] border border-[#D9D9D9] bg-white shadow-md">
             <div className="p-3 border-b border-[#E5E5E5]">
               <div className="flex items-center gap-2 px-3 py-2 rounded-[8px] border border-[#D9D9D9]">
-                <Search size={14} color="#505050" />
+                <Search size={25} color="#505050" />
                 <input
                   type="text"
                   value={industryQuery}
                   onChange={(e) => setIndustryQuery(e.target.value)}
                   placeholder="Search industry"
-                  className="flex-1 bg-transparent outline-none text-[14px]"
+                  className="flex-1 bg-transparent outline-none text-[20px] placeholder:text-[#000] placeholder:text-[20px] placeholder:font-semibold placeholder:leading-[1.341] placeholder:font-['Inter',sans-serif]"
                 />
               </div>
             </div>
@@ -282,8 +283,9 @@ function FiltersBar ({
                             industries: industries.filter((v) => v !== c),
                           });
                       }}
+                      className="w-6 h-6"
                     />
-                    <span className="text-[#505050] text-[14px]">{c}</span>
+                    <span className="text-[#505050] text-[20px]">{c}</span>
                   </label>
                 ))}
             </div>
@@ -335,13 +337,13 @@ function FiltersBar ({
           <div className="absolute left-0 top-[calc(100%+8px)] z-50 w-[320px] max-h-[320px] overflow-hidden rounded-[10px] border border-[#D9D9D9] bg-white shadow-md">
             <div className="p-3 border-b border-[#E5E5E5]">
               <div className="flex items-center gap-2 px-3 py-2 rounded-[8px] border border-[#D9D9D9]">
-                <Search size={14} color="#505050" />
+                <Search size={25} color="#505050" />
                 <input
                   type="text"
                   value={statusQuery}
                   onChange={(e) => setStatusQuery(e.target.value)}
                   placeholder="Search status"
-                  className="flex-1 bg-transparent outline-none text-[14px]"
+                  className="flex-1 bg-transparent outline-none text-[20px] placeholder:text-[#000] placeholder:text-[20px] placeholder:font-semibold placeholder:leading-[1.341] placeholder:font-['Inter',sans-serif]"
                 />
               </div>
             </div>
@@ -364,8 +366,9 @@ function FiltersBar ({
                             statuses: statuses.filter((v) => v !== c),
                           });
                       }}
+                      className="w-6 h-6"
                     />
-                    <span className="text-[#505050] text-[14px]">{c}</span>
+                    <span className="text-[#505050] text-[20px]">{c}</span>
                   </label>
                 ))}
             </div>
@@ -417,13 +420,13 @@ function FiltersBar ({
           <div className="absolute left-0 top-[calc(100%+8px)] z-50 w-[320px] max-h-[320px] overflow-hidden rounded-[10px] border border-[#D9D9D9] bg-white shadow-md">
             <div className="p-3 border-b border-[#E5E5E5]">
               <div className="flex items-center gap-2 px-3 py-2 rounded-[8px] border border-[#D9D9D9]">
-                <Search size={14} color="#505050" />
+                <Search size={25} color="#505050" />
                 <input
                   type="text"
                   value={locationQuery}
                   onChange={(e) => setLocationQuery(e.target.value)}
                   placeholder="Search location"
-                  className="flex-1 bg-transparent outline-none text-[14px]"
+                  className="flex-1 bg-transparent outline-none text-[20px] placeholder:text-[#000] placeholder:text-[20px] placeholder:font-semibold placeholder:leading-[1.341] placeholder:font-['Inter',sans-serif]"
                 />
               </div>
             </div>
@@ -448,8 +451,9 @@ function FiltersBar ({
                             locations: locations.filter((v) => v !== c),
                           });
                       }}
+                      className="w-6 h-6"
                     />
-                    <span className="text-[#505050] text-[14px]">{c}</span>
+                    <span className="text-[#505050] text-[20px]">{c}</span>
                   </label>
                 ))}
             </div>
