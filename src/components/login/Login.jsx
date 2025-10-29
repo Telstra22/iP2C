@@ -189,7 +189,7 @@ function Login() {
                 href="#"
                 className="text-[#0D54FF] font-['Inter',sans-serif] text-[20px] font-normal leading-[27px] hover:underline"
               >
-                Create Account
+                Create Account 
               </a>
             </div>
           </div>
