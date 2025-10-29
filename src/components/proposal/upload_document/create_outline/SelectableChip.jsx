@@ -11,7 +11,11 @@ function SelectableChip ({ label, selected, onToggle }) {
           : 'border-[#D9D9D9] bg-white hover:bg-gray-50'
       }`}
     >
-      <span className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px]">
+      <span className={`font-['Inter',sans-serif] text-[22px] leading-[30px] ${
+        selected 
+          ? 'text-[#050505] font-medium' 
+          : 'text-[#505050] font-normal'
+      }`}>
         {label}
       </span>
       {selected ? (
