@@ -10,6 +10,7 @@ import OpportunitySummery from '../opportunity_summery/Opportunity_Summery.jsx'
 import Source_Connection from '../source_connection/Source_Connection.jsx'
 import Create_Outline from '../create_outline/Create_Outline.jsx'
 import BotIcon from '../BotIcon.jsx'
+import SelectTemplate from '../../select_template/SelectTemplate.jsx'
 
 const UploadProposalDocument = () => {
   const navigate = useNavigate()
@@ -61,13 +62,14 @@ const UploadProposalDocument = () => {
     switch (activeStep) {
       case 0:
         return (
-          <div className='w-[1330px] bg-white rounded-[9px] px-[37px] py-[37px]'>
+          <div>
+            <BotIcon />
+          <div className='w-[1330px] bg-white rounded-[9px] px-[37px] py-[37px] mt-[37px]'>
             {/* Header with AI Agent Status */}
             <div className='flex items-start justify-between mb-[45px]'>
               <h1 className="text-[#050505] font-['Inter',sans-serif] text-[28px] font-semibold leading-[38px]">
                 Add Opportunity Details
               </h1>
-              <BotIcon />
             </div>
 
             {/* Form Content */}
@@ -166,6 +168,7 @@ const UploadProposalDocument = () => {
               </div>
             </div>
           </div>
+          </div>
         )
       case 1:
         return allowSummary ? <OpportunitySummery /> : <Blank_Opportunity_Summery />
@@ -173,6 +176,8 @@ const UploadProposalDocument = () => {
         return allowSummary ? <Source_Connection /> : <Blank_Opportunity_Summery />
       case 3:
         return allowSummary ? <Create_Outline /> : <Blank_Opportunity_Summery />
+        case 4:
+        return allowSummary ? <SelectTemplate /> : <Blank_Opportunity_Summery />
       default:
         return <Blank_Opportunity_Summery />
     }

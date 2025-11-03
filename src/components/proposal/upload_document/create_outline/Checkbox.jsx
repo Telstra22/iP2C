@@ -16,9 +16,6 @@ function Checkbox ({ checked, onChange }) {
       >
         {checked && <Check width={20} height={20} color='#FFFFFF' />}
       </div>
-      <span className="text-[#0D54FF] font-['Inter',sans-serif] text-[22px] font-semibold leading-[30px]">
-        Select all
-      </span>
     </button>
   )
 }

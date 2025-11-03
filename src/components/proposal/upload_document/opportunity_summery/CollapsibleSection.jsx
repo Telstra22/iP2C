@@ -1,18 +1,39 @@
 import React, { useState } from 'react'
-import { ChevronDown, ChevronUp } from 'lucide-react'
+import { ChevronDown, ChevronUp, FileCheck } from 'lucide-react'
+import VendorQuestionsIcon from '../../../../assets/icons/VendorQuestionsIcon'
 
 const CollapsibleSection = ({
   title,
   children,
   defaultExpanded = false,
-  isCollapsible = true
+  isCollapsible = true,
+  hasSpecialIcon = false,
+  isExpanded: controlledExpanded,
+  onToggle
 }) => {
-  const [isExpanded, setIsExpanded] = useState(defaultExpanded)
+  const [internalExpanded, setInternalExpanded] = useState(defaultExpanded)
+  
+  // Use controlled state if provided, otherwise use internal state
+  const isExpanded = controlledExpanded !== undefined ? controlledExpanded : internalExpanded
 
   const toggleExpanded = () => {
     if (isCollapsible) {
-      setIsExpanded(!isExpanded)
+      if (onToggle) {
+        onToggle()
+      } else {
+        setInternalExpanded(!internalExpanded)
+      }
     }
+  }
+
+  const renderSpecialIcon = () => {
+    if (title === 'Vendor Questions') {
+      return <VendorQuestionsIcon width={30} height={30} color="#050505" />
+    }
+    if (title === 'Terms & Conditions') {
+      return <FileCheck width={30} height={30} className='text-[#050505]' />
+    }
+    return null
   }
 
   return (
@@ -27,15 +48,18 @@ const CollapsibleSection = ({
         } ${isCollapsible ? 'cursor-pointer' : ''}`}
         onClick={toggleExpanded}
       >
-        <h3 className="text-[#050505] font-['Inter',sans-serif] text-[24px] font-semibold leading-[32px]">
-          {title}
-        </h3>
+        <div className='flex items-center gap-[10px]'>
+          {hasSpecialIcon && !isExpanded && renderSpecialIcon()}
+          <h3 className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-medium leading-[30px]">
+            {title}
+          </h3>
+        </div>
         {isCollapsible && (
           <div>
             {isExpanded ? (
-              <ChevronUp width={30} height={30} className='text-[#050505]' />
+              <ChevronUp width={25} height={25} className='text-[#050505]' />
             ) : (
-              <ChevronDown width={30} height={30} className='text-[#050505]' />
+              <ChevronDown width={25} height={25} className='text-[#050505]' />
             )}
           </div>
         )}

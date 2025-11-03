@@ -1,25 +1,37 @@
 // Mock data for Opportunity Summary UI
 
 export const FIELD_CONFIGS = [
-  { label: 'Customer', field: 'customer', options: ['Commonwealth Bank', 'All'], defaultValue: 'Commonwealth Bank' },
-  { label: 'Archetype', field: 'archetype', options: ['1', '2'], defaultValue: '2' },
-  { label: 'Industry', field: 'industry', options: ['Banking', 'All'], defaultValue: 'Banking' },
-  { label: 'Product Hierarchy', field: 'productHierarchy', options: ['Mobility', 'All'], defaultValue: 'Mobility' },
-  { label: 'Product', field: 'product', options: ['Mobile Devices', 'All'], defaultValue: 'Mobile Devices' },
-  { label: 'Sub Product', field: 'subProduct', options: ['Apple Mobile Devices', 'All'], defaultValue: 'Apple Mobile Devices' },
-  { label: 'Submission Date', field: 'submissionDate', type: 'date', defaultValue: '10/15/2025' },
-  { label: 'Customer Estimated Budget', field: 'budget', options: ['50000 AUD', 'All'], defaultValue: '50000 AUD' },
+  { label: 'Customer', field: 'customer', options: ['Total Brick', 'Commonwealth Bank', 'National Australia Bank', 'Coles Group', 'CSL', 'Bank of Australia'], defaultValue: 'Total Brick' },
+  { label: 'Archetype', field: 'archetype', options: ['1', '2', '3', '4'], defaultValue: '2' },
+  { label: 'Industry', field: 'industry', options: ['Property Development and Management', 'Banking', 'Telecommunication', 'Healthcare', 'Retail', 'Consumer Services', 'Industrial'], defaultValue: 'Property Development and Management' },
+  { label: 'Services', field: 'services', options: ['Mobile voice and data services', 'IoT', 'Cloud', 'Mobility', 'DAC', 'Unified Communications'], defaultValue: 'Mobile voice and data services' },
+  { label: 'Product Hierarchy', field: 'productHierarchy', options: ['Mobility', 'IoT', 'Cloud', 'Unified Communications', 'DAC'], defaultValue: 'Mobility' },
+  { label: 'Product', field: 'product', options: ['No', 'Yes', 'Mobile Devices', 'Business Applications'], defaultValue: 'No' },
+  { label: 'Sub Product', field: 'subProduct', options: ['No', 'Yes', 'Apple Mobile Devices', 'HTC Mobile Devices'], defaultValue: 'No' },
+  { label: 'Submission Date', field: 'submissionDate', type: 'datetime', defaultValue: '01/10/2025 09:00' },
+  { label: 'Customer Estimated Budget', field: 'budget', type: 'text', defaultValue: 'Not available', placeholder: '$' },
 ]
 
-export const INITIAL_FORM_DATA = Object.fromEntries(
-  FIELD_CONFIGS.map(f => [f.field, f.defaultValue ?? ''])
-)
+export const INITIAL_FORM_DATA = {
+  customer: 'Total Brick',
+  archetype: '2',
+  industry: 'Property Development and Management',
+  services: 'Mobile voice and data services',
+  productHierarchy: 'Mobility',
+  product: 'No',
+  subProduct: 'No',
+  submissionDate: '01/10/2025 09:00',
+  budget: 'Not available'
+}
+
+export const OPPORTUNITY_BRIEF =
+  'Total Brick, a leading diversified property group in Australia, is seeking proposals for reliable and cost-effective mobile voice and data services to support its operations nationwide. The company is reviewing its mobility services to identify improvements and align with evolving business needs.|'
 
 export const PROBLEM_STATEMENT =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin maximus placerat risus at luctus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin rutrum nibh diam, ac eleifend justo ullamcorper eu. Integer pretium sem vel tortor tempor feugiat nec quis eros. Mauris nec erat sit amet nulla consectetur vehicula a nec dui.'
+  'The current contract for mobility services has expired. Total Brick needs to evaluate new offerings to ensure continued service quality, security, and value, while addressing gaps or inefficiencies in the existing setup.'
 
 export const SCOPE_OF_WORK =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin maximus placerat risus at luctus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin rutrum nibh diam, ac eleifend justo ullamcorper eu. Integer pretium sem vel tortor tempor feugiat nec quis eros. Mauris nec erat sit amet nulla consectetur vehicula a nec dui.'
+  'Provision of approximately 1200 mobile voice & data services, 430 data-only services, and 2 satellite voice services.  Excludes managed services such as Mobile Device Management (MDM).  Services must cover ordering, reporting, billing, operational support, and scalability.'
 
 export const PROGRESS_ITEMS = [
   { label: 'Analyzing requirements...', value: (p) => p, barColor: '#A8A8A8' },
@@ -29,19 +41,391 @@ export const PROGRESS_ITEMS = [
 
 // Static content for collapsible sections
 export const SECTION_CONTENT = {
-  opportunityBrief: 'Content for Opportunity Brief goes here...',
-  archetype: 'Content for Archetype goes here...',
-  technicalRequirements: 'Content for Technical Requirements goes here...',
-  functionalRequirements: 'Content for Functional Requirements goes here...',
-  vendorQuestions: 'Content for Vendor Questions goes here...',
-  terms: 'Content for Terms & Conditions goes here...',
+  opportunityBrief: 'Total Brick, a leading diversified property group in Australia, is seeking proposals for reliable and cost-effective mobile voice and data services to support its operations nationwide. The company is reviewing its mobility services to identify improvements and align with evolving business needs.|',
+  technicalRequirements: 'Nationwide 4G/5G coverage, including rural and remote areas. Support for Low Earth Orbit (LEO) satellite services. Integration with ITSM tools (e.g., ServiceNow), CMDB compatibility, and auto-enablement features. Mature security protocols, data sovereignty, and compliance with Australian regulations.',
+  functionalRequirements: 'Self-service portals, dedicated account management, and efficient ordering/tracking systems. Consolidated billing, usage reporting, and trend analysis. SLAs for activation, fault resolution, and ongoing operations. Scalability and flexibility to adjust plans as business needs change.',
+  vendorQuestions: 'Detailed pricing and breakdowns, including discounts and incentives. Information on operational support, billing processes, and SLAs. ESG initiatives, innovations, and futureproofing strategies. Security practices and customer support capabilities. Roadmap for LEO satellite services and device management options.',
+  terms: 'All mutual NDAs must be signed before RFI issuance. The timetable is indicative and may change at Total Brick\'s discretion. Responses must be submitted by 5pm, Friday 31st January 2025. Evaluation will consider vendor profile, cost structure, service inclusions, network coverage, and ESG commitments.',
 }
 
 // Config for simple sections that display SECTION_CONTENT
 export const SECTION_CONFIGS = [
-  { title: 'Opportunity Brief', defaultExpanded: false, contentKey: 'opportunityBrief' },
-  { title: 'Technical Requirements', defaultExpanded: false, contentKey: 'technicalRequirements' },
-  { title: 'Functional Requirements', defaultExpanded: false, contentKey: 'functionalRequirements' },
-  { title: 'Vendor Questions', defaultExpanded: false, contentKey: 'vendorQuestions' },
-  { title: 'Terms & Conditions', defaultExpanded: false, contentKey: 'terms' },
+  { title: 'Technical Requirements', defaultExpanded: true, contentKey: 'technicalRequirements' },
+  { title: 'Functional Requirements', defaultExpanded: true, contentKey: 'functionalRequirements' },
+  { title: 'Vendor Questions', defaultExpanded: true, contentKey: 'vendorQuestions', hasSpecialIcon: true },
+  { title: 'Terms & Conditions', defaultExpanded: true, contentKey: 'terms', hasSpecialIcon: true },
 ]
+
+export const customers = [
+  'Commonwealth',
+  'National Australia Bank',
+  'Coles Group',
+  'CSL',
+  'Bank of Australia',
+];
+
+export const industries = [
+  'Banking',
+  'Telecommunication',
+  'Healthcare',
+  'Retail',
+  'Consumer Services',
+  'Industrial',
+];
+
+export const services = [
+  'IoT',
+  'Cloud',
+  'Mobility',
+  'DAC',
+  'Unified Communications',
+];
+
+export const productHierarchies = [
+  'IoT',
+  'Mobility',
+  'Cloud',
+  'Unified Communications',
+  'DAC',
+];
+
+export const products = [
+  // IoT
+  'Connected Vehicles',
+  'IoT Connectivity',
+  'IoT Devices',
+  'IoT Network',
+  'IoT Platforms',
+  'IoT Exit/Migrations',
+
+  // Mobility
+  'Business Applications',
+  'Mobile Devices',
+  'Mobility Managed Services',
+  'Mobile Networks',
+  'Mobile Plans',
+  'Mobile Value Added Services (VAS)',
+  'Mobility Exit/Migrations',
+
+  // Cloud
+  'Cloud (General)',
+  'Cloud Services',
+
+  // Unified Communications
+  'Unified Communications (General)',
+  'Adaptive Collaboration',
+  'Customer Contact Solutions',
+  'Collaboration - Cloud',
+  'Inbound Services',
+  'Collaboration - On-Premise',
+  'Video & Workplace Design Solutions',
+  'Conferencing',
+  'Unified Communications Exit/Migration',
+
+  // DAC (Adaptive Access & Connectivity Services)
+  'Adaptive Access & Connectivity Services',
+  'Special Access Services',
+  'Exits and Migrations',
+  'Adaptive Assured Networks',
+  'Adaptive Design',
+  'Managed Network Services',
+];
+
+export const subProducts = [
+  // IoT -> Connected Vehicles
+  'Fleet Complete',
+  'Teletrac Navman',
+  // IoT -> IoT Connectivity
+  'IoT Connection Manager',
+  'M2M Control Centre',
+  // IoT -> IoT Devices
+  'Attentis',
+  // IoT -> IoT Network
+  'General Content',
+  // IoT -> IoT Platforms
+  'General Content',
+  // IoT -> IoT Exit/Migrations
+  'Telstra Track and Monitor',
+
+  // Mobility -> Business Applications
+  'GoCanvas',
+  // Mobility -> Mobile Devices
+  'Apple Mobile Devices',
+  'HTC Mobile Devices',
+  'Iridium (SAT) Mobile Devices',
+  'LG Mobile Devices',
+  'Motorola Mobile Devices',
+  'NETGEAR Mobile Devices',
+  'Sony Mobile Devices',
+  'Telstra Mobile Devices',
+  'ZTE Mobile Devices',
+  // Mobility -> Mobility Managed Services
+  'Mobile Device Management (MDM)',
+  'Telstra Enterprise Mobile Protect',
+  // Mobility -> Mobile Networks
+  '5G',
+  // Mobility -> Mobile Plans
+  'General Content',
+  'Adaptive Mobility',
+  'Device Leasing',
+  'Enterprise Wireless',
+  // Mobility -> Mobile Value Added Services (VAS)
+  'International Roaming',
+  'Order Express',
+  // Mobility -> Mobility Exit/Migrations
+  '3G Network Closure',
+  'BYOD',
+  'Corporate Mobile Plus (CMP)',
+  'Telstra Mobile Workspace (TMW)',
+
+  // Cloud (General)
+  'General content for all Cloud',
+  // Cloud Services
+  'Amazon Web Services (AWS)',
+  'Azure VMware Solution',
+  'Cloud Infrastructure Managed Backup',
+  'Data Centres and Colocation',
+  'Microsoft Azure',
+  'Microsoft Dynamics 365',
+  'Microsoft Office 365 (MS365)',
+  'Microsoft Windows 365',
+  'Telstra Cloud Compliance',
+  'Telstra Cloud Connector',
+  'Telstra Cloud Infrastructure',
+  'Telstra Cloud Sight',
+
+  // Unified Communications (General)
+  'General Content for all UC',
+  // Adaptive Collaboration
+  'Microsoft Operator Connect (MSOC)',
+  'Telstra Cloud Calling (previously Adaptive Collaboration)',
+  // Customer Contact Solutions
+  'Avaya Contact Centre',
+  'Call IN',
+  'Contact Centre Genesys Cloud',
+  'Network IVR',
+  // Collaboration - Cloud
+  'Business SIP',
+  'Liberate',
+  'Telstra Business Resumption Service + (BRS +)',
+  'Telstra Calling for Office 365 (TCO365)',
+  'Telstra IP Telephony (TIPT)',
+  // Inbound Services
+  'Analyser Online',
+  'Freecall 1800 and Priority 13',
+  'IN-Control',
+  'International Freecall',
+  'Phonewords',
+  // Collaboration - On-Premise
+  'SIP Complete',
+  'SIP Connect',
+  'Telstra Business Systems (TBS)',
+  'Telstra Business Systems (TBS) Care',
+  // Video & Workplace Design Solutions
+  'Audio Visual Solutions',
+  'MS Surface Hub',
+  'Pexip Interop',
+  'Telstra T-Rooms',
+  // Conferencing
+  'Audio & Web Conferencing',
+  'Dubber Call Recording And Insights',
+
+  // DAC -> Adaptive Access & Connectivity Services
+  'Business IP (BIP) Adapt',
+  'Telstra Internet Direct (TID) Adapt',
+  'Telstra Internet Direct (TID) Lite Adapt',
+  'Adaptive Connectivity',
+  'Telstra Business Broadband (TBB) on NBN and T-Biz Broadband on NBN',
+  'General content for all Data & IP',
+  'Internet General Content',
+  'NBN General Content',
+  'Private Networks General Content',
+  // DAC -> Special Access Services
+  'IP Wireless',
+  'National Ethernet',
+  'Telstra Opticwave',
+  'Telstra Wavelength Service (TWS)',
+  // DAC -> Exits and Migrations
+  'Business IP (BIP)',
+  'Cloud Gateway',
+  'Connect IP (CIP)',
+  'IPMAN',
+  'IPWAN',
+  'Other Data & IP Exit/Migrations',
+  // DAC -> Adaptive Assured Networks
+  'Adapt S1',
+  'Adapt Assured Meraki (previously Managed Wi-Fi Cloud)',
+  'Managed Wi-Fi Dedicated',
+  'Managed Wi-Fi General Content',
+  'MDN Bundles',
+  'MDN Custom',
+  "OpenRoaming with Telstra",
+  'SD-WAN Adapt VMware',
+  // DAC -> Adaptive Design
+  'Telstra Programmable Network (TPN)',
+  // DAC -> Managed Network Services
+  'Adaptive Networks Centre',
+  'General content for all Managed Network Services',
+  'My Network',
+];
+
+// Dependency maps for cascading selection
+export const hierarchyToProducts = {
+  'IoT': [
+    'Connected Vehicles',
+    'IoT Connectivity',
+    'IoT Devices',
+    'IoT Network',
+    'IoT Platforms',
+    'IoT Exit/Migrations',
+  ],
+  'Mobility': [
+    'Business Applications',
+    'Mobile Devices',
+    'Mobility Managed Services',
+    'Mobile Networks',
+    'Mobile Plans',
+    'Mobile Value Added Services (VAS)',
+    'Mobility Exit/Migrations',
+  ],
+  'Cloud': [
+    'Cloud (General)',
+    'Cloud Services',
+  ],
+  'Unified Communications': [
+    'Unified Communications (General)',
+    'Adaptive Collaboration',
+    'Customer Contact Solutions',
+    'Collaboration - Cloud',
+    'Inbound Services',
+    'Collaboration - On-Premise',
+    'Video & Workplace Design Solutions',
+    'Conferencing',
+    'Unified Communications Exit/Migration',
+  ],
+  'DAC': [
+    'Adaptive Access & Connectivity Services',
+    'Special Access Services',
+    'Exits and Migrations',
+    'Adaptive Assured Networks',
+    'Adaptive Design',
+    'Managed Network Services',
+  ],
+};
+
+export const productToSubProducts = {
+  // IoT
+  'Connected Vehicles': ['Fleet Complete', 'Teletrac Navman'],
+  'IoT Connectivity': ['IoT Connection Manager', 'M2M Control Centre'],
+  'IoT Devices': ['Attentis'],
+  'IoT Network': ['General Content'],
+  'IoT Platforms': ['General Content'],
+  'IoT Exit/Migrations': ['Telstra Track and Monitor'],
+
+  // Mobility
+  'Business Applications': ['GoCanvas'],
+  'Mobile Devices': [
+    'Apple Mobile Devices',
+    'HTC Mobile Devices',
+    'Iridium (SAT) Mobile Devices',
+    'LG Mobile Devices',
+    'Motorola Mobile Devices',
+    'NETGEAR Mobile Devices',
+    'Sony Mobile Devices',
+    'Telstra Mobile Devices',
+    'ZTE Mobile Devices',
+  ],
+  'Mobility Managed Services': [
+    'Mobile Device Management (MDM)',
+    'Telstra Enterprise Mobile Protect',
+  ],
+  'Mobile Networks': ['5G'],
+  'Mobile Plans': ['General Content', 'Adaptive Mobility', 'Device Leasing', 'Enterprise Wireless'],
+  'Mobile Value Added Services (VAS)': ['International Roaming', 'Order Express'],
+  'Mobility Exit/Migrations': ['3G Network Closure', 'BYOD', 'Corporate Mobile Plus (CMP)', 'Telstra Mobile Workspace (TMW)'],
+
+  // Cloud
+  'Cloud (General)': ['General content for all Cloud'],
+  'Cloud Services': [
+    'Amazon Web Services (AWS)',
+    'Azure VMware Solution',
+    'Cloud Infrastructure Managed Backup',
+    'Data Centres and Colocation',
+    'Microsoft Azure',
+    'Microsoft Dynamics 365',
+    'Microsoft Office 365 (MS365)',
+    'Microsoft Windows 365',
+    'Telstra Cloud Compliance',
+    'Telstra Cloud Connector',
+    'Telstra Cloud Infrastructure',
+    'Telstra Cloud Sight',
+  ],
+
+  // Unified Communications
+  'Unified Communications (General)': ['General Content for all UC'],
+  'Adaptive Collaboration': [
+    'Microsoft Operator Connect (MSOC)',
+    'Telstra Cloud Calling (previously Adaptive Collaboration)',
+  ],
+  'Customer Contact Solutions': [
+    'Avaya Contact Centre',
+    'Call IN',
+    'Contact Centre Genesys Cloud',
+    'Network IVR',
+  ],
+  'Collaboration - Cloud': [
+    'Business SIP',
+    'Liberate',
+    'Telstra Business Resumption Service + (BRS +)',
+    'Telstra Calling for Office 365 (TCO365)',
+    'Telstra IP Telephony (TIPT)',
+  ],
+  'Inbound Services': [
+    'Analyser Online',
+    'Freecall 1800 and Priority 13',
+    'IN-Control',
+    'International Freecall',
+    'Phonewords',
+  ],
+  'Collaboration - On-Premise': [
+    'SIP Complete',
+    'SIP Connect',
+    'Telstra Business Systems (TBS)',
+    'Telstra Business Systems (TBS) Care',
+  ],
+  'Video & Workplace Design Solutions': [
+    'Audio Visual Solutions',
+    'MS Surface Hub',
+    'Pexip Interop',
+    'Telstra T-Rooms',
+  ],
+  'Conferencing': ['Audio & Web Conferencing', 'Dubber Call Recording And Insights'],
+  'Unified Communications Exit/Migration': [],
+
+  // DAC
+  'Adaptive Access & Connectivity Services': [
+    'Business IP (BIP) Adapt',
+    'Telstra Internet Direct (TID) Adapt',
+    'Telstra Internet Direct (TID) Lite Adapt',
+    'Adaptive Connectivity',
+    'Telstra Business Broadband (TBB) on NBN and T-Biz Broadband on NBN',
+    'General content for all Data & IP',
+    'Internet General Content',
+    'NBN General Content',
+    'Private Networks General Content',
+  ],
+  'Special Access Services': ['IP Wireless', 'National Ethernet', 'Telstra Opticwave', 'Telstra Wavelength Service (TWS)'],
+  'Exits and Migrations': ['Business IP (BIP)', 'Cloud Gateway', 'Connect IP (CIP)', 'IPMAN', 'IPWAN', 'Other Data & IP Exit/Migrations'],
+  'Adaptive Assured Networks': [
+    'Adapt S1',
+    'Adapt Assured Meraki (previously Managed Wi-Fi Cloud)',
+    'Managed Wi-Fi Dedicated',
+    'Managed Wi-Fi General Content',
+    'MDN Bundles',
+    'MDN Custom',
+    'OpenRoaming with Telstra',
+    'SD-WAN Adapt VMware',
+  ],
+  'Adaptive Design': ['Telstra Programmable Network (TPN)'],
+  'Managed Network Services': ['Adaptive Networks Centre', 'General content for all Managed Network Services', 'My Network'],
+};

@@ -38,7 +38,7 @@ const Checkbox = ({ checked, onChange, label, size = 'default' }) => {
 
 // Status Indicator Component
 const StatusIndicator = () => {
-  return <BotIcon />
+  return 
 }
 
 const Source_Connection = () => {
@@ -69,7 +69,8 @@ const Source_Connection = () => {
   }
 
   return (
-    <div className='w-full bg-white rounded-[9px] px-[37px] py-[37px]'>
+    <div><BotIcon />
+    <div className='w-full bg-white rounded-[9px] px-[37px] py-[37px] mt-[37px]'>
       {/* Header with Status Indicator */}
       <div className='flex items-start justify-between mb-[46px]'>
         <h1 className="text-[#050505] font-['Inter',sans-serif] text-[28px] font-semibold leading-[38px]">
@@ -129,6 +130,7 @@ const Source_Connection = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   )
 }
