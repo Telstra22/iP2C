@@ -1,37 +1,41 @@
-import React, { useState } from 'react';
-import BotIcon from '../upload_document/BotIcon';
-import TemplateCard from './TemplateCard';
-import { mockRootProps } from './SelectTemplateMockData';
+import React, { useState } from 'react'
+import BotIcon from '../upload_document/BotIcon'
+import TemplateCard from './TemplateCard'
+import { mockRootProps } from './SelectTemplateMockData'
 
 const SelectTemplate = () => {
-  const [templates, setTemplates] = useState(mockRootProps.templates);
-  const [selectedTemplateId, setSelectedTemplateId] = useState('1');
+  const [templates, setTemplates] = useState(
+    (mockRootProps.templates || []).map(t => ({ ...t, isSelected: false }))
+  )
+  const [selectedTemplateId, setSelectedTemplateId] = useState('')
 
-  const handleTemplateSelect = (templateId) => {
+  const handleTemplateSelect = templateId => {
     setTemplates(prevTemplates =>
       prevTemplates.map(template => ({
         ...template,
         isSelected: template.id === templateId
       }))
-    );
-    setSelectedTemplateId(templateId);
-  };
+    )
+    setSelectedTemplateId(templateId)
+  }
 
   return (
     <div>
       {/* Agent Huddle */}
-      <BotIcon className="mb-[37px]" />
+      <div className='-ml-[30px]'>
+        <BotIcon />
+      </div>
 
       {/* Main Content Card */}
-      <div className="w-[1330px] bg-white rounded-[9px] px-[37px] py-[37px]">
+      <div className='w-[1330px] bg-white rounded-[9px] px-[37px] py-[37px] mt-[37px] pt-0 pb-[37px]'>
         {/* Page Title */}
         <h1 className="text-[#050505] font-['Inter',sans-serif] text-[28px] font-semibold leading-[38px] mb-[46px]">
           Select Template
         </h1>
 
         {/* Template Cards Grid - 3 per row */}
-        <div className="grid grid-cols-3 gap-[39px]">
-          {templates.map((template) => (
+        <div className='grid grid-cols-3 gap-[39px]'>
+          {templates.map(template => (
             <TemplateCard
               key={template.id}
               template={template}
@@ -42,7 +46,7 @@ const SelectTemplate = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SelectTemplate;
+export default SelectTemplate

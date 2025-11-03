@@ -63,23 +63,15 @@ const UploadProposalDocument = () => {
       case 0:
         return (
           <div>
-            <BotIcon />
-          <div className='w-[1330px] bg-white rounded-[9px] px-[37px] py-[37px] mt-[37px]'>
-            {/* Header with AI Agent Status */}
-            <div className='flex items-start justify-between mb-[45px]'>
-              <h1 className="text-[#050505] font-['Inter',sans-serif] text-[28px] font-semibold leading-[38px]">
-                Add Opportunity Details
-              </h1>
+            <div className='-ml-[30px]'>
+              <BotIcon />
             </div>
-
-            {/* Form Content */}
-            <div className='flex flex-col gap-[54px]'>
-              {/* Opportunity ID Section */}
-              <div className='flex flex-col gap-[9px]'>
-                <label className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-semibold leading-[30px]">
-                  Add your Opportunity ID
-                  <span className='text-[#FF0000]'>*</span>
-                </label>
+            <div className='w-[1330px] bg-white rounded-[9px] px-[37px] py-[37px] mt-[37px]'>
+              {/* Header with AI Agent Status */}
+              <div className='flex items-start justify-between mb-[45px]'>
+                <h1 className="text-[#050505] font-['Inter',sans-serif] text-[28px] font-semibold leading-[38px]">
+                  Add Opportunity Details
+                </h1>
                 <div className='flex flex-col gap-[10px]'>
                   <div className='w-full h-[64px] px-[20px] bg-white rounded-[8px] border border-[#E5E5E5] flex items-center'>
                     <input
@@ -168,7 +160,6 @@ const UploadProposalDocument = () => {
               </div>
             </div>
           </div>
-          </div>
         )
       case 1:
         return allowSummary ? <OpportunitySummery /> : <Blank_Opportunity_Summery />
@@ -211,7 +202,7 @@ const UploadProposalDocument = () => {
         />
 
         {/* Main Form Content */}
-        <div className='flex-1 overflow-y-auto overflow-x-hidden pl-[30px] pr-[37px] py-[37px]'>
+        <div className='flex-1 overflow-y-auto overflow-x-hidden pl-[30px] pr-[37px] pt-0 pb-[37px]'>
           {renderStepContent()}
         </div>
       </div>

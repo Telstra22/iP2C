@@ -1,17 +1,6 @@
 import React from 'react';
-import BoldAIcon from '../../../../assets/icons/BoldAIcon';
-import BoldBIcon from '../../../../assets/icons/BoldBIcon';
-import ItalicIIcon from '../../../../assets/icons/ItalicIIcon';
-import UnderlineUIcon from '../../../../assets/icons/UnderlineUIcon';
-import AlignLeftIcon from '../../../../assets/icons/AlignLeftIcon';
-import BulletListIcon from '../../../../assets/icons/BulletListIcon';
-import CopyIcon from '../../../../assets/icons/CopyIcon';
-import AttachmentIcon from '../../../../assets/icons/AttachmentIcon';
-import PlusSquareIcon from '../../../../assets/icons/PlusSquareIcon';
-import SourceIcon from '../../../../assets/icons/SourceIcon';
-import CollaborateIcon from '../../../../assets/icons/CollaborateIcon';
-import AISparkleIcon from '../../../../assets/icons/AISparkleIcon';
-import { Baseline,Bold,Italic,Underline, TextAlignCenter,List,File,Paperclip,ChevronDown,FlipVertical,TextSearch,Users} from 'lucide-react';
+import { Baseline,Bold,Italic,Underline, TextAlignCenter,List,File,Paperclip,ChevronDown,FlipVertical,TextSearch,Users, Sparkles} from 'lucide-react';
+
 const EditorToolbar = () => {
   return (
     <div className="flex">
@@ -37,7 +26,7 @@ const EditorToolbar = () => {
 
         {/* Alignment */}
         <button className="p-1" aria-label="Align text">
-          <AlignLeftIcon width={23} height={17} color="#050505" />
+          <TextAlignCenter width={23} height={17} color="#050505" />
         </button>
 
         <div className="w-[2px] h-[39px] bg-[#d8d8d8]" />
@@ -95,10 +84,10 @@ const EditorToolbar = () => {
             className="flex flex-col justify-center items-center gap-[10px] h-[60px] px-[20px] py-[14px] bg-[var(--blacks-0,_#FFF)] rounded-[3px] w-full"
             aria-label="Regenerate with AI"
           >
-            <AISparkleIcon width={23} height={23} color="#202020" />
+            <Sparkles width={23} height={23} color="#202020" />
             <span className="button-text text-[#202020] whitespace-nowrap">Regenerate with AI</span>
           </button>
-        </div>
+        </div>    
       </div>
     </div>
   );

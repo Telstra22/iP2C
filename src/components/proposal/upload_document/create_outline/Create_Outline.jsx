@@ -72,9 +72,11 @@ function Create_Outline () {
 
   return (
     <div>
-      <BotIcon />
+      <div className='-ml-[30px]'>
+              <BotIcon />
+            </div>
       
-      <div className='w-[1330px] bg-white rounded-[9px] px-[37px] py-[37px] mt-[37px]'>
+      <div className='w-[1330px] bg-white rounded-[9px] px-[37px] py-[37px] mt-[37px] pt-0 pb-[37px]'>
         {/* Header */}
         <h1 className="text-[#050505] font-['Inter',sans-serif] text-[28px] font-semibold leading-[38px] mb-[30px]">
           Create Outline

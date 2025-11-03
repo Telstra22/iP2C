@@ -1,6 +1,5 @@
 import React from 'react';
-import ChevronUpIcon from '../../../assets/icons/ChevronUpIcon';
-import ChevronDownIcon from '../../../assets/icons/ChevronDownIcon';
+import { ChevronDown,ChevronUp } from 'lucide-react';
 
 const TableOfContentsItem = ({ section, index, onToggle }) => {
   const isActive = section.isExpanded;
@@ -24,9 +23,9 @@ const TableOfContentsItem = ({ section, index, onToggle }) => {
         </div>
         <div className="pr-[45px]">
           {isActive ? (
-            <ChevronUpIcon width={18} height={10} color="#828282" />
+            <ChevronUp width={18} height={10} color="#828282" />
           ) : (
-            <ChevronDownIcon width={18} height={10} color="#828282" />
+            <ChevronDown width={18} height={10} color="#828282" />
           )}
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { STATUS_COLORS } from "./data/manageProposalsData";
 import { Plus, MoreVertical, SquarePen } from "lucide-react";
 
@@ -12,6 +13,7 @@ const ProposalCard = ({
   updatedOn,
   statusKey,
 }) => {
+  const navigate = useNavigate();
   if (isCreateCard) {
     return (
       <>
@@ -123,6 +125,7 @@ const ProposalCard = ({
         <button
           type="button"
           className="flex items-center justify-center gap-[14px] w-full px-[20px] py-[14px] bg-[#0D54FF] hover:bg-[#0D54FF]/90 transition-colors"
+          onClick={() => navigate('/ai-generated-proposal')}
         >
           <span
             className="flex w-[24px] h-[24px] aspect-square pt-[2.004px] pr-[2.004px] pb-[3px] pl-[3px] justify-center items-center"

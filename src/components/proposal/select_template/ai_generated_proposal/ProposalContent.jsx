@@ -1,5 +1,5 @@
 import React from 'react';
-import ProposalSection from '../ProposalSection';
+import ProposalSection from './ProposalSection';
 
 const ProposalContent = ({ content, onToggleSection, onDeleteSection, onEditTitle }) => {
   return (

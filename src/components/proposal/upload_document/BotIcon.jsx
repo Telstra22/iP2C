@@ -1,6 +1,5 @@
 import React from 'react'
 import { Bot } from 'lucide-react'
-import GradientBotIcon from '../../../assets/icons/GradientBotIcon'
 import DashedArrowIcon from '../../../assets/icons/DashedArrowIcon'
 
 function BotIcon({
@@ -8,23 +7,16 @@ function BotIcon({
 }) {
   return (
     <div
-      className={`rounded-b-[7px] border-[1.5px] border-white shadow-[0px_4px_6px_rgba(0,0,0,0.07)] px-[20px] py-[13px] ${className}`}
-      style={{
-        background: 'linear-gradient(82.57deg, rgba(0,255,225,0.07) 1.86%, rgba(13,84,255,0.07) 44.08%, rgba(149,36,198,0.07) 110.73%), #ffffff'
-      }}
+      className={`flex w-[1427px] h-[77px] px-[20px] pr-[70px] py-[13px] justify-between items-center rounded-b-[7px] border-[1.5px] border-white shadow-[0px_4px_6px_rgba(0,0,0,0.07)] bg-[linear-gradient(83deg,_rgba(0,255,225,0.07)_1.85%,_rgba(13,84,255,0.07)_44.08%,_rgba(149,36,198,0.07)_110.73%),_#ffffff] ${className}`}
     >
       <div className="flex items-center gap-[8px]">
         {/* Opportunity Manager */}
         <div className="flex items-center gap-[9px]">
-          <GradientBotIcon width={27} height={23} />
+          <span className="inline-flex items-center">
+            <Bot width={22} height={19} color="#0d54ff" strokeWidth={2.5} />
+          </span>
           <span
-            className="font-['Inter',sans-serif] text-[20px] font-medium leading-[27px] whitespace-nowrap"
-            style={{
-              background: 'linear-gradient(84.69deg, rgba(0,255,225,1) 27.09%, rgba(13,84,255,1) 15.15%, rgba(149,36,198,1) 93.31%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text'
-            }}
+            className="font-['Inter',sans-serif] text-[20px] font-medium leading-[27px] whitespace-nowrap bg-clip-text text-transparent bg-[linear-gradient(84.69deg,_rgba(0,255,225,1)_27.09%,_rgba(13,84,255,1)_15.15%,_rgba(149,36,198,1)_93.31%)]"
           >
             Opportunity Manager
           </span>

@@ -1,5 +1,5 @@
 import React from 'react';
-import TableOfContentsItem from '../TableOfContentsItem';
+import TableOfContentsItem from './TableOfContentsItem';
 
 const TableOfContents = ({ sections, onToggleSection }) => {
   return (

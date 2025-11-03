@@ -1,31 +1,19 @@
 // Mock data for Opportunity Summary UI
 
-export const FIELD_CONFIGS = [
-  { label: 'Customer', field: 'customer', options: ['Total Brick', 'Commonwealth Bank', 'National Australia Bank', 'Coles Group', 'CSL', 'Bank of Australia'], defaultValue: 'Total Brick' },
-  { label: 'Archetype', field: 'archetype', options: ['1', '2', '3', '4'], defaultValue: '2' },
-  { label: 'Industry', field: 'industry', options: ['Property Development and Management', 'Banking', 'Telecommunication', 'Healthcare', 'Retail', 'Consumer Services', 'Industrial'], defaultValue: 'Property Development and Management' },
-  { label: 'Services', field: 'services', options: ['Mobile voice and data services', 'IoT', 'Cloud', 'Mobility', 'DAC', 'Unified Communications'], defaultValue: 'Mobile voice and data services' },
-  { label: 'Product Hierarchy', field: 'productHierarchy', options: ['Mobility', 'IoT', 'Cloud', 'Unified Communications', 'DAC'], defaultValue: 'Mobility' },
-  { label: 'Product', field: 'product', options: ['No', 'Yes', 'Mobile Devices', 'Business Applications'], defaultValue: 'No' },
-  { label: 'Sub Product', field: 'subProduct', options: ['No', 'Yes', 'Apple Mobile Devices', 'HTC Mobile Devices'], defaultValue: 'No' },
-  { label: 'Submission Date', field: 'submissionDate', type: 'datetime', defaultValue: '01/10/2025 09:00' },
-  { label: 'Customer Estimated Budget', field: 'budget', type: 'text', defaultValue: 'Not available', placeholder: '$' },
-]
-
 export const INITIAL_FORM_DATA = {
-  customer: 'Total Brick',
+  customer: 'Commonwealth',
   archetype: '2',
-  industry: 'Property Development and Management',
-  services: 'Mobile voice and data services',
+  industry: 'Banking',
+  services: 'Mobility',
   productHierarchy: 'Mobility',
-  product: 'No',
-  subProduct: 'No',
+  product: '',
+  subProduct: '',
   submissionDate: '01/10/2025 09:00',
   budget: 'Not available'
 }
 
 export const OPPORTUNITY_BRIEF =
-  'Total Brick, a leading diversified property group in Australia, is seeking proposals for reliable and cost-effective mobile voice and data services to support its operations nationwide. The company is reviewing its mobility services to identify improvements and align with evolving business needs.|'
+  'Total Brick, a leading diversified property group in Australia, is seeking proposals for reliable and cost-effective mobile voice and data services to support its operations nationwide. The company is reviewing its mobility services to identify improvements and align with evolving business needs.'
 
 export const PROBLEM_STATEMENT =
   'The current contract for mobility services has expired. Total Brick needs to evaluate new offerings to ensure continued service quality, security, and value, while addressing gaps or inefficiencies in the existing setup.'
@@ -41,27 +29,26 @@ export const PROGRESS_ITEMS = [
 
 // Static content for collapsible sections
 export const SECTION_CONTENT = {
-  opportunityBrief: 'Total Brick, a leading diversified property group in Australia, is seeking proposals for reliable and cost-effective mobile voice and data services to support its operations nationwide. The company is reviewing its mobility services to identify improvements and align with evolving business needs.|',
+  opportunityBrief: 'Total Brick, a leading diversified property group in Australia, is seeking proposals for reliable and cost-effective mobile voice and data services to support its operations nationwide. The company is reviewing its mobility services to identify improvements and align with evolving business needs.',
   technicalRequirements: 'Nationwide 4G/5G coverage, including rural and remote areas. Support for Low Earth Orbit (LEO) satellite services. Integration with ITSM tools (e.g., ServiceNow), CMDB compatibility, and auto-enablement features. Mature security protocols, data sovereignty, and compliance with Australian regulations.',
   functionalRequirements: 'Self-service portals, dedicated account management, and efficient ordering/tracking systems. Consolidated billing, usage reporting, and trend analysis. SLAs for activation, fault resolution, and ongoing operations. Scalability and flexibility to adjust plans as business needs change.',
   vendorQuestions: 'Detailed pricing and breakdowns, including discounts and incentives. Information on operational support, billing processes, and SLAs. ESG initiatives, innovations, and futureproofing strategies. Security practices and customer support capabilities. Roadmap for LEO satellite services and device management options.',
   terms: 'All mutual NDAs must be signed before RFI issuance. The timetable is indicative and may change at Total Brick\'s discretion. Responses must be submitted by 5pm, Friday 31st January 2025. Evaluation will consider vendor profile, cost structure, service inclusions, network coverage, and ESG commitments.',
 }
-
-// Config for simple sections that display SECTION_CONTENT
-export const SECTION_CONFIGS = [
-  { title: 'Technical Requirements', defaultExpanded: true, contentKey: 'technicalRequirements' },
-  { title: 'Functional Requirements', defaultExpanded: true, contentKey: 'functionalRequirements' },
-  { title: 'Vendor Questions', defaultExpanded: true, contentKey: 'vendorQuestions', hasSpecialIcon: true },
-  { title: 'Terms & Conditions', defaultExpanded: true, contentKey: 'terms', hasSpecialIcon: true },
-]
-
 export const customers = [
   'Commonwealth',
   'National Australia Bank',
   'Coles Group',
   'CSL',
   'Bank of Australia',
+];
+
+export const archetype = [
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
 ];
 
 export const industries = [

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Breadcrumb from '../../upload_document/Breadcrumb';
-import TableOfContents from '../TableOfContents';
-import EditorToolbar from '../EditorToolbar';
+import TableOfContents from './TableOfContents';
+import EditorToolbar from './EditorToolbar';
 import ActionButtons from './ActionButtons';
-import ProposalContent from '../ProposalContent';
-import FloatingChatButton from '../FloatingChatButton';
-import { mockRootProps } from '../AIGeneratedProposalMockData';
+import ProposalContent from './ProposalContent';
+import FloatingChatButton from './FloatingChatButton';
+import { mockRootProps } from './AIGeneratedProposalMockData';
 
 const AIGeneratedProposal = () => {
   const [tableOfContents, setTableOfContents] = useState(mockRootProps.tableOfContents);

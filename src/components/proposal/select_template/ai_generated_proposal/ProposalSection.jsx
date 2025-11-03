@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ChevronUpIcon from '../../../assets/icons/ChevronUpIcon';
-import ChevronDownIcon from '../../../assets/icons/ChevronDownIcon';
-import TrashSmallIcon from '../../../assets/icons/TrashSmallIcon';
-import { Pencil } from 'lucide-react';
+import { Pencil, ChevronDown, ChevronUp, Trash } from 'lucide-react';
 
 const ProposalSection = ({ section, onToggle, onDelete }) => {
   const [editingTitle, setEditingTitle] = useState(false);
@@ -115,13 +112,13 @@ const ProposalSection = ({ section, onToggle, onDelete }) => {
         <div className="flex items-center gap-[12px] pt-[2px]">
           <button onClick={onToggle} aria-label={section.isExpanded ? 'Collapse' : 'Expand'}>
             {section.isExpanded ? (
-              <ChevronUpIcon width={18} height={10} color="#050505" />
+              <ChevronUp width={18} height={10} color="#050505" />
             ) : (
-              <ChevronDownIcon width={18} height={10} color="#050505" />
+              <ChevronDown width={18} height={10} color="#050505" />
             )}
           </button>
           <button onClick={onDelete} aria-label="Delete section">
-            <TrashSmallIcon width={13} height={16} color="#050505" />
+            <Trash width={13} height={16} color="#050505" />
           </button>
         </div>
       </div>
@@ -170,7 +167,7 @@ const ProposalSection = ({ section, onToggle, onDelete }) => {
                       className="p-1 hover:bg-gray-100 rounded"
                       aria-label="Delete content"
                     >
-                      <TrashSmallIcon width={13} height={16} color="#050505" />
+                      <Trash width={13} height={16} color="#050505" />
                     </button>
                   </div>
                 </div>
