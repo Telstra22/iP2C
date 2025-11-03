@@ -12,12 +12,13 @@ function FooterNav ({
   const isSummaryStep = activeStep === 1
   const isSourceConnectionStep = activeStep === 2
   const isCreateOutlineStep = activeStep === 3
+  const isSelectTemplateStep = activeStep === 4
   const isNextStep =
     isSummaryStep || isSourceConnectionStep || isCreateOutlineStep
   const isGenerateEnabled =
     opportunityId.trim().length > 0 && mainUploadCount >= 1
-  const enabled = isNextStep ? true : isGenerateEnabled
-  const label = isNextStep ? 'Next' : 'Generate Summary with AI'
+  const enabled = isNextStep ? true : isSelectTemplateStep ? true : isGenerateEnabled
+  const label = isNextStep ? 'Next' : isSelectTemplateStep ? 'Generate Proposal with AI' : 'Generate Summary with AI'
 
   return (
     <div className='flex flex-col w-[1920px] h-[84px] px-[37px] justify-center items-center gap-[10px] flex-shrink-0 bg-[#FFF] shadow-[4px_0_8px_1px_rgba(0,0,0,0.08)]'>
@@ -26,7 +27,7 @@ function FooterNav ({
           onClick={onPrevious}
           className='flex items-center gap-[14px] px-[20px] py-[12px] bg-white rounded-[6px] hover:bg-gray-50 transition-colors'
         >
-          <ChevronLeft width={24} height={24} color='#0D54FF' />
+          <ChevronLeft width={14} height={24} color='#0D54FF' />
           <span className="text-[#0D54FF] font-['Inter',sans-serif] text-[20px] font-semibold leading-[27px]">
             Previous
           </span>
@@ -62,7 +63,7 @@ function FooterNav ({
           </span>
           {isNextStep ? (
             <ChevronRight
-              width={24}
+              width={14}
               height={24}
               color='#FFFFFF'
               className='rotate-0'

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Eye, EyeOff, Check } from "lucide-react";
+import { Eye, EyeOff, Check,ChevronDown } from "lucide-react";
 import {
   LABEL_CLASS,
   INPUT_EMAIL_CLASS,
@@ -8,12 +8,12 @@ import {
   TOGGLE_ICON_BTN_CLASS,
   getCheckboxBoxClass,
 } from "./styles/loginFormClasses";
-import RadioButton from "./RadioButton.jsx";
+// Profile selection will use a native <select> instead of RadioButton
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
-  const [profileType, setProfileType] = useState("sales");
+  const [profileType, setProfileType] = useState("Proposal Generation");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -48,23 +48,27 @@ function Login() {
               Welcome Back!
             </h1>
 
-            {/* Profile Section */}
+            {/* Sales Operation */}
             <div className="flex flex-col gap-[9px] mb-[29px]">
-              <label className="text-[#505050] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
-                Profile
-              </label>
-              <div className="flex items-center gap-[25px]">
-                <RadioButton
-                  label="Sales Agent"
-                  checked={profileType === "sales"}
-                  onChange={() => setProfileType("sales")}
+                <label className={LABEL_CLASS}>
+                  Sales Operation*
+                </label>
+              <div className="flex items-center gap-[25px] relative">
+                <select
                   name="profileType"
-                />
-                <RadioButton
-                  label="Contract Agent"
-                  checked={profileType === "contract"}
-                  onChange={() => setProfileType("contract")}
-                  name="profileType"
+                  aria-label="Profile"
+                  value={profileType}
+                  onChange={(e) => setProfileType(e.target.value)}
+                  className={`${INPUT_EMAIL_CLASS} pr-[60px] appearance-none`}
+                >
+                  <option value="Proposal Generation">Proposal Generation</option>
+                  <option value="Contract Review">Contract Review</option>
+                </select>
+                {/* Custom dropdown arrow (24x24) positioned to the right */}
+                <ChevronDown
+                  size={24}
+                  color="#505050"
+                  className="pointer-events-none absolute right-[18px] top-1/2 -translate-y-1/2 w-[24px] h-[24px] aspect-[1/1]"
                 />
               </div>
             </div>
@@ -83,7 +87,7 @@ function Login() {
               {/* Email Field */}
               <div className="mb-[29px]">
                 <label htmlFor="email" className={LABEL_CLASS}>
-                  Email
+                  Email*
                 </label>
                 <input
                   id="email"
@@ -101,7 +105,7 @@ function Login() {
               {/* Password Field */}
               <div className="mb-[30px]">
                 <label htmlFor="password" className={LABEL_CLASS}>
-                  Password
+                  Password*
                 </label>
                 <div className="relative">
                   <input
