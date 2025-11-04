@@ -7,7 +7,8 @@ function FooterNav ({
   opportunityId = '',
   mainUploadCount = 0,
   onPrevious,
-  onNext
+  onNext,
+  isVerified = false,
 }) {
   const isSummaryStep = activeStep === 1
   const isSourceConnectionStep = activeStep === 2
@@ -16,12 +17,12 @@ function FooterNav ({
   const isNextStep =
     isSummaryStep || isSourceConnectionStep || isCreateOutlineStep
   const isGenerateEnabled =
-    opportunityId.trim().length > 0 && mainUploadCount >= 1
+    opportunityId.trim().length > 0 && mainUploadCount >= 1 && isVerified
   const enabled = isNextStep ? true : isSelectTemplateStep ? true : isGenerateEnabled
   const label = isNextStep ? 'Next' : isSelectTemplateStep ? 'Generate Proposal with AI' : 'Generate Summary with AI'
 
   return (
-    <div className='flex flex-col w-[1920px] h-[84px] px-[37px] justify-center items-center gap-[10px] flex-shrink-0 bg-[#FFF] shadow-[4px_0_8px_1px_rgba(0,0,0,0.08)]'>
+    <div className='flex flex-col w-full h-[84px] px-[66px] justify-center items-center gap-[10px] flex-shrink-0 bg-[#FFF] shadow-[0px_-4px_8px_1px_rgba(0,0,0,0.08)]'>
       <div className='flex items-center justify-end gap-[30px] w-full'>
         <button
           onClick={onPrevious}

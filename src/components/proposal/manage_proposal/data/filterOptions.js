@@ -1,9 +1,9 @@
 export const customerOptions = [
-  "Commonwealth",
-  "National Australia Bank",
-  "Coles Group",
-  "CSL",
-  "Bank of Australia",
+  "Total Brick",
+  "Vensi",
+  "Citrus Company",
+  "Motivc",
+  "Yost",
 ];
 
 export const industryOptions = [
