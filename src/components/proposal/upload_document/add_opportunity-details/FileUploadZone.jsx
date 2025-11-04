@@ -95,17 +95,17 @@ const FileUploadZone = forwardRef(({ maxFiles = 5, maxSizeMB = 10, onFilesChange
   return (
     <div className="flex flex-col gap-[15px]">
       <div
-        className="w-full border-[1px] border-dashed border-[#A0A0A0] rounded-[9px] flex flex-col items-center justify-center gap-[28px] py-[93px] cursor-pointer hover:border-[#0D54FF]/90 transition-colors bg-white"
+        className="w-full border-[1px] border-dashed border-[#A0A0A0] rounded-[9px] flex flex-col items-center justify-center gap-[23px] py-[93px] cursor-pointer hover:border-[#0D54FF]/90 transition-colors bg-white"
         onClick={handleClick}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
       >
-        <FileUp size={65} color="#C6C6C6" />
+        <FileUp size={43} color="#C6C6C6" strokeWidth={1.5} />
         <div className="text-center">
-          <span className="text-[#050505] font-['Inter',sans-serif] text-[24px] font-medium leading-[32px]">
+          <span className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-medium leading-[30px]">
             Drag and Drop file here or{" "}
           </span>
-          <span className="text-[#0D54FF] font-['Inter',sans-serif] text-[24px] font-medium leading-[32px] underline cursor-pointer">
+          <span className="text-[#0D54FF] font-['Inter',sans-serif] text-[22px] font-medium leading-[30px] underline cursor-pointer">
             Choose file
           </span>
         </div>
@@ -114,9 +114,12 @@ const FileUploadZone = forwardRef(({ maxFiles = 5, maxSizeMB = 10, onFilesChange
           type="file"
           className="hidden"
           onChange={handleFileChange}
-          accept=".doc,.docx,.xls,.xlsx,.pdf,.csv"
+          accept=".doc,.docx,.xls,.xlsx,.pdf,.csv,.ppt,.pptx"
           multiple
         />
+        <p className="text-[#A0A0A0] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px]">
+        File name should not contain the following characters: " # % & * : &lt; &gt; ? \ / &#123; &#125; ~ |
+      </p>
       </div>
       {files.length > 0 && (
         <div className="flex flex-col gap-[8px]">

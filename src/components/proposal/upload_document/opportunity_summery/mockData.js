@@ -2,8 +2,10 @@
 
 export const INITIAL_FORM_DATA = {
   customer: 'Commonwealth',
+  businessUnit: 'Telstra Business',
   archetype: '2',
   industry: 'Banking',
+  newRenewal: 'New',
   services: 'Mobility',
   productHierarchy: 'Mobility',
   product: '',
@@ -36,11 +38,15 @@ export const SECTION_CONTENT = {
   terms: 'All mutual NDAs must be signed before RFI issuance. The timetable is indicative and may change at Total Brick\'s discretion. Responses must be submitted by 5pm, Friday 31st January 2025. Evaluation will consider vendor profile, cost structure, service inclusions, network coverage, and ESG commitments.',
 }
 export const customers = [
-  'Commonwealth',
-  'National Australia Bank',
-  'Coles Group',
-  'CSL',
-  'Bank of Australia',
+   "Total Brick",
+  "Vensi",
+  "Citrus Company",
+  "Motivc",
+  "Yost",
+];
+
+export const businessUnit = [
+   "Telstra Business",
 ];
 
 export const archetype = [
@@ -58,6 +64,10 @@ export const industries = [
   'Retail',
   'Consumer Services',
   'Industrial',
+];
+
+export const newRenewal = [
+  'New',
 ];
 
 export const services = [

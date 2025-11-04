@@ -72,7 +72,7 @@ const Sidebar = ({ onStepClick, activeStep = 0, completedSteps = [] }) => {
                 type='button'
                 onClick={() => onStepClick?.(index)}
                 className={`w-full text-left h-[102px] flex items-center justify-between pl-[29px] pr-[29px] ${
-                  isActive ? 'bg-[#F6F6F6]' : 'bg-white'
+                  isActive ? 'bg-[#D9D9D9]' : 'bg-white'
                 } cursor-pointer`}
                 aria-pressed={isActive}
               >
@@ -90,12 +90,12 @@ const Sidebar = ({ onStepClick, activeStep = 0, completedSteps = [] }) => {
                   aria-hidden='true'
                   className={`w-[35px] h-[35px] rounded-[17px] flex-shrink-0 flex items-center justify-center transition-colors ${
                     isChecked
-                      ? 'bg-[#56A72B] border-none'
-                      : 'border-[1.74px] border-[#A0A0A0] bg-transparent'
+                      ? 'bg-[#fff] border-[2px] border-[#56A72B]'
+                      : 'border-[2px] border-[#A0A0A0] bg-transparent'
                   }`}
                 >
                   {isChecked ? (
-                    <Check size={20} color='#FFFFFF' strokeWidth={3} />
+                    <Check size={20} color='#56A72B' strokeWidth={3} />
                   ) : null}
                 </div>
               </button>

@@ -54,7 +54,7 @@ function Login() {
             {/* Sales Operation */}
             <div className="flex flex-col gap-[9px] mb-[29px]">
                 <label className={LABEL_CLASS}>
-                  Sales Operation*
+                  Sales Operation<span className="text-[#FF0000]">*</span>
                 </label>
               <div className="flex items-center gap-[25px] relative">
                 <select
@@ -90,7 +90,7 @@ function Login() {
               {/* Email Field */}
               <div className="mb-[29px]">
                 <label htmlFor="email" className={LABEL_CLASS}>
-                  Email*
+                  Email<span className="text-[#FF0000]">*</span>
                 </label>
                 <input
                   id="email"
@@ -108,7 +108,7 @@ function Login() {
               {/* Password Field */}
               <div className="mb-[30px]">
                 <label htmlFor="password" className={LABEL_CLASS}>
-                  Password*
+                  Password<span className="text-[#FF0000]">*</span>
                 </label>
                 <div className="relative">
                   <input

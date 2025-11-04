@@ -10,11 +10,11 @@ function Checkbox ({ checked, onChange }) {
       <div
         className={`w-[28px] h-[28px] rounded-[3px] border-[1.5px] flex items-center justify-center transition-colors flex-shrink-0 ${
           checked
-            ? 'bg-[#0D54FF] border-[#0D54FF]'
-            : 'border-[#050505] bg-white group-hover:border-[#0D54FF]'
+            ? 'bg-[#FFFFFF] border-[#0D54FF]'
+            : 'border-[#0D54FF] bg-white group-hover:border-[#0D54FF]'
         }`}
       >
-        {checked && <Check width={20} height={20} color='#FFFFFF' />}
+        {checked && <Check width={20} height={20} color='#0D54FF' />}
       </div>
     </button>
   )

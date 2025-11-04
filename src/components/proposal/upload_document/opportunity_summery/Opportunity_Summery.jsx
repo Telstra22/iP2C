@@ -6,7 +6,6 @@ import CompletionModal from './CompletionModal'
 import FormField from './FormField'
 import CollapsibleSection from './CollapsibleSection'
 import EditableTextArea from './EditableTextArea'
-import BotIcon from '../BotIcon.jsx'
 import { Check } from 'lucide-react'
 import {
   INITIAL_FORM_DATA,
@@ -16,7 +15,9 @@ import {
   PROGRESS_ITEMS,
   SECTION_CONTENT,
   customers,
+  businessUnit,
   industries,
+  newRenewal,
   services,
   productHierarchies,
   hierarchyToProducts,
@@ -176,6 +177,12 @@ const OpportunitySummery = () => {
         type: 'dropdown'
       },
       {
+        label: 'Business Unit',
+        field: 'businessUnit',
+        options: businessUnit,
+        type: 'dropdown'
+      },
+      {
         label: 'Archetype',
         field: 'archetype',
         options: archetype,
@@ -185,6 +192,12 @@ const OpportunitySummery = () => {
         label: 'Industry',
         field: 'industry',
         options: industries,
+        type: 'dropdown'
+      },
+      {
+        label: 'New/ Renewal',
+        field: 'newRenewal',
+        options: newRenewal,
         type: 'dropdown'
       },
       {
@@ -221,7 +234,9 @@ const OpportunitySummery = () => {
     ],
     [
       customers,
+      businessUnit,
       industries,
+      newRenewal,
       services,
       productHierarchies,
       productOptions,
@@ -229,24 +244,22 @@ const OpportunitySummery = () => {
       archetype
     ]
   )
-  const progressItems = PROGRESS_ITEMS
+  //const progressItems = PROGRESS_ITEMS
 
   return (
-    <div>
-      <div className='-ml-[30px]'>
-        <BotIcon />
-      </div>
       <div className='w-full max-w-[1330px] bg-white rounded-[9px] px-[37px] py-[37px] mt-[37px] pt-0 pb-[37px]'>
         <div
           aria-hidden={showLoadingModal}
           className={showLoadingModal ? 'invisible pointer-events-none' : ''}
         >
           {/* Header */}
-          <div className='flex items-start justify-between mb-[46px]'>
-            <h1 className="text-[#050505] font-['Inter',sans-serif] text-[28px] font-semibold leading-[38px]">
-              AI Generate Opportunity Summary
-            </h1>
-          </div>
+          <div className="flex flex-col -ml-[35px] -mr-[35px] items-start self-stretch bg-[var(--blacks-0,#FFF)] shadow-[0_4px_6px_0_rgba(0,0,0,0.07)] mb-[40px]">
+              <div className="flex h-[120px] py-[0px] px-[41px] items-center gap-[25px] self-stretch border-l-[12px] border-[#0D54FF]">
+                <h1 className="text-[#050505] font-['Inter',sans-serif] text-[26px] font-semibold leading-[35px]">
+                  AI Generate Opportunity Summary
+                </h1>
+              </div>
+            </div>
 
           {/* Form Fields Grid */}
           <div className='flex flex-wrap gap-x-[40px] gap-y-[40px] mb-[30px]'>
@@ -429,7 +442,7 @@ const OpportunitySummery = () => {
                 </p>
 
                 {/* Progress bars */}
-                <div className='flex flex-col gap-[26px] w-[566px]'>
+                {/* <div className='flex flex-col gap-[26px] w-[566px]'>
                   {progressItems.map(item => (
                     <ProgressBarItem
                       key={item.label}
@@ -438,6 +451,9 @@ const OpportunitySummery = () => {
                       barColor={item.barColor}
                     />
                   ))}
+                </div> */}
+                <div width={5684}>
+                  Please resume with other sections. You will be notified once the huddle has ended
                 </div>
               </div>
 
@@ -454,7 +470,6 @@ const OpportunitySummery = () => {
 
         {showCompletionModal && <CompletionModal onDone={handleDone} />}
       </div>
-    </div>
   )
 }
 
