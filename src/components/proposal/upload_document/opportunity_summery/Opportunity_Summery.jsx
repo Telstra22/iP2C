@@ -7,6 +7,8 @@ import FormField from './FormField'
 import CollapsibleSection from './CollapsibleSection'
 import EditableTextArea from './EditableTextArea'
 import { Check } from 'lucide-react'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import {
   INITIAL_FORM_DATA,
   OPPORTUNITY_BRIEF,
@@ -126,6 +128,27 @@ const OpportunitySummery = () => {
     }, stepMs)
     return () => clearInterval(timer)
   }, [showLoadingModal])
+
+  // Show react-toastify success when completion modal appears
+  useEffect(() => {
+    if (!showCompletionModal) return
+    toast.success(
+      (
+        <span className="whitespace-nowrap text-[var(--black-80,#505050)] font-['Inter',sans-serif] text-[18px] font-semibold leading-[134.1%]">Agent Huddle Ended | Go to <a href="#" className="text-[var(--Primary-Blue,#0D54FF)] font-['Inter',sans-serif] text-[18px] font-normal leading-[134.1%] underline decoration-solid [text-decoration-skip-ink:none] [text-underline-position:from-font]">Opportunity Summary</a> page to review your content</span>
+      ),
+      {
+        position: 'top-right',
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'light',
+        className: 'bg-white shadow-[0_4px_6px_1px_rgba(0,0,0,0.09)] w-auto h-[76px] inline-flex items-center',
+        progressStyle: { background: '#22C55E' }
+      }
+    )
+  }, [showCompletionModal])
 
   const handleDone = () => {
     setShowCompletionModal(false)
@@ -247,7 +270,8 @@ const OpportunitySummery = () => {
   //const progressItems = PROGRESS_ITEMS
 
   return (
-      <div className='w-full max-w-[1330px] bg-white rounded-[9px] px-[37px] py-[37px] mt-[37px] pt-0 pb-[37px]'>
+      <div className='w-full max-w-[1330px] bg-white rounded-[9px] px-[37px] py-[37px] mt-[37px] pt-0 pb-[37px] relative'>
+        <ToastContainer position="top-right" theme="light" hideProgressBar={false} />
         <div
           aria-hidden={showLoadingModal}
           className={showLoadingModal ? 'invisible pointer-events-none' : ''}
@@ -452,7 +476,7 @@ const OpportunitySummery = () => {
                     />
                   ))}
                 </div> */}
-                <div width={5684}>
+                <div className="w-[584px] text-[var(--blacks-80,#505050)] font-['Inter',sans-serif] text-[20px] font-normal leading-[134.1%]">
                   Please resume with other sections. You will be notified once the huddle has ended
                 </div>
               </div>
