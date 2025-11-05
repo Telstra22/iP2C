@@ -1,3 +1,9 @@
+// Dropdown option sources for FiltersBar
+// - customerOptions: Customer dropdown
+// - industryOptions: Industry dropdown
+// - businessUnits: Business Unit dropdown
+// - productType: Product Type dropdown
+// Customer dropdown options
 export const customerOptions = [
   "Total Brick",
   "Vensi",
@@ -6,6 +12,7 @@ export const customerOptions = [
   "Yost",
 ];
 
+// Industry dropdown options
 export const industryOptions = [
   "Banking",
   "Telecommunication",
@@ -15,12 +22,14 @@ export const industryOptions = [
   "Industrial",
 ];
 
-export const statusOptions = ["active", "overdue", "pending", "cancelled"];
+// Business Unit dropdown options
+export const businessUnits = ["Telstra Business", "Telstra Enterprise"];
 
-export const locationOptions = [
-  "Sydney",
-  "Melbourne",
-  "Brisbane",
-  "Adelaide",
-  "Perth",
+// Product Type dropdown options
+export const productType = [
+  "IoT",
+  "Cloud",
+  "Mobility",
+  "DAC",
+  "Unified Communications",
 ];

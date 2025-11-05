@@ -1,0 +1,47 @@
+[
+  {
+    "success": false,
+    "status": "loading",
+    "message": "Fetching opportunity summary. It will take 3-4 minutes.",
+    "progressHint": "Please resume with other sections. You will be notified once the huddle has ended"
+  },
+  {
+    "success": true,
+    "message": "Opportunity summary generated successfully.",
+    "data": {
+      "form": {
+        "customer": "Total Brick",
+        "businessUnit": "Enterprise",
+        "archetype": "Standard",
+        "industry": "Construction",
+        "newRenewal": "New",
+        "services": "Managed Services",
+        "productHierarchy": "Connectivity",
+        "product": "Internet",
+        "subProduct": "Fiber",
+        "submissionDate": "2025-11-05T13:00:00Z",
+        "budget": "$250,000"
+      },
+      "sections": {
+        "opportunityBrief": "Telstra to provide managed connectivity and security services across multiple sites.",
+        "problemStatement": "Customer requires resilient, secure connectivity with centralized management and visibility.",
+        "scopeOfWork": "Design, deploy, and manage WAN connectivity, SD-WAN, and security edge with SLAs.",
+        "technicalRequirements": "Dual links per site, SD-WAN with active-active, centralized policy, SSO, and logging.",
+        "functionalRequirements": "Self-service portal, monthly reporting, change windows, and incident workflows.",
+        "vendorQuestions": "Provide architecture diagram, migration plan, and risk mitigation strategy.",
+        "terms": "Standard Telstra T&Cs apply. Final terms subject to contract."
+      }
+    }
+  },
+  {
+    "success": false,
+    "message": "Failed to generate opportunity summary. Please try again later.",
+    "error": {
+      "code": "INTERNAL_ERROR",
+      "requestId": "opps-xyz-123",
+      "details": [
+        "Unexpected error during AI huddle processing"
+      ]
+    }
+  }
+]

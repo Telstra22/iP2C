@@ -95,18 +95,23 @@ const FileUploadZone = forwardRef(({ maxFiles = 5, maxSizeMB = 10, onFilesChange
   return (
     <div className="flex flex-col gap-[15px]">
       <div
-        className="w-full border-[1px] border-dashed border-[#A0A0A0] rounded-[9px] flex flex-col items-center justify-center gap-[23px] py-[93px] cursor-pointer hover:border-[#0D54FF]/90 transition-colors bg-white"
+        className="self-stretch h-[204px] px-[484px] py-[65px] flex flex-col justify-center items-center gap-[19px] rounded-[9px] border border-dashed border-[var(--blacks-40,#ABA0A0)] cursor-pointer"
         onClick={handleClick}
         onDragOver={handleDragOver}
         onDrop={handleDrop}
       >
         <FileUp size={43} color="#C6C6C6" strokeWidth={1.5} />
-        <div className="text-center">
-          <span className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-medium leading-[30px]">
-            Drag and Drop file here or{" "}
-          </span>
-          <span className="text-[#0D54FF] font-['Inter',sans-serif] text-[22px] font-medium leading-[30px] underline cursor-pointer">
-            Choose file
+        <div className="flex flex-wrap items-center justify-center gap-x-[10px] gap-y-[6px] text-center">
+          <div className="inline-flex items-center justify-center gap-[10px] whitespace-nowrap w-[408px] text-center">
+            <span className="text-[#050505] font-['Inter',sans-serif] text-[20px] font-normal leading-[26.82px]">
+              Drag and Drop file here or
+            </span>
+            <span className="text-[#0054FF] font-['Inter',sans-serif] text-[20px] font-normal leading-[26.82px] underline cursor-pointer">
+              Choose file
+            </span>
+          </div>
+          <span className="text-[var(--blacks-40,#A0A0A0)] font-['Inter',sans-serif] text-[18px] font-normal leading-[134.1%] whitespace-nowrap">
+            File name should not contain the following characters: " # % & * : &lt; &gt; ? \\ / &#123; &#125; ~ |
           </span>
         </div>
         <input
@@ -117,9 +122,6 @@ const FileUploadZone = forwardRef(({ maxFiles = 5, maxSizeMB = 10, onFilesChange
           accept=".doc,.docx,.xls,.xlsx,.pdf,.csv,.ppt,.pptx"
           multiple
         />
-        <p className="text-[#A0A0A0] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px]">
-        File name should not contain the following characters: " # % & * : &lt; &gt; ? \ / &#123; &#125; ~ |
-      </p>
       </div>
       {files.length > 0 && (
         <div className="flex flex-col gap-[8px]">

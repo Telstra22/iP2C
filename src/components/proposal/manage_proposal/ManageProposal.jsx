@@ -1,4 +1,5 @@
 import { Plus, ChevronRight } from 'lucide-react'
+import { CircleAlert } from 'lucide-react'
 import ProposalCard from './ManageProposalCard'
 import { useNavigate } from 'react-router-dom'
 import { proposalsData } from './data/manageProposalsData'
@@ -7,8 +8,8 @@ import FiltersBar from './FiltersBar'
 import {
   customerOptions,
   industryOptions,
-  statusOptions,
-  locationOptions
+  businessUnits,
+  productType
 } from './data/filterOptions'
 
 import { useState } from 'react'
@@ -36,7 +37,7 @@ function ManageProposal () {
   // Multi-select filters
   const [selectedCustomers, setSelectedCustomers] = useState([])
   const [selectedIndustries, setSelectedIndustries] = useState([])
-  const [selectedStatuses, setSelectedStatuses] = useState([])
+  const [selectedBusinessUnits, setSelectedBusinessUnits] = useState([])
   const [selectedLocations, setSelectedLocations] = useState([])
 
   // Filtered proposals passed up from FiltersBar
@@ -109,7 +110,7 @@ function ManageProposal () {
                   filters={{
                     customers: selectedCustomers,
                     industries: selectedIndustries,
-                    statuses: selectedStatuses,
+                    businessUnits: selectedBusinessUnits,
                     locations: selectedLocations
                   }}
                   onFiltersChange={next => {
@@ -117,36 +118,49 @@ function ManageProposal () {
                       setSelectedCustomers(next.customers)
                     if (next.industries !== undefined)
                       setSelectedIndustries(next.industries)
-                    if (next.statuses !== undefined)
-                      setSelectedStatuses(next.statuses)
+                    if (next.businessUnits !== undefined)
+                      setSelectedBusinessUnits(next.businessUnits)
                     if (next.locations !== undefined)
                       setSelectedLocations(next.locations)
                   }}
                   options={{
                     customers: customerOptions,
                     industries: industryOptions,
-                    statuses: statusOptions,
-                    locations: locationOptions
+                    businessUnits: businessUnits,
+                    productType: productType
                   }}
                 />
               </div>
 
               {/* Proposals Grid */}
               <div className={GRID_CLASS}>
-                {/* Create Proposal Card */}
-                <ProposalCard
-                  isCreateCard
-                  onClick={() => {
-                    console.log(
-                      'Create Proposal clicked — navigating to upload page'
-                    )
-                    navigate('/add_opportunity-details')
-                  }}
-                />
-                {/* Proposal Cards */}
-                {filteredProposals.map(proposal => (
-                  <ProposalCard key={proposal.id} {...proposal} />
-                ))}
+                {filteredProposals.length === 0 ? (
+                  <div className="flex items-center justify-center w-full rounded-[9px] border border-[#D9D9D9] bg-white col-span-full min-h-[260px]">
+                    <div className="flex flex-col items-center justify-center gap-3 py-8">
+                      <CircleAlert size={48} color="#FB4848" strokeWidth={2} />
+                      <span className="text-[#505050] font-['Inter',sans-serif] text-[18px] font-medium leading-normal">
+                        No record found
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    {/* Create Proposal Card */}
+                    <ProposalCard
+                      isCreateCard
+                      onClick={() => {
+                        console.log(
+                          'Create Proposal clicked — navigating to upload page'
+                        )
+                        navigate('/add_opportunity-details')
+                      }}
+                    />
+                    {/* Proposal Cards */}
+                    {filteredProposals.map(proposal => (
+                      <ProposalCard key={proposal.id} {...proposal} />
+                    ))}
+                  </>
+                )}
               </div>
             </div>
           </div>

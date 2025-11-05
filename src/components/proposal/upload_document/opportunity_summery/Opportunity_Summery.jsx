@@ -32,6 +32,7 @@ const OpportunitySummery = () => {
   const [showCompletionModal, setShowCompletionModal] = useState(false)
   const [progress, setProgress] = useState(0)
   const [expandAll, setExpandAll] = useState(true)
+  const [activeEditable, setActiveEditable] = useState(null)
   const [sectionStates, setSectionStates] = useState({
     opportunityBrief: true,
     problemStatement: true,
@@ -167,6 +168,10 @@ const OpportunitySummery = () => {
       vendorQuestions: newExpandAll,
       termsConditions: newExpandAll
     })
+    // When expanding all, disable editing for all sections until one is clicked
+    if (newExpandAll) {
+      setActiveEditable(null)
+    }
   }
 
   const toggleSection = sectionKey => {
@@ -174,6 +179,8 @@ const OpportunitySummery = () => {
       ...prev,
       [sectionKey]: !prev[sectionKey]
     }))
+    // Make only the clicked section editable
+    setActiveEditable(sectionKey)
   }
 
   // Build field configs dynamically from mock lists and dependency maps
@@ -340,6 +347,8 @@ const OpportunitySummery = () => {
                 onSave={handleOpportunityBriefSave}
                 onDiscard={handleOpportunityBriefDiscard}
                 showActionsInitially={true}
+                readOnly={activeEditable !== 'opportunityBrief'}
+                onRequestEdit={() => setActiveEditable('opportunityBrief')}
               />
             </CollapsibleSection>
 
@@ -354,6 +363,8 @@ const OpportunitySummery = () => {
                 onSave={handleProblemStatementSave}
                 onDiscard={handleProblemStatementDiscard}
                 showActionsInitially={true}
+                readOnly={activeEditable !== 'problemStatement'}
+                onRequestEdit={() => setActiveEditable('problemStatement')}
               />
             </CollapsibleSection>
 
@@ -368,6 +379,8 @@ const OpportunitySummery = () => {
                 onSave={handleScopeSave}
                 onDiscard={handleScopeDiscard}
                 showActionsInitially={true}
+                readOnly={activeEditable !== 'scopeOfWork'}
+                onRequestEdit={() => setActiveEditable('scopeOfWork')}
               />
             </CollapsibleSection>
 
@@ -385,6 +398,8 @@ const OpportunitySummery = () => {
                   SECTION_CONTENT.technicalRequirements
                 )}
                 showActionsInitially={true}
+                readOnly={activeEditable !== 'technicalRequirements'}
+                onRequestEdit={() => setActiveEditable('technicalRequirements')}
               />
             </CollapsibleSection>
 
@@ -402,6 +417,8 @@ const OpportunitySummery = () => {
                   SECTION_CONTENT.functionalRequirements
                 )}
                 showActionsInitially={true}
+                readOnly={activeEditable !== 'functionalRequirements'}
+                onRequestEdit={() => setActiveEditable('functionalRequirements')}
               />
             </CollapsibleSection>
 
@@ -420,6 +437,8 @@ const OpportunitySummery = () => {
                   SECTION_CONTENT.vendorQuestions
                 )}
                 showActionsInitially={true}
+                readOnly={activeEditable !== 'vendorQuestions'}
+                onRequestEdit={() => setActiveEditable('vendorQuestions')}
               />
             </CollapsibleSection>
 
@@ -435,6 +454,8 @@ const OpportunitySummery = () => {
                 onSave={handleGenericSave('terms')}
                 onDiscard={handleGenericDiscard('terms', SECTION_CONTENT.terms)}
                 showActionsInitially={true}
+                readOnly={activeEditable !== 'termsConditions'}
+                onRequestEdit={() => setActiveEditable('termsConditions')}
               />
             </CollapsibleSection>
           </div>
