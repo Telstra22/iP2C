@@ -130,7 +130,7 @@ const UploadProposalDocument = () => {
             </div>
 
             {/* Upload Documents Section */}
-            <div className="flex flex-col gap-[20px]">
+            <div className="flex flex-col gap-[20px] mb-[54px]">
               <div className="flex flex-col gap-[8px]">
                 <label className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-semibold leading-[30px]">
                   Upload relevant opportunity documents
@@ -167,7 +167,8 @@ const UploadProposalDocument = () => {
               </div>
 
               {/* Download Section */}
-              <div className="w-full bg-[#EFEFEF] rounded-[9px] px-[24px] py-[20px] flex items-center justify-between border-l-[12px] border-[#739af7]">
+              <div className="self-stretch h-[103px] px-[38px] py-[27px] flex items-center justify-between rounded-[3px] border border-[var(--blacks-30,#B4B4B4)] bg-white relative">
+                <div className="absolute left-0 top-0 w-[9px] h-[103px] bg-[#C9D7FA]"></div>
                 <span className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-medium leading-[30px]">
                   Customer Questionnaire.csv (10KB)
                 </span>

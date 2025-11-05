@@ -5,10 +5,18 @@ import DocumentIcon from '../../../assets/icons/DocumentIcon'
 import ConnectionIcon from '../../../assets/icons/ConnectionIcon'
 import ListIcon from '../../../assets/icons/ListIcon'
 import TemplateIcon from '../../../assets/icons/TemplateIcon'
-import { Check } from 'lucide-react'
+import { Check, MoveLeft } from 'lucide-react'
 
 const Sidebar = ({ onStepClick, activeStep = 0, completedSteps = [] }) => {
   const steps = [
+    {
+      icon: MoveLeft,
+      label: 'Go back to manage Proposals',
+      iconWidth: 22,
+      iconHeight: 21,
+      iconColor: '#0D54FF',
+      isBack: true
+    },
     {
       icon: FolderIcon,
       label: 'Add Opportunity Details',
@@ -36,6 +44,7 @@ const Sidebar = ({ onStepClick, activeStep = 0, completedSteps = [] }) => {
     }
   ]
   // Completed state is controlled by parent via completedSteps
+  const offset = steps[0]?.isBack ? 1 : 0
 
   return (
     <div className='relative w-[491px] bg-white flex flex-col pb-[50px] flex-shrink-0'>
@@ -58,47 +67,60 @@ const Sidebar = ({ onStepClick, activeStep = 0, completedSteps = [] }) => {
       <div className='flex flex-col relative'>
         {steps.map((step, index) => {
           const IconComponent = step.icon
-          const isActive = index === activeStep
-          const isChecked = completedSteps.includes(index)
+          const logicalIndex = step.isBack ? -1 : index - offset
+          const isActive = !step.isBack && logicalIndex === activeStep
+          const isChecked = !step.isBack && completedSteps.includes(logicalIndex)
           return (
             <div key={index} className='relative'>
-              {/* Active indicator bar */}
-              {isActive && (
-                <div className='absolute left-0 top-0 w-[10px] h-[102px] bg-[#6CCBFE] rounded-r-[9px]' />
-              )}
-
-              {/* Step content (clickable) */}
-              <button
-                type='button'
-                onClick={() => onStepClick?.(index)}
-                className={`w-full text-left h-[102px] flex items-center justify-between pl-[29px] pr-[29px] ${
-                  isActive ? 'bg-[#D9D9D9]' : 'bg-white'
-                } cursor-pointer`}
-                aria-pressed={isActive}
-              >
-                <div className='flex items-center gap-[14px]'>
-                  <IconComponent
-                    width={step.iconWidth}
-                    height={step.iconHeight}
-                    color='#505050'
-                  />
-                  <span className="text-[#000000] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
-                    {step.label}
-                  </span>
-                </div>
-                <div
-                  aria-hidden='true'
-                  className={`w-[35px] h-[35px] rounded-[17px] flex-shrink-0 flex items-center justify-center transition-colors ${
-                    isChecked
-                      ? 'bg-[#fff] border-[2px] border-[#56A72B]'
-                      : 'border-[2px] border-[#A0A0A0] bg-transparent'
-                  }`}
+              {step.isBack ? (
+                <button
+                  type='button'
+                  onClick={() => window.history.back()}
+                  className='w-full text-left px-[29px] mb-[10px] inline-flex items-center gap-[10px] text-[#0D54FF]'
                 >
-                  {isChecked ? (
-                    <Check size={20} color='#56A72B' strokeWidth={3} />
-                  ) : null}
-                </div>
-              </button>
+                  <IconComponent width={step.iconWidth} height={step.iconHeight} color='#0D54FF' />
+                  <span className="font-['Inter',sans-serif] text-[18px] font-medium leading-[24px]">{step.label}</span>
+                </button>
+              ) : (
+                <>
+                  {/* Active indicator bar */}
+                  {isActive && (
+                    <div className='absolute left-0 top-0 w-[10px] h-[102px] bg-[#6CCBFE] rounded-r-[9px]' />
+                  )}
+                  {/* Step content (clickable) */}
+                  <button
+                    type='button'
+                    onClick={() => onStepClick?.(logicalIndex)}
+                    className={`w-full text-left h-[102px] flex items-center justify-between pl-[29px] pr-[29px] ${
+                      isActive ? 'bg-[#D9D9D9]' : 'bg-white'
+                    } cursor-pointer`}
+                    aria-pressed={isActive}
+                  >
+                    <div className='flex items-center gap-[14px]'>
+                      <IconComponent
+                        width={step.iconWidth}
+                        height={step.iconHeight}
+                        color='#505050'
+                      />
+                      <span className="text-[#000000] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
+                        {step.label}
+                      </span>
+                    </div>
+                    <div
+                      aria-hidden='true'
+                      className={`w-[35px] h-[35px] rounded-[17px] flex-shrink-0 flex items-center justify-center transition-colors ${
+                        isChecked
+                          ? 'bg-[#fff] border-[2px] border-[#56A72B]'
+                          : 'border-[2px] border-[#A0A0A0] bg-transparent'
+                      }`}
+                    >
+                      {isChecked ? (
+                        <Check size={20} color='#56A72B' strokeWidth={3} />
+                      ) : null}
+                    </div>
+                  </button>
+                </>
+              )}
             </div>
           )
         })}
