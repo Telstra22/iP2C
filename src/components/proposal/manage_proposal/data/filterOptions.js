@@ -15,12 +15,12 @@ export const industryOptions = [
   "Industrial",
 ];
 
-export const statusOptions = ["active", "overdue", "pending", "cancelled"];
+export const businessUnit = ["Telstra Business", "Telstra Enterprise"];
 
-export const locationOptions = [
-  "Sydney",
-  "Melbourne",
-  "Brisbane",
-  "Adelaide",
-  "Perth",
+export const productType = [
+  "IoT",
+  "Cloud",
+  "Mobility",
+  "DAC",
+  "Unified Communications",
 ];

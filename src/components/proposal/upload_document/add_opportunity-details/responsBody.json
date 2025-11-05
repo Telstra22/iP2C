@@ -106,9 +106,9 @@
 
 {
   "customers": ["Total Brick", "Vensi", "Citrus Company", "Motivc", "Yost"],
-  "industries": ["Banking", "Telecommunication", "Healthcare", "Retail", "Consumer Services", "Industrial"],
-  "statuses": ["active", "overdue", "pending", "cancelled"],
-  "locations": ["Sydney", "Melbourne", "Brisbane", "Adelaide", "Perth"]
+  "industries": ["Retail", "Healthcare", "Banking", "Agriculture", "Commercial"],
+  "statuses": ["Telstra Business", "Telstra Enterprise"],
+  "locations": ["IoT", "Cloud", "Mobility", "DAC", "Unified Communications"]
 }
 {
   "success": true,

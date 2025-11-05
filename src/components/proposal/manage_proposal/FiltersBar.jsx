@@ -19,14 +19,14 @@ function FiltersBar ({
   const {
     customers = [],
     industries = [],
-    statuses = [],
+    businessUnits = [],
     locations = [],
   } = filters || {};
   const {
     customers: customerOptions = [],
     industries: industryOptions = [],
-    statuses: statusOptions = [],
-    locations: locationOptions = [],
+    businessUnits: businessUnit = [],
+    locations: productType = [],
   } = options || {};
   const [openCustomer, setOpenCustomer] = useState(false);
   const [openIndustry, setOpenIndustry] = useState(false);
@@ -45,7 +45,7 @@ function FiltersBar ({
   const {
     customers: selCustomers = [],
     industries: selIndustries = [],
-    statuses: selStatuses = [],
+    businessUnits: selStatuses = [],
     locations: selLocations = [],
   } = filters || {};
 
@@ -302,7 +302,7 @@ function FiltersBar ({
               setStatusToggled(true);
               setOpenStatus(true);
             } else {
-              if (statuses.length > 0) {
+              if (businessUnits.length > 0) {
                 onFiltersChange?.({ statuses: [] });
                 // keep dropdown open and X icon
               } else {
@@ -320,10 +320,10 @@ function FiltersBar ({
           )}
         </button>
         <span className="text-[#828282] font-['Inter',sans-serif] text-[16px] font-normal leading-normal whitespace-nowrap">
-          Status
+          Business Unit
         </span>
         <span className="text-[#0D54FF] font-['Inter',sans-serif] text-[16px] font-medium leading-normal whitespace-nowrap">
-          {statuses.length === 0 ? "All" : `${statuses.length} selected`}
+          {businessUnits.length === 0 ? "All" : `${businessUnits.length} selected`}
         </span>
         <button
           type="button"
@@ -348,7 +348,7 @@ function FiltersBar ({
               </div>
             </div>
             <div className="max-h-[240px] overflow-auto p-2">
-              {statusOptions
+              {businessUnit
                 .filter((c) => normalized(c).includes(normalized(statusQuery)))
                 .map((c) => (
                   <label
@@ -357,13 +357,13 @@ function FiltersBar ({
                   >
                     <input
                       type="checkbox"
-                      checked={statuses.includes(c)}
+                      checked={businessUnits.includes(c)}
                       onChange={(e) => {
                         if (e.target.checked)
-                          onFiltersChange?.({ statuses: [...statuses, c] });
+                          onFiltersChange?.({ businessUnits: [...businessUnits, c] });
                         else
                           onFiltersChange?.({
-                            statuses: statuses.filter((v) => v !== c),
+                            businessUnits: businessUnits.filter((v) => v !== c),
                           });
                       }}
                       className="w-6 h-6"
@@ -403,7 +403,7 @@ function FiltersBar ({
           )}
         </button>
         <span className="text-[#828282] font-['Inter',sans-serif] text-[16px] font-normal leading-normal whitespace-nowrap">
-          Location
+          Product type
         </span>
         <span className="text-[#0D54FF] font-['Inter',sans-serif] text-[16px] font-medium leading-normal whitespace-nowrap">
           {locations.length === 0 ? "All" : `${locations.length} selected`}
@@ -431,7 +431,7 @@ function FiltersBar ({
               </div>
             </div>
             <div className="max-h-[240px] overflow-auto p-2">
-              {locationOptions
+              {productType
                 .filter((c) =>
                   normalized(c).includes(normalized(locationQuery))
                 )
