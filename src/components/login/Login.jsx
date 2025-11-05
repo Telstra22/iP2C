@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff, Check,ChevronDown } from "lucide-react";
+import RadioButton from "./RadioButton";
 import {
   LABEL_CLASS,
   INPUT_EMAIL_CLASS,
@@ -51,27 +52,23 @@ function Login() {
               Welcome Back!
             </h1>
 
-            {/* Sales Operation */}
+            {/* Sales Function */}
             <div className="flex flex-col gap-[9px] mb-[29px]">
                 <label className={LABEL_CLASS}>
-                  Sales Operation<span className="text-[#FF0000]">*</span>
+                  Sales Function<span className="text-[#FF0000]">*</span>
                 </label>
-              <div className="flex items-center gap-[25px] relative">
-                <select
-                  name="profileType"
-                  aria-label="Profile"
-                  value={profileType}
-                  onChange={(e) => setProfileType(e.target.value)}
-                  className={`${INPUT_EMAIL_CLASS} pr-[60px] appearance-none`}
-                >
-                  <option value="Proposal Generation">Proposal Generation</option>
-                  <option value="Contract Review">Contract Review</option>
-                </select>
-                {/* Custom dropdown arrow (24x24) positioned to the right */}
-                <ChevronDown
-                  size={24}
-                  color="#505050"
-                  className="pointer-events-none absolute right-[18px] top-1/2 -translate-y-1/2 w-[24px] h-[24px] aspect-[1/1]"
+              <div className="flex items-center gap-[25px]" role="radiogroup" aria-label="Sales Function">
+                <RadioButton
+                  name="sales-function"
+                  label="Proposal Generation"
+                  checked={profileType === "Proposal Generation"}
+                  onChange={() => setProfileType("Proposal Generation")}
+                />
+                <RadioButton
+                  name="sales-function"
+                  label="Contract Review"
+                  checked={profileType === "Contract Review"}
+                  onChange={() => setProfileType("Contract Review")}
                 />
               </div>
             </div>
@@ -206,21 +203,17 @@ function Login() {
         <div className="hidden lg:flex flex-1 relative overflow-hidden h-full flex-col justify-between pl-[60px] xl:pl-[100px] 2xl:pl-[125px] pr-0 pt-[12vh] xl:pt-[15vh] 2xl:pt-[245px] pb-[8vh] xl:pb-[10vh] 2xl:pb-[100px]">
           <div className="relative z-10 w-full max-w-[710px] flex-shrink-0 pr-[80px] xl:pr-[120px] 2xl:pr-[85px]">
             <h1 className="text-[#505050] font-['Inter',sans-serif] text-[45.15px] font-medium leading-[60.55px] mb-[52px]">
-              <span className="text-[#0D54FF]">AI- Powered</span> Proposal &
-              <br />
-              Contract Builder
+              <span className="text-[#0D54FF]">Intelligent</span> Proposalto Contract(iP2C)
             </h1>
             <p className="text-[#505050] font-['Inter',sans-serif] text-[24px] font-normal leading-[32.18px]">
-              Intelligent Proposal to Contract system that connects
-              GenAI-powered proposal generation with automated contract
-              lifecycle management
+              AgenticA powered too for automated proposal generation with automated contractreview and negotiation enablinga seamless transition from opportunity response to contract finalisation
             </p>
           </div>
-          <div className="absolute right-0 bottom-0 z-0 pointer-events-none select-none">
+          <div className="mt-auto self-end pointer-events-none select-none pr-[20px]">
             <img
               src="/login-illustration.svg"
               alt="AI-Powered Proposal & Contract Builder"
-              className="w-[929px] h-auto object-contain object-right-bottom"
+              className="h-auto object-contain object-right-bottom max-w-full w-[640px] xl:w-[780px] 2xl:w-[929px]"
             />
           </div>
         </div>
