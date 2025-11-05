@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Trash2, Check } from 'lucide-react'
+import { UI_STRINGS } from './mockData'
 
 const EditableTextArea = ({ initialValue, onSave, onDiscard, showActionsInitially = false, readOnly = false, onRequestEdit }) => {
   const [value, setValue] = useState(initialValue ?? '')
@@ -46,13 +47,13 @@ const EditableTextArea = ({ initialValue, onSave, onDiscard, showActionsInitiall
             className="flex items-center gap-[8px] text-[#828282] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px] bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity"
           >
             <Trash2 size={24} color='#828282' className="w-[24px] h-[24px] aspect-[1/1]" />
-            Discard Changes
+            {UI_STRINGS.editableDiscard}
           </button>
           <button
             onClick={handleSave}
             className="flex items-center gap-[8px] text-[#0D54FF] font-['Inter',sans-serif] text-[20px] font-semibold leading-[27px] bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity"
           >
-            Make Changes
+            {UI_STRINGS.editableSave}
             <Check size={20} color='#0D54FF' />
           </button>
         </div>

@@ -100,7 +100,9 @@ const FileUploadZone = forwardRef(({ maxFiles = 5, maxSizeMB = 10, onFilesChange
         onDragOver={handleDragOver}
         onDrop={handleDrop}
       >
-        <FileUp size={43} color="#C6C6C6" strokeWidth={1.5} />
+        <div className="w-[40px] h-[50px] rounded-[3.282px] flex items-center justify-center">
+          <FileUp width={32} height={42} color="#c6c6c6" strokeWidth={2} />
+        </div>
         <div className="flex flex-wrap items-center justify-center gap-x-[10px] gap-y-[6px] text-center">
           <div className="inline-flex items-center justify-center gap-[10px] whitespace-nowrap w-[408px] text-center">
             <span className="text-[#050505] font-['Inter',sans-serif] text-[20px] font-normal leading-[26.82px]">

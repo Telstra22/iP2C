@@ -1,8 +1,7 @@
 import React from 'react';
 import ExpandIcon from '../../../assets/icons/ExpandIcon';
-import CheckmarkSelectedIcon from '../../../assets/icons/CheckmarkSelectedIcon';
 import telstraLogo from '../../../assets/images/telstra-logo.png';
-import { ChevronsUpDown } from 'lucide-react';
+import { Check } from 'lucide-react';
 
 const TemplateCard = ({ template, onSelect, isSelected }) => {
   const { name, description, headerColor, opportunityDetails } = template;
@@ -53,10 +52,13 @@ const TemplateCard = ({ template, onSelect, isSelected }) => {
           </p>
         </div>
 
+        {/* Horizontal Divider */}
+        <div className="h-[1px] bg-[#D9D9D9] my-[12px] -ml-[20px] w-[calc(100%+40px)]" />
+
         {/* Selection Button or Status */}
         {isSelected ? (
           <div className="w-full flex items-center justify-center gap-[4px]">
-            <CheckmarkSelectedIcon width={22} height={16} color="#0d54ff" />
+            <Check width={22} height={16} color="#0d54ff" />
             <span className="text-[#0d54ff] font-['Inter',sans-serif] text-[20px] font-semibold leading-[27px]">
               Template Selected
             </span>

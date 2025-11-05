@@ -73,19 +73,21 @@ const Sidebar = ({ onStepClick, activeStep = 0, completedSteps = [] }) => {
           return (
             <div key={index} className='relative'>
               {step.isBack ? (
-                <button
-                  type='button'
-                  onClick={() => window.history.back()}
-                  className='w-full text-left px-[29px] mb-[10px] inline-flex items-center gap-[10px] text-[#0D54FF]'
-                >
-                  <IconComponent width={step.iconWidth} height={step.iconHeight} color='#0D54FF' />
-                  <span className="font-['Inter',sans-serif] text-[18px] font-medium leading-[24px]">{step.label}</span>
-                </button>
+                <div className='flex px-[36px] py-[20px] flex-col items-start gap-[10px] self-stretch bg-[var(--blacks-0,#FFF)]'>
+                  <button
+                    type='button'
+                    onClick={() => window.history.back()}
+                    className='inline-flex items-center gap-[10px] text-[#0D54FF]'
+                  >
+                    <IconComponent width={step.iconWidth} height={step.iconHeight} color='#0D54FF' />
+                    <span className="font-['Inter',sans-serif] text-[18px] font-medium leading-[134.1%] text-[var(--black-100,#050505)]">{step.label}</span>
+                  </button>
+                </div>
               ) : (
                 <>
                   {/* Active indicator bar */}
                   {isActive && (
-                    <div className='absolute left-0 top-0 w-[10px] h-[102px] bg-[#6CCBFE] rounded-r-[9px]' />
+                    <div className='absolute left-0 top-0 w-[10px] h-[102px] bg-[#0D54FF] rounded-r-[9px]' />
                   )}
                   {/* Step content (clickable) */}
                   <button

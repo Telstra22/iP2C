@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useMemo } from "react";
 import { ChevronDown, CalendarDays } from "lucide-react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -12,8 +12,26 @@ const FormField = ({
   options = [],
   placeholder = "",
 }) => {
-  const selectRef = useRef(null);
   const dpRef = useRef(null);
+  const [query, setQuery] = useState("");
+  const [open, setOpen] = useState(false);
+
+  const normalizedOptions = useMemo(() => {
+    return (options || []).map((opt) => {
+      if (typeof opt === "string" || typeof opt === "number") {
+        return { label: String(opt), value: opt };
+      }
+      const val = opt?.value ?? opt?.label ?? ''
+      const lab = opt?.label ?? String(val)
+      return { label: String(lab), value: val };
+    });
+  }, [options]);
+
+  const filteredOptions = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return normalizedOptions;
+    return normalizedOptions.filter((o) => o.label.toLowerCase().includes(q));
+  }, [normalizedOptions, query]);
 
   // Parse datetime format "MM/dd/yyyy HH:mm"
   const selectedDate =
@@ -32,24 +50,53 @@ const FormField = ({
       <div className="relative">
         {type === "dropdown" ? (
           <>
-            <select
-              ref={selectRef}
-              value={value}
-              onChange={onChange}
-              className="w-full pr-[56px] pl-[20px] py-[12px] text-[#050505] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px] border border-[#E0E0E0] rounded-[7px] bg-white cursor-pointer focus:outline-none focus:border-[#0D54FF] appearance-none"
+            <button
+              type="button"
+              onClick={() => setOpen((o) => !o)}
+              className="w-full pr-[56px] pl-[20px] py-[12px] text-left text-[#050505] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px] border border-[#E0E0E0] rounded-[7px] bg-white focus:outline-none focus:border-[#0D54FF]"
             >
-              {options.map((opt) => (
-                <option
-                  key={(opt && opt.value) ?? opt}
-                  value={(opt && opt.value) ?? opt}
-                >
-                  {(opt && opt.label) ?? opt}
-                </option>
-              ))}
-            </select>
+              {(normalizedOptions.find((o) => o.value == value)?.label) || "Select"}
+            </button>
             <div className="absolute right-[20px] top-1/2 -translate-y-1/2 pointer-events-none z-20">
               <ChevronDown className="w-[19px] h-[19px] aspect-ration-1/1 text-[#505050]" />
             </div>
+            {open && (
+              <div
+                tabIndex={-1}
+                onBlur={() => setTimeout(() => setOpen(false), 100)}
+                className="absolute z-30 mt-[6px] w-full bg-white border border-[#E0E0E0] rounded-[7px] shadow-[0_4px_10px_rgba(0,0,0,0.08)] p-[8px]"
+              >
+                <input
+                  autoFocus
+                  type="text"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Search here..."
+                  className="mb-[8px] w-full px-[12px] py-[8px] text-[#050505] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px] border border-[#E0E0E0] rounded-[7px] bg-white focus:outline-none focus:border-[#0D54FF]"
+                />
+                <div className="max-h-[220px] overflow-auto">
+                  {filteredOptions.length === 0 ? (
+                    <div className="px-[10px] py-[8px] text-[#828282] text-[16px]">No results</div>
+                  ) : (
+                    filteredOptions.map((opt) => (
+                      <button
+                        key={opt.value}
+                        type="button"
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          onChange({ target: { value: opt.value } });
+                          setOpen(false);
+                          setQuery("");
+                        }}
+                        className={`w-full text-left px-[12px] py-[8px] rounded-[6px] hover:bg-[#F5F5F5] text-[#050505] font-['Inter',sans-serif] text-[18px] leading-[24px]`}
+                      >
+                        {opt.label}
+                      </button>
+                    ))
+                  )}
+                </div>
+              </div>
+            )}
           </>
         ) : type === "datetime" ? (
           <div className="relative">

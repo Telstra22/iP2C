@@ -14,7 +14,6 @@ import {
   OPPORTUNITY_BRIEF,
   PROBLEM_STATEMENT,
   SCOPE_OF_WORK,
-  PROGRESS_ITEMS,
   SECTION_CONTENT,
   customers,
   businessUnit,
@@ -26,6 +25,7 @@ import {
   productToSubProducts,
   archetype
 } from './mockData'
+import { UI_STRINGS } from './mockData'
 
 const OpportunitySummery = () => {
   const [showLoadingModal, setShowLoadingModal] = useState(true)
@@ -133,22 +133,17 @@ const OpportunitySummery = () => {
   // Show react-toastify success when completion modal appears
   useEffect(() => {
     if (!showCompletionModal) return
-    toast.success(
-      (
-        <span className="whitespace-nowrap text-[var(--black-80,#505050)] font-['Inter',sans-serif] text-[18px] font-semibold leading-[134.1%]">Agent Huddle Ended | Go to <a href="#" className="text-[var(--Primary-Blue,#0D54FF)] font-['Inter',sans-serif] text-[18px] font-normal leading-[134.1%] underline decoration-solid [text-decoration-skip-ink:none] [text-underline-position:from-font]">Opportunity Summary</a> page to review your content</span>
-      ),
-      {
-        position: 'top-right',
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: 'light',
-        className: 'bg-white shadow-[0_4px_6px_1px_rgba(0,0,0,0.09)] w-auto h-[76px] inline-flex items-center',
-        progressStyle: { background: '#22C55E' }
-      }
-    )
+    toast.success(UI_STRINGS.toastSuccess, {
+      position: 'top-right',
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: 'light',
+      className: 'bg-white shadow-[0_4px_6px_1px_rgba(0,0,0,0.09)] w-auto h-[76px] inline-flex items-center',
+      progressStyle: { background: '#22C55E' }
+    })
   }, [showCompletionModal])
 
   const handleDone = () => {
@@ -468,7 +463,7 @@ const OpportunitySummery = () => {
               <div className='flex items-center gap-[10px]'>
                 <IP2CLogoIcon width={42} height={42} />
                 <h2 className="text-[#39393A] font-['Inter',sans-serif] text-[28px] font-semibold leading-[38px] whitespace-nowrap">
-                  AI is generating your summary...
+                  {UI_STRINGS.loadingTitle}
                 </h2>
               </div>
 
@@ -483,7 +478,7 @@ const OpportunitySummery = () => {
 
                 {/* Estimated wait time */}
                 <p className="text-[#828282] font-['Inter',sans-serif] text-[20px] font-normal leading-[27px]">
-                  Estimated wait time 3-5 minutes
+                  {UI_STRINGS.estimatedWait}
                 </p>
 
                 {/* Progress bars */}
@@ -498,7 +493,7 @@ const OpportunitySummery = () => {
                   ))}
                 </div> */}
                 <div className="w-[584px] text-[var(--blacks-80,#505050)] font-['Inter',sans-serif] text-[20px] font-normal leading-[134.1%]">
-                  Please resume with other sections. You will be notified once the huddle has ended
+                  {UI_STRINGS.resumeNote}
                 </div>
               </div>
 

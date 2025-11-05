@@ -1,7 +1,7 @@
 // Mock data for Opportunity Summary UI
 
 export const INITIAL_FORM_DATA = {
-  customer: "Commonwealth",
+  customer: "Total Brick",
   businessUnit: "Telstra Business",
   archetype: "2",
   industry: "Banking",
@@ -36,6 +36,19 @@ export const PROGRESS_ITEMS = [
     barColor: "#D4D4D4",
   },
 ];
+
+// Shared UI strings
+export const UI_STRINGS = {
+  loadingTitle: 'AI is generating your summary...',
+  estimatedWait: 'Estimated wait time 3-5 minutes',
+  resumeNote: 'Please resume with other sections. You will be notified once the huddle has ended',
+  toastSuccess: 'Agent Huddle Ended | Go to Opportunity Summary page to review your content',
+  completionTitle: 'AI Generated Opportunity Summary Ready!',
+  completionInstruction: 'Click on Done to continue to the Opportunity Summary Page',
+  completionDone: 'Done',
+  editableSave: 'Make Changes',
+  editableDiscard: 'Discard Changes',
+};
 
 // Static content for collapsible sections
 export const SECTION_CONTENT = {

@@ -1,50 +1,11 @@
 import React, { useState } from "react";
-import CheckmarkBlueIcon from "../../../../assets/icons/CheckmarkBlueIcon";
-import SendBlueIcon from "../../../../assets/icons/SendBlueIcon";
-import CloseBlueIcon from "../../../../assets/icons/CloseBlueIcon";
+import { Send, X, Check } from "lucide-react";
+import { standardSectionsData, additionalSectionsData } from './createOutlineMockData'
+
 
 function Create_Outline() {
-  const [standardSections, setStandardSections] = useState([
-    { id: "executive-summary", label: "Executive Summary", selected: true },
-    {
-      id: "meeting-objectives",
-      label: "Meeting Your Objectives",
-      selected: true,
-    },
-    { id: "commercial", label: "Commercial", selected: true },
-    {
-      id: "proposed-solution",
-      label: "Detail on the proposed solution",
-      selected: true,
-    },
-    { id: "appendices", label: "Appendices", selected: true },
-    { id: "proposal-terms", label: "Proposal terms", selected: true },
-    { id: "telstra-team", label: "Your Telstra team", selected: true },
-  ]);
-
-  const [additionalSections, setAdditionalSections] = useState([
-    {
-      id: "inclusion&diversity",
-      label: "Inclusion & Diversity",
-      selected: false,
-    },
-    {
-      id: "sustainability&differentiators",
-      label: "Sustainability & Differentiators",
-      selected: false,
-    },
-    {
-      id: "people&changemanagement",
-      label: "People & Change Management",
-      selected: false,
-    },
-    { id: "riskmanagement", label: "Risk Management", selected: false },
-    {
-      id: "integrationstrategy",
-      label: "Integration Strategy",
-      selected: false,
-    },
-  ]);
+  const [standardSections, setStandardSections] = useState(standardSectionsData);
+  const [additionalSections, setAdditionalSections] = useState(additionalSectionsData);
 
   const [selectAll, setSelectAll] = useState(true);
 
@@ -104,12 +65,12 @@ function Create_Outline() {
     setSelectAll(allSelected);
   };
 
-  const CustomCheckbox = ({ checked, onChange }) => (
+  const Checkbox = ({ checked, onChange }) => (
     <button
       onClick={onChange}
       className="flex items-center justify-center w-[25px] h-[25px] rounded-[2px] border-[1.3px] border-[#0D54FF] bg-white flex-shrink-0"
     >
-      {checked && <CheckmarkBlueIcon width={16} height={12} color="#0D54FF" />}
+      {checked && <Check width={16} height={12} color="#0D54FF" />}
     </button>
   );
 
@@ -135,7 +96,7 @@ function Create_Outline() {
         <div className="flex flex-col">
           {/* Select All */}
           <div className="flex items-center gap-[21px] mb-[44px]">
-            <CustomCheckbox checked={selectAll} onChange={handleSelectAll} />
+            <Checkbox checked={selectAll} onChange={handleSelectAll} />
             <span className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px]">
               Select all
             </span>
@@ -150,7 +111,7 @@ function Create_Outline() {
                   key={section.id}
                   className="flex items-center gap-[17px] min-w-0"
                 >
-                  <CustomCheckbox
+                  <Checkbox
                     checked={section.selected}
                     onChange={() => handleStandardToggle(section.id)}
                   />
@@ -168,7 +129,7 @@ function Create_Outline() {
                   key={section.id}
                   className="flex items-center gap-[17px] min-w-0"
                 >
-                  <CustomCheckbox
+                  <Checkbox
                     checked={section.selected}
                     onChange={() => handleAdditionalToggle(section.id)}
                   />
@@ -207,7 +168,7 @@ function Create_Outline() {
                 onClick={addPrompt}
                 className="flex-shrink-0"
               >
-                <SendBlueIcon width={25} height={25} color="#0D54FF" />
+                <Send width={25} height={25} color="#0D54FF" />
               </button>
             </div>
             <div className="flex flex-wrap gap-[12px] max-w-[915px]">
@@ -224,7 +185,7 @@ function Create_Outline() {
                     onClick={() => removePrompt(idx)}
                     className="flex-shrink-0"
                   >
-                    <CloseBlueIcon width={15} height={15} color="#0D54FF" />
+                    <X width={15} height={15} color="#0D54FF" />
                   </button>
                 </div>
               ))}

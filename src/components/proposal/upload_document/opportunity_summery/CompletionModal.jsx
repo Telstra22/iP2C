@@ -1,6 +1,7 @@
 import React from 'react'
 import IP2CLogoIcon from '../../../../assets/icons/IP2CLogoIcon'
 import CheckCircleIcon from '../../../../assets/icons/CheckCircleIcon'
+import { UI_STRINGS } from './mockData'
 
 const CompletionModal = ({ onDone }) => {
   return (
@@ -10,7 +11,7 @@ const CompletionModal = ({ onDone }) => {
         <div className='flex items-center gap-[10px]'>
           <IP2CLogoIcon width={42} height={42} />
           <h2 className="text-[#39393A] font-['Inter',sans-serif] text-[28px] font-semibold leading-[38px] whitespace-nowrap">
-            AI Generated Opportunity Summary Ready!
+            {UI_STRINGS.completionTitle}
           </h2>
         </div>
 
@@ -21,7 +22,7 @@ const CompletionModal = ({ onDone }) => {
 
           {/* Instruction text */}
           <p className="text-[#828282] font-['Inter',sans-serif] text-[20px] font-normal leading-[27px] text-center">
-            Click on Done to continue to the Opportunity Summary Page
+            {UI_STRINGS.completionInstruction}
           </p>
         </div>
 
@@ -30,7 +31,7 @@ const CompletionModal = ({ onDone }) => {
           onClick={onDone}
           className="self-end text-[#0D54FF] font-['Inter',sans-serif] text-[24px] font-semibold leading-[32px] bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity"
         >
-          Done
+          {UI_STRINGS.completionDone}
         </button>
       </div>
     </div>
