@@ -1,0 +1,253 @@
+***********************************Login ***********************
+{
+  "success": true,
+  "code": "auth.login_success",
+  "message": "Login successful.",
+  "data": {
+    "user": {
+      "id": "u_12345",
+      "name": "Alex Anderson",
+      "email": "alex.anderson@telstra.com",
+      "role": "sales"
+    }
+  }
+}
+
+{
+  "success": false,
+  "code": "auth.validation_error",
+  "message": "Some fields are invalid.",
+  "errors": {
+    "email": ["Email is required.", "Email must be a valid address."],
+    "password": ["Password must be at least 8 characters."]
+  }
+}
+
+
+{
+  "success": false,
+  "code": "auth.invalid_credentials",
+  "message": "Invalid email or password.",
+  "errors": null
+}
+
+{
+  "success": false,
+  "code": "auth.too_many_attempts",
+  "message": "Too many login attempts. Please try again later.",
+  "errors": null
+}
+
+{
+  "success": false,
+  "code": "server.error",
+  "message": "Something went wrong. Please try again later.",
+  "errors": null
+}
+
+***********************************************Manage Proposal*************
+{
+  "items": [
+    {
+      "id": "1",
+      "title": "001K0132578HWb16AAD",
+      "category": "Banking | Melbourne",
+      "customer": "Total Brick",
+      "template": "Default",
+      "createdOn": "Sep 25, 2025 06:29 AM",
+      "updatedOn": "Sep 25, 2025 06:47 AM",
+      "statusKey": "active"
+    },
+    {
+      "id": "2",
+      "title": "201K0137392HWb16AAS",
+      "category": "Retail | Sydney",
+      "customer": "Vensi",
+      "template": "Solution & Pricing",
+      "createdOn": "Sep 30, 2025 06:29 AM",
+      "updatedOn": "Oct 1, 2025 12:21 PM",
+      "statusKey": "overdue"
+    },
+    {
+      "id": "3",
+      "title": "268K0132578HWb16BKO",
+      "category": "Healthcare | Sydney",
+      "customer": "Citrus Company",
+      "template": "Questionnaire RFP Response",
+      "createdOn": "Sep 27, 2025 09:31 AM",
+      "updatedOn": "Sep 28, 2025 11:22 AM",
+      "statusKey": "overdue"
+    },
+    {
+      "id": "4",
+      "title": "034K0132578HWb16BSY",
+      "category": "Healthcare | Melbourne",
+      "customer": "Motivc",
+      "template": "Case Study",
+      "createdOn": "Sep 27, 2025 09:31 AM",
+      "updatedOn": "Oct 2, 2025 11:21 PM",
+      "statusKey": "pending"
+    },
+    {
+      "id": "5",
+      "title": "524K0132578HWb16BBA",
+      "category": "Banking | Sydney",
+      "customer": "Yost",
+      "template": "Default",
+      "createdOn": "Sep 23, 2025 10:29 AM",
+      "updatedOn": "Sep 25, 2025 02:37 PM",
+      "statusKey": "cancelled"
+    }
+  ],
+  "total": 5,
+  "page": 1,
+  "pageSize": 20
+}
+
+{
+  "customers": ["Total Brick", "Vensi", "Citrus Company", "Motivc", "Yost"],
+  "industries": ["Banking", "Telecommunication", "Healthcare", "Retail", "Consumer Services", "Industrial"],
+  "statuses": ["active", "overdue", "pending", "cancelled"],
+  "locations": ["Sydney", "Melbourne", "Brisbane", "Adelaide", "Perth"]
+}
+{
+  "success": true,
+  "message": "Proposals fetched successfully.",
+  "data": {
+    "items": [
+      {
+        "id": "1",
+        "title": "001K0132578HWb16AAD",
+        "category": "Banking | Melbourne",
+        "customer": "Total Brick",
+        "template": "Default",
+        "createdOn": "Sep 25, 2025 06:29 AM",
+        "updatedOn": "Sep 25, 2025 06:47 AM",
+        "statusKey": "active"
+      }
+      // ...more proposals
+    ],
+    "total": 5,
+    "page": 1,
+    "pageSize": 20
+  }
+}
+
+{
+  "success": false,
+  "message": "Validation failed.",
+  "error": {
+    "code": "BAD_REQUEST",
+    "details": {
+      "statuses": ["Invalid status value. Allowed: active, overdue, pending, cancelled"]
+    }
+  }
+}
+
+{
+  "success": false,
+  "message": "Authentication required.",
+  "error": { "code": "UNAUTHENTICATED" }
+}
+
+{
+  "success": false,
+  "message": "Unable to fetch proposals. Please try again later.",
+  "error": { "code": "INTERNAL_ERROR", "requestId": "abc123" }
+}
+
+******************************************************************Opportunity Id**************************
+
+{ "opportunityId": "001K0132578HWb16AAD" }
+
+{
+  "success": true,
+  "message": "Opportunity ID verified.",
+  "data": {
+    "opportunityId": "001K0132578HWb16AAD",
+    "valid": true,
+    "exists": true,
+    "customer": "Total Brick"
+  }
+}
+
+{
+  "success": false,
+  "message": "Validation failed.",
+  "error": {
+    "code": "BAD_REQUEST",
+    "details": {
+      "opportunityId": ["Only numeric values allowed."]
+    }
+  }
+}
+{
+  "success": false,
+  "message": "Opportunity not found.",
+  "error": { "code": "NOT_FOUND" }
+}
+
+{
+  "success": false,
+  "message": "Unable to verify Opportunity ID. Please try again later.",
+  "error": { "code": "INTERNAL_ERROR", "requestId": "abc123" }
+}
+
+{
+  "success": true,
+  "message": "Documents uploaded successfully.",
+  "data": {
+    "uploaded": [
+      { "fileName": "scope.docx", "sizeBytes": 123456, "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "storageKey": "opps/001/.../scope.docx" }
+    ],
+    "rejected": [
+      { "fileName": "image.png", "reason": "Unsupported file type. Allowed: pdf, doc, docx, csv" }
+    ],
+    "totalFiles": 1,
+    "totalSizeMB": 0.12,
+    "remainingQuotaMB": 9.88
+  }
+}
+
+{
+  "success": false,
+  "message": "Some files failed validation.",
+  "error": {
+    "code": "UNPROCESSABLE_ENTITY",
+    "details": {
+      "files": [
+        "Maximum 5 files allowed.",
+        "Total size must be ≤ 10 MB.",
+        "Unsupported file type detected. Allowed: pdf, doc, docx, csv"
+      ]
+    }
+  }
+}
+
+{
+  "success": false,
+  "message": "Uploaded payload exceeds allowed size.",
+  "error": { "code": "PAYLOAD_TOO_LARGE" }
+}
+
+
+{
+  "opportunityId": "001K0132578HWb16AAD",
+  "hasDocuments": true,
+  "hasQuestionnaire": false
+}
+
+{
+  "success": true,
+  "message": "Opportunity details saved.",
+  "data": {
+    "opportunityId": "001K0132578HWb16AAD",
+    "status": "received"
+  }
+}
+
+{
+  "success": false,
+  "message": "Opportunity already exists.",
+  "error": { "code": "CONFLICT" }
+}
