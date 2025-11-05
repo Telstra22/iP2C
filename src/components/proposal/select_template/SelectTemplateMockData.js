@@ -5,7 +5,7 @@ export const mockRootProps = {
     {
       id: "1",
       name: "Default",
-      description: "PPT Presentation & Word Document",
+      description: "Word Document",
       headerColor: "#1a2e61",
       isSelected: true,
       opportunityDetails: {
@@ -32,7 +32,7 @@ export const mockRootProps = {
       id: "3",
       name: "Case study",
       description: "PPT Presentation & Word Document",
-      headerColor: "#f44e1a",
+      headerColor: "#ed6f47",
       isSelected: false,
       opportunityDetails: {
         title: "Opportunity Details_xxx",

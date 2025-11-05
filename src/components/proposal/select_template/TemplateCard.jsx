@@ -2,6 +2,7 @@ import React from 'react';
 import ExpandIcon from '../../../assets/icons/ExpandIcon';
 import CheckmarkSelectedIcon from '../../../assets/icons/CheckmarkSelectedIcon';
 import telstraLogo from '../../../assets/images/telstra-logo.png';
+import { ChevronsUpDown } from 'lucide-react';
 
 const TemplateCard = ({ template, onSelect, isSelected }) => {
   const { name, description, headerColor, opportunityDetails } = template;
@@ -11,87 +12,59 @@ const TemplateCard = ({ template, onSelect, isSelected }) => {
   const textColor = isLightBackground ? '#050505' : '#ffffff';
 
   return (
-    <div className="w-[393px] border border-[#c6c6c6] rounded-[9px] overflow-hidden flex flex-col gap-[40px]">
+    <div className="w-[393px] h-[320px] border border-[#c6c6c6] rounded-[9px] overflow-hidden flex flex-col gap-[21px] shadow-[0px_4px_13px_rgba(0,0,0,0.08)]">
       {/* Header Section with Opportunity Details */}
       <div 
-        className="relative h-[178px] px-[25px] py-[32px] flex flex-col justify-between"
+        className="relative h-[149px] px-[25px] py-[32px] flex items-start justify-between"
         style={{ backgroundColor: headerColor }}
       >
-        {/* Title and Expand Icon */}
-        <div className="flex items-start justify-between">
-          <h3 
-            className="font-['Inter',sans-serif] text-[22px] font-semibold leading-[30px]"
-            style={{ color: textColor }}
-          >
-            {opportunityDetails.title}
-          </h3>
-          <button 
-            className="flex-shrink-0 p-1"
-            aria-label="Expand"
-          >
-            <ExpandIcon width={23} height={23} color={textColor} />
-          </button>
+        {/* Title */}
+        <h3 
+          className="font-['Inter',sans-serif] text-[22px] font-semibold leading-[30px]"
+          style={{ color: textColor }}
+        >
+          {opportunityDetails.title}
+        </h3>
+        
+        {/* Expand Icon with border */}
+        <div 
+          className="flex-shrink-0 w-[23px] h-[23px] rounded-[2px] border-[2.83px] border-white flex items-center justify-center shadow-[0px_1px_3px_1px_rgba(0,0,0,0.15),0px_1px_2px_rgba(0,0,0,0.30)]"
+        >
+          <ExpandIcon width={15} height={15} color="#ffffff" />
         </div>
-
-        {/* Opportunity Details */}
-        <div className="flex items-end justify-between">
-          <div className="flex flex-col gap-[7px]">
-            <p 
-              className="font-['Inter',sans-serif] text-[14px] font-light leading-[19px]"
-              style={{ color: textColor }}
-            >
-              Client Name: {opportunityDetails.clientName}
-            </p>
-            <p 
-              className="font-['Inter',sans-serif] text-[14px] font-light leading-[19px]"
-              style={{ color: textColor }}
-            >
-              Market: {opportunityDetails.market}
-            </p>
-            <p 
-              className="font-['Inter',sans-serif] text-[14px] font-light leading-[19px]"
-              style={{ color: textColor }}
-            >
-              Location: {opportunityDetails.location}
-            </p>
-          </div>
-          
-          {/* Telstra Logo */}
-          <img 
-            src={telstraLogo} 
-            alt="Telstra" 
-            className="w-[21px] h-[24px] object-contain"
-          />
-        </div>
+        
+        {/* Telstra Logo - positioned at bottom right */}
+        <img 
+          src={telstraLogo} 
+          alt="Telstra" 
+          className="w-[21px] h-[24px] object-contain absolute bottom-[32px] right-[25px]"
+        />
       </div>
 
       {/* Template Info and Button */}
-      <div className="px-[20px] pb-[40px] flex flex-col gap-[12px]">
+      <div className="px-[20px] pb-[20px] flex flex-col gap-[21px] flex-1">
         {/* Template Name and Description */}
-        <div className="flex flex-col gap-[5px]">
+        <div className="flex flex-col gap-[2px]">
           <h4 className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-semibold leading-[30px]">
             {name}
           </h4>
-          <p className="text-[#505050] font-['Inter',sans-serif] text-[20px] font-normal leading-[27px]">
+          <p className="text-[#505050] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px]">
             {description}
           </p>
         </div>
 
         {/* Selection Button or Status */}
         {isSelected ? (
-          <button
-            className="w-full h-[60px] bg-[#0d54ff] rounded-[6px] flex items-center justify-center gap-[9px]"
-            disabled
-          >
-            <CheckmarkSelectedIcon width={22} height={16} color="#ffffff" />
-            <span className="text-white font-['Inter',sans-serif] text-[20px] font-semibold leading-[27px]">
+          <div className="w-full flex items-center justify-center gap-[4px]">
+            <CheckmarkSelectedIcon width={22} height={16} color="#0d54ff" />
+            <span className="text-[#0d54ff] font-['Inter',sans-serif] text-[20px] font-semibold leading-[27px]">
               Template Selected
             </span>
-          </button>
+          </div>
         ) : (
           <button
             onClick={() => onSelect(template.id)}
-            className="w-full h-[60px] bg-[#e7e7e7] rounded-[6px] flex items-center justify-center hover:bg-[#d0d0d0] transition-colors"
+            className="w-full flex items-center justify-center hover:opacity-80 transition-opacity"
           >
             <span className="text-[#050505] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
               Select Template
