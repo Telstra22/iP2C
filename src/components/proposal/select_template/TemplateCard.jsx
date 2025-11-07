@@ -1,49 +1,33 @@
 import React from 'react';
-import ExpandIcon from '../../../assets/icons/ExpandIcon';
-import telstraLogo from '../../../assets/images/telstra-logo.png';
-import { Check } from 'lucide-react';
+import CheckSelectedIcon from '../../../assets/icons/CheckSelectedIcon';
 
 const TemplateCard = ({ template, onSelect, isSelected }) => {
-  const { name, description, headerColor, opportunityDetails } = template;
-  
-  // Determine if text should be dark or light based on background color
-  const isLightBackground = headerColor === '#b9e7ff' || headerColor === '#fff3d8';
-  const textColor = isLightBackground ? '#050505' : '#ffffff';
+  const { name, description, headerColor, headerText, logoType } = template;
 
   return (
-    <div className="w-[393px] h-[320px] border border-[#c6c6c6] rounded-[9px] overflow-hidden flex flex-col gap-[21px] shadow-[0px_4px_13px_rgba(0,0,0,0.08)]">
-      {/* Header Section with Opportunity Details */}
+    <div className="w-[393px] h-[313px] border border-[#c6c6c6] rounded-[9px] overflow-hidden flex flex-col gap-[21px] shadow-[0px_4px_13px_rgba(0,0,0,0.08)]">
+      {/* Header Section */}
       <div 
-        className="relative h-[149px] px-[25px] py-[32px] flex items-start justify-between"
+        className="relative h-[149px] px-[41px] py-[39px] flex items-start justify-between"
         style={{ backgroundColor: headerColor }}
       >
-        {/* Title */}
-        <h3 
-          className="font-['Inter',sans-serif] text-[22px] font-semibold leading-[30px]"
-          style={{ color: textColor }}
-        >
-          {opportunityDetails.title}
-        </h3>
-        
-        {/* Expand Icon with border */}
-        <div 
-          className="flex-shrink-0 w-[23px] h-[23px] rounded-[2px] border-[2.83px] border-white flex items-center justify-center shadow-[0px_1px_3px_1px_rgba(0,0,0,0.15),0px_1px_2px_rgba(0,0,0,0.30)]"
-        >
-          <ExpandIcon width={15} height={15} color="#ffffff" />
-        </div>
+        {/* Header Text */}
+        <p className="text-white font-['Inter',sans-serif] text-[19px] font-medium leading-[25.48px] max-w-[318px]">
+          {headerText}
+        </p>
         
         {/* Telstra Logo - positioned at bottom right */}
         <img 
-          src={telstraLogo} 
+          src={logoType === 'orange' ? '/telstra-logo-orange.png' : '/telstra-logo-blue.png'}
           alt="Telstra" 
-          className="w-[21px] h-[24px] object-contain absolute bottom-[32px] right-[25px]"
+          className="w-[21px] h-[24px] object-contain absolute bottom-[39px] right-[41px]"
         />
       </div>
 
       {/* Template Info and Button */}
-      <div className="px-[20px] pb-[20px] flex flex-col gap-[21px] flex-1">
+      <div className="flex flex-col flex-1 justify-between">
         {/* Template Name and Description */}
-        <div className="flex flex-col gap-[2px]">
+        <div className="flex flex-col gap-[5px] px-[20px]">
           <h4 className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-semibold leading-[30px]">
             {name}
           </h4>
@@ -52,13 +36,10 @@ const TemplateCard = ({ template, onSelect, isSelected }) => {
           </p>
         </div>
 
-        {/* Horizontal Divider */}
-        <div className="h-[1px] bg-[#D9D9D9] my-[12px] -ml-[20px] w-[calc(100%+40px)]" />
-
         {/* Selection Button or Status */}
         {isSelected ? (
-          <div className="w-full flex items-center justify-center gap-[4px]">
-            <Check width={22} height={16} color="#0d54ff" />
+          <div className="w-full flex items-center justify-center gap-[4px] pt-[21px] pb-[20px] border-t border-[#C6C6C6]">
+            <CheckSelectedIcon width={22} height={16} color="#0D54FF" />
             <span className="text-[#0d54ff] font-['Inter',sans-serif] text-[20px] font-semibold leading-[27px]">
               Template Selected
             </span>
@@ -66,7 +47,7 @@ const TemplateCard = ({ template, onSelect, isSelected }) => {
         ) : (
           <button
             onClick={() => onSelect(template.id)}
-            className="w-full flex items-center justify-center hover:opacity-80 transition-opacity"
+            className="w-full flex items-center justify-center hover:opacity-80 transition-opacity pt-[21px] pb-[20px] border-t border-[#C6C6C6]"
           >
             <span className="text-[#050505] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
               Select Template

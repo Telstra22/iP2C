@@ -282,7 +282,7 @@ const OpportunitySummery = () => {
           <div className="flex flex-col -ml-[35px] -mr-[35px] items-start self-stretch bg-[var(--blacks-0,#FFF)] shadow-[0_4px_6px_0_rgba(0,0,0,0.07)] mb-[40px]">
               <div className="flex h-[120px] py-[0px] px-[41px] items-center gap-[25px] self-stretch border-l-[12px] border-[#0D54FF]">
                 <h1 className="text-[#050505] font-['Inter',sans-serif] text-[26px] font-semibold leading-[35px]">
-                  AI Generate Opportunity Summary
+                  AI Generated Opportunity Summary
                 </h1>
               </div>
             </div>
@@ -304,22 +304,22 @@ const OpportunitySummery = () => {
           </div>
 
           {/* Expand All Control */}
-          <div className='flex items-center justify-end gap-[17px] mb-[30px]'>
+          <div className='flex items-center justify-end gap-[17px] mb-[24px]'>
             <button
               onClick={handleExpandAllToggle}
               className='flex items-center gap-[17px] bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity'
             >
               {expandAll ? (
-                <div className='flex w-[28px] h-[28px] p-[2.97px] justify-center items-center rounded-[2.545px] bg-[var(--Primary-Blue,#0D54FF)]'>
+                <div className='flex w-[13px] h-[13px] justify-center items-center border border-[#0D54FF] rounded-[2px]'>
                   <Check
-                    width={22.061}
-                    height={22.061}
-                    color='#FFFFFF'
-                    className='w-[22.061px] h-[22.061px] flex-shrink-0 aspect-[22.06/22.06]'
+                    width={13}
+                    height={10}
+                    color='#0D54FF'
+                    className='w-[13px] h-[10px]'
                   />
                 </div>
               ) : (
-                <div className='flex w-[28px] h-[28px] p-[2.97px] justify-center items-center rounded-[2.545px] bg-white border-2 border-[#0D54FF]'>
+                <div className='flex w-[13px] h-[13px] justify-center items-center border border-[#0D54FF] rounded-[2px]'>
                   {/* empty box when not expanded */}
                 </div>
               )}
@@ -330,7 +330,7 @@ const OpportunitySummery = () => {
           </div>
 
           {/* Collapsible Sections */}
-          <div className='flex flex-col gap-[30px]'>
+          <div className='flex flex-col gap-[24px]'>
             {/* Opportunity Brief - Editable */}
             <CollapsibleSection
               title='Opportunity Brief'
@@ -346,6 +346,7 @@ const OpportunitySummery = () => {
                 onRequestEdit={() => setActiveEditable('opportunityBrief')}
               />
             </CollapsibleSection>
+            <div className='border-t border-[#D9D9D9]' />
 
             {/* Problem Statement - Read-only */}
             <CollapsibleSection
@@ -362,6 +363,7 @@ const OpportunitySummery = () => {
                 onRequestEdit={() => setActiveEditable('problemStatement')}
               />
             </CollapsibleSection>
+            <div className='border-t border-[#D9D9D9]' />
 
             {/* Scope of Work - Read-only */}
             <CollapsibleSection
@@ -378,6 +380,7 @@ const OpportunitySummery = () => {
                 onRequestEdit={() => setActiveEditable('scopeOfWork')}
               />
             </CollapsibleSection>
+            <div className='border-t border-[#D9D9D9]' />
 
             {/* Technical Requirements */}
             <CollapsibleSection
@@ -397,6 +400,7 @@ const OpportunitySummery = () => {
                 onRequestEdit={() => setActiveEditable('technicalRequirements')}
               />
             </CollapsibleSection>
+            <div className='border-t border-[#D9D9D9]' />
 
             {/* Functional Requirements */}
             <CollapsibleSection
@@ -416,6 +420,7 @@ const OpportunitySummery = () => {
                 onRequestEdit={() => setActiveEditable('functionalRequirements')}
               />
             </CollapsibleSection>
+            <div className='border-t border-[#D9D9D9]' />
 
             {/* Vendor Questions */}
             <CollapsibleSection
@@ -436,6 +441,7 @@ const OpportunitySummery = () => {
                 onRequestEdit={() => setActiveEditable('vendorQuestions')}
               />
             </CollapsibleSection>
+            <div className='border-t border-[#D9D9D9]' />
 
             {/* Terms & Conditions */}
             <CollapsibleSection

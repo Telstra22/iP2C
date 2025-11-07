@@ -37,15 +37,9 @@ const CollapsibleSection = ({
   }
 
   return (
-    <div
-      className={`${isExpanded ? 'flex flex-col gap-[26px]' : ''} ${
-        !isExpanded ? 'bg-[#F6F6F6] rounded-[9px]' : ''
-      }`}
-    >
+    <div className='flex flex-col'>
       <div
-        className={`flex items-center justify-between ${
-          !isExpanded ? 'px-[38px] py-[26px]' : ''
-        } ${isCollapsible ? 'cursor-pointer' : ''}`}
+        className={`flex items-center justify-between ${isCollapsible ? 'cursor-pointer' : ''}`}
         onClick={toggleExpanded}
       >
         <div className='flex items-center gap-[10px]'>
@@ -57,14 +51,18 @@ const CollapsibleSection = ({
         {isCollapsible && (
           <div>
             {isExpanded ? (
-              <ChevronUp width={25} height={25} className='text-[#050505]' />
+              <ChevronUp width={25} height={15} className='text-[#050505]' />
             ) : (
-              <ChevronDown width={25} height={25} className='text-[#050505]' />
+              <ChevronDown width={25} height={15} className='text-[#050505]' />
             )}
           </div>
         )}
       </div>
-      {isExpanded && children}
+      {isExpanded && (
+        <div className='mt-[22px]'>
+          {children}
+        </div>
+      )}
     </div>
   )
 }

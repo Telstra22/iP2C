@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Pencil, ChevronDown, ChevronUp, Trash } from 'lucide-react';
+import { Pencil, ChevronDown, ChevronUp, Trash, Users, ChevronRight } from 'lucide-react';
 
 const ProposalSection = ({ section, onToggle, onDelete }) => {
   const [editingTitle, setEditingTitle] = useState(false);
@@ -74,7 +74,8 @@ const ProposalSection = ({ section, onToggle, onDelete }) => {
   return (
     <div className="flex flex-col">
       {/* Section header */}
-      <div className="flex items-start gap-[13px] group">
+      <div className="flex items-start justify-between gap-[13px] group">
+        <div className="flex items-start gap-[13px] flex-1">
         {editingTitle ? (
           <input
             type="text"
@@ -95,7 +96,7 @@ const ProposalSection = ({ section, onToggle, onDelete }) => {
         ) : (
           <div className="flex items-center gap-2 flex-1">
             <h3 
-              className="subsection-title cursor-pointer" 
+              className="text-[#050505] font-['Inter',sans-serif] text-[20px] font-normal leading-[27px] underline cursor-pointer" 
               onClick={onToggle}
             >
               {section.id}. {titleValue}
@@ -109,18 +110,32 @@ const ProposalSection = ({ section, onToggle, onDelete }) => {
             </button>
           </div>
         )}
-        <div className="flex items-center gap-[12px] pt-[2px]">
-          <button onClick={onToggle} aria-label={section.isExpanded ? 'Collapse' : 'Expand'}>
-            {section.isExpanded ? (
-              <ChevronUp width={18} height={10} color="#050505" />
-            ) : (
-              <ChevronDown width={18} height={10} color="#050505" />
-            )}
-          </button>
-          <button onClick={onDelete} aria-label="Delete section">
-            <Trash width={13} height={16} color="#050505" />
-          </button>
+          <div className="flex items-center gap-[12px] pt-[2px]">
+            <button onClick={onToggle} aria-label={section.isExpanded ? 'Collapse' : 'Expand'}>
+              {section.isExpanded ? (
+                <ChevronUp width={18} height={10} color="#050505" />
+              ) : (
+                <ChevronDown width={18} height={10} color="#050505" />
+              )}
+            </button>
+            <button onClick={onDelete} aria-label="Delete section">
+              <Trash width={13} height={16} color="#050505" />
+            </button>
+          </div>
         </div>
+
+        {/* Show Comments Button */}
+        {section.showComments && (
+          <button className="flex items-center gap-[11px] px-[16px] py-[12px] rounded-[6px] border border-[#E5E5E5] bg-white hover:bg-gray-50">
+            <div className="flex items-center gap-[11px]">
+              <Users width={19} height={14} color="#050505" />
+              <span className="text-[#050505] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
+                Show Comments
+              </span>
+            </div>
+            <ChevronRight width={10} height={18} color="#050505" />
+          </button>
+        )}
       </div>
 
       {/* Section content */}
@@ -149,7 +164,7 @@ const ProposalSection = ({ section, onToggle, onDelete }) => {
               ) : (
                 <div className="flex items-start gap-2">
                   <p
-                    className="body-text flex-1"
+                    className="text-[#050505] font-['Inter',sans-serif] text-[18px] font-normal leading-[24.14px] flex-1"
                     style={getContentStyle(index)}
                   >
                     {text}

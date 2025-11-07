@@ -200,16 +200,16 @@ function Login() {
         </div>
 
         {/* Right: Brand / Info */}
-        <div className="hidden lg:flex flex-1 relative overflow-hidden h-full flex-col justify-between pl-[60px] xl:pl-[100px] 2xl:pl-[125px] pr-0 pt-[12vh] xl:pt-[15vh] 2xl:pt-[245px] pb-[8vh] xl:pb-[10vh] 2xl:pb-[100px]">
+        <div className="hidden lg:flex flex-1 relative overflow-hidden h-full flex-col justify-between pl-[60px] xl:pl-[100px] 2xl:pl-[125px] pr-0 pt-[10vh] xl:pt-[12vh] 2xl:pt-[200px] pb-[8vh] xl:pb-[10vh] 2xl:pb-[100px]">
           <div className="relative z-10 w-full max-w-[710px] flex-shrink-0 pr-[80px] xl:pr-[120px] 2xl:pr-[85px]">
-            <h1 className="text-[#505050] font-['Inter',sans-serif] text-[45.15px] font-medium leading-[60.55px] mb-[52px]">
-              <span className="text-[#0D54FF]">Intelligent</span> Proposalto Contract(iP2C)
+            <h1 className="text-[#505050] font-['Inter',sans-serif] text-[45.15px] font-bold leading-[60.55px] mb-[52px]">
+              <span className="text-[#0D54FF]">Intelligent</span> Proposal to Contract (iP2C)
             </h1>
-            <p className="text-[#505050] font-['Inter',sans-serif] text-[24px] font-normal leading-[32.18px]">
-              AgenticA powered too for automated proposal generation with automated contractreview and negotiation enablinga seamless transition from opportunity response to contract finalisation
+            <p className="text-[#505050] font-['Inter',sans-serif] text-[24px] font-normal leading-[134.1%]">
+              Agentic AI-powered tool for automated proposal generation with automated contract review and negotiation, enabling a seamless transition from opportunity response to contract finalisation
             </p>
           </div>
-          <div className="mt-auto self-end pointer-events-none select-none pr-[20px]">
+          <div className="mt-auto self-end pointer-events-none select-none">
             <img
               src="/login-illustration.svg"
               alt="AI-Powered Proposal & Contract Builder"

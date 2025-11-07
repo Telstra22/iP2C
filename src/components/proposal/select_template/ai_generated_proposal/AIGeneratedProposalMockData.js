@@ -62,6 +62,7 @@ export const mockRootProps = {
         id: "1.1",
         title: "Background",
         isExpanded: true,
+        showComments: true,
         content: [
           "Customer challenges and purpose|\nWhat are the challenges customer currently faces, and how critical it is to turn challenges into opportunities that align with the customer's purposes?",
           "Business outcomes that matter to the customerMessages that targeted at the decision makers' buying interests"
@@ -71,12 +72,14 @@ export const mockRootProps = {
         id: "1.2",
         title: "Identifying the key problems",
         isExpanded: false,
+        showComments: false,
         content: []
       },
       {
         id: "1.3",
         title: "A solution aligned with your vision",
         isExpanded: true,
+        showComments: false,
         content: [
           "Concise summary of the proposed solution and unique value/tangible benefits Telstra can deliver on what matters to the customer. Be sure to provide proof points for claims of value that the solution/offer will deliver.",
           "Brief overview on topics of this proposal",

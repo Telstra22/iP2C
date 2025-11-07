@@ -35,7 +35,7 @@ const EditableTextArea = ({ initialValue, onSave, onDiscard, showActionsInitiall
         value={value}
         onChange={handleChange}
         readOnly={readOnly}
-        className={`w-full min-h-[167px] px-[22px] py-[20px] text-[#050505] font-['Inter',sans-serif] text-[20px] font-normal leading-[26.82px] ${readOnly ? 'border-0 shadow-none bg-transparent' : 'border-[1.5px] border-[#0D54FF] shadow-[inset_0px_3px_4px_rgba(0,0,0,0.14)] bg-white'} rounded-[9px] focus:outline-none resize-none`}
+        className={`w-full min-h-[81px] px-0 py-0 text-[#050505] font-['Inter',sans-serif] text-[20px] font-normal leading-[26.82px] ${readOnly ? 'border-0 shadow-none bg-transparent' : 'border-[1.5px] border-[#0D54FF] shadow-[inset_0px_3px_4px_rgba(0,0,0,0.14)] bg-white px-[22px] py-[20px]'} rounded-[9px] focus:outline-none resize-none`}
         onFocus={() => { if (readOnly && typeof onRequestEdit === 'function') onRequestEdit() }}
         onClick={() => { if (readOnly && typeof onRequestEdit === 'function') onRequestEdit() }}
       />
