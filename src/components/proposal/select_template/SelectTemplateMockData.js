@@ -4,81 +4,57 @@ export const mockRootProps = {
   templates: [
     {
       id: "1",
-      name: "Default",
+      name: "Standard",
       description: "Word Document",
       headerColor: "#1a2e61",
-      isSelected: true,
-      opportunityDetails: {
-        title: "Opportunity Details_xxx",
-        clientName: "Xxx",
-        market: "Industry X",
-        location: "Xxxx"
-      }
+      headerText: "Create AI generated proposal for all the sections selected in outline in a Word document",
+      logoType: "blue",
+      isSelected: true
     },
     {
       id: "2",
-      name: "Questionnaire RFP Response",
-      description: "PPT Presentation & Word Document",
-      headerColor: "#0d54ff",
-      isSelected: false,
-      opportunityDetails: {
-        title: "Opportunity Details_xxx",
-        clientName: "Xxx",
-        market: "Industry X",
-        location: "Xxxx"
-      }
+      name: "RFP Response",
+      description: "Excel Document",
+      headerColor: "#0544dd",
+      headerText: "Respond to RFPs in Excel, where AI generates answers beside each question",
+      logoType: "blue",
+      isSelected: false
     },
     {
       id: "3",
       name: "Case study",
-      description: "PPT Presentation & Word Document",
-      headerColor: "#ed6f47",
-      isSelected: false,
-      opportunityDetails: {
-        title: "Opportunity Details_xxx",
-        clientName: "Xxx",
-        market: "Industry X",
-        location: "Xxxx"
-      }
+      description: "PPT Presentation",
+      headerColor: "#e86035",
+      headerText: "Insert and tailor past case studies to strengthen your proposal.",
+      logoType: "orange",
+      isSelected: false
     },
     {
       id: "4",
       name: "Solution & Pricing",
       description: "PPT Presentation & Word Document",
       headerColor: "#b9e7ff",
-      isSelected: false,
-      opportunityDetails: {
-        title: "Opportunity Details_xxx",
-        clientName: "Xxx",
-        market: "Industry X",
-        location: "Xxxx"
-      }
+      headerText: "Solution and pricing details for comprehensive proposals",
+      logoType: "blue",
+      isSelected: false
     },
     {
       id: "5",
       name: "Executive summary",
       description: "PPT Presentation & Word Document",
       headerColor: "#00559f",
-      isSelected: false,
-      opportunityDetails: {
-        title: "Opportunity Details_xxx",
-        clientName: "Xxx",
-        market: "Industry X",
-        location: "Xxxx"
-      }
+      headerText: "Executive summary for high-level overview",
+      logoType: "blue",
+      isSelected: false
     },
     {
       id: "6",
       name: "Non standard products",
       description: "PPT Presentation & Word Document",
       headerColor: "#fff3d8",
-      isSelected: false,
-      opportunityDetails: {
-        title: "Opportunity Details_xxx",
-        clientName: "Xxx",
-        market: "Industry X",
-        location: "Xxxx"
-      }
+      headerText: "Non-standard products and custom solutions",
+      logoType: "blue",
+      isSelected: false
     }
   ]
 };

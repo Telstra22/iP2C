@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import TemplateCard from './TemplateCard'
 import { mockRootProps } from './SelectTemplateMockData'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import LeftArrowIcon from '../../../assets/icons/LeftArrowIcon'
+import RightArrowIcon from '../../../assets/icons/RightArrowIcon'
 import FileUploadZone from '../upload_document/add_opportunity-details/FileUploadZone.jsx'
 
 const SelectTemplate = () => {
@@ -42,7 +43,7 @@ const SelectTemplate = () => {
           </div>
         </div>
         {/* Template Cards with Carousel */}
-        <div className="flex flex-col gap-[26px]">
+        <div className="flex flex-col gap-[30px]">
             <div className="relative flex items-center gap-[20px] w-full">
               {/* Left Arrow */}
               <button
@@ -51,11 +52,11 @@ const SelectTemplate = () => {
                 className="flex-shrink-0 disabled:opacity-30 hover:opacity-70 transition-opacity"
                 aria-label="Previous templates"
               >
-                <ChevronLeft width={32} height={32} color="#B4B4B4" />
+                <LeftArrowIcon width={19} height={32} color="#B4B4B4" />
               </button>
 
               {/* Template Cards - 3 visible at a time */}
-            <div className='flex gap-[20px] -ml-[33px]'>
+            <div className='flex gap-[20px]'>
                 {visibleTemplates.map(template => (
                   <TemplateCard
                     key={template.id}
@@ -73,7 +74,7 @@ const SelectTemplate = () => {
                 className="flex-shrink-0 disabled:opacity-30 hover:opacity-70 transition-opacity"
                 aria-label="Next templates"
               >
-                <ChevronRight width={32} height={32} color="#050505" />
+                <RightArrowIcon width={19} height={32} color="#050505" />
               </button>
             </div>
 
