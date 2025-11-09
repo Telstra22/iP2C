@@ -4,7 +4,7 @@ import { mockRootProps } from './SelectTemplateMockData'
 import LeftArrowIcon from '../../../assets/icons/LeftArrowIcon'
 import RightArrowIcon from '../../../assets/icons/RightArrowIcon'
 import FileUploadZone from '../upload_document/add_opportunity-details/FileUploadZone.jsx'
-import { ChevronDown } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const SelectTemplate = () => {
   const [templates, setTemplates] = useState(
@@ -53,7 +53,7 @@ const SelectTemplate = () => {
                 className="flex-shrink-0 disabled:opacity-30 hover:opacity-70 transition-opacity"
                 aria-label="Previous templates"
               >
-                <LeftArrowIcon width={19} height={32} color="#B4B4B4" />
+                <ChevronLeft width={19} height={32} color="#B4B4B4" />
               </button>
 
               {/* Template Cards - 3 visible at a time */}
@@ -75,7 +75,7 @@ const SelectTemplate = () => {
                 className="flex-shrink-0 disabled:opacity-30 hover:opacity-70 transition-opacity"
                 aria-label="Next templates"
               >
-                <RightArrowIcon width={19} height={32} color="#050505" />
+                <ChevronRight width={19} height={32} color="#050505" />
               </button>
             </div>
 
