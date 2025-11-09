@@ -7,7 +7,7 @@ import FileUploadZone from "./FileUploadZone.jsx";
 import FooterNav from "../FooterNav.jsx";
 import Blank_Opportunity_Summery from "../opportunity_summery/Blank_Opportunity_Summery.jsx";
 import OpportunitySummery from "../opportunity_summery/Opportunity_Summery.jsx";
-import Source_Connection from "../source_connection/Source_Connection.jsx";
+import Source_Connection from "../upload_historical_proposal/Upload_Historical_Proposal.jsx";
 import Create_Outline from "../create_outline/Create_Outline.jsx";
 import SelectTemplate from "../../select_template/SelectTemplate.jsx";
 
@@ -86,7 +86,7 @@ const UploadProposalDocument = () => {
             {/* Opportunity ID Section */}
             <div className="flex flex-col gap-[9px] mb-[54px]">
               <label className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-semibold leading-[30px]">
-                Add your Opportunity ID<span className="text-[#FF0000]">*</span>
+                Add your Customer Opportunity ID*<span className="text-[#FF0000]">*</span>
               </label>
               <div className="flex flex-col gap-[10px]">
                 <div className="flex items-center gap-[10px]">
@@ -225,7 +225,7 @@ const UploadProposalDocument = () => {
         const sidebarStepLabels = [
           "Add Opportunity Details",
           "Opportunity Summary",
-          "Select Source Connection",
+          "Upload Historical Proposal",
           "Create Outline",
           "Select Template",
         ];

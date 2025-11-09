@@ -17,6 +17,7 @@ import {
   SECTION_CONTENT,
   customers,
   businessUnit,
+  partner,
   industries,
   newRenewal,
   services,
@@ -208,6 +209,12 @@ const OpportunitySummery = () => {
         type: 'dropdown'
       },
       {
+        label: 'Partner',
+        field: 'partner',
+        options: partner,
+        type: 'dropdown'
+      },
+      {
         label: 'Archetype',
         field: 'archetype',
         options: archetype,
@@ -260,6 +267,7 @@ const OpportunitySummery = () => {
     [
       customers,
       businessUnit,
+      partner,
       industries,
       newRenewal,
       services,
@@ -367,7 +375,7 @@ const OpportunitySummery = () => {
 
             {/* Scope of Work - Read-only */}
             <CollapsibleSection
-              title='Scope of Work'
+              title='Key Deliverables'
               isExpanded={sectionStates.scopeOfWork}
               onToggle={() => toggleSection('scopeOfWork')}
             >
