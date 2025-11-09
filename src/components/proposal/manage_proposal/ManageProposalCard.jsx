@@ -83,7 +83,7 @@ const ProposalCard = ({
           <div className="flex items-start gap-[54px]">
             <div className="flex flex-col gap-[1px] flex-1 min-w-0">
               <span className="text-[#A0A0A0] font-['Inter',sans-serif] text-[16px] font-normal leading-[21px]">
-                Proposal No.
+                Opportunity ID
               </span>
               <p className="text-[#050505] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px] whitespace-nowrap overflow-hidden text-ellipsis">
                 {title}

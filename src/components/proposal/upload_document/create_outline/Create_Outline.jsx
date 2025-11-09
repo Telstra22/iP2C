@@ -83,7 +83,7 @@ function Create_Outline() {
           <div className="flex h-[120px] py-[0px] px-[41px] items-center gap-[25px] self-stretch border-l-[12px] border-[#0D54FF]">
             <div className="flex flex-col gap-[5px]">
               <h1 className="text-[#050505] font-['Inter',sans-serif] text-[28px] font-semibold leading-[38px]">
-                Create my own Outline
+                Create Outline
               </h1>
               <span className="text-[#505050] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px]">
                 Select headings to create your Opportunity response outline

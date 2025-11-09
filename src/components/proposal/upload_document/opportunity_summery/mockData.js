@@ -3,6 +3,7 @@
 export const INITIAL_FORM_DATA = {
   customer: "Total Brick",
   businessUnit: "Telstra Business",
+  partner: "Abc Pvt Ltd",
   archetype: "2",
   industry: "Banking",
   newRenewal: "New",
@@ -19,6 +20,9 @@ export const OPPORTUNITY_BRIEF =
 
 export const PROBLEM_STATEMENT =
   "The current contract for mobility services has expired. Total Brick needs to evaluate new offerings to ensure continued service quality, security, and value, while addressing gaps or inefficiencies in the existing setup.";
+
+export const KEY_DLIVERABLES =
+  "Provision of approximately 1200 mobile voice & data services, 430 data-only services, and 2 satellite voice services. Excludes managed services such as Mobile Device Management (MDM). Services must cover ordering, reporting, billing, operational support, and scalability.";  
 
 export const SCOPE_OF_WORK =
   "Provision of approximately 1200 mobile voice & data services, 430 data-only services, and 2 satellite voice services.  Excludes managed services such as Mobile Device Management (MDM).  Services must cover ordering, reporting, billing, operational support, and scalability.";
@@ -41,7 +45,7 @@ export const PROGRESS_ITEMS = [
 export const UI_STRINGS = {
   loadingTitle: 'AI is generating your summary...',
   estimatedWait: 'Estimated wait time 3-5 minutes',
-  resumeNote: 'Please resume with other sections. You will be notified once the huddle has ended',
+  resumeNote: 'Please continue with other Proposals . You will be notified once the huddle has ended',
   toastSuccess: 'Agent Huddle Ended | Go to Opportunity Summary page to review your content',
   completionTitle: 'AI Generated Opportunity Summary Ready!',
   completionInstruction: 'Click on Done to continue to the Opportunity Summary Page',
@@ -76,7 +80,9 @@ export const customers = [
   "Yost",
 ];
 
-export const businessUnit = ["Telstra Business"];
+export const businessUnit = ["Telstra Business","Telstra Enterprise"];
+
+export const partner = ["Abc Pvt Ltd","Xyz Pvt Ltd","Def Pvt Ltd"];
 
 export const archetype = ["2", "3", "4", "5", "6"];
 
@@ -89,7 +95,7 @@ export const industries = [
   "Industrial",
 ];
 
-export const newRenewal = ["New"];
+export const newRenewal = ["New", "Renewal"];
 
 export const services = [
   "IoT",

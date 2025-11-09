@@ -11,7 +11,7 @@ const Sidebar = ({ onStepClick, activeStep = 0, completedSteps = [] }) => {
   const steps = [
     {
       icon: MoveLeft,
-      label: 'Go back to manage Proposals',
+      label: 'Go back to Manage Proposals',
       iconWidth: 22,
       iconHeight: 21,
       iconColor: '#0D54FF',
@@ -31,7 +31,7 @@ const Sidebar = ({ onStepClick, activeStep = 0, completedSteps = [] }) => {
     },
     {
       icon: ConnectionIcon,
-      label: 'Select Source Connection',
+      label: 'Upload Historical Proposal',
       iconWidth: 20,
       iconHeight: 18
     },
@@ -47,9 +47,9 @@ const Sidebar = ({ onStepClick, activeStep = 0, completedSteps = [] }) => {
   const offset = steps[0]?.isBack ? 1 : 0
 
   return (
-    <div className='relative w-[491px] bg-white flex flex-col pb-[50px] flex-shrink-0'>
+    <div className='relative w-[491px] h-screen bg-white flex flex-col flex-shrink-0'>
       {/* Logo Section */}
-      <div className='flex px-[27px] py-[20px] flex-col items-start gap-[10px] self-stretch border-b-[2px] border-[#EFEFEF] bg-white mb-[19px]'>
+      <div className='flex px-[27px] py-[20px] flex-col items-start gap-[10px] self-stretch border-b-[2px] border-[#EFEFEF] bg-white'>
         <div className='flex items-center gap-[22px]'>
           <IP2CLogoIcon width={63} height={63} />
           <div className='flex flex-col gap-[4px]'>
@@ -73,14 +73,14 @@ const Sidebar = ({ onStepClick, activeStep = 0, completedSteps = [] }) => {
           return (
             <div key={index} className='relative'>
               {step.isBack ? (
-                <div className='flex px-[36px] py-[20px] flex-col items-start gap-[10px] self-stretch bg-[var(--blacks-0,#FFF)]'>
+                <div className='flex px-[36px] py-[20px] flex-col items-start gap-[10px] self-stretch bg-[var(--blacks-0,#FFF)] border-b-[2px] border-[#EFEFEF]'>
                   <button
                     type='button'
                     onClick={() => window.history.back()}
-                    className='inline-flex items-center gap-[10px] text-[#0D54FF]'
+                    className='inline-flex items-center gap-[11px] text-[#0D54FF]'
                   >
                     <IconComponent width={step.iconWidth} height={step.iconHeight} color='#0D54FF' />
-                    <span className="font-['Inter',sans-serif] text-[18px] font-medium leading-[134.1%] text-[var(--black-100,#050505)]">{step.label}</span>
+                    <span className="font-['Inter',sans-serif] text-[22px] font-normal leading-[30px] text-[#050505]">{step.label}</span>
                   </button>
                 </div>
               ) : (
@@ -93,8 +93,8 @@ const Sidebar = ({ onStepClick, activeStep = 0, completedSteps = [] }) => {
                   <button
                     type='button'
                     onClick={() => onStepClick?.(logicalIndex)}
-                    className={`w-full text-left h-[102px] flex items-center justify-between pl-[29px] pr-[29px] ${
-                      isActive ? 'bg-[#D9D9D9]' : 'bg-white'
+                    className={`w-full text-left h-[102px] flex items-center justify-between pl-[29px] pr-[29px] border-b-[2px] border-[#EFEFEF] ${
+                      isActive ? 'bg-[#F5F5F5]' : 'bg-white'
                     } cursor-pointer`}
                     aria-pressed={isActive}
                   >

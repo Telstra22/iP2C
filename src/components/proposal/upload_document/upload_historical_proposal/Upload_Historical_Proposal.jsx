@@ -69,31 +69,49 @@ const Source_Connection = () => {
         <div className='flex h-[120px] py-[0px] px-[41px] items-center gap-[25px] self-stretch border-l-[12px] border-[#0D54FF]'>
           <div className='flex flex-col gap-[8px]'>
             <h1 className="text-[#050505] font-['Inter',sans-serif] text-[26px] font-semibold leading-[35px]">
-              Select Source Connection
+              Upload Historical Proposals (Optional)
             </h1>
             <span className="overflow-hidden text-ellipsis font-['Inter',sans-serif] text-[22px] font-normal leading-[134.1%] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:1] text-[var(--black-80,#505050)]">
-              Select the sources to generate your proposal in the order you
-              would like them prioritized
+              Upload any relevant past proposals to be referenced
             </span>
           </div>
         </div>
       </div>
 
       {/* Main Content */}
+      {/* Upload Reference Documents Section */}
+        <div className='flex flex-col gap-[20px]'>
+          {/* <div className='flex flex-col gap-[8px]'>
+            <label className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-medium leading-[30px]">
+              Upload relevant opportunity documents<span className="text-[#FF0000]">*</span>
+            </label>
+            <p className="text-[#505050] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px]">
+              Select a maximum of 5 files to upload. File format must be .ppt,
+              .doc, .xlsx or .pdf. Total file size maximum: 10 MB.
+            </p>
+          </div> */}
+          <div className='flex flex-col gap-[15px]'>
+            <FileUploadZone />
+          </div>
+          <p className="text-[#505050] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px]">
+              Select a maximum of 5 files to upload. File format must be .ppt,
+              .doc, .xlsx or .pdf. Total file size maximum: 10 MB.
+            </p>
+        </div>
       <div className='flex flex-col gap-[46px]'>
         {/* Source Selection Section */}
         <div className='bg-[#FFFFFF] rounded-[8px] px-[37px] py-[37px] flex flex-col gap-[26px]'>
 
           {/* Select All Checkbox */}
-          <Checkbox
+          {/* <Checkbox
             checked={selectAll}
             onChange={handleSelectAll}
             label='Select all'
             size='large'
-          />
+          /> */}
 
           {/* Source List - indented 40px from Select all */}
-          <div className='flex flex-col gap-[26px] pl-[40px]'>
+          {/* <div className='flex flex-col gap-[26px] pl-[40px]'>
             {sources.map(source => (
               <Checkbox
                 key={source.id}
@@ -103,23 +121,7 @@ const Source_Connection = () => {
                 size='large'
               />
             ))}
-          </div>
-        </div>
-
-        {/* Upload Reference Documents Section */}
-        <div className='flex flex-col gap-[20px]'>
-          <div className='flex flex-col gap-[8px]'>
-            <label className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-medium leading-[30px]">
-              Upload relevant opportunity documents<span className="text-[#FF0000]">*</span>
-            </label>
-            <p className="text-[#505050] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px]">
-              Select a maximum of 5 files to upload. File format must be .ppt,
-              .doc, .xlsx or .pdf. Total file size maximum: 10 MB.
-            </p>
-          </div>
-          <div className='flex flex-col gap-[15px]'>
-            <FileUploadZone />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

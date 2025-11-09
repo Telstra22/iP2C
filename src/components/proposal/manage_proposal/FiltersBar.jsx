@@ -176,7 +176,7 @@ function FiltersBar ({
         </button>
         {openCustomer && (
           <div className='absolute left-0 top-[calc(100%+8px)] z-50 w-[320px] max-h-[320px] overflow-hidden rounded-[10px] border border-[#D9D9D9] bg-white shadow-md'>
-            <div className='p-3 border-b border-[#E5E5E5]'>
+            {/* <div className='p-3 border-b border-[#E5E5E5]'>
               <div className='flex items-center gap-2 px-3 py-2 rounded-[8px] border border-[#D9D9D9]'>
                 <Search size={25} color='#505050' />
                 <input
@@ -187,7 +187,7 @@ function FiltersBar ({
                   className="flex-1 bg-transparent outline-none text-[20px] placeholder:text-[#000] placeholder:text-[20px] placeholder:font-semibold placeholder:leading-[1.341] placeholder:font-['Inter',sans-serif]"
                 />
               </div>
-            </div>
+            </div> */}
             <div className='max-h-[240px] overflow-auto p-2'>
               {/* All selector */}
               <label className='flex items-center gap-2 px-2 py-2 rounded hover:bg-[#F6F6F6] cursor-pointer'>
@@ -276,7 +276,7 @@ function FiltersBar ({
         </button>
         {openIndustry && (
           <div className='absolute left-0 top-[calc(100%+8px)] z-50 w-[320px] max-h-[320px] overflow-hidden rounded-[10px] border border-[#D9D9D9] bg-white shadow-md'>
-            <div className='p-3 border-b border-[#E5E5E5]'>
+            {/* <div className='p-3 border-b border-[#E5E5E5]'>
               <div className='flex items-center gap-2 px-3 py-2 rounded-[8px] border border-[#D9D9D9]'>
                 <Search size={25} color='#505050' />
                 <input
@@ -287,7 +287,7 @@ function FiltersBar ({
                   className="flex-1 bg-transparent outline-none text-[20px] placeholder:text-[#000] placeholder:text-[20px] placeholder:font-semibold placeholder:leading-[1.341] placeholder:font-['Inter',sans-serif]"
                 />
               </div>
-            </div>
+            </div> */}
             <div className='max-h-[240px] overflow-auto p-2'>
               {/* All selector */}
               <label className='flex items-center gap-2 px-2 py-2 rounded hover:bg-[#F6F6F6] cursor-pointer'>
@@ -334,7 +334,7 @@ function FiltersBar ({
         )}
       </div>
 
-      {/* Status */}
+      {/* Business Unit */}
       <div className='relative shrink flex items-center gap-[10px] px-[12px] py-[10px] rounded-[90px] border border-dashed border-[#D8D8D8] bg-white hover:bg-gray-50 transition-colors'>
         <button
           type='button'
@@ -378,7 +378,7 @@ function FiltersBar ({
         </button>
         {openStatus && (
           <div className='absolute left-0 top-[calc(100%+8px)] z-50 w-[320px] max-h-[320px] overflow-hidden rounded-[10px] border border-[#D9D9D9] bg-white shadow-md'>
-            <div className='p-3 border-b border-[#E5E5E5]'>
+            {/* <div className='p-3 border-b border-[#E5E5E5]'>
               <div className='flex items-center gap-2 px-3 py-2 rounded-[8px] border border-[#D9D9D9]'>
                 <Search size={25} color='#505050' />
                 <input
@@ -389,7 +389,7 @@ function FiltersBar ({
                   className="flex-1 bg-transparent outline-none text-[20px] placeholder:text-[#000] placeholder:text-[20px] placeholder:font-semibold placeholder:leading-[1.341] placeholder:font-['Inter',sans-serif]"
                 />
               </div>
-            </div>
+            </div> */}
             <div className='max-h-[240px] overflow-auto p-2'>
               {/* All selector */}
               <label className='flex items-center gap-2 px-2 py-2 rounded hover:bg-[#F6F6F6] cursor-pointer'>
@@ -438,7 +438,7 @@ function FiltersBar ({
         )}
       </div>
 
-      {/* Location */}
+      {/* Product Type */}
       <div className='relative shrink flex items-center gap-[10px] px-[12px] py-[10px] rounded-[90px] border border-dashed border-[#D8D8D8] bg-white hover:bg-gray-50 transition-colors'>
         <button
           type='button'
@@ -480,7 +480,7 @@ function FiltersBar ({
         </button>
         {openLocation && (
           <div className='absolute left-0 top-[calc(100%+8px)] z-50 w-[320px] max-h-[320px] overflow-hidden rounded-[10px] border border-[#D9D9D9] bg-white shadow-md'>
-            <div className='p-3 border-b border-[#E5E5E5]'>
+            {/* <div className='p-3 border-b border-[#E5E5E5]'>
               <div className='flex items-center gap-2 px-3 py-2 rounded-[8px] border border-[#D9D9D9]'>
                 <Search size={25} color='#505050' />
                 <input
@@ -491,7 +491,7 @@ function FiltersBar ({
                   className="flex-1 bg-transparent outline-none text-[20px] placeholder:text-[#000] placeholder:text-[20px] placeholder:font-semibold placeholder:leading-[1.341] placeholder:font-['Inter',sans-serif]"
                 />
               </div>
-            </div>
+            </div> */}
             <div className='max-h-[240px] overflow-auto p-2'>
               {/* All selector */}
               <label className='flex items-center gap-2 px-2 py-2 rounded hover:bg-[#F6F6F6] cursor-pointer'>

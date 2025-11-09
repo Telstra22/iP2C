@@ -4,6 +4,7 @@ import { mockRootProps } from './SelectTemplateMockData'
 import LeftArrowIcon from '../../../assets/icons/LeftArrowIcon'
 import RightArrowIcon from '../../../assets/icons/RightArrowIcon'
 import FileUploadZone from '../upload_document/add_opportunity-details/FileUploadZone.jsx'
+import { ChevronDown } from 'lucide-react'
 
 const SelectTemplate = () => {
   const [templates, setTemplates] = useState(
@@ -95,6 +96,7 @@ const SelectTemplate = () => {
             
             {/* File Upload Zone */}
             <FileUploadZone />
+            <span className="text-[var(--blacks-40,#A0A0A0)] font-['Inter',sans-serif] text-[18px] font-normal leading-[134.1%] whitespace-nowrap">File format must be .ppt, .doc or .xlsx  Maximum file size: 10 MB.</span>
           </div>
         </div>
       </div>
