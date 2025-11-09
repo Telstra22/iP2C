@@ -1,7 +1,5 @@
 import React from 'react';
-import { Download, Check } from 'lucide-react';
-import EditPencilIcon from '../../../../assets/icons/EditPencilIcon';
-import PreviewDocIcon from '../../../../assets/icons/PreviewDocIcon';
+import { Download, Check, Maximize,Pencil } from 'lucide-react';
 
 const ActionButtons = ({ onAddSection, onPreview, onDownload, onSaveExit }) => {
   return (
@@ -12,7 +10,7 @@ const ActionButtons = ({ onAddSection, onPreview, onDownload, onSaveExit }) => {
         className="flex items-center gap-[10px] px-[20px] py-[13px] border border-[#C6C6C6] rounded-[6px] bg-white hover:bg-gray-50"
         aria-label="Add section"
       >
-        <EditPencilIcon width={18} height={18} />
+        <Pencil width={18} height={18} />
         <span className="text-[#272727] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
           Add Section
         </span>
@@ -24,7 +22,7 @@ const ActionButtons = ({ onAddSection, onPreview, onDownload, onSaveExit }) => {
         className="flex items-center gap-[10px] px-[20px] py-[13px] border border-[#C6C6C6] rounded-[6px] bg-white hover:bg-gray-50"
         aria-label="Preview proposal"
       >
-        <PreviewDocIcon width={16} height={20} />
+        <Maximize width={16} height={20} />
         <span className="text-[#505050] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
           Preview Proposal
         </span>

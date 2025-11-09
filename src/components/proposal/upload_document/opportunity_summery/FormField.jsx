@@ -189,21 +189,30 @@ const FormField = ({
           </div>
         ) : (
           <>
-            {placeholder && (
-              <span className="absolute left-[20px] top-1/2 -translate-y-1/2 text-[#050505] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px] pointer-events-none">
-                {placeholder}
+            {type === 'number' ? (
+              <span className="absolute left-[20px] top-1/2 -translate-y-1/2 text-[#050505] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px] pointer-events-none">$
               </span>
+            ) : (
+              placeholder && (
+                <span className="absolute left-[20px] top-1/2 -translate-y-1/2 text-[#050505] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px] pointer-events-none">
+                  {placeholder}
+                </span>
+              )
             )}
             <input
-              type="text"
+              type={type === 'number' ? 'number' : 'text'}
               value={value}
               onChange={onChange}
               readOnly={false}
               className={`w-full ${
-                placeholder ? "pl-[44px]" : "pl-[20px]"
+                type === 'number' ? "pl-[44px]" : (placeholder ? "pl-[44px]" : "pl-[20px]")
               } pr-[20px] py-[12px] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px] border border-[#E0E0E0] rounded-[7px] bg-white focus:outline-none focus:border-[#0D54FF] ${
                 value === "Not available" ? "text-[#B4B4B4]" : "text-[#050505]"
               }`}
+              inputMode={type === 'number' ? 'decimal' : undefined}
+              step={type === 'number' ? 'any' : undefined}
+              pattern={type === 'number' ? '[0-9]*' : undefined}
+              placeholder={type === 'number' ? placeholder : undefined}
             />
           </>
         )}

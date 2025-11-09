@@ -5,17 +5,30 @@ import { UI_STRINGS } from './mockData'
 const EditableTextArea = ({ initialValue, onSave, onDiscard, showActionsInitially = false, readOnly = false, onRequestEdit }) => {
   const [value, setValue] = useState(initialValue ?? '')
   const [isEdited, setIsEdited] = useState(showActionsInitially)
+  const textAreaRef = React.useRef(null)
+
+  const autoResize = () => {
+    const el = textAreaRef.current
+    if (!el) return
+    el.style.height = 'auto'
+    el.style.height = `${el.scrollHeight}px`
+  }
 
   // Keep local value in sync if parent resets initialValue
   React.useEffect(() => {
     setValue(initialValue ?? '')
     setIsEdited(showActionsInitially)
-  }, [initialValue, showActionsInitially])
+    if (!readOnly) {
+      // allow DOM to paint before measuring
+      requestAnimationFrame(autoResize)
+    }
+  }, [initialValue, showActionsInitially, readOnly])
 
   const handleChange = e => {
     if (readOnly) return
     setValue(e.target.value)
     setIsEdited(true)
+    autoResize()
   }
 
   const handleSave = () => {
@@ -31,30 +44,42 @@ const EditableTextArea = ({ initialValue, onSave, onDiscard, showActionsInitiall
 
   return (
     <div className='flex flex-col gap-[20px]'>
-      <textarea
-        value={value}
-        onChange={handleChange}
-        readOnly={readOnly}
-        className={`w-full min-h-[81px] px-0 py-0 text-[#050505] font-['Inter',sans-serif] text-[20px] font-normal leading-[26.82px] ${readOnly ? 'border-0 shadow-none bg-transparent' : 'border-[1.5px] border-[#0D54FF] shadow-[inset_0px_3px_4px_rgba(0,0,0,0.14)] bg-white px-[22px] py-[20px]'} rounded-[9px] focus:outline-none resize-none`}
-        onFocus={() => { if (readOnly && typeof onRequestEdit === 'function') onRequestEdit() }}
-        onClick={() => { if (readOnly && typeof onRequestEdit === 'function') onRequestEdit() }}
-      />
+      {readOnly ? (
+        <div
+          className={
+            "w-full min-h-[81px] px-0 py-0 text-[#050505] font-['Inter',sans-serif] text-[20px] font-normal leading-[26.82px] border-0 shadow-none bg-transparent rounded-[9px] whitespace-pre-wrap break-words"
+          }
+          onClick={() => { if (readOnly && typeof onRequestEdit === 'function') onRequestEdit() }}
+        >
+          {value}
+        </div>
+      ) : (
+        <textarea
+          ref={textAreaRef}
+          value={value}
+          onChange={handleChange}
+          className={
+            "w-full min-h-[81px] text-[#050505] font-['Inter',sans-serif] text-[20px] font-normal leading-[26.82px] border-[1.5px] border-[#0D54FF] shadow-[inset_0px_3px_4px_rgba(0,0,0,0.14)] bg-white px-[22px] py-[20px] rounded-[9px] focus:outline-none resize-none"
+          }
+          style={{ overflow: 'hidden' }}
+        />
+      )}
 
       {isEdited && !readOnly && (
         <div className='flex items-center justify-end gap-[30px]'>
           <button
             onClick={handleDiscard}
-            className="flex items-center gap-[8px] text-[#828282] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px] bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity"
+            className="flex items-center gap-[8px] text-[#272727] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px] bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity"
           >
-            <Trash2 size={24} color='#828282' className="w-[24px] h-[24px] aspect-[1/1]" />
             {UI_STRINGS.editableDiscard}
+            <Trash2 size={24} color='#272727' className="w-[24px] h-[24px] aspect-[1/1]" />
           </button>
           <button
             onClick={handleSave}
             className="flex items-center gap-[8px] text-[#0D54FF] font-['Inter',sans-serif] text-[20px] font-semibold leading-[27px] bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity"
           >
             {UI_STRINGS.editableSave}
-            <Check size={20} color='#0D54FF' />
+            <Check size={32} color='#0D54FF' className="w-[32px] h-[32px] aspect-[1/1]" />
           </button>
         </div>
       )}

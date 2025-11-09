@@ -1,5 +1,5 @@
 import React from 'react';
-import CheckSelectedIcon from '../../../assets/icons/CheckSelectedIcon';
+import { Check } from 'lucide-react';
 
 const TemplateCard = ({ template, onSelect, isSelected }) => {
   const { name, description, headerColor, headerText, logoType } = template;
@@ -39,7 +39,7 @@ const TemplateCard = ({ template, onSelect, isSelected }) => {
         {/* Selection Button or Status */}
         {isSelected ? (
           <div className="w-full flex items-center justify-center gap-[4px] pt-[21px] pb-[20px] border-t border-[#C6C6C6]">
-            <CheckSelectedIcon width={22} height={16} color="#0D54FF" />
+            <Check width={32} height={32} color="#0D54FF" />
             <span className="text-[#0d54ff] font-['Inter',sans-serif] text-[20px] font-semibold leading-[27px]">
               Template Selected
             </span>

@@ -91,12 +91,8 @@ const Source_Connection = () => {
             </p>
           </div> */}
           <div className='flex flex-col gap-[15px]'>
-            <FileUploadZone />
+            <FileUploadZone showUploadGuidelines />
           </div>
-          <p className="text-[#505050] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px]">
-              Select a maximum of 5 files to upload. File format must be .ppt,
-              .doc, .xlsx or .pdf. Total file size maximum: 10 MB.
-            </p>
         </div>
       <div className='flex flex-col gap-[46px]'>
         {/* Source Selection Section */}

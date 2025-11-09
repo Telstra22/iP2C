@@ -12,7 +12,7 @@ export const INITIAL_FORM_DATA = {
   product: "",
   subProduct: "",
   submissionDate: "01/10/2025 09:00",
-  budget: "Not available",
+  budget: "",
 };
 
 export const OPPORTUNITY_BRIEF =
@@ -23,9 +23,6 @@ export const PROBLEM_STATEMENT =
 
 export const KEY_DLIVERABLES =
   "Provision of approximately 1200 mobile voice & data services, 430 data-only services, and 2 satellite voice services. Excludes managed services such as Mobile Device Management (MDM). Services must cover ordering, reporting, billing, operational support, and scalability.";  
-
-export const SCOPE_OF_WORK =
-  "Provision of approximately 1200 mobile voice & data services, 430 data-only services, and 2 satellite voice services.  Excludes managed services such as Mobile Device Management (MDM).  Services must cover ordering, reporting, billing, operational support, and scalability.";
 
 export const PROGRESS_ITEMS = [
   { label: "Analyzing requirements...", value: (p) => p, barColor: "#A8A8A8" },

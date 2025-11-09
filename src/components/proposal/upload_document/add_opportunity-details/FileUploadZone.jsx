@@ -1,7 +1,7 @@
 import React, { useRef, useState, forwardRef, useImperativeHandle } from "react";
 import { FileUp, X } from "lucide-react";
 
-const FileUploadZone = forwardRef(({ maxFiles = 5, maxSizeMB = 10, onFilesChange }, ref) => {
+const FileUploadZone = forwardRef(({ maxFiles = 5, maxSizeMB = 10, onFilesChange, showUploadGuidelines = false, guidelinesText }, ref) => {
   const fileInputRef = useRef(null);
   const [files, setFiles] = useState([]); // [{ file, name, size, progress (0-100) }]
   const timersRef = useRef(new Map()); // key => interval id
@@ -112,9 +112,15 @@ const FileUploadZone = forwardRef(({ maxFiles = 5, maxSizeMB = 10, onFilesChange
               Choose file
             </span>
           </div>
-          <span className="text-[var(--blacks-40,#A0A0A0)] font-['Inter',sans-serif] text-[18px] font-normal leading-[134.1%] whitespace-nowrap">
-            File name should not contain the following characters: " # % & * : &lt; &gt; ? \\ / &#123; &#125; ~ |
-          </span>
+          {showUploadGuidelines ? (
+            <span className="text-[var(--blacks-40,#A0A0A0)] font-['Inter',sans-serif] text-[18px] font-normal leading-[134.1%] whitespace-nowrap">
+              {guidelinesText ?? 'Select a maximum of 5 files to upload. File format must be .ppt, .doc, .xlsx or .pdf. Total file size maximum: 10 MB.'}
+            </span>
+          ) : (
+            <span className="text-[var(--blacks-40,#A0A0A0)] font-['Inter',sans-serif] text-[18px] font-normal leading-[134.1%] whitespace-nowrap">
+              File name should not contain the following characters: " # % & * : &lt; &gt; ? \\ / &#123; &#125; ~ |
+            </span>
+          )}
         </div>
         <input
           ref={fileInputRef}

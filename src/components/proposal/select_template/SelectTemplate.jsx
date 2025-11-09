@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import TemplateCard from './TemplateCard'
 import { mockRootProps } from './SelectTemplateMockData'
-import LeftArrowIcon from '../../../assets/icons/LeftArrowIcon'
-import RightArrowIcon from '../../../assets/icons/RightArrowIcon'
 import FileUploadZone from '../upload_document/add_opportunity-details/FileUploadZone.jsx'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-const SelectTemplate = () => {
+const SelectTemplate = ({ onTemplateSelect, onUploadChange, errorMessage, clearError }) => {
   const [templates, setTemplates] = useState(
     (mockRootProps.templates || []).map(t => ({ ...t, isSelected: false }))
   )
@@ -19,6 +17,8 @@ const SelectTemplate = () => {
         isSelected: template.id === templateId
       }))
     )
+    if (onTemplateSelect) onTemplateSelect()
+    if (clearError) clearError()
   }
 
   const handlePrevious = () => {
@@ -30,6 +30,8 @@ const SelectTemplate = () => {
   }
 
   const visibleTemplates = templates.slice(currentIndex, currentIndex + 3)
+  const isAtStart = currentIndex === 0
+  const isAtEnd = currentIndex >= templates.length - 3
 
   return (
     <div className="flex flex-col bg-[#F6F6F6] min-h-screen">
@@ -43,17 +45,22 @@ const SelectTemplate = () => {
             </h1>
           </div>
         </div>
+
         {/* Template Cards with Carousel */}
         <div className="flex flex-col gap-[30px]">
+          {/* Error message at top of card */}
+        {errorMessage && (
+          <div className="mt-[10px] mb-[-10px] text-[#FF0000] text-[16px] leading-[22px] px-[2px]">{errorMessage}</div>
+        )}
             <div className="relative flex items-center gap-[20px] w-full">
               {/* Left Arrow */}
               <button
                 onClick={handlePrevious}
                 disabled={currentIndex === 0}
-                className="flex-shrink-0 disabled:opacity-30 hover:opacity-70 transition-opacity"
+                className="flex-shrink-0 disabled:opacity-30 disabled:pointer-events-none disabled:cursor-not-allowed hover:opacity-70 transition-opacity ml-[-30px]"
                 aria-label="Previous templates"
               >
-                <ChevronLeft width={19} height={32} color="#B4B4B4" />
+                <ChevronLeft width={32} height={32} color={isAtEnd ? "#050505" : "#B4B4B4"} />
               </button>
 
               {/* Template Cards - 3 visible at a time */}
@@ -72,10 +79,10 @@ const SelectTemplate = () => {
               <button
                 onClick={handleNext}
                 disabled={currentIndex >= templates.length - 3}
-                className="flex-shrink-0 disabled:opacity-30 hover:opacity-70 transition-opacity"
+                className="flex-shrink-0 disabled:opacity-30 disabled:pointer-events-none disabled:cursor-not-allowed hover:opacity-70 transition-opacity"
                 aria-label="Next templates"
               >
-                <ChevronRight width={19} height={32} color="#050505" />
+                <ChevronRight width={32} height={32} color="#050505" />
               </button>
             </div>
 
@@ -91,12 +98,18 @@ const SelectTemplate = () => {
           {/* Upload your own Template */}
           <div className="flex flex-col gap-[26px]">
             <h2 className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-medium leading-[30px]">
-              Upload your own Template
+              Upload Customer Template
             </h2>
             
             {/* File Upload Zone */}
-            <FileUploadZone />
-            <span className="text-[var(--blacks-40,#A0A0A0)] font-['Inter',sans-serif] text-[18px] font-normal leading-[134.1%] whitespace-nowrap">File format must be .ppt, .doc or .xlsx  Maximum file size: 10 MB.</span>
+            <FileUploadZone
+              showUploadGuidelines={true}
+              guidelinesText={"File format must be .ppt, .doc or .xlsx Maximum file size: 10 MB."}
+              onFilesChange={(list) => {
+                if (onUploadChange) onUploadChange(list)
+                if (list && list.length > 0 && clearError) clearError()
+              }}
+            />
           </div>
         </div>
       </div>

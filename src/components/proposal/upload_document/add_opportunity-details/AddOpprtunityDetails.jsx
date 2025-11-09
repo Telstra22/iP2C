@@ -19,6 +19,9 @@ const UploadProposalDocument = () => {
   const [completedSteps, setCompletedSteps] = useState([]); // indexes of steps completed
   const [allowSummary, setAllowSummary] = useState(false); // only true after Generate Summary with AI
   const [isVerified, setIsVerified] = useState(false);
+  const [hasTemplateSelected, setHasTemplateSelected] = useState(false);
+  const [templateUploadCount, setTemplateUploadCount] = useState(0);
+  const [selectTemplateError, setSelectTemplateError] = useState('');
 
   // The specific ID that enables the Verify button (per request)
   const EXPECTED_OPPORTUNITY_ID = "001K0132578HWb16AAD";
@@ -62,6 +65,15 @@ const UploadProposalDocument = () => {
       setAllowSummary(true);
       setActiveStep(1);
       return;
+    }
+    // Validation for Select Template step
+    if (activeStep === 4) {
+      const canProceed = hasTemplateSelected || templateUploadCount > 0;
+      if (!canProceed) {
+        setSelectTemplateError('Please select a template or upload a document to proceed.');
+        return;
+      }
+      setSelectTemplateError('');
     }
     // For subsequent steps, just advance
     setCompletedSteps((prev) =>
@@ -209,7 +221,12 @@ const UploadProposalDocument = () => {
         );
       case 4:
         return allowSummary ? (
-          <SelectTemplate />
+          <SelectTemplate
+            onTemplateSelect={() => setHasTemplateSelected(true)}
+            onUploadChange={(list) => setTemplateUploadCount(list.length || 0)}
+            errorMessage={selectTemplateError}
+            clearError={() => setSelectTemplateError('')}
+          />
         ) : (
           <Blank_Opportunity_Summery />
         );
@@ -259,6 +276,7 @@ const UploadProposalDocument = () => {
         onPrevious={handlePrevious}
         onNext={handleNext}
         isVerified={isVerified}
+        hasTemplateSelected={hasTemplateSelected}
       />
     </div>
   );
