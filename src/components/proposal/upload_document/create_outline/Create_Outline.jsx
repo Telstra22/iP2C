@@ -68,9 +68,9 @@ function Create_Outline() {
   const Checkbox = ({ checked, onChange, isSelectAll = false }) => (
     <button
       onClick={onChange}
-      className={`flex items-center justify-center w-[20px] h-[20px] rounded-[2px] border-[1.053px] ${isSelectAll ? 'border-[#828282]' : 'border-[#828282]'} bg-white flex-shrink-0`}
+      className={`flex items-center justify-center w-[20.412px] h-[20.412px] rounded-[2px] border-[1.053px] ${isSelectAll ? 'border-[#828282]' : 'border-[#828282]'} bg-white flex-shrink-0`}
     >
-      {checked && <Check width={13} height={10} color="#0D54FF" />}
+      {checked && <Check width={13} height={13} color="#0D54FF" />}
     </button>
   );
 
@@ -185,7 +185,7 @@ function Create_Outline() {
                       onClick={() => removePrompt(idx)}
                       className="flex-shrink-0"
                     >
-                      <X width={15} height={15} color="#0D54FF" />
+                      <X width={24} height={24} color="#0D54FF" />
                     </button>
                   </div>
                 ))}

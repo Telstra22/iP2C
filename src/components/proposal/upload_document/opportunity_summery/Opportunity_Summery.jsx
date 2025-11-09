@@ -13,7 +13,7 @@ import {
   INITIAL_FORM_DATA,
   OPPORTUNITY_BRIEF,
   PROBLEM_STATEMENT,
-  SCOPE_OF_WORK,
+  KEY_DLIVERABLES,
   SECTION_CONTENT,
   customers,
   businessUnit,
@@ -48,10 +48,10 @@ const OpportunitySummery = () => {
 
   // Local editable content for each collapsible section (initialized from mock data)
   const [sectionContentState, setSectionContentState] = useState({
+    ...SECTION_CONTENT,
     opportunityBrief: OPPORTUNITY_BRIEF,
     problemStatement: PROBLEM_STATEMENT,
-    scopeOfWork: SCOPE_OF_WORK,
-    ...SECTION_CONTENT
+    scopeOfWork: KEY_DLIVERABLES,
   })
 
   // Static texts (opportunityBrief/problemStatement/scopeOfWork are now in sectionContentState)
@@ -73,6 +73,7 @@ const OpportunitySummery = () => {
 
   const handleOpportunityBriefSave = value => {
     setSectionContentState(prev => ({ ...prev, opportunityBrief: value }))
+    setActiveEditable(null)
   }
 
   const handleOpportunityBriefDiscard = () => {
@@ -81,10 +82,12 @@ const OpportunitySummery = () => {
       ...prev,
       opportunityBrief: OPPORTUNITY_BRIEF
     }))
+    setActiveEditable(null)
   }
 
   const handleProblemStatementSave = value => {
     setSectionContentState(prev => ({ ...prev, problemStatement: value }))
+    setActiveEditable(null)
   }
 
   const handleProblemStatementDiscard = () => {
@@ -92,22 +95,27 @@ const OpportunitySummery = () => {
       ...prev,
       problemStatement: PROBLEM_STATEMENT
     }))
+    setActiveEditable(null)
   }
 
   const handleScopeSave = value => {
     setSectionContentState(prev => ({ ...prev, scopeOfWork: value }))
+    setActiveEditable(null)
   }
 
   const handleScopeDiscard = () => {
-    setSectionContentState(prev => ({ ...prev, scopeOfWork: SCOPE_OF_WORK }))
+    setSectionContentState(prev => ({ ...prev, scopeOfWork: KEY_DLIVERABLES }))
+    setActiveEditable(null)
   }
 
   const handleGenericSave = key => value => {
     setSectionContentState(prev => ({ ...prev, [key]: value }))
+    setActiveEditable(null)
   }
 
   const handleGenericDiscard = (key, original) => () => {
     setSectionContentState(prev => ({ ...prev, [key]: original }))
+    setActiveEditable(null)
   }
 
   useEffect(() => {
@@ -260,8 +268,8 @@ const OpportunitySummery = () => {
       {
         label: 'Customer Estimated Budget',
         field: 'budget',
-        type: 'text',
-        placeholder: '$'
+        type: 'number',
+        placeholder: 'Estimated Budget'
       }
     ],
     [
@@ -318,16 +326,16 @@ const OpportunitySummery = () => {
               className='flex items-center gap-[17px] bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity'
             >
               {expandAll ? (
-                <div className='flex w-[13px] h-[13px] justify-center items-center border border-[#0D54FF] rounded-[2px]'>
+                <div className='flex w-[20.412px] h-[20.412px] justify-center items-center border border-[#0D54FF] rounded-[2px]'>
                   <Check
-                    width={13}
-                    height={10}
+                    width={19.441}
+                    height={19.441}
                     color='#0D54FF'
-                    className='w-[13px] h-[10px]'
+                    className='w-[19.441px] h-[19.441px]'
                   />
                 </div>
               ) : (
-                <div className='flex w-[13px] h-[13px] justify-center items-center border border-[#0D54FF] rounded-[2px]'>
+                <div className='flex w-[20.412px] h-[20.412px] justify-center items-center border border-[#0D54FF] rounded-[2px]'>
                   {/* empty box when not expanded */}
                 </div>
               )}
