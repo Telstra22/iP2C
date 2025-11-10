@@ -5,7 +5,7 @@ import AgentHuddleBar from './AgentHuddleBar'
 import ProposalActionButtons from './ProposalActionButtons'
 import ProposalEditorToolbar from './ProposalEditorToolbar'
 import ProposalSectionContent from './ProposalSectionContent'
-import ChatSidebar from '../../../proposal/select_template/ai_generated_proposal/ChatSidebar'
+import ChatSidebar from './ChatSidebar'
 import { mockRootProps } from './AiProposalPageMockData'
 
 const AiProposalPage = () => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Download, Check, CircleAlert,ChevronRight } from "lucide-react";
 import Breadcrumb from "../Breadcrumb.jsx";
@@ -22,6 +22,8 @@ const UploadProposalDocument = () => {
   const [hasTemplateSelected, setHasTemplateSelected] = useState(false);
   const [templateUploadCount, setTemplateUploadCount] = useState(0);
   const [selectTemplateError, setSelectTemplateError] = useState('');
+  const [selectTemplateErrorTick, setSelectTemplateErrorTick] = useState(0);
+  const selectTemplateRef = useRef(null);
 
   // The specific ID that enables the Verify button (per request)
   const EXPECTED_OPPORTUNITY_ID = "001K0132578HWb16AAD";
@@ -66,14 +68,10 @@ const UploadProposalDocument = () => {
       setActiveStep(1);
       return;
     }
-    // Validation for Select Template step
+    // For Select Template step, delegate to child via ref (child handles validation & loader)
     if (activeStep === 4) {
-      const canProceed = hasTemplateSelected || templateUploadCount > 0;
-      if (!canProceed) {
-        setSelectTemplateError('Please select a template or upload a document to proceed.');
-        return;
-      }
-      setSelectTemplateError('');
+      selectTemplateRef.current?.triggerNext?.();
+      return;
     }
     // For subsequent steps, just advance
     setCompletedSteps((prev) =>
@@ -222,10 +220,12 @@ const UploadProposalDocument = () => {
       case 4:
         return allowSummary ? (
           <SelectTemplate
+            ref={selectTemplateRef}
             onTemplateSelect={() => setHasTemplateSelected(true)}
             onUploadChange={(list) => setTemplateUploadCount(list.length || 0)}
             errorMessage={selectTemplateError}
             clearError={() => setSelectTemplateError('')}
+            errorTick={selectTemplateErrorTick}
           />
         ) : (
           <Blank_Opportunity_Summery />
