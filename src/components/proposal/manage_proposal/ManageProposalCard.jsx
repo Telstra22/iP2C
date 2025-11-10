@@ -125,7 +125,7 @@ const ProposalCard = ({
         <button
           type="button"
           className="flex items-center justify-center gap-[14px] w-full px-[20px] py-[14px] bg-[#0D54FF] hover:bg-[#0D54FF]/90 transition-colors"
-          onClick={() => navigate('/ai-generated-proposal')}
+          onClick={() => navigate('/ai-proposal_page')}
         >
           <span
             className="flex w-[24px] h-[24px] aspect-square pt-[2.004px] pr-[2.004px] pb-[3px] pl-[3px] justify-center items-center"

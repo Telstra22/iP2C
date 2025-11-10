@@ -1,13 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react'
 import { useNavigate } from 'react-router-dom'
 import TemplateCard from './TemplateCard'
 import { mockRootProps } from './SelectTemplateMockData'
 import FileUploadZone from '../upload_document/add_opportunity-details/FileUploadZone.jsx'
-import FooterNav from '../upload_document/FooterNav'
 import AiLoader from '../AI_generated_Proposals/AiLoader'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-const SelectTemplate = ({ onTemplateSelect, onUploadChange, errorMessage, clearError }) => {
+const SelectTemplate = forwardRef(({ onTemplateSelect, onUploadChange, errorMessage, clearError, errorTick = 0, showLoader: showLoaderProp = false }, ref) => {
   const navigate = useNavigate()
   const [templates, setTemplates] = useState(
     (mockRootProps.templates || []).map(t => ({ ...t, isSelected: false }))
@@ -15,6 +14,8 @@ const SelectTemplate = ({ onTemplateSelect, onUploadChange, errorMessage, clearE
   const [currentIndex, setCurrentIndex] = useState(0)
   const [showLoader, setShowLoader] = useState(false)
   const [uploadedFiles, setUploadedFiles] = useState([])
+  const [localError, setLocalError] = useState('')
+  const [localErrorTick, setLocalErrorTick] = useState(0)
 
   const handleTemplateSelect = templateId => {
     setTemplates(prevTemplates =>
@@ -25,7 +26,29 @@ const SelectTemplate = ({ onTemplateSelect, onUploadChange, errorMessage, clearE
     )
     if (onTemplateSelect) onTemplateSelect()
     if (clearError) clearError()
+    if (localError) setLocalError('')
   }
+
+// Lightweight Toast component (auto hides after duration)
+const Toast = ({ message, duration = 3000, trigger = 0 }) => {
+  const [visible, setVisible] = useState(Boolean(message))
+
+  useEffect(() => {
+    if (!message) return
+    setVisible(true)
+    const t = setTimeout(() => setVisible(false), duration)
+    return () => clearTimeout(t)
+  }, [message, duration, trigger])
+
+  if (!visible) return null
+  return (
+    <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[9999]">
+      <div className="min-w-[420px] max-w-[640px] px-6 py-4 rounded-[10px] shadow-[0_6px_16px_rgba(0,0,0,0.15)] bg-white border-b-2 border-b-[#FF4D4F]">
+        <span className="text-[#505050] font-['Inter',sans-serif] text-[16px] leading-[22px] whitespace-nowrap inline-block">{message}</span>
+      </div>
+    </div>
+  )
+}
 
   const handleNext = () => {
     const hasSelectedTemplate = templates.some(t => t.isSelected)
@@ -37,8 +60,13 @@ const SelectTemplate = ({ onTemplateSelect, onUploadChange, errorMessage, clearE
       
       // Simulate AI generation time (3-5 seconds), then navigate
       setTimeout(() => {
-        navigate('/ai-generated-proposal')
+        navigate('/ai-proposal_page')
       }, 3500)
+    }
+    else {
+      // Fallback local error if parent hasn't provided errorMessage
+      setLocalError('Please select a template or upload a document to proceed.')
+      setLocalErrorTick((t) => t + 1)
     }
   }
 
@@ -54,6 +82,7 @@ const SelectTemplate = ({ onTemplateSelect, onUploadChange, errorMessage, clearE
     setUploadedFiles(files)
     if (onUploadChange) onUploadChange(files)
     if (files && files.length > 0 && clearError) clearError()
+    if (files && files.length > 0 && localError) setLocalError('')
   }
 
   const hasSelectedTemplate = templates.some(t => t.isSelected)
@@ -72,12 +101,31 @@ const SelectTemplate = ({ onTemplateSelect, onUploadChange, errorMessage, clearE
   const isAtStart = currentIndex === 0
   const isAtEnd = currentIndex >= templates.length - 3
 
+  // Expose triggerNext to parent (Footer Next will call this)
+  useImperativeHandle(ref, () => ({
+    triggerNext: () => {
+      const hasSelectedTemplate = templates.some(t => t.isSelected)
+      const hasUploadedFile = uploadedFiles.length > 0
+      if (hasSelectedTemplate || hasUploadedFile) {
+        setShowLoader(true)
+        setTimeout(() => {
+          navigate('/ai-proposal_page')
+        }, 3500)
+      } else {
+        setLocalError('Please select a template or upload a document to proceed.')
+        setLocalErrorTick(t => t + 1)
+      }
+    }
+  }))
+
   return (
     <>
-      <AiLoader isVisible={showLoader} onCancel={handleCancelLoader} />
-      <div className="flex flex-col bg-[#F6F6F6] h-full overflow-hidden">
-      {/* Main Content Area */}
-      <div className="flex-1 overflow-y-auto px-[66px]">
+      {/* Toast for error message */}
+      {(errorMessage || localError) && (
+        <Toast message={errorMessage || localError} duration={3000} trigger={localErrorTick + errorTick} />
+      )}
+      <AiLoader isVisible={showLoader || showLoaderProp} onCancel={handleCancelLoader} />
+      <div className="flex flex-col bg-[#F6F6F6] min-h-screen">
         {/* Main Content Card */}
         <div className='w-[1330px] bg-white rounded-[9px] px-[37px] pt-0 pb-[37px] mt-[37px] mb-[37px]'>
         {/* Header (matching Create_Outline design) */}
@@ -91,10 +139,6 @@ const SelectTemplate = ({ onTemplateSelect, onUploadChange, errorMessage, clearE
 
         {/* Template Cards with Carousel */}
         <div className="flex flex-col gap-[30px]">
-          {/* Error message at top of card */}
-        {errorMessage && (
-          <div className="mt-[10px] mb-[-10px] text-[#FF0000] text-[16px] leading-[22px] px-[2px]">{errorMessage}</div>
-        )}
             <div className="relative flex items-center gap-[20px] w-full">
               {/* Left Arrow */}
               <button
@@ -154,17 +198,8 @@ const SelectTemplate = ({ onTemplateSelect, onUploadChange, errorMessage, clearE
         </div>
         </div>
       </div>
-
-      {/* Footer Navigation */}
-      <FooterNav
-        activeStep={4}
-        onPrevious={handlePrevious}
-        onNext={handleNext}
-        isVerified={isNextEnabled}
-      />
-    </div>
-    </>
-  )
-}
+      </>
+    )
+  })
 
 export default SelectTemplate

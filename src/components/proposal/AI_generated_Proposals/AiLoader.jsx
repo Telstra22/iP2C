@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import CircularLoader from '../../../assets/icons/CircularLoader'
 import AiSparkleIcon from '../../../assets/icons/AiSparkleIcon'
-import CheckCircleIcon from '../../../assets/icons/CheckCircleIcon'
 import OrchestratorSidebar from './OrchestratorSidebar'
 import Header from '../../Header'
 import Breadcrumb from '../upload_document/Breadcrumb'
+import { Check } from 'lucide-react'
 
 const AiLoader = ({ onCancel, isVisible = true }) => {
   const navigate = useNavigate()
@@ -23,7 +23,7 @@ const AiLoader = ({ onCancel, isVisible = true }) => {
   }, [isVisible, isCompleted])
 
   const handleDone = () => {
-    navigate('/ai-generated-proposal')
+    navigate('/ai-proposal_page')
   }
 
   if (!isVisible) return null
@@ -84,9 +84,10 @@ const AiLoader = ({ onCancel, isVisible = true }) => {
                 </div>
 
                 {/* Checkmark Icon */}
-                <div className='flex w-[96px] h-[96px] p-[19.2px] items-center justify-center gap-[24px] rounded-[48px] border-[4.8px] border-[#0D54FF]'>
-                  <CheckCircleIcon size={57.6} strokeWidth={4.8} />
-                </div>
+                <Check
+                  className='inline-flex w-[96px] h-[96px] p-[19.2px] items-center justify-center rounded-[48px] ring-[4.8px] ring-[#0D54FF] text-[#0D54FF]'
+                  
+                />
 
                 {/* Done Button */}
                 <div className='w-full flex justify-end'>
