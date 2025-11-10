@@ -1,0 +1,3 @@
+import * as React from "react";
+const Component = props => <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 292 7" {...props}><defs><linearGradient xmlns="http://www.w3.org/2000/svg" id="prefix__a" x1={-33.73} x2={6.48} y1={0.825} y2={-71.095} gradientUnits="userSpaceOnUse"><stop offset={0.146} stopColor="#00FFE1" /><stop offset={0.418} stopColor="#0D54FF" /><stop offset={0.846} stopColor="#9524C6" /></linearGradient></defs><g xmlns="http://www.w3.org/2000/svg"><rect width={292} height={7} fill="#D9D9D9" rx={3.5} /><rect width={96} height={7} fill="url(#prefix__a)" rx={3.5} /></g></svg>;
+export default Component;

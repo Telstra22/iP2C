@@ -1,6 +1,6 @@
 import React from "react";
 
-const CircularLoader = ({ size = 119, strokeWidth = 8, progress = 0 }) => {
+const CircularLoader = ({ size = 119, strokeWidth = 8, progress = 0, animated = true }) => {
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (progress / 100) * circumference;
@@ -10,7 +10,8 @@ const CircularLoader = ({ size = 119, strokeWidth = 8, progress = 0 }) => {
       width={size}
       height={size}
       viewBox={`0 0 ${size} ${size}`}
-      className="transform -rotate-90"
+      className={`transform -rotate-90 ${animated ? 'animate-spin' : ''}`}
+      style={animated ? { animationDuration: '2s' } : {}}
     >
       <defs>
         <linearGradient id="loaderGradient" x1="0%" y1="0%" x2="100%" y2="100%">

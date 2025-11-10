@@ -6,6 +6,8 @@ import Header from './components/Header'
 import AddOpprtunityDetails from './components/proposal/upload_document/add_opportunity-details/AddOpprtunityDetails'
 import SelectTemplate from './components/proposal/select_template/SelectTemplate'
 import AIGeneratedProposal from './components/proposal/select_template/ai_generated_proposal/AIGeneratedProposal'
+import AiLoader from './components/proposal/AI_generated_Proposals/AiLoader'
+import AiProposalPage from './components/proposal/AI_generated_Proposals/Ai_proposal/AiProposalPage'
 
 function AppContent() {
   return (
@@ -17,7 +19,9 @@ function AppContent() {
           <Route path="/manage_proposals" element={<ManageProposal />} />
           <Route path="/add_opportunity-details" element={<AddOpprtunityDetails />} />
           <Route path="/select-template" element={<SelectTemplate />} />
-          <Route path="/ai-generated-proposal" element={<AIGeneratedProposal />} />
+          <Route path="/ai-generated-proposal" element={<AiProposalPage />} />
+          <Route path="/ai-proposal-old" element={<AIGeneratedProposal />} />
+          <Route path="/ailoader" element={<AiLoader />} />
           <Route path="*" element={<div>404 Not Found</div>} />
         </Routes>
       </div>
