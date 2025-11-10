@@ -1,14 +1,20 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import TemplateCard from './TemplateCard'
 import { mockRootProps } from './SelectTemplateMockData'
 import FileUploadZone from '../upload_document/add_opportunity-details/FileUploadZone.jsx'
+import FooterNav from '../upload_document/FooterNav'
+import AiLoader from '../AI_generated_Proposals/AiLoader'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const SelectTemplate = ({ onTemplateSelect, onUploadChange, errorMessage, clearError }) => {
+  const navigate = useNavigate()
   const [templates, setTemplates] = useState(
     (mockRootProps.templates || []).map(t => ({ ...t, isSelected: false }))
   )
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [showLoader, setShowLoader] = useState(false)
+  const [uploadedFiles, setUploadedFiles] = useState([])
 
   const handleTemplateSelect = templateId => {
     setTemplates(prevTemplates =>
@@ -21,11 +27,44 @@ const SelectTemplate = ({ onTemplateSelect, onUploadChange, errorMessage, clearE
     if (clearError) clearError()
   }
 
+  const handleNext = () => {
+    const hasSelectedTemplate = templates.some(t => t.isSelected)
+    const hasUploadedFile = uploadedFiles.length > 0
+    
+    if (hasSelectedTemplate || hasUploadedFile) {
+      // Show loader
+      setShowLoader(true)
+      
+      // Simulate AI generation time (3-5 seconds), then navigate
+      setTimeout(() => {
+        navigate('/ai-generated-proposal')
+      }, 3500)
+    }
+  }
+
   const handlePrevious = () => {
+    navigate(-1)
+  }
+
+  const handleCancelLoader = () => {
+    setShowLoader(false)
+  }
+
+  const handleFileUploadChange = (files) => {
+    setUploadedFiles(files)
+    if (onUploadChange) onUploadChange(files)
+    if (files && files.length > 0 && clearError) clearError()
+  }
+
+  const hasSelectedTemplate = templates.some(t => t.isSelected)
+  const hasUploadedFile = uploadedFiles.length > 0
+  const isNextEnabled = hasSelectedTemplate || hasUploadedFile
+
+  const handleCarouselPrevious = () => {
     setCurrentIndex(prev => Math.max(0, prev - 1))
   }
 
-  const handleNext = () => {
+  const handleCarouselNext = () => {
     setCurrentIndex(prev => Math.min(templates.length - 3, prev + 1))
   }
 
@@ -34,9 +73,13 @@ const SelectTemplate = ({ onTemplateSelect, onUploadChange, errorMessage, clearE
   const isAtEnd = currentIndex >= templates.length - 3
 
   return (
-    <div className="flex flex-col bg-[#F6F6F6] min-h-screen">
-      {/* Main Content Card */}
-      <div className='w-[1330px] bg-white rounded-[9px] px-[37px] pt-0 pb-[37px] mt-[37px]'>
+    <>
+      <AiLoader isVisible={showLoader} onCancel={handleCancelLoader} />
+      <div className="flex flex-col bg-[#F6F6F6] h-full overflow-hidden">
+      {/* Main Content Area */}
+      <div className="flex-1 overflow-y-auto px-[66px]">
+        {/* Main Content Card */}
+        <div className='w-[1330px] bg-white rounded-[9px] px-[37px] pt-0 pb-[37px] mt-[37px] mb-[37px]'>
         {/* Header (matching Create_Outline design) */}
         <div className='flex flex-col -ml-[37px] -mr-[37px] items-start self-stretch bg-white shadow-[0_4px_6px_0_rgba(0,0,0,0.07)] mb-[40px]'>
           <div className='flex h-[120px] py-[0px] px-[41px] items-center gap-[25px] self-stretch border-l-[12px] border-[#0D54FF]'>
@@ -55,7 +98,7 @@ const SelectTemplate = ({ onTemplateSelect, onUploadChange, errorMessage, clearE
             <div className="relative flex items-center gap-[20px] w-full">
               {/* Left Arrow */}
               <button
-                onClick={handlePrevious}
+                onClick={handleCarouselPrevious}
                 disabled={currentIndex === 0}
                 className="flex-shrink-0 disabled:opacity-30 disabled:pointer-events-none disabled:cursor-not-allowed hover:opacity-70 transition-opacity ml-[-30px]"
                 aria-label="Previous templates"
@@ -77,7 +120,7 @@ const SelectTemplate = ({ onTemplateSelect, onUploadChange, errorMessage, clearE
 
               {/* Right Arrow */}
               <button
-                onClick={handleNext}
+                onClick={handleCarouselNext}
                 disabled={currentIndex >= templates.length - 3}
                 className="flex-shrink-0 disabled:opacity-30 disabled:pointer-events-none disabled:cursor-not-allowed hover:opacity-70 transition-opacity"
                 aria-label="Next templates"
@@ -105,15 +148,22 @@ const SelectTemplate = ({ onTemplateSelect, onUploadChange, errorMessage, clearE
             <FileUploadZone
               showUploadGuidelines={true}
               guidelinesText={"File format must be .ppt, .doc or .xlsx Maximum file size: 10 MB."}
-              onFilesChange={(list) => {
-                if (onUploadChange) onUploadChange(list)
-                if (list && list.length > 0 && clearError) clearError()
-              }}
+              onFilesChange={handleFileUploadChange}
             />
           </div>
         </div>
+        </div>
       </div>
+
+      {/* Footer Navigation */}
+      <FooterNav
+        activeStep={4}
+        onPrevious={handlePrevious}
+        onNext={handleNext}
+        isVerified={isNextEnabled}
+      />
     </div>
+    </>
   )
 }
 
