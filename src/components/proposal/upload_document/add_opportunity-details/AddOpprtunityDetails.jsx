@@ -68,7 +68,13 @@ const UploadProposalDocument = () => {
       setActiveStep(1);
       return;
     }
-    // Step 4 (Select Template) removed; fall through to normal advance
+    // When on Select Template step, delegate to child to show loader and navigate
+    if (activeStep === 4) {
+      if (selectTemplateRef.current && typeof selectTemplateRef.current.triggerNext === 'function') {
+        selectTemplateRef.current.triggerNext();
+      }
+      return;
+    }
     // For subsequent steps, just advance
     setCompletedSteps((prev) =>
       prev.includes(activeStep) ? prev : [...prev, activeStep]
