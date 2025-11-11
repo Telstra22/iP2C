@@ -1,55 +1,16 @@
-[
-  {
-    "success": true,
-    "code": "auth.login_success",
-    "message": "Login successful.",
-    "data": {
-      "user": {
-        "id": "u_12345",
-        "name": "Alex Anderson",
-        "email": "alex.anderson@telstra.com",
-        "role": "Proposal Generation"
-      }
-    }
-  },
-  {
-    "success": true,
-    "code": "auth.login_success",
-    "message": "Login successful.",
-    "data": {
-      "user": {
-        "id": "u_123456",
-        "name": "Alex Anderson",
-        "email": "alex1.anderson@telstra.com",
-        "role": "Contract Review"
-      }
-    }
-  },
-  {
-    "success": false,
-    "code": "auth.validation_error",
-    "message": "Some fields are invalid.",
-    "errors": {
-      "email": ["Email is required.", "Email must be a valid address."],
-      "password": ["Password must be at least 8 characters."]
-    }
-  },
-  {
-    "success": false,
-    "code": "auth.invalid_credentials",
-    "message": "Invalid email or password.",
-    "errors": null
-  },
-  {
-    "success": false,
-    "code": "auth.too_many_attempts",
-    "message": "Too many login attempts. Please try again later.",
-    "errors": null
-  },
-  {
-    "success": false,
-    "code": "server.error",
-    "message": "Something went wrong. Please try again later.",
-    "errors": null
-  }
-]
+Request Body:
+{
+  "email": "alex.anderson@telstra.com",
+  "role": "Proposal Generation",
+  "password": "12345"
+}
+On Success:
+{
+  "status": "success",
+  "message": "Login successful"
+}
+On Failure:
+{
+  "status": "error",
+  "message": "Invalid email, role, or password"
+}
