@@ -1,28 +1,36 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Header from '../../../Header'
 import Breadcrumb from '../../upload_document/Breadcrumb'
-import AgentHuddleBar from './AgentHuddleBar'
 import ProposalActionButtons from './ProposalActionButtons'
-import ProposalEditorToolbar from './ProposalEditorToolbar'
 import ProposalSectionContent from './ProposalSectionContent'
 import ChatSidebar from './ChatSidebar'
+import CollaborationModal from './CollaborationModal'
+import RatingModal from './RatingModal'
+import DocumentSourceModal from './DocumentSourceModal'
 import { mockRootProps } from './AiProposalPageMockData'
 
 const AiProposalPage = () => {
+  const navigate = useNavigate()
   const [sections, setSections] = useState(mockRootProps.sections)
+  const [showComments, setShowComments] = useState(true)
   const [showSectionsList, setShowSectionsList] = useState(false)
+  const [showCollaborationModal, setShowCollaborationModal] = useState(false)
+  const [showRatingModal, setShowRatingModal] = useState(false)
+  const [showDocumentSourceModal, setShowDocumentSourceModal] = useState(false)
 
   const handleToggleSection = (sectionId) => {
-    setSections(prev =>
-      prev.map(section =>
-        section.id === sectionId
-          ? { ...section, isExpanded: !section.isExpanded }
-          : section
-      )
-    )
-    // Toggle sections list when clicking on section 1
+    // For section 1, toggle the dropdown list instead of expanding/collapsing
     if (sectionId === 1) {
       setShowSectionsList(!showSectionsList)
+    } else {
+      setSections(prev =>
+        prev.map(section =>
+          section.id === sectionId
+            ? { ...section, isExpanded: !section.isExpanded }
+            : section
+        )
+      )
     }
   }
 
@@ -37,8 +45,7 @@ const AiProposalPage = () => {
   }
 
   const handlePreview = () => {
-    console.log('Preview proposal')
-    // Implement preview logic
+    navigate('/preview-proposal')
   }
 
   const handleSaveExit = () => {
@@ -46,14 +53,39 @@ const AiProposalPage = () => {
     // Implement save and exit logic
   }
 
+  const handleToggleComments = () => {
+    setShowComments(!showComments)
+  }
+
+  const handleCollaborate = () => {
+    setShowCollaborationModal(true)
+  }
+
+  const handleCloseCollaboration = () => {
+    setShowCollaborationModal(false)
+  }
+
+  const handleRate = () => {
+    setShowRatingModal(true)
+  }
+
+  const handleCloseRating = () => {
+    setShowRatingModal(false)
+  }
+
+  const handleSource = () => {
+    setShowDocumentSourceModal(true)
+  }
+
+  const handleCloseDocumentSource = () => {
+    setShowDocumentSourceModal(false)
+  }
+
   return (
     <div className='w-full h-screen bg-[#F6F6F6] flex flex-col overflow-hidden'>
 
       {/* Breadcrumb */}
       <Breadcrumb current={mockRootProps.currentPage} />
-
-      {/* Agent Huddle Bar */}
-      <AgentHuddleBar />
 
       {/* Main Content Area */}
       <div className='flex-1 flex overflow-hidden'>
@@ -74,20 +106,20 @@ const AiProposalPage = () => {
           {/* Proposal Sections */}
           <div className='flex flex-col gap-[13px]'>
             {sections.map((section) => (
-              <div key={section.id}>
-                <ProposalSectionContent
-                  section={section}
-                  onToggleSection={handleToggleSection}
-                  onDeleteSubsection={handleDeleteSubsection}
-                  showSectionsList={showSectionsList}
-                  allSections={mockRootProps.allSections}
-                />
-                {section.isExpanded && (
-                  <div className='bg-white rounded-tr-[9px] rounded-br-[9px] rounded-bl-[9px] border border-[#C6C6C6] shadow-[0px_4px_14px_rgba(0,0,0,0.12)] mt-[-1px]'>
-                    <ProposalEditorToolbar />
-                  </div>
-                )}
-              </div>
+              <ProposalSectionContent
+                key={section.id}
+                section={section}
+                onToggleSection={handleToggleSection}
+                onDeleteSubsection={handleDeleteSubsection}
+                showSectionsList={showSectionsList}
+                allSections={mockRootProps.allSections}
+                comments={mockRootProps.comments}
+                showComments={showComments}
+                onToggleComments={handleToggleComments}
+                onCollaborate={handleCollaborate}
+                onRate={handleRate}
+                onSource={handleSource}
+              />
             ))}
           </div>
         </div>
@@ -95,6 +127,24 @@ const AiProposalPage = () => {
         {/* Right Side - Chat Sidebar */}
         <ChatSidebar />
       </div>
+
+      {/* Collaboration Modal */}
+      <CollaborationModal
+        isOpen={showCollaborationModal}
+        onClose={handleCloseCollaboration}
+      />
+
+      {/* Rating Modal */}
+      <RatingModal
+        isOpen={showRatingModal}
+        onClose={handleCloseRating}
+      />
+
+      {/* Document Source Modal */}
+      <DocumentSourceModal
+        isOpen={showDocumentSourceModal}
+        onClose={handleCloseDocumentSource}
+      />
     </div>
   )
 }

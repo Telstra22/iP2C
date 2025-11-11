@@ -28,6 +28,21 @@ html, body, #root {
   --color-background-light-gray: #e2e1e0;
   --color-red: #fb4848;
   --color-shadow: rgba(0, 0, 0, 0.07);
+  
+  /* Additional colors for preview page */
+  --color-breadcrumb-text: #505050;
+  --color-breadcrumb-active: #000000;
+  --color-breadcrumb-separator: #e2e1e0;
+  --color-download-button: #0d54ff;
+  --color-edit-button: #272727;
+  --color-save-button-bg: #0d54ff;
+  --color-gradient-start: rgba(0, 255, 225, 1);
+  --color-gradient-mid: rgba(13, 84, 255, 1);
+  --color-gradient-end: rgba(149, 36, 198, 1);
+  --color-sidebar-bg: #fcfcfc;
+  --color-sidebar-border: #d9d9d9;
+  --color-chat-bg: #f9f9f9;
+  --color-chat-placeholder: #737373;
 }
 
 /* Typography utilities */
@@ -86,6 +101,57 @@ html, body, #root {
   font-family: 'Inter', sans-serif;
   font-size: 20px;
   font-weight: 500;
+}
+
+/* Typography utilities for preview page */
+@utility preview-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+@utility breadcrumb-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--color-breadcrumb-text);
+}
+
+@utility breadcrumb-active {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--color-breadcrumb-active);
+}
+
+@utility action-button-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+@utility proposal-content {
+  font-family: 'Inter', sans-serif;
+  font-size: 17.57px;
+  font-weight: 400;
+  line-height: 23px;
+  color: var(--color-text-primary);
+}
+
+@utility risk-button-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+@utility chat-placeholder {
+  font-family: 'Graphik', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 18px;
+  color: var(--color-chat-placeholder);
 }
 
 /* Loading spinner animation */

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import BotAssistantIcon from '../../../../assets/icons/BotAssistantIcon';
-import UserAvatarIcon from '../../../../assets/icons/UserAvatarIcon';
-import BotMessageIcon from '../../../../assets/icons/BotMessageIcon';
-import { Send } from 'lucide-react';
+import AssistantIcon from '../../../../assets/icons/AssistantIcon';
+import BotAvatarIcon from '../../../../assets/icons/BotAvatarIcon';
+import UserGroupIcon from '../../../../assets/icons/UserGroupIcon';
+import SendIcon from '../../../../assets/icons/SendIcon';
 
 const ChatSidebar = () => {
   const [messages] = useState([
@@ -38,11 +38,11 @@ const ChatSidebar = () => {
       <div 
         className="flex items-center gap-[10px] px-[20px] h-[77px] border-b border-[#DDDDDD] shadow-[0px_4px_12px_rgba(0,0,0,0.08)]"
         style={{
-          background: 'linear-gradient(82.57deg, rgba(0, 255, 225, 1) 3.76%, rgba(13, 84, 255, 1) 44.08%, rgba(149, 36, 198, 1) 110.73%)'
+          background: 'linear-gradient(82.57deg, rgba(0,255,225,1) 3.76%, rgba(13,84,255,1) 44.08%, rgba(149,36,198,1) 110.73%)'
         }}
       >
         <div className="flex-shrink-0">
-          <BotAssistantIcon width={35} height={32} style={{ color: '#FFFFFF' }} />
+          <AssistantIcon width={35} height={32} color='#FFFFFF' />
         </div>
         <h2 className="text-[#FFFFFF] font-['Inter',sans-serif] text-[22px] font-semibold leading-[34px]">
           Proposal Builder Assistant
@@ -61,9 +61,7 @@ const ChatSidebar = () => {
               {message.type === 'bot' && (
                 <>
                   <div className="flex-shrink-0 w-[18px] h-[16px] mt-[4px]">
-                    <div className="w-[18px] h-[16px] rounded-full bg-white flex items-center justify-center p-[2px]">
-                      <UserAvatarIcon width={14} height={12} style={{ color: '#000000' }} />
-                    </div>
+                    <BotAvatarIcon width={18} height={16} color='#000000' />
                   </div>
                   <div className="flex-1">
                     <p className="text-[#000000] font-['Inter',sans-serif] text-[20px] font-normal leading-[26px]">
@@ -76,15 +74,13 @@ const ChatSidebar = () => {
               {/* User message - avatar on right with white background */}
               {message.type === 'user' && (
                 <>
+                  <div className="flex-shrink-0 w-[14px] h-[14px] mt-[4px]">
+                    <UserGroupIcon width={14} height={14} color='#000000' />
+                  </div>
                   <div className="flex-1">
                     <p className="text-[#000000] font-['Inter',sans-serif] text-[20px] font-normal leading-[26px]">
                       {message.text}
                     </p>
-                  </div>
-                  <div className="flex-shrink-0 w-[14px] h-[14px] mt-[4px]">
-                    <div className="w-[14px] h-[14px] rounded-full bg-white flex items-center justify-center p-[1px]">
-                      <BotMessageIcon width={10} height={10} style={{ color: '#000000', stroke: '#000000' }} />
-                    </div>
                   </div>
                 </>
               )}
@@ -109,7 +105,7 @@ const ChatSidebar = () => {
             className="flex-shrink-0 p-0"
             aria-label="Send message"
           >
-            <Send width={24} height={24} color="#000000" strokeWidth={1.5} />
+            <SendIcon width={24} height={24} color="#000000" />
           </button>
         </div>
       </div>
