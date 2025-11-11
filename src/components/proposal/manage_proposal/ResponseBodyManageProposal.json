@@ -1,9 +1,13 @@
+//When Data is Found:
 [
   {
+    "success": true,
+    "message": "Data fetched successfully.",
+
     "items": [
       {
         "id": "1",
-        "title": "001K0132578HWb16AAD",
+        "opportunityId": "001K0132578HWb16AAD",
         "category": "Banking | Melbourne",
         "customer": "Total Brick",
         "template": "Default",
@@ -13,7 +17,7 @@
       },
       {
         "id": "2",
-        "title": "201K0137392HWb16AAS",
+        "opportunityId": "201K0137392HWb16AAS",
         "category": "Retail | Sydney",
         "customer": "Vensi",
         "template": "Solution & Pricing",
@@ -23,7 +27,7 @@
       },
       {
         "id": "3",
-        "title": "268K0132578HWb16BKO",
+        "opportunityId": "268K0132578HWb16BKO",
         "category": "Healthcare | Sydney",
         "customer": "Citrus Company",
         "template": "Questionnaire RFP Response",
@@ -33,7 +37,7 @@
       },
       {
         "id": "4",
-        "title": "034K0132578HWb16BSY",
+        "opportunityId": "034K0132578HWb16BSY",
         "category": "Healthcare | Melbourne",
         "customer": "Motivc",
         "template": "Case Study",
@@ -43,7 +47,7 @@
       },
       {
         "id": "5",
-        "title": "524K0132578HWb16BBA",
+        "opportunityId": "524K0132578HWb16BBA",
         "category": "Banking | Sydney",
         "customer": "Yost",
         "template": "Default",
@@ -51,57 +55,18 @@
         "updatedOn": "Sep 25, 2025 02:37 PM",
         "statusKey": "cancelled"
       }
-    ],
-    "total": 5,
-    "page": 1,
-    "pageSize": 20
-  },
-  {
-    "customers": ["Total Brick", "Vensi", "Citrus Company", "Motivc", "Yost"],
-    "industries": ["Banking", "Telecommunication", "Healthcare", "Retail", "Consumer Services", "Industrial"],
-    "businessUnits": ["Telstra Business", "Telstra Enterprise"],
-    "productType": ["IoT", "Cloud", "Mobility", "DAC", "Unified Communications"]
-  },
-  {
-    "success": true,
-    "message": "Proposals fetched successfully.",
-    "data": {
-      "items": [
-        {
-          "id": "1",
-          "title": "001K0132578HWb16AAD",
-          "category": "Banking | Melbourne",
-          "customer": "Total Brick",
-          "template": "Default",
-          "createdOn": "Sep 25, 2025 06:29 AM",
-          "updatedOn": "Sep 25, 2025 06:47 AM",
-          "statusKey": "active"
-        }
-      ],
-      "total": 5,
-      "page": 1,
-      "pageSize": 20
-    }
-  },
-  {
-    "success": false,
-    "message": "Validation failed.",
-    "error": {
-      "code": "BAD_REQUEST",
-      "details": {
-        "businessUnits": ["Invalid value. Allowed: Telstra Business, Telstra Enterprise"],
-        "productType": ["Invalid value. Allowed: IoT, Cloud, Mobility, DAC, Unified Communications"]
-      }
-    }
-  },
-  {
-    "success": false,
-    "message": "Authentication required.",
-    "error": { "code": "UNAUTHENTICATED" }
-  },
-  {
-    "success": false,
-    "message": "Unable to fetch proposals. Please try again later.",
-    "error": { "code": "INTERNAL_ERROR", "requestId": "abc123" }
+    ]
   }
 ]
+
+//When No Record Found:
+  {
+  "success": false,
+  "message": "No records found.",
+  "data": []
+}
+//When Error Occurs:
+{
+  "success": false,
+  "message": "Something went wrong. Please try again later."
+}

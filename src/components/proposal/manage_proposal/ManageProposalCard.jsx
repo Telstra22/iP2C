@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { STATUS_COLORS } from "./data/manageProposalsData";
-import { Plus, MoreVertical, SquarePen } from "lucide-react";
+import { Plus, MoreVertical,SquarePen,Eye } from "lucide-react";
+import PreviewEyeIcon from "../../../assets/icons/PreviewEyeIcon.jsx";
+import EditPencilIcon from "../../../assets/icons/EditPencilIcon.jsx";
 
 const ProposalCard = ({
   isCreateCard = false,
@@ -122,20 +124,29 @@ const ProposalCard = ({
         </div>
 
         {/* Card Footer Button */}
-        <button
-          type="button"
-          className="flex items-center justify-center gap-[14px] w-full px-[20px] py-[14px] bg-[#0D54FF] hover:bg-[#0D54FF]/90 transition-colors"
-          onClick={() => navigate('/ai-proposal_page')}
-        >
-          <span
-            className="flex w-[24px] h-[24px] aspect-square pt-[2.004px] pr-[2.004px] pb-[3px] pl-[3px] justify-center items-center"
+        <div className="flex items-center justify-center gap-[54px] w-full px-[20px] py-[14px] bg-[#0D54FF]">
+          <button
+            type="button"
+            className="flex items-center gap-[14px] hover:opacity-90 transition-opacity"
+            onClick={() => navigate('/ai-proposal_page')}
           >
-            <SquarePen size={19} color="#FFFFFF" strokeWidth={2} />
-          </span>
-          <span className="text-white font-['Inter',sans-serif] text-[20px] font-semibold leading-[27px]">
-            Preview & Edit Proposal
-          </span>
-        </button>
+            <Eye width={24} height={24} color="#FFFFFF" />
+            <span className="text-white font-['Inter',sans-serif] text-[20px] font-semibold leading-[27px]">
+              Preview
+            </span>
+          </button>
+          <div className="w-[2px] h-[39px] bg-white/41" />
+          <button
+            type="button"
+            className="flex items-center gap-[14px] hover:opacity-90 transition-opacity"
+            onClick={() => navigate('/ai-proposal_page')}
+          >
+            <SquarePen width={24} height={24} color="#FFFFFF" />
+            <span className="text-white font-['Inter',sans-serif] text-[20px] font-semibold leading-[27px]">
+              Edit Proposal
+            </span>
+          </button>
+        </div>
       </div>
     </>
   );

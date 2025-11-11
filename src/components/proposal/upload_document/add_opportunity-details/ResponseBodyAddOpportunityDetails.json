@@ -1,69 +1,51 @@
-﻿[
+﻿
+  //Request Body:
   {
-    "success": true,
-    "message": "Opportunity ID verified.",
-    "data": {
-      "opportunityId": "001K0132578HWb16AAD",
-      "valid": true,
-      "exists": true
-    }
-  },
+  "opportunityId": "001K0132578HWb16AAD"
+}
+
+//If opportunityId is valid
+{
+  "success": true,
+  "message": "Valid opportunity ID."
+}
+//If opportunityId is invalid
+{
+  "success": false,
+  "message": "Invalid opportunity ID."
+}
+//If opportunityId format is incorrect
+{
+  "success": false,
+  "message": "Opportunity ID format is not correct."
+}
+//If backend error occurs
+{
+  "success": false,
+  "message": "Unable to validate opportunity ID. Please try again later."
+}
+
+// RFX Document Upload API
+
+//Request Type
+POST /api/upload-documents
+Content-Type: multipart/form-data
+
+  //Request Body:
+  //success response:
   {
-    "success": false,
-    "message": "Opportunity ID not verified.",
-    "error": {
-      "code": "INVALID_ID",
-      "details": {
-        "opportunityId": ["Opportunity ID is not correct."]
-      }
-    }
-  },
-  {
-    "success": false,
-    "message": "Opportunity ID not found.",
-    "error": { "code": "NOT_FOUND" }
-  },
-  {
-    "success": false,
-    "message": "At least 1 file is required.",
-    "error": {
-      "code": "VALIDATION_ERROR",
-      "details": {
-        "files": ["Minimum 1 file required."]
-      }
-    }
-  },
-  {
-    "success": false,
-    "message": "Maximum 5 files allowed.",
-    "error": {
-      "code": "UNPROCESSABLE_ENTITY",
-      "details": {
-        "files": ["Maximum 5 files allowed."]
-      }
-    }
-  },
-  {
-    "success": false,
-    "message": "Unsupported file type. Allowed: pdf, doc, csv.",
-    "error": {
-      "code": "UNSUPPORTED_MEDIA_TYPE",
-      "details": {
-        "files": ["Allowed types are pdf, doc, csv."]
-      }
-    }
-  },
-  {
-    "success": true,
-    "message": "Documents uploaded successfully.",
-    "data": {
-      "uploaded": [
-        { "fileName": "scope.pdf", "sizeBytes": 123456, "mimeType": "application/pdf", "storageKey": "opps/001/.../scope.pdf" }
-      ],
-      "rejected": [],
-      "totalFiles": 1,
-      "totalSizeMB": 0.12,
-      "remainingQuotaMB": 9.88
-    }
-  }
-]
+  "success": true,
+  "message": "Documents uploaded successfully.",
+  "uploadedFiles": ["document1.pdf", "document2.doc"]
+}
+//error response:
+{
+  "success": false,
+  "message": "Invalid file type or max 5 files allowed."
+}
+//If backend error occurs
+{
+  "success": false,
+  "message": "Document upload failed. Please try again later."
+}
+
