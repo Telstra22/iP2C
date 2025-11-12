@@ -9,7 +9,7 @@ import Blank_Opportunity_Summery from "../opportunity_summery/Blank_Opportunity_
 import OpportunitySummery from "../opportunity_summery/Opportunity_Summery.jsx";
 import Source_Connection from "../upload_historical_proposal/Upload_Historical_Proposal.jsx";
 import Create_Outline from "../create_outline/Create_Outline.jsx";
-import SelectTemplate from "../../select_template/SelectTemplate.jsx";
+import SelectTemplate from "../select_template/SelectTemplate.jsx";
 
 const UploadProposalDocument = () => {
   const navigate = useNavigate();
@@ -68,9 +68,11 @@ const UploadProposalDocument = () => {
       setActiveStep(1);
       return;
     }
-    // For Select Template step, delegate to child via ref (child handles validation & loader)
+    // When on Select Template step, delegate to child to show loader and navigate
     if (activeStep === 4) {
-      selectTemplateRef.current?.triggerNext?.();
+      if (selectTemplateRef.current && typeof selectTemplateRef.current.triggerNext === 'function') {
+        selectTemplateRef.current.triggerNext();
+      }
       return;
     }
     // For subsequent steps, just advance

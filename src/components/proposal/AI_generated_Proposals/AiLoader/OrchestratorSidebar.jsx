@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import OrchestratorIcon from '../../../assets/icons/OrchestratorIcon'
-import ProposalBuilderIcon from '../../../assets/icons/ProposalBuilderIcon'
-import SoundWaveIcon from '../../../assets/icons/SoundWaveIcon'
-import ProgressBarIcon from '../../../assets/icons/ProgressBarIcon'
-import ExpandArrowIcon from '../../../assets/icons/ExpandArrowIcon'
+import OrchestratorIcon from '../../../../assets/icons/OrchestratorIcon'
+import ProposalBuilderIcon from '../../../../assets/icons/ProposalBuilderIcon'
+import SoundWaveIcon from '../../../../assets/icons/SoundWaveIcon'
+import ProgressBarIcon from '../../../../assets/icons/ProgressBarIcon'
+import ExpandArrowIcon from '../../../../assets/icons/ExpandArrowIcon'
 import { Send, Check } from 'lucide-react'
 
 const OrchestratorSidebar = ({ isCompleted = false }) => {

@@ -6,7 +6,7 @@ import CompletionModal from './CompletionModal'
 import FormField from './FormField'
 import CollapsibleSection from './CollapsibleSection'
 import EditableTextArea from './EditableTextArea'
-import { Check } from 'lucide-react'
+import { Check,Info } from 'lucide-react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import {
@@ -264,7 +264,12 @@ const OpportunitySummery = () => {
         options: subProductOptions,
         type: 'dropdown'
       },
-      { label: 'Submission Date', field: 'submissionDate', type: 'datetime' },
+      {
+        label: 'Submission Date',
+        field: 'submissionDate',
+        type: 'datetime',
+        tooltip: 'The displayed submission date is based on your client\'s location and timezone'
+      },
       {
         label: 'Customer Estimated Budget',
         field: 'budget',
@@ -285,7 +290,6 @@ const OpportunitySummery = () => {
       archetype
     ]
   )
-  //const progressItems = PROGRESS_ITEMS
 
   return (
       <div className='w-full max-w-[1330px] bg-white rounded-[9px] px-[37px] py-[37px] mt-[37px] pt-0 pb-[37px] relative'>
@@ -314,6 +318,7 @@ const OpportunitySummery = () => {
                   type={cfg.type || 'dropdown'}
                   options={cfg.options || []}
                   placeholder={cfg.placeholder || ''}
+                  tooltip={cfg.tooltip || ''}
                 />
               </div>
             ))}
@@ -443,7 +448,6 @@ const OpportunitySummery = () => {
               title='Vendor Questions'
               isExpanded={sectionStates.vendorQuestions}
               onToggle={() => toggleSection('vendorQuestions')}
-              hasSpecialIcon={true}
             >
               <EditableTextArea
                 initialValue={sectionContentState.vendorQuestions}
@@ -464,7 +468,6 @@ const OpportunitySummery = () => {
               title='Terms & Conditions'
               isExpanded={sectionStates.termsConditions}
               onToggle={() => toggleSection('termsConditions')}
-              hasSpecialIcon={true}
             >
               <EditableTextArea
                 initialValue={sectionContentState.terms}

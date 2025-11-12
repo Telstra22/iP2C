@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import TemplateCard from './TemplateCard.jsx'
 import { mockRootProps } from './SelectTemplateMockData.js'
 import FileUploadZone from '../add_opportunity-details/FileUploadZone.jsx'
-import AiLoader from '../../AI_generated_Proposals/AiLoader.jsx'
+import AiLoader from '../../AI_generated_Proposals/AiLoader/AiLoader.jsx'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const SelectTemplate = forwardRef(({ onTemplateSelect, onUploadChange, errorMessage, clearError, errorTick = 0, showLoader: showLoaderProp = false }, ref) => {

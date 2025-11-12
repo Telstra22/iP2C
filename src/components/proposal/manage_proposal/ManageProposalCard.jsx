@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { STATUS_COLORS } from "./data/manageProposalsData";
 import { Plus, MoreVertical,SquarePen,Eye } from "lucide-react";
-import PreviewEyeIcon from "../../../assets/icons/PreviewEyeIcon.jsx";
-import EditPencilIcon from "../../../assets/icons/EditPencilIcon.jsx";
 
 const ProposalCard = ({
   isCreateCard = false,
@@ -128,7 +126,7 @@ const ProposalCard = ({
           <button
             type="button"
             className="flex items-center gap-[14px] hover:opacity-90 transition-opacity"
-            onClick={() => navigate('/ai-proposal_page')}
+            onClick={() => navigate('/preview-proposal')}
           >
             <Eye width={24} height={24} color="#FFFFFF" />
             <span className="text-white font-['Inter',sans-serif] text-[20px] font-semibold leading-[27px]">

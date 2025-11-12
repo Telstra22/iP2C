@@ -1,7 +1,6 @@
 import React from 'react'
-import OrchestratorAgentIcon from '../../../../assets/icons/OrchestratorAgentIcon'
-import ProposalBuilderIcon from '../../../../assets/icons/ProposalBuilderIcon'
-import SoundWaveIcon from '../../../../assets/icons/SoundWaveIcon'
+import OrchestratorAgentIcon from '../../../../../assets/icons/OrchestratorAgentIcon'
+import SoundWaveIcon from '../../../../../assets/icons/SoundWaveIcon'
 
 const AgentHuddleBar = () => {
   const agentBadges = [

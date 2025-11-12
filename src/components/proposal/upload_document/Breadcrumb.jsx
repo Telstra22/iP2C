@@ -1,6 +1,5 @@
 import React from 'react'
 import { ChevronRight } from 'lucide-react'
-
 const Breadcrumb = ({ current }) => {
   return (
     <div className='w-full bg-white border-b border-[#E5E5E5]'>
@@ -9,17 +8,17 @@ const Breadcrumb = ({ current }) => {
           <span className="text-[#505050] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px]">
             Home
           </span>
-          <ChevronRight size={35} color='#E2E1E0' />
+          <ChevronRight width={11} height={18} color='#E2E1E0' />
           <span className="text-[#505050] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px]">
             Manage proposals
           </span>
-          <ChevronRight size={35} color='#E2E1E0' />
-          <span className="text-[#000000] font-['Inter',sans-serif] text-[18px] font-medium leading-[24px]">
+          <ChevronRight width={11} height={18} color='#E2E1E0' />
+          <span className="text-[#505050] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px]">
             Create New Proposal
           </span>
           {current && (
             <>
-              <ChevronRight size={35} color='#E2E1E0' />
+              <ChevronRight width={11} height={18} color='#E2E1E0' />
               <span className="text-[#000000] font-['Inter',sans-serif] text-[18px] font-medium leading-[24px]">
                 {current}
               </span>

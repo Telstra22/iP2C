@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import CircularLoader from '../../../assets/icons/CircularLoader'
-import AiSparkleIcon from '../../../assets/icons/AiSparkleIcon'
+import CircularLoader from '../../../../assets/icons/CircularLoader'
+import AISparkleIcon from '../../../../assets/icons/AISparkleIcon'
 import OrchestratorSidebar from './OrchestratorSidebar'
-import Header from '../../Header'
-import Breadcrumb from '../upload_document/Breadcrumb'
+import Header from '../../../Header'
+import Breadcrumb from '../../upload_document/Breadcrumb'
 import { Check } from 'lucide-react'
 
 const AiLoader = ({ onCancel, isVisible = true }) => {
@@ -47,7 +47,7 @@ const AiLoader = ({ onCancel, isVisible = true }) => {
                 {/* Loading State */}
                 {/* Header with AI Icon and Text */}
                 <div className='flex items-center gap-[10px]'>
-                  <AiSparkleIcon width={33} height={33} />
+                  <AISparkleIcon width={33} height={33} />
                   <h2 className="text-[#39393A] font-['Inter',sans-serif] text-[24px] font-semibold leading-[32px]">
                     AI is generating your Proposal...
                   </h2>
@@ -77,7 +77,7 @@ const AiLoader = ({ onCancel, isVisible = true }) => {
                 {/* Completed State */}
                 {/* Header with AI Icon and Text */}
                 <div className='flex items-center gap-[10px]'>
-                  <AiSparkleIcon width={33} height={33} />
+                  <AISparkleIcon width={33} height={33} />
                   <h2 className="text-[#39393A] font-['Inter',sans-serif] text-[24px] font-semibold leading-[32px]">
                     AI Generated Proposal Ready!
                   </h2>

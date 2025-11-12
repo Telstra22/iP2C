@@ -1,5 +1,5 @@
 import React, { useRef, useState, useMemo } from "react";
-import { ChevronDown, CalendarDays } from "lucide-react";
+import { ChevronDown, CalendarDays, Info } from "lucide-react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { parse, format } from "date-fns";
@@ -11,6 +11,7 @@ const FormField = ({
   onChange,
   options = [],
   placeholder = "",
+  tooltip = "",
 }) => {
   const dpRef = useRef(null);
   const [query, setQuery] = useState("");
@@ -44,8 +45,18 @@ const FormField = ({
       : null;
   return (
     <div className="flex flex-col gap-[10px]">
-      <label className="text-[#505050] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
-        {label}
+      <label
+        className="text-[#505050] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px] flex items-center gap-[8px]"
+        title={tooltip || undefined}
+      >
+        <span>{label}</span>
+        {tooltip ? (
+          <Info
+            className="w-[24px] h-[24px] text-[#000000]"
+            title={tooltip}
+            aria-label={tooltip}
+          />
+        ) : null}
       </label>
       <div className="relative">
         {type === "dropdown" ? (
