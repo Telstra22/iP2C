@@ -1,8 +1,6 @@
 import React from 'react';
 import telstraLogo from '../assets/images/telstra-logo.png';
-import BellIcon from '../assets/icons/BellIcon';
-import UserProfileIcon from '../assets/icons/UserProfileIcon';
-
+import { Bell,UserRound } from 'lucide-react';
 function Header() {
   return (
     <>
@@ -25,10 +23,10 @@ function Header() {
           {/* Right: Icons */}
           <div className="flex items-center gap-[84px] max-lg:gap-5 max-sm:gap-4">
             <button className="p-1 shrink-0" aria-label="Notifications">
-              <BellIcon width={22} height={24} color="#0D54FF" />
+              <Bell width={22} height={24} color="#0D54FF" />
             </button>
             <button className="p-1 shrink-0" aria-label="Account">
-              <UserProfileIcon width={18} height={18} color="#0D54FF" />
+              <UserRound width={18} height={18} color="#0D54FF" />
             </button>
           </div>
         </div>

@@ -1,3 +1,0 @@
-import * as React from "react";
-const Component = props => <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 23.333 11.667" {...props}><path xmlns="http://www.w3.org/2000/svg" fill="currentColor" d="M10.5 11.667H5.833q-2.421 0-4.127-1.707T0 5.833q0-2.42 1.707-4.126Q3.415 0 5.833 0H10.5v2.333H5.833q-1.458 0-2.479 1.021-1.02 1.02-1.02 2.48 0 1.458 1.02 2.479 1.02 1.02 2.48 1.02H10.5zM7 7V4.667h9.334V7zm5.834 4.667V9.333H17.5q1.459 0 2.48-1.02T21 5.833q0-1.458-1.02-2.479-1.021-1.02-2.48-1.02h-4.666V0H17.5q2.421 0 4.128 1.707t1.706 4.126-1.707 4.128-4.127 1.706z" /></svg>;
-export default Component;

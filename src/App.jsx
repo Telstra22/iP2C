@@ -4,9 +4,10 @@ import Login from './components/login/Login'
 import ManageProposal from './components/proposal/manage_proposal/ManageProposal'
 import Header from './components/Header'
 import AddOpprtunityDetails from './components/proposal/upload_document/add_opportunity-details/AddOpprtunityDetails'
-import AiLoader from './components/proposal/AI_generated_Proposals/AiLoader'
+import AiLoader from './components/proposal/AI_generated_Proposals/AiLoader/AiLoader'
 import AiProposalPage from './components/proposal/AI_generated_Proposals/Ai_proposal/AiProposalPage'
-import PreviewProposalPage from './components/proposal/AI_generated_Proposals/Ai_proposal/PreviewProposalPage'
+import PreviewProposalPage from './components/proposal/AI_generated_Proposals/Ai_proposal/preview/PreviewProposalPage'
+ 
 
 function AppContent() {
   return (

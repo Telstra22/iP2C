@@ -1,6 +1,5 @@
 import React from 'react'
-import ChevronRightIcon from '../../../assets/icons/ChevronRightIcon'
-
+import { ChevronRight } from 'lucide-react'
 const Breadcrumb = ({ current }) => {
   return (
     <div className='w-full bg-white border-b border-[#E5E5E5]'>
@@ -9,17 +8,17 @@ const Breadcrumb = ({ current }) => {
           <span className="text-[#505050] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px]">
             Home
           </span>
-          <ChevronRightIcon width={11} height={18} color='#E2E1E0' />
+          <ChevronRight width={11} height={18} color='#E2E1E0' />
           <span className="text-[#505050] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px]">
             Manage proposals
           </span>
-          <ChevronRightIcon width={11} height={18} color='#E2E1E0' />
+          <ChevronRight width={11} height={18} color='#E2E1E0' />
           <span className="text-[#505050] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px]">
             Create New Proposal
           </span>
           {current && (
             <>
-              <ChevronRightIcon width={11} height={18} color='#E2E1E0' />
+              <ChevronRight width={11} height={18} color='#E2E1E0' />
               <span className="text-[#000000] font-['Inter',sans-serif] text-[18px] font-medium leading-[24px]">
                 {current}
               </span>
