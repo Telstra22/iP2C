@@ -539,14 +539,21 @@ const OpportunitySummery = () => {
           </div>
         )}
 
-          {showCompletionModal && <CompletionModal onDone={handleDone} />}
+          {showCompletionModal && (
+            <div className='fixed inset-0 bg-black/30 backdrop-blur-[1px] flex items-center justify-center z-50'>
+              <CompletionModal onDone={handleDone} />
+            </div>
+          )}
         </div>
       </div>
       
-      {/* Orchestrator Sidebar - Always show when loading modal is visible */}
-      {showLoadingModal && (
+      {/* Orchestrator Sidebar - Show when loading modal or completion modal is visible */}
+      {(showLoadingModal || showCompletionModal) && (
         <div className='relative z-50'>
-          <OrchestratorSidebar onSendMessage={handleSendMessage} />
+          <OrchestratorSidebar 
+            onSendMessage={handleSendMessage}
+            isLoading={showLoadingModal}
+          />
         </div>
       )}
     </div>
