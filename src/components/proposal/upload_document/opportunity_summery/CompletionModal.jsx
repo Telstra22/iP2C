@@ -5,8 +5,7 @@ import { UI_STRINGS } from './mockData'
 
 const CompletionModal = ({ onDone }) => {
   return (
-    <div className='fixed inset-0 bg-black/30 backdrop-blur-[1px] flex items-center justify-center z-50'>
-      <div className='bg-white rounded-[12px] border border-[#CFCFCF] shadow-[0px_4px_8px_2px_rgba(0,0,0,0.07)] inline-flex flex-col items-center px-[62px] pt-[40px] pb-[30px] gap-[32px]'>
+    <div className='bg-white rounded-[12px] border border-[#CFCFCF] shadow-[0px_4px_8px_2px_rgba(0,0,0,0.07)] inline-flex flex-col items-center px-[62px] pt-[40px] pb-[30px] gap-[32px]'>
         {/* Header with logo and title */}
         <div className='flex items-center gap-[10px]'>
           <IP2CLogoIcon width={42} height={42} />
@@ -33,7 +32,6 @@ const CompletionModal = ({ onDone }) => {
         >
           {UI_STRINGS.completionDone}
         </button>
-      </div>
     </div>
   )
 }
