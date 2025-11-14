@@ -1,51 +1,118 @@
-﻿
-  //Request Body:
-  {
-  "opportunityId": "001K0132578HWb16AAD"
+{
+  "opportunityId": "A001K0132578HWb16AAD"
 }
 
-//If opportunityId is valid
+
 {
-  "success": true,
-  "message": "Valid opportunity ID."
-}
-//If opportunityId is invalid
-{
-  "success": false,
-  "message": "Invalid opportunity ID."
-}
-//If opportunityId format is incorrect
-{
-  "success": false,
-  "message": "Opportunity ID format is not correct."
-}
-//If backend error occurs
-{
-  "success": false,
-  "message": "Unable to validate opportunity ID. Please try again later."
+  "files": [
+    { "name": "document1.pdf", "type": "application/pdf" },
+    { "name": "questionnaire.xlsx", "type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" }
+  ]
 }
 
-// RFX Document Upload API
 
-//Request Type
-POST /api/upload-documents
-Content-Type: multipart/form-data
-
-  //Request Body:
-  //success response:
-  {
-  "success": true,
-  "message": "Documents uploaded successfully.",
-  "uploadedFiles": ["document1.pdf", "document2.doc"]
-}
-//error response:
 {
-  "success": false,
-  "message": "Invalid file type or max 5 files allowed."
+  "files": [
+      { "name": "document1.pdf", "type": "application/pdf" },
+      { "name": "questionnaire.xlsx", "type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" }
+    ],
+  "opportunitySummary": {
+    "opportunityBrief": "Total Brick, a leading diversified property group in Australia, is seeking proposals for reliable and cost-effective mobile voice and data services to support its operations nationwide. The company is reviewing its mobility services to identify improvements and align with evolving business needs.",
+    "problemStatement": "The current contract for mobility services has expired. Total Brick needs to evaluate new offerings to ensure continued service quality, security, and value, while addressing gaps or inefficiencies in the existing setup.",
+    "scopeOfWork": "Provision of approximately 1200 mobile voice & data services, 430 data-only services, and 2 satellite voice services.  Excludes managed services such as Mobile Device Management (MDM).  Services must cover ordering, reporting, billing, operational support, and scalability.",
+    "desiredOutcomes": "Seamless nationwide coverage with robust connectivity for all mobile devices. Enhanced security measures to protect sensitive data and ensure compliance. Streamlined ordering, billing, and reporting processes for efficiency. Strong vendor support with clear SLAs and responsiveness. Scalability to accommodate future growth and technological advancements.",
+    "technicalRequirements": "Nationwide 4G/5G coverage, including rural and remote areas. Support for Low Earth Orbit (LEO) satellite services. Integration with ITSM tools (e.g., ServiceNow), CMDB compatibility, and auto-enablement features. Mature security protocols, data sovereignty, and compliance with Australian regulations.",
+    "functionalRequirements": "Self-service portals, dedicated account management, and efficient ordering/tracking systems. Consolidated billing, usage reporting, and trend analysis. SLAs for activation, fault resolution, and ongoing operations. Scalability and flexibility to adjust plans as business needs change.",
+    "vendorQuestions": "Detailed pricing and breakdowns, including discounts and incentives. Information on operational support, billing processes, and SLAs. ESG initiatives, innovations, and futureproofing strategies. Security practices and customer support capabilities. Roadmap for LEO satellite services and device management options.",
+    "terms": "All mutual NDAs must be signed before RFI issuance. The timetable is indicative and may change at Total Brick's discretion. Responses must be submitted by 5pm, Friday 31st January 2025. Evaluation will consider vendor profile, cost structure, service inclusions, network coverage, and ESG commitments."
+  },
+  "options": {
+    "opportunityId": "A001K0132578HWb16AAD",
+    "businessUnit": ["Telstra Business","Telstra Enterprise"],
+    "partner": ["Abc Pvt Ltd","Xyz Pvt Ltd","Def Pvt Ltd"],
+    "archetype": ["2","3","4","5","6"],
+    "industries": [
+      "Banking","Telecommunication","Healthcare","Retail","Consumer Services","Industrial"
+    ],
+    "newRenewal": ["New","Renewal"],
+    "services": ["IoT","Cloud","Mobility","DAC","Unified Communications"],
+    "productHierarchies": ["IoT","Mobility","Cloud","Unified Communications","DAC"],
+    "products": [
+      "Connected Vehicles","IoT Connectivity","IoT Devices","IoT Network","IoT Platforms","IoT Exit/Migrations",
+      "Business Applications","Mobile Devices","Mobility Managed Services","Mobile Networks","Mobile Plans","Mobile Value Added Services (VAS)","Mobility Exit/Migrations",
+      "Cloud (General)","Cloud Services",
+      "Unified Communications (General)","Adaptive Collaboration","Customer Contact Solutions","Collaboration - Cloud","Inbound Services","Collaboration - On-Premise","Video & Workplace Design Solutions","Conferencing","Unified Communications Exit/Migration",
+      "Adaptive Access & Connectivity Services","Special Access Services","Exits and Migrations","Adaptive Assured Networks","Adaptive Design","Managed Network Services"
+    ],
+    "subProducts": [
+      "Fleet Complete","Teletrac Navman","IoT Connection Manager","M2M Control Centre","Attentis","General Content","Telstra Track and Monitor",
+      "GoCanvas",
+      "Apple Mobile Devices","HTC Mobile Devices","Iridium (SAT) Mobile Devices","LG Mobile Devices","Motorola Mobile Devices","NETGEAR Mobile Devices","Sony Mobile Devices","Telstra Mobile Devices","ZTE Mobile Devices",
+      "Mobile Device Management (MDM)","Telstra Enterprise Mobile Protect",
+      "5G",
+      "General Content","Adaptive Mobility","Device Leasing","Enterprise Wireless",
+      "International Roaming","Order Express",
+      "3G Network Closure","BYOD","Corporate Mobile Plus (CMP)","Telstra Mobile Workspace (TMW)",
+      "General content for all Cloud",
+      "Amazon Web Services (AWS)","Azure VMware Solution","Cloud Infrastructure Managed Backup","Data Centres and Colocation","Microsoft Azure","Microsoft Dynamics 365","Microsoft Office 365 (MS365)","Microsoft Windows 365","Telstra Cloud Compliance","Telstra Cloud Connector","Telstra Cloud Infrastructure","Telstra Cloud Sight",
+      "General Content for all UC",
+      "Microsoft Operator Connect (MSOC)","Telstra Cloud Calling (previously Adaptive Collaboration)",
+      "Avaya Contact Centre","Call IN","Contact Centre Genesys Cloud","Network IVR",
+      "Business SIP","Liberate","Telstra Business Resumption Service + (BRS +)","Telstra Calling for Office 365 (TCO365)","Telstra IP Telephony (TIPT)",
+      "Analyser Online","Freecall 1800 and Priority 13","IN-Control","International Freecall","Phonewords",
+      "SIP Complete","SIP Connect","Telstra Business Systems (TBS)","Telstra Business Systems (TBS) Care",
+      "Audio Visual Solutions","MS Surface Hub","Pexip Interop","Telstra T-Rooms",
+      "Audio & Web Conferencing","Dubber Call Recording And Insights",
+      "Business IP (BIP) Adapt","Telstra Internet Direct (TID) Adapt","Telstra Internet Direct (TID) Lite Adapt","Adaptive Connectivity","Telstra Business Broadband (TBB) on NBN and T-Biz Broadband on NBN","General content for all Data & IP","Internet General Content","NBN General Content","Private Networks General Content",
+      "IP Wireless","National Ethernet","Telstra Opticwave","Telstra Wavelength Service (TWS)",
+      "Business IP (BIP)","Cloud Gateway","Connect IP (CIP)","IPMAN","IPWAN","Other Data & IP Exit/Migrations",
+      "Adapt S1","Adapt Assured Meraki (previously Managed Wi-Fi Cloud)","Managed Wi-Fi Dedicated","Managed Wi-Fi General Content","MDN Bundles","MDN Custom","OpenRoaming with Telstra","SD-WAN Adapt VMware",
+      "Telstra Programmable Network (TPN)",
+      "Adaptive Networks Centre","General content for all Managed Network Services","My Network"
+    ],
+    "hierarchyToProducts": {
+      "IoT": ["Connected Vehicles","IoT Connectivity","IoT Devices","IoT Network","IoT Platforms","IoT Exit/Migrations"],
+      "Mobility": ["Business Applications","Mobile Devices","Mobility Managed Services","Mobile Networks","Mobile Plans","Mobile Value Added Services (VAS)","Mobility Exit/Migrations"],
+      "Cloud": ["Cloud (General)","Cloud Services"],
+      "Unified Communications": ["Unified Communications (General)","Adaptive Collaboration","Customer Contact Solutions","Collaboration - Cloud","Inbound Services","Collaboration - On-Premise","Video & Workplace Design Solutions","Conferencing","Unified Communications Exit/Migration"],
+      "DAC": ["Adaptive Access & Connectivity Services","Special Access Services","Exits and Migrations","Adaptive Assured Networks","Adaptive Design","Managed Network Services"]
+    },
+    "productToSubProducts": {
+      "Connected Vehicles": ["Fleet Complete","Teletrac Navman"],
+      "IoT Connectivity": ["IoT Connection Manager","M2M Control Centre"],
+      "IoT Devices": ["Attentis"],
+      "IoT Network": ["General Content"],
+      "IoT Platforms": ["General Content"],
+      "IoT Exit/Migrations": ["Telstra Track and Monitor"],
+      "Business Applications": ["GoCanvas"],
+      "Mobile Devices": [
+        "Apple Mobile Devices","HTC Mobile Devices","Iridium (SAT) Mobile Devices","LG Mobile Devices","Motorola Mobile Devices","NETGEAR Mobile Devices","Sony Mobile Devices","Telstra Mobile Devices","ZTE Mobile Devices"
+      ],
+      "Mobility Managed Services": ["Mobile Device Management (MDM)","Telstra Enterprise Mobile Protect"],
+      "Mobile Networks": ["5G"],
+      "Mobile Plans": ["General Content","Adaptive Mobility","Device Leasing","Enterprise Wireless"],
+      "Mobile Value Added Services (VAS)": ["International Roaming","Order Express"],
+      "Mobility Exit/Migrations": ["3G Network Closure","BYOD","Corporate Mobile Plus (CMP)","Telstra Mobile Workspace (TMW)"],
+      "Cloud (General)": ["General content for all Cloud"],
+      "Cloud Services": [
+        "Amazon Web Services (AWS)","Azure VMware Solution","Cloud Infrastructure Managed Backup","Data Centres and Colocation","Microsoft Azure","Microsoft Dynamics 365","Microsoft Office 365 (MS365)","Microsoft Windows 365","Telstra Cloud Compliance","Telstra Cloud Connector","Telstra Cloud Infrastructure","Telstra Cloud Sight"
+      ],
+      "Unified Communications (General)": ["General Content for all UC"],
+      "Adaptive Collaboration": ["Microsoft Operator Connect (MSOC)","Telstra Cloud Calling (previously Adaptive Collaboration)"],
+      "Customer Contact Solutions": ["Avaya Contact Centre","Call IN","Contact Centre Genesys Cloud","Network IVR"],
+      "Collaboration - Cloud": ["Business SIP","Liberate","Telstra Business Resumption Service + (BRS +)","Telstra Calling for Office 365 (TCO365)","Telstra IP Telephony (TIPT)"],
+      "Inbound Services": ["Analyser Online","Freecall 1800 and Priority 13","IN-Control","International Freecall","Phonewords"],
+      "Collaboration - On-Premise": ["SIP Complete","SIP Connect","Telstra Business Systems (TBS)","Telstra Business Systems (TBS) Care"],
+      "Video & Workplace Design Solutions": ["Audio Visual Solutions","MS Surface Hub","Pexip Interop","Telstra T-Rooms"],
+      "Conferencing": ["Audio & Web Conferencing","Dubber Call Recording And Insights"],
+      "Adaptive Access & Connectivity Services": [
+        "Business IP (BIP) Adapt","Telstra Internet Direct (TID) Adapt","Telstra Internet Direct (TID) Lite Adapt","Adaptive Connectivity","Telstra Business Broadband (TBB) on NBN and T-Biz Broadband on NBN","General content for all Data & IP","Internet General Content","NBN General Content","Private Networks General Content"
+      ],
+      "Special Access Services": ["IP Wireless","National Ethernet","Telstra Opticwave","Telstra Wavelength Service (TWS)"],
+      "Exits and Migrations": ["Business IP (BIP)","Cloud Gateway","Connect IP (CIP)","IPMAN","IPWAN","Other Data & IP Exit/Migrations"],
+      "Adaptive Assured Networks": ["Adapt S1","Adapt Assured Meraki (previously Managed Wi-Fi Cloud)","Managed Wi-Fi Dedicated","Managed Wi-Fi General Content","MDN Bundles","MDN Custom","OpenRoaming with Telstra","SD-WAN Adapt VMware"],
+      "Adaptive Design": ["Telstra Programmable Network (TPN)"],
+      "Managed Network Services": ["Adaptive Networks Centre","General content for all Managed Network Services","My Network"]
+    }
+  }
 }
-//If backend error occurs
-{
-  "success": false,
-  "message": "Document upload failed. Please try again later."
-}
-
