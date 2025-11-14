@@ -6,6 +6,7 @@ import CompletionModal from './CompletionModal'
 import FormField from './FormField'
 import CollapsibleSection from './CollapsibleSection'
 import EditableTextArea from './EditableTextArea'
+import OrchestratorSidebar from './OrchestratorSidebar'
 import { Check,Info } from 'lucide-react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -291,9 +292,15 @@ const OpportunitySummery = () => {
     ]
   )
 
+  const handleSendMessage = (message) => {
+    console.log('Message sent to orchestrator:', message)
+  }
+
   return (
-      <div className='w-full max-w-[1330px] bg-white rounded-[9px] px-[37px] py-[37px] mt-[37px] pt-0 pb-[37px] relative'>
-        <ToastContainer position="top-right" theme="light" hideProgressBar={false} />
+    <div className='flex w-full h-full overflow-hidden'>
+      <div className='flex-1 overflow-y-auto'>
+        <div className='w-full max-w-[1330px] bg-white rounded-[9px] px-[37px] py-[37px] mt-[37px] pt-0 pb-[37px] relative'>
+          <ToastContainer position="top-right" theme="light" hideProgressBar={false} />
         <div
           aria-hidden={showLoadingModal}
           className={showLoadingModal ? 'invisible pointer-events-none' : ''}
@@ -482,12 +489,19 @@ const OpportunitySummery = () => {
         </div>
 
         {showLoadingModal && (
-          <div className='fixed inset-0 bg-black/30 backdrop-blur-[1px] flex items-center justify-center z-50'>
-            <div className='bg-white rounded-[12px] border border-[#CFCFCF] shadow-[0px_4px_8px_2px_rgba(0,0,0,0.07)] inline-flex flex-col items-center px-[62px] pt-[40px] pb-[30px] gap-[32px]'>
-              {/* Header with logo and title */}
+          <div className='fixed inset-0 bg-black/30 backdrop-blur-[1px] flex items-center justify-center z-40'>
+            <div className='bg-white rounded-[12px] border border-[#CFCFCF] shadow-[0px_4px_8px_2px_rgba(0,0,0,0.07)] flex flex-col gap-[22px] px-[50px] py-[53px] w-[690px]'>
+              {/* Header with gradient logo and title */}
               <div className='flex items-center gap-[10px]'>
-                <IP2CLogoIcon width={42} height={42} />
-                <h2 className="text-[#39393A] font-['Inter',sans-serif] text-[28px] font-semibold leading-[38px] whitespace-nowrap">
+                <div 
+                  className='w-[33px] h-[33px] flex items-center justify-center'
+                  style={{
+                    background: 'linear-gradient(82.57deg, rgba(0,255,225,1) 1.85%, rgba(13,84,255,1) 44.07%, rgba(149,36,198,1) 110.73%)'
+                  }}
+                >
+                  <IP2CLogoIcon width={33} height={33} color="#FFFFFF" />
+                </div>
+                <h2 className="text-[#39393A] font-['Inter',sans-serif] text-[24px] font-semibold leading-[32px]">
                   {UI_STRINGS.loadingTitle}
                 </h2>
               </div>
@@ -506,35 +520,36 @@ const OpportunitySummery = () => {
                   {UI_STRINGS.estimatedWait}
                 </p>
 
-                {/* Progress bars */}
-                {/* <div className='flex flex-col gap-[26px] w-[566px]'>
-                  {progressItems.map(item => (
-                    <ProgressBarItem
-                      key={item.label}
-                      label={item.label}
-                      progress={item.value(progress)}
-                      barColor={item.barColor}
-                    />
-                  ))}
-                </div> */}
-                <div className="w-[584px] text-[var(--blacks-80,#505050)] font-['Inter',sans-serif] text-[20px] font-normal leading-[134.1%]">
+                {/* Resume note */}
+                <p className="w-full text-[#505050] font-['Inter',sans-serif] text-[20px] font-normal leading-[26.82px] text-center">
                   {UI_STRINGS.resumeNote}
-                </div>
+                </p>
               </div>
 
               {/* Cancel button */}
-              <button
-                onClick={() => setShowLoadingModal(false)}
-                className="self-end text-[#0D54FF] font-['Inter',sans-serif] text-[24px] font-semibold leading-[32px] bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity"
-              >
-                Cancel
-              </button>
+              <div className='flex justify-end'>
+                <button
+                  onClick={() => setShowLoadingModal(false)}
+                  className="text-[#0D54FF] font-['Inter',sans-serif] text-[22px] font-semibold leading-[30px] bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity"
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
           </div>
         )}
 
-        {showCompletionModal && <CompletionModal onDone={handleDone} />}
+          {showCompletionModal && <CompletionModal onDone={handleDone} />}
+        </div>
       </div>
+      
+      {/* Orchestrator Sidebar - Always show when loading modal is visible */}
+      {showLoadingModal && (
+        <div className='relative z-50'>
+          <OrchestratorSidebar onSendMessage={handleSendMessage} />
+        </div>
+      )}
+    </div>
   )
 }
 

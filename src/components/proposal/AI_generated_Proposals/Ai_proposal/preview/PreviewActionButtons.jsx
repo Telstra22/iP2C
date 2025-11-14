@@ -1,7 +1,10 @@
 import React from 'react'
-import { Download,PencilLine,Check } from 'lucide-react'
+import DownloadIcon from '../../../../../assets/icons/DownloadIcon'
+import ExportIcon from '../../../../../assets/icons/ExportIcon'
+import EditIcon from '../../../../../assets/icons/EditIcon'
+import SaveCheckIcon from '../../../../../assets/icons/SaveCheckIcon'
 
-const PreviewActionButtons = ({ onDownload, onEditSection, onSaveExit }) => {
+const PreviewActionButtons = ({ onDownload, onExport, onEditSection, onSaveExit }) => {
   return (
     <div className='flex items-center gap-[6px]'>
       {/* Download */}
@@ -9,20 +12,31 @@ const PreviewActionButtons = ({ onDownload, onEditSection, onSaveExit }) => {
         onClick={(e) => onDownload && onDownload(e)}
         className='flex items-center gap-[10px] px-[20px] py-[12px] rounded-[6px] border border-[#C6C6C6] bg-white hover:bg-gray-50 transition-colors'
       >
-        <Download width={24} height={24} color='#0D54FF' />
+        <DownloadIcon width={16} height={16} color='#0D54FF' />
         <span className="text-[#0D54FF] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
           Download
         </span>
       </button>
 
-      {/* Edit Section */}
+      {/* Export */}
+      <button
+        onClick={onExport}
+        className='flex items-center gap-[10px] px-[20px] py-[12px] rounded-[6px] border border-[#C6C6C6] bg-white hover:bg-gray-50 transition-colors'
+      >
+        <ExportIcon width={20} height={18} color='#0D54FF' />
+        <span className="text-[#0D54FF] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
+          Export
+        </span>
+      </button>
+
+      {/* Edit Proposal */}
       <button
         onClick={onEditSection}
         className='flex items-center gap-[10px] px-[20px] py-[12px] rounded-[6px] border border-[#C6C6C6] bg-white hover:bg-gray-50 transition-colors'
       >
-        <PencilLine width={24} height={24} color='#272727' />
+        <EditIcon width={18} height={18} color='#272727' />
         <span className="text-[#272727] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
-          Edit Section
+          Edit Proposal
         </span>
       </button>
 
@@ -31,7 +45,7 @@ const PreviewActionButtons = ({ onDownload, onEditSection, onSaveExit }) => {
         onClick={onSaveExit}
         className='flex items-center gap-[10px] px-[20px] py-[12px] rounded-[6px] bg-[#0D54FF] hover:bg-[#0040D9] transition-colors'
       >
-        <Check width={25} height={25} color='#FFFFFF' />
+        <SaveCheckIcon width={17} height={13} color='#FFFFFF' />
         <span className="text-[#FFFFFF] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
           Save & Exit
         </span>

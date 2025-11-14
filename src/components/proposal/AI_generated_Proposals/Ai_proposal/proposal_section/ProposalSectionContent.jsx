@@ -21,7 +21,8 @@ const ProposalSectionContent = ({
   onChangeSectionTitle,
   onChangeSectionContent,
   onChangeSubsectionTitle,
-  onChangeSubsectionContent
+  onChangeSubsectionContent,
+  onRegenerateWithAI
 }) => {
   const contentRef = useRef(null)
   const titleRef = useRef(null)
@@ -175,6 +176,7 @@ const ProposalSectionContent = ({
               onSave={onSave}
               onInsertSpace={handleInsertSpace}
               onAddAttachment={handleAddAttachment}
+              onRegenerateWithAI={onRegenerateWithAI}
             />
             {/* Attachments preview list below toolbar */}
             {attachments.length > 0 && (

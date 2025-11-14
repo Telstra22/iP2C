@@ -1,16 +1,5 @@
-Request Body:
 {
   "email": "alex.anderson@telstra.com",
   "role": "Proposal Generation",
   "password": "12345"
-}
-On Success:
-{
-  "status": "success",
-  "message": "Login successful"
-}
-On Failure:
-{
-  "status": "error",
-  "message": "Invalid email, role, or password"
 }
