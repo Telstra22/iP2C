@@ -12,6 +12,7 @@ const FormField = ({
   options = [],
   placeholder = "",
   tooltip = "",
+  disabled = false,
 }) => {
   const dpRef = useRef(null);
   const [query, setQuery] = useState("");
@@ -63,15 +64,18 @@ const FormField = ({
           <>
             <button
               type="button"
-              onClick={() => setOpen((o) => !o)}
-              className="w-full pr-[56px] pl-[20px] py-[12px] text-left text-[#050505] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px] border border-[#E0E0E0] rounded-[7px] bg-white focus:outline-none focus:border-[#0D54FF]"
+              onClick={() => { if (!disabled) setOpen((o) => !o) }}
+              disabled={disabled}
+              className={`w-full pr-[56px] pl-[20px] py-[12px] text-left text-[#050505] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px] border border-[#E0E0E0] rounded-[7px] bg-white focus:outline-none ${disabled ? 'cursor-not-allowed opacity-60' : 'focus:border-[#0D54FF]'}`}
             >
               {(normalizedOptions.find((o) => o.value == value)?.label) || "Select"}
             </button>
-            <div className="absolute right-[20px] top-1/2 -translate-y-1/2 pointer-events-none z-20">
-              <ChevronDown className="w-[19px] h-[19px] aspect-ration-1/1 text-[#505050]" />
-            </div>
-            {open && (
+            {!disabled && (
+              <div className="absolute right-[20px] top-1/2 -translate-y-1/2 pointer-events-none z-20">
+                <ChevronDown className="w-[19px] h-[19px] aspect-ration-1/1 text-[#505050]" />
+              </div>
+            )}
+            {open && !disabled && (
               <div
                 tabIndex={-1}
                 onBlur={() => setTimeout(() => setOpen(false), 100)}
@@ -201,8 +205,15 @@ const FormField = ({
         ) : (
           <>
             {type === 'number' ? (
-              <span className="absolute left-[20px] top-1/2 -translate-y-1/2 text-[#050505] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px] pointer-events-none">$
-              </span>
+              <>
+                <span className="absolute left-[20px] top-1/2 -translate-y-1/2 text-[#050505] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px] pointer-events-none">$
+                </span>
+                {!value && (
+                  <span className="absolute left-[44px] top-1/2 -translate-y-1/2 text-[#B4B4B4] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px] pointer-events-none">
+                    Not available
+                  </span>
+                )}
+              </>
             ) : (
               placeholder && (
                 <span className="absolute left-[20px] top-1/2 -translate-y-1/2 text-[#050505] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px] pointer-events-none">

@@ -72,7 +72,19 @@ const AiProposalPage = () => {
   }
 
   const handleSaveExit = () => {
-    console.log('Save and exit')
+    try {
+      const card = {
+        id: '1',
+        title: '001K0132578HWb16AAD',
+        category: 'Banking | Melbourne',
+        customer: 'Total Brick',
+        template: 'Default',
+        createdOn: 'Sep 25, 2025 06:29 AM',
+        updatedOn: 'Sep 25, 2025 06:47 AM',
+        statusKey: 'active'
+      }
+      localStorage.setItem('newProposalCard', JSON.stringify(card))
+    } catch {}
     navigate('/manage_proposals')
   }
 
@@ -83,6 +95,10 @@ const AiProposalPage = () => {
     } catch (e) {
       console.warn('Failed to save proposal:', e)
     }
+  }
+
+  const handleRegenerateWithAI = () => {
+    navigate('/generated-with-ai')
   }
 
   const handleToggleComments = () => {
@@ -161,6 +177,7 @@ const AiProposalPage = () => {
                   onChangeSectionContent={handleChangeSectionContent}
                   onChangeSubsectionTitle={handleChangeSubsectionTitle}
                   onChangeSubsectionContent={handleChangeSubsectionContent}
+                  onRegenerateWithAI={handleRegenerateWithAI}
                 />
               )
             })()}

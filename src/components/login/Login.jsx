@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff, Check,ChevronDown } from "lucide-react";
 import RadioButton from "./RadioButton";
@@ -17,6 +17,8 @@ import {
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [profileType, setProfileType] = useState("Proposal Generation");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -24,14 +26,37 @@ function Login() {
   const isValidCredentials = (email, password) =>
     email?.toLowerCase() === "alex.anderson@telstra.com" && password === "12345";
 
+  useEffect(() => {
+    try {
+      const savedRemember = localStorage.getItem("rememberMe");
+      const savedEmail = localStorage.getItem("rememberEmail");
+      const savedPassword = localStorage.getItem("rememberPassword");
+      if (savedRemember === "true" && (savedEmail || savedPassword)) {
+        setRememberMe(true);
+        setEmail(savedEmail || "");
+        setPassword(savedPassword || "");
+      }
+    } catch {}
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    const email = data.get("email")?.trim();
-    const password = data.get("password") ?? "";
+    const normalizedEmail = email?.trim();
 
-    if (isValidCredentials(email, password)) {
+    // Persist or clear remembered credentials based on checkbox
+    try {
+      if (rememberMe) {
+        localStorage.setItem("rememberMe", "true");
+        localStorage.setItem("rememberEmail", normalizedEmail || "");
+        localStorage.setItem("rememberPassword", password || "");
+      } else {
+        localStorage.removeItem("rememberMe");
+        localStorage.removeItem("rememberEmail");
+        localStorage.removeItem("rememberPassword");
+      }
+    } catch {}
+
+    if (isValidCredentials(normalizedEmail, password)) {
       setError(null);
       navigate("/manage_proposals");
     } else {
@@ -99,6 +124,8 @@ function Login() {
                   aria-invalid={Boolean(error) || undefined}
                   aria-describedby={error ? emailErrorId : undefined}
                   className={INPUT_EMAIL_CLASS}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
 
@@ -118,6 +145,8 @@ function Login() {
                     aria-invalid={Boolean(error) || undefined}
                     aria-describedby={error ? passwordErrorId : undefined}
                     className={INPUT_PASSWORD_CLASS}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                   <button
                     type="button"

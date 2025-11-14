@@ -15,13 +15,6 @@ const TemplateCard = ({ template, onSelect, isSelected }) => {
         <p className="text-white font-['Inter',sans-serif] text-[19px] font-medium leading-[25.48px] max-w-[318px]">
           {headerText}
         </p>
-        
-        {/* Telstra Logo - positioned at bottom right */}
-        <img 
-          src={logoType === 'orange' ? '/telstra-logo-orange.png' : '/telstra-logo-blue.png'}
-          alt="Telstra" 
-          className="w-[21px] h-[24px] object-contain absolute bottom-[39px] right-[41px]"
-        />
       </div>
 
       {/* Template Info and Button */}
