@@ -135,9 +135,9 @@ const UploadProposalDocument = () => {
                     <ChevronRight color="#FFFFFF" className="w-[24px] h-[24px] aspect-[1/1]" />
                   </button>
                 </div>
-                <span className="text-[#828282] font-['Inter',sans-serif] text-[18px] font-light leading-[24px]">
+                {/* <span className="text-[#828282] font-['Inter',sans-serif] text-[18px] font-light leading-[24px]">
                   Only numeric values allowed
-                </span>
+                </span> */}
               </div>
             </div>
 

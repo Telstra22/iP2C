@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import PreviewBreadcrumb from './PreviewBreadcrumb'
+import Header from '../../../../Header'
+import Breadcrumb from '../../../upload_document/Breadcrumb'
 import PreviewActionButtons from './PreviewActionButtons'
 import ProposalContentSection from '../proposal_section/ProposalContentSection'
-import RiskScoreSidebar from './RiskScoreSidebar'
+import ProposalEvaluationMetrics from './ProposalEvaluationMetrics'
 import { mockRootProps } from './PreviewProposalMockData'
 import { performDownload } from './downloadUtils'
 
@@ -34,26 +35,29 @@ const PreviewProposalPage = ({ embedded = false, onClose }) => {
     }
   }
 
+  const handleExport = () => {
+    console.log('Export proposal')
+    // Implement export logic
+  }
+
   const handleSaveExit = () => {
     console.log('Save and exit')
     // Implement save and exit logic
     navigate('/manage_proposals')
   }
 
-  const handleRiskAssessment = () => {
-    console.log('Open risk assessment')
-    // Implement risk assessment logic
-  }
-
-  const handleSendMessage = (message) => {
-    console.log('Send message:', message)
-    // Implement send message logic
+  const handleScoreProposal = (section) => {
+    console.log('Score proposal for section:', section)
+    // Implement scoring logic
   }
 
   return (
     <div className='w-full h-full bg-[#F6F6F6] flex flex-col overflow-hidden'>
+      {/* Header */}
+      <Header />
+
       {/* Breadcrumb */}
-      <PreviewBreadcrumb breadcrumbPath={mockRootProps.breadcrumbPath} />
+      <Breadcrumb current="Preview Proposal" />
 
       {/* Main Content Area */}
       <div className='flex-1 flex overflow-hidden min-h-0'>
@@ -67,6 +71,7 @@ const PreviewProposalPage = ({ embedded = false, onClose }) => {
               </h1>
               <PreviewActionButtons
                 onDownload={handleDownload}
+                onExport={handleExport}
                 onEditSection={handleEditSection}
                 onSaveExit={handleSaveExit}
               />
@@ -83,10 +88,9 @@ const PreviewProposalPage = ({ embedded = false, onClose }) => {
           </div>
         </div>
 
-        {/* Right Side - Risk Score Sidebar */}
-        <RiskScoreSidebar
-          onRiskAssessment={handleRiskAssessment}
-          onSendMessage={handleSendMessage}
+        {/* Right Side - Proposal Evaluation Metrics */}
+        <ProposalEvaluationMetrics
+          onScoreProposal={handleScoreProposal}
         />
       </div>
 

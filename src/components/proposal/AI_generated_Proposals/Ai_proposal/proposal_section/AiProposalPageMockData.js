@@ -131,7 +131,7 @@ export const mockRootProps = {
         {
           id: "7.1",
           title: "7.1 Our understanding of [customer]",
-          content: "At the heart of every strategic plan for change is the desire to deliver truly unique and meaningful experiences that can help open new doors for your business. To help understand the changes you need to make, we’ve done a review of your business goals and mobility needs and have identified ambitions we believe our solution can help you achieve."
+          content: ""
         },
         {
           id: "7.2",

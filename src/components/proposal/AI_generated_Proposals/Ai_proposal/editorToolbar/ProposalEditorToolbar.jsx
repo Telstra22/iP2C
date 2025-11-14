@@ -27,7 +27,8 @@ const ProposalEditorToolbar = ({
   onSource,
   onSave,
   onInsertSpace,
-  onAddAttachment
+  onAddAttachment,
+  onRegenerateWithAI
 }) => {
   const [showAttachmentDropdown, setShowAttachmentDropdown] = useState(false)
   const docInputRef = useRef(null)
@@ -251,6 +252,7 @@ const ProposalEditorToolbar = ({
 
           {/* Regenerate with AI */}
           <button
+            onClick={onRegenerateWithAI}
             className='flex items-center gap-[14px] px-[20px] py-[14px] rounded-[6px] hover:opacity-90'
             style={{
               background:

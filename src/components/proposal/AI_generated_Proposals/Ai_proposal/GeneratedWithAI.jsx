@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Header from '../../../Header'
 import Breadcrumb from '../../upload_document/Breadcrumb'
+import AgentHuddleBar from './agentHuddle/AgentHuddleBar'
 import ProposalActionButtons from './proposal_section/ProposalActionButtons'
 import ProposalSectionContent from './proposal_section/ProposalSectionContent'
 import ChatSidebar from './agentHuddle/ChatSidebar'
@@ -8,10 +10,10 @@ import CollaborationModal from './collaborate/CollaborationModal'
 import RatingModal from './rating/RatingModal'
 import DocumentSourceModal from './SourceDoc/DocumentSourceModal'
 import PreviewProposalPage from './preview/PreviewProposalPage'
-import { mockRootProps } from './proposal_section/AiProposalPageMockData'
+import { mockRootProps } from './GeneratedWithAIMockData'
 import { comments as commentsData } from './comments/commentsMockData'
 
-const AiProposalPage = () => {
+const GeneratedWithAI = () => {
   const navigate = useNavigate()
   const [sections, setSections] = useState(mockRootProps.sections)
   const [selectedSectionId, setSelectedSectionId] = useState(1)
@@ -23,7 +25,6 @@ const AiProposalPage = () => {
   const [showPreview, setShowPreview] = useState(false)
 
   const handleToggleSection = (sectionId) => {
-    // Toggle the dropdown from any section header
     setShowSectionsList(!showSectionsList)
   }
 
@@ -60,7 +61,6 @@ const AiProposalPage = () => {
 
   const handleDeleteSubsection = (subsectionId) => {
     console.log('Delete subsection:', subsectionId)
-    // Implement delete logic
   }
 
   const handleAddSection = () => {
@@ -113,11 +113,22 @@ const AiProposalPage = () => {
     setShowDocumentSourceModal(false)
   }
 
+  const handleRegenerateWithAI = () => {
+    // Navigate to GeneratedWithAI page to regenerate content
+    console.log('Regenerating with AI...')
+    navigate('/generated-with-ai')
+  }
+
   return (
     <div className='w-full h-screen bg-[#F6F6F6] flex flex-col overflow-hidden'>
+      {/* Header */}
+      <Header />
 
       {/* Breadcrumb */}
       <Breadcrumb current={mockRootProps.currentPage} />
+
+      {/* Agent Huddle Status Bar */}
+      <AgentHuddleBar agentStatus={mockRootProps.agentStatus} />
 
       {/* Main Content Area */}
       <div className='flex-1 flex overflow-hidden min-h-0'>
@@ -135,8 +146,7 @@ const AiProposalPage = () => {
             />
           </div>
 
-
-          {/* Proposal Section (single, based on dropdown selection) */}
+          {/* Proposal Section */}
           <div className='flex flex-col gap-[13px]'>
             {(() => {
               const section = sections.find((s) => s.id === selectedSectionId) || sections[0]
@@ -161,6 +171,7 @@ const AiProposalPage = () => {
                   onChangeSectionContent={handleChangeSectionContent}
                   onChangeSubsectionTitle={handleChangeSubsectionTitle}
                   onChangeSubsectionContent={handleChangeSubsectionContent}
+                  onRegenerateWithAI={handleRegenerateWithAI}
                 />
               )
             })()}
@@ -189,7 +200,7 @@ const AiProposalPage = () => {
         onClose={handleCloseDocumentSource}
       />
 
-      {/* Preview Overlay (no routing) */}
+      {/* Preview Overlay */}
       {showPreview && (
         <div className='fixed inset-0 bg-black/30 backdrop-blur-[1px] z-50 flex'>
           <div className='flex-1 bg-white shadow-[0_4px_16px_rgba(0,0,0,0.12)]'>
@@ -201,4 +212,4 @@ const AiProposalPage = () => {
   )
 }
 
-export default AiProposalPage
+export default GeneratedWithAI

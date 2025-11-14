@@ -17,7 +17,7 @@ const ChatSidebar = () => {
   };
 
   return (
-    <div className="w-[491px] h-full flex flex-col border-l border-[#D9D9D9] bg-[#F0EDED]">
+    <div className="w-[491px] h-[750px] shrink-0 flex flex-col border-l border-[#D9D9D9] bg-[#F0EDED] overflow-hidden">
       {/* Header with gradient background */}
       <div 
         className="flex items-center gap-[10px] px-[20px] h-[77px] border-b border-[#DDDDDD] shadow-[0px_4px_12px_rgba(0,0,0,0.08)]"
@@ -33,21 +33,26 @@ const ChatSidebar = () => {
         </h2>
       </div>
 
-      {/* Messages Area */}
-      <div className="flex-1 overflow-y-auto px-[26px] pt-[28px] pb-[28px]">
+      {/* Messages Area - Scrollable like WhatsApp/Instagram */}
+      <div className="flex-1 overflow-y-auto px-[26px] pt-[28px] pb-[28px] min-h-0 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent hover:scrollbar-thumb-gray-400">
         <div className="flex flex-col gap-[28px]">
           {messages.map((message) => (
             <div
               key={message.id}
               className="flex gap-[8px] items-start"
             >
-              {/* Bot message - avatar on left with white background */}
+              {/* Bot message - avatar on left with gradient circular background */}
               {message.type === 'bot' && (
                 <>
-                  <div className="flex-shrink-0 w-[18px] h-[16px] mt-[4px]">
-                    <BotAvatarIcon width={18} height={16} color='#000000' />
+                  <div 
+                    className="flex-shrink-0 w-[30.6px] h-[30.6px] rounded-[18.45px] flex items-center justify-center mt-[4px] p-[8.1px]"
+                    style={{
+                      background: 'linear-gradient(102deg, #00FFE1 -1.03%, #0D54FF 36.82%, #9524C6 100.49%)'
+                    }}
+                  >
+                    <BotAvatarIcon width={19.8} height={19.8} color='#FFFFFF' />
                   </div>
-                  <div className="flex-1">
+                  <div className="flex-1 bg-white rounded-[12px] px-[16px] py-[12px] shadow-[0px_2px_8px_rgba(0,0,0,0.08)]">
                     <p className="text-[#000000] font-['Inter',sans-serif] text-[20px] font-normal leading-[26px]">
                       {message.text}
                     </p>
@@ -55,16 +60,21 @@ const ChatSidebar = () => {
                 </>
               )}
 
-              {/* User message - avatar on right with white background */}
+              {/* User message - avatar on right with gradient circular background */}
               {message.type === 'user' && (
                 <>
-                  <div className="flex-shrink-0 w-[14px] h-[14px] mt-[4px]">
-                    <User width={14} height={14} color='#000000' />
-                  </div>
-                  <div className="flex-1">
+                  <div className="flex-1 bg-white rounded-[12px] px-[16px] py-[12px] shadow-[0px_2px_8px_rgba(0,0,0,0.08)]">
                     <p className="text-[#000000] font-['Inter',sans-serif] text-[20px] font-normal leading-[26px]">
                       {message.text}
                     </p>
+                  </div>
+                  <div 
+                    className="flex-shrink-0 w-[30.6px] h-[30.6px] rounded-[18.45px] flex items-center justify-center mt-[4px] p-[8.1px]"
+                    style={{
+                      background: 'linear-gradient(102deg, #00FFE1 -1.03%, #0D54FF 36.82%, #9524C6 100.49%)'
+                    }}
+                  >
+                    <User width={23.4} height={23.4} color='#FFFFFF' />
                   </div>
                 </>
               )}
@@ -74,7 +84,7 @@ const ChatSidebar = () => {
       </div>
 
       {/* Input Area at bottom */}
-      <div className="h-[89px] px-[28px] flex items-center bg-[#F9F9F9] border-t border-[#E5E5E5]">
+      <div className="h-[89px] px-[28px] flex items-center bg-[#F9F9F9] border-t border-[#E5E5E5] shrink-0">
         <div className="flex items-center gap-[12px] flex-1">
           <input
             type="text"
@@ -89,7 +99,7 @@ const ChatSidebar = () => {
             className="flex-shrink-0 p-0"
             aria-label="Send message"
           >
-            <Send width={24} height={24} color="#000000" />
+            <Send width={24} height={24} color="#050505" fill="#fff" />
           </button>
         </div>
       </div>
