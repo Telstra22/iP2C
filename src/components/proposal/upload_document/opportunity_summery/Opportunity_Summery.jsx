@@ -21,7 +21,6 @@ import {
   partner,
   industries,
   newRenewal,
-  services,
   productHierarchies,
   hierarchyToProducts,
   productToSubProducts,
@@ -45,7 +44,7 @@ const OpportunitySummery = () => {
     termsConditions: true
   })
 
-  const [formData, setFormData] = useState(INITIAL_FORM_DATA)
+  const [formData, setFormData] = useState({ ...INITIAL_FORM_DATA, cidn: '8856342637' })
 
   // Local editable content for each collapsible section (initialized from mock data)
   const [sectionContentState, setSectionContentState] = useState({
@@ -209,7 +208,8 @@ const OpportunitySummery = () => {
         label: 'Customer',
         field: 'customer',
         options: customers,
-        type: 'dropdown'
+        type: 'dropdown',
+        disabled: true
       },
       {
         label: 'Business Unit',
@@ -221,7 +221,8 @@ const OpportunitySummery = () => {
         label: 'Partner',
         field: 'partner',
         options: partner,
-        type: 'dropdown'
+        type: 'dropdown',
+        disabled: true
       },
       {
         label: 'Archetype',
@@ -242,10 +243,9 @@ const OpportunitySummery = () => {
         type: 'dropdown'
       },
       {
-        label: 'Services',
-        field: 'services',
-        options: services,
-        type: 'dropdown'
+        label: 'CIDN',
+        field: 'cidn',
+        type: 'text'
       },
       {
         label: 'Product Hierarchy',
@@ -274,8 +274,7 @@ const OpportunitySummery = () => {
       {
         label: 'Customer Estimated Budget',
         field: 'budget',
-        type: 'number',
-        placeholder: 'Estimated Budget'
+        type: 'number'
       }
     ],
     [
@@ -284,7 +283,6 @@ const OpportunitySummery = () => {
       partner,
       industries,
       newRenewal,
-      services,
       productHierarchies,
       productOptions,
       subProductOptions,
@@ -326,6 +324,7 @@ const OpportunitySummery = () => {
                   options={cfg.options || []}
                   placeholder={cfg.placeholder || ''}
                   tooltip={cfg.tooltip || ''}
+                  disabled={!!cfg.disabled}
                 />
               </div>
             ))}
@@ -539,14 +538,21 @@ const OpportunitySummery = () => {
           </div>
         )}
 
-          {showCompletionModal && <CompletionModal onDone={handleDone} />}
+          {showCompletionModal && (
+            <div className='fixed inset-0 bg-black/30 backdrop-blur-[1px] flex items-center justify-center z-50'>
+              <CompletionModal onDone={handleDone} />
+            </div>
+          )}
         </div>
       </div>
       
-      {/* Orchestrator Sidebar - Always show when loading modal is visible */}
-      {showLoadingModal && (
+      {/* Orchestrator Sidebar - Show when loading modal or completion modal is visible */}
+      {(showLoadingModal || showCompletionModal) && (
         <div className='relative z-50'>
-          <OrchestratorSidebar onSendMessage={handleSendMessage} />
+          <OrchestratorSidebar 
+            onSendMessage={handleSendMessage}
+            isLoading={showLoadingModal}
+          />
         </div>
       )}
     </div>

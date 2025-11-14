@@ -12,7 +12,7 @@ import {
   productType
 } from './data/filterOptions'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   PAGE_WRAP_CLASS,
   BREADCRUMB_BAR_CLASS,
@@ -40,9 +40,54 @@ function ManageProposal () {
   const [selectedBusinessUnits, setSelectedBusinessUnits] = useState([])
   const [selectedLocations, setSelectedLocations] = useState([])
 
+  // Determine if special card (id '1') should be visible on initial load
+  const shouldShowCard1 = (() => {
+    try {
+      // Show only when navigating from Save & Exit (flag present just for this transition)
+      return !!localStorage.getItem('newProposalCard')
+    } catch { return false }
+  })()
+
+  // Base proposals to use for filtering and initial render
+  const baseProposals = shouldShowCard1
+    ? proposalsData
+    : proposalsData.filter(p => p.id !== '1')
+
   // Filtered proposals passed up from FiltersBar
   const [filteredProposalsState, setFilteredProposalsState] =
-    useState(proposalsData)
+    useState(baseProposals)
+
+  // Insert a one-time newly saved card from localStorage after Save & Exit
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem('newProposalCard')
+      if (raw) {
+        const incoming = JSON.parse(raw)
+        // Only update createdOn to current date/time for id '1'
+        if (incoming?.id === '1') {
+          const now = new Date()
+          const month = now.toLocaleString('en-US', { month: 'short' })
+          const day = String(now.getDate()).padStart(2, '0')
+          const year = now.getFullYear()
+          let hours = now.getHours()
+          const minutes = String(now.getMinutes()).padStart(2, '0')
+          const ampm = hours >= 12 ? 'PM' : 'AM'
+          hours = hours % 12
+          if (hours === 0) hours = 12
+          const hh = String(hours).padStart(2, '0')
+          const formattedNow = `${month} ${day}, ${year} ${hh}:${minutes} ${ampm}`
+          incoming.createdOn = formattedNow
+          incoming.updatedOn = formattedNow
+        }
+        setFilteredProposalsState(prev => {
+          // Replace if exists to refresh timestamps and position; otherwise prepend
+          const withoutIncoming = prev.filter(p => p.id !== incoming.id)
+          return [incoming, ...withoutIncoming]
+        })
+        localStorage.removeItem('newProposalCard')
+      }
+    } catch {}
+  }, [])
 
   // Options imported from data/filterOptions
 
@@ -104,7 +149,7 @@ function ManageProposal () {
               <div className={SEARCH_FILTER_ROW_CLASS}>
                 <SearchBar value={search} onChange={setSearch} />
                 <FiltersBar
-                  proposals={proposalsData}
+                  proposals={filteredProposalsState}
                   search={search}
                   onFiltered={setFilteredProposalsState}
                   filters={{

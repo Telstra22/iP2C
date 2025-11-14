@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Send } from 'lucide-react'
-import { mockOrchestratorData } from './OrchestratorSidebarMockData'
+import { mockOrchestratorData, mockOrchestratorDataLoading } from './OrchestratorSidebarMockData'
 import ProposalBuilderIcon from '../../../../assets/icons/ProposalBuilderIcon'
+import CompletedAgentsBadgesIcon from '../../../../assets/icons/CompletedAgentsBadges'
 
 const ActiveStatusBadge = () => {
   return (
@@ -96,46 +97,76 @@ const OpportunityManagerCard = ({ data }) => {
   )
 }
 
-const AgentActivityCard = ({ activity }) => {
+const AgentActivityCard = ({ activity, showCheckmark }) => {
+  const getBgColor = (badge) => {
+    switch(badge) {
+      case 'OE': return '#D3EDFE'
+      case 'RS': return '#FBFED3'
+      case 'OV': return '#D3FEEF'
+      case 'CC': return '#FFE5DE'
+      default: return '#FFFFFF'
+    }
+  }
+
   return (
-    <div className='flex items-start gap-[12px]'>
-      {/* Icon/Badge on LEFT - Circular with gradient border */}
-      {activity.icon && !activity.badge && (
-        <div className='w-[70px] h-[70px] rounded-full p-[3px] flex-shrink-0' style={{
-          background: 'linear-gradient(135deg, #00FFE1 0%, #0D54FF 50%, #9524C6 100%)'
-        }}>
-          <div className='w-full h-full rounded-full bg-[#0D54FF] flex items-center justify-center'>
-            <ProposalBuilderIcon width={32} height={28} color="white" style={{ color: 'white' }} />
+    <div className='flex items-start gap-[8px]'>
+      {/* Badge/Icon on LEFT */}
+      <div className='relative flex-shrink-0'>
+        {activity.icon ? (
+          // Gradient icon for Opportunity Manager
+          <div 
+            className='w-[30px] h-[26px] rounded-[2px] flex items-center justify-center'
+            style={{
+              background: 'linear-gradient(84.69deg, rgba(0,255,225,1) 27.09%, rgba(13,84,255,1) 15.15%, rgba(149,36,198,1) 93.31%)'
+            }}
+          >
+            <svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="24" height="21" rx="2" fill="#FFFFFF"/>
+            </svg>
           </div>
-        </div>
-      )}
-      
-      {activity.badge && (
-        <div className='w-[70px] h-[70px] rounded-full p-[3px] flex-shrink-0' style={{
-          background: 'linear-gradient(135deg, #00FFE1 0%, #0D54FF 50%, #9524C6 100%)'
-        }}>
-          <div className='w-full h-full rounded-full bg-white flex items-center justify-center'>
-            <span className="text-[#000000] font-['Inter',sans-serif] text-[26px] font-semibold leading-normal">
-              {activity.badge}
-            </span>
-          </div>
-        </div>
-      )}
+        ) : (
+          // Regular badge with gradient border
+          <>
+            <div 
+              className='w-[46px] h-[46px] rounded-full p-[2.9px]'
+              style={{
+                background: 'linear-gradient(135deg, #00FFE1 0%, #0D54FF 50%, #9524C6 100%)'
+              }}
+            >
+              <div 
+                className='w-full h-full rounded-full flex items-center justify-center'
+                style={{ backgroundColor: getBgColor(activity.badge) }}
+              >
+                <span className="text-[#050505] font-['Inter',sans-serif] text-[19.57px] font-medium leading-normal">
+                  {activity.badge}
+                </span>
+              </div>
+            </div>
+            {showCheckmark && (
+              <div className='absolute bottom-0 right-0'>
+                <svg width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 4L4 7L10 1" stroke="#56A72B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            )}
+          </>
+        )}
+      </div>
 
       {/* Content Card on RIGHT */}
-      <div className='flex-1 flex flex-col gap-[8px] px-[20px] py-[18px] rounded-[12px] border border-[#E5E7EB] bg-white'>
+      <div className='flex flex-col gap-[7px] px-[12px] py-[12px] rounded-[4px] border border-[#D9D9D9] bg-white' style={{ width: '352px' }}>
         <h3 
-          className={`font-['Inter',sans-serif] text-[22px] font-bold leading-[30px]`}
+          className={`font-['Inter',sans-serif] text-[20px] font-${activity.hasGradientTitle ? 'semibold' : 'medium'} leading-[27px]`}
           style={activity.hasGradientTitle ? {
-            background: 'linear-gradient(90deg, #0D54FF 0%, #9524C6 100%)',
+            background: 'linear-gradient(84.69deg, rgba(0,255,225,1) 27.09%, rgba(13,84,255,1) 15.15%, rgba(149,36,198,1) 93.31%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text'
-          } : { color: '#1F2937' }}
+          } : { color: '#050505' }}
         >
           {activity.title}
         </h3>
-        <p className="font-['Inter',sans-serif] text-[15px] font-normal leading-[21px] italic text-[#9CA3AF]">
+        <p className="text-[#828282] font-['Inter',sans-serif] text-[18px] font-normal italic leading-[23.96px]">
           {activity.description}
         </p>
       </div>
@@ -158,6 +189,14 @@ const ProgressIndicator = ({ status }) => {
         {status}
       </span>
       <div className='w-[292px] h-[7px] rounded-[20px] bg-gradient-to-r from-[#00FFE1] via-[#0D54FF] to-[#9524C6]' />
+    </div>
+  )
+}
+
+const CompletedAgentsBadges = () => {
+  return (
+    <div className='w-[479px]'>
+      <CompletedAgentsBadgesIcon width={479} height={62.391} />
     </div>
   )
 }
@@ -195,22 +234,30 @@ const ChatInput = ({ onSend }) => {
   )
 }
 
-const OrchestratorSidebar = ({ data = mockOrchestratorData, onSendMessage }) => {
+const OrchestratorSidebar = ({ data, onSendMessage, isLoading = false }) => {
+  // Use loading data if isLoading is true, otherwise use provided data or default completed data
+  const sidebarData = data || (isLoading ? mockOrchestratorDataLoading : mockOrchestratorData)
+  
   return (
     <div className='w-[491px] h-[906px] flex flex-col bg-[#F5F0F0] border-l border-[#D9D9D9]'>
       <OrchestratorHeader />
       
-      <OpportunityManagerCard data={data.opportunityManager} />
+      <OpportunityManagerCard data={sidebarData.opportunityManager} />
       
       <div className='flex-1 overflow-y-auto px-[20px] pt-[22px] pb-[16px]'>
-        <div className='flex flex-col gap-[8px]'>
-          {data.agentActivities.map((activity) => (
-            <AgentActivityCard key={activity.id} activity={activity} />
+        <div className='flex flex-col' style={{ gap: sidebarData.isHuddleInProgress ? '22px' : '18px' }}>
+          {sidebarData.agentActivities.map((activity) => (
+            <AgentActivityCard key={activity.id} activity={activity} showCheckmark={!sidebarData.isHuddleInProgress} />
           ))}
           
-          {data.isHuddleInProgress && (
-            <div className='mt-[14px]'>
-              <ProgressIndicator status={data.huddleStatus} />
+          {sidebarData.isHuddleInProgress ? (
+            <ProgressIndicator status={sidebarData.huddleStatus} />
+          ) : (
+            <div className='flex flex-col gap-[18px] mt-[0px]'>
+              <p className="text-[#A0A0A0] font-['Inter',sans-serif] text-[19px] font-normal leading-[25px]">
+                {sidebarData.huddleStatus}
+              </p>
+              <CompletedAgentsBadges />
             </div>
           )}
         </div>

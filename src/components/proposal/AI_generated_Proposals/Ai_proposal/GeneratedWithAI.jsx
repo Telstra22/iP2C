@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Header from '../../../Header'
 import Breadcrumb from '../../upload_document/Breadcrumb'
 import AgentHuddleBar from './agentHuddle/AgentHuddleBar'
 import ProposalActionButtons from './proposal_section/ProposalActionButtons'
@@ -121,9 +120,6 @@ const GeneratedWithAI = () => {
 
   return (
     <div className='w-full h-screen bg-[#F6F6F6] flex flex-col overflow-hidden'>
-      {/* Header */}
-      <Header />
-
       {/* Breadcrumb */}
       <Breadcrumb current={mockRootProps.currentPage} />
 

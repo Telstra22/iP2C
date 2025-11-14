@@ -7,7 +7,7 @@ export const INITIAL_FORM_DATA = {
   archetype: "2",
   industry: "Banking",
   newRenewal: "New",
-  services: "Mobility",
+  cidn: "8856342637",
   productHierarchy: "Mobility",
   product: "",
   subProduct: "",
@@ -94,13 +94,6 @@ export const industries = [
 
 export const newRenewal = ["New", "Renewal"];
 
-export const services = [
-  "IoT",
-  "Cloud",
-  "Mobility",
-  "DAC",
-  "Unified Communications",
-];
 
 export const productHierarchies = [
   "IoT",
