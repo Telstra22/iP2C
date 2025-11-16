@@ -1,65 +1,30 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Users, ChevronRight, Trash2 } from 'lucide-react'
 import Breadcrumb from '../../upload_document/Breadcrumb'
-import AgentHuddleBar from './agentHuddle/AgentHuddleBar'
 import ProposalActionButtons from './proposal_section/ProposalActionButtons'
-import ProposalSectionContent from './proposal_section/ProposalSectionContent'
 import ChatSidebar from './agentHuddle/ChatSidebar'
 import CollaborationModal from './collaborate/CollaborationModal'
 import RatingModal from './rating/RatingModal'
 import DocumentSourceModal from './SourceDoc/DocumentSourceModal'
 import PreviewProposalPage from './preview/PreviewProposalPage'
-import { mockRootProps } from './GeneratedWithAIMockData'
-import { comments as commentsData } from './comments/commentsMockData'
+import { mockRootProps, mockProposalContent } from './GeneratedWithAIMockData'
+import GeneratedAIHuddle from './GeneratedAIHuddle'
 
 const GeneratedWithAI = () => {
   const navigate = useNavigate()
-  const [sections, setSections] = useState(mockRootProps.sections)
-  const [selectedSectionId, setSelectedSectionId] = useState(1)
   const [showComments, setShowComments] = useState(false)
-  const [showSectionsList, setShowSectionsList] = useState(false)
   const [showCollaborationModal, setShowCollaborationModal] = useState(false)
   const [showRatingModal, setShowRatingModal] = useState(false)
   const [showDocumentSourceModal, setShowDocumentSourceModal] = useState(false)
   const [showPreview, setShowPreview] = useState(false)
-
-  const handleToggleSection = (sectionId) => {
-    setShowSectionsList(!showSectionsList)
-  }
-
-  const handleSelectSection = (sectionId) => {
-    setSelectedSectionId(sectionId)
-    setSections(prev => prev.map(s => ({ ...s, isExpanded: s.id === sectionId })))
-    setShowSectionsList(false)
-  }
-
-  // Edit handlers
-  const handleChangeSectionTitle = (sectionId, newTitle) => {
-    setSections(prev => prev.map(s => s.id === sectionId ? { ...s, title: newTitle } : s))
-  }
-
-  const handleChangeSectionContent = (sectionId, newContent) => {
-    setSections(prev => prev.map(s => s.id === sectionId ? { ...s, content: newContent } : s))
-  }
-
-  const handleChangeSubsectionTitle = (sectionId, subsectionId, newTitle) => {
-    setSections(prev => prev.map(s => {
-      if (s.id !== sectionId) return s
-      const subsections = (s.subsections || []).map(ss => ss.id === subsectionId ? { ...ss, title: newTitle } : ss)
-      return { ...s, subsections }
-    }))
-  }
-
-  const handleChangeSubsectionContent = (sectionId, subsectionId, newContent) => {
-    setSections(prev => prev.map(s => {
-      if (s.id !== sectionId) return s
-      const subsections = (s.subsections || []).map(ss => ss.id === subsectionId ? { ...ss, content: newContent } : ss)
-      return { ...s, subsections }
-    }))
-  }
+  const [content, setContent] = useState(mockProposalContent)
 
   const handleDeleteSubsection = (subsectionId) => {
-    console.log('Delete subsection:', subsectionId)
+    setContent(prev => ({
+      ...prev,
+      subsections: prev.subsections.filter(s => s.id !== subsectionId)
+    }))
   }
 
   const handleAddSection = () => {
@@ -75,48 +40,13 @@ const GeneratedWithAI = () => {
     navigate('/manage_proposals')
   }
 
-  const handleSave = () => {
-    try {
-      localStorage.setItem('proposalSections', JSON.stringify(sections))
-      console.log('Proposal saved to localStorage')
-    } catch (e) {
-      console.warn('Failed to save proposal:', e)
-    }
-  }
-
-  const handleToggleComments = () => {
-    setShowComments(!showComments)
-  }
-
-  const handleCollaborate = () => {
-    setShowCollaborationModal(true)
-  }
-
-  const handleCloseCollaboration = () => {
-    setShowCollaborationModal(false)
-  }
-
-  const handleRate = () => {
-    setShowRatingModal(true)
-  }
-
-  const handleCloseRating = () => {
-    setShowRatingModal(false)
-  }
-
-  const handleSource = () => {
-    setShowDocumentSourceModal(true)
-  }
-
-  const handleCloseDocumentSource = () => {
-    setShowDocumentSourceModal(false)
-  }
-
-  const handleRegenerateWithAI = () => {
-    // Navigate to GeneratedWithAI page to regenerate content
-    console.log('Regenerating with AI...')
-    navigate('/generated-with-ai')
-  }
+  const handleToggleComments = () => setShowComments(!showComments)
+  const handleCollaborate = () => setShowCollaborationModal(true)
+  const handleCloseCollaboration = () => setShowCollaborationModal(false)
+  const handleRate = () => setShowRatingModal(true)
+  const handleCloseRating = () => setShowRatingModal(false)
+  const handleSource = () => setShowDocumentSourceModal(true)
+  const handleCloseDocumentSource = () => setShowDocumentSourceModal(false)
 
   return (
     <div className='w-full h-screen bg-[#F6F6F6] flex flex-col overflow-hidden'>
@@ -124,7 +54,8 @@ const GeneratedWithAI = () => {
       <Breadcrumb current={mockRootProps.currentPage} />
 
       {/* Agent Huddle Status Bar */}
-      <AgentHuddleBar agentStatus={mockRootProps.agentStatus} />
+      {/* <AgentHuddleBar agentStatus={mockRootProps.agentStatus} /> */}
+      <GeneratedAIHuddle agentStatus={mockRootProps.agentStatus} />
 
       {/* Main Content Area */}
       <div className='flex-1 flex overflow-hidden min-h-0'>
@@ -142,35 +73,64 @@ const GeneratedWithAI = () => {
             />
           </div>
 
-          {/* Proposal Section */}
-          <div className='flex flex-col gap-[13px]'>
-            {(() => {
-              const section = sections.find((s) => s.id === selectedSectionId) || sections[0]
-              return (
-                <ProposalSectionContent
-                  key={section.id}
-                  section={section}
-                  onToggleSection={handleToggleSection}
-                  onDeleteSubsection={handleDeleteSubsection}
-                  showSectionsList={showSectionsList}
-                  allSections={mockRootProps.allSections}
-                  comments={commentsData}
-                  showComments={showComments}
-                  onToggleComments={handleToggleComments}
-                  onCollaborate={handleCollaborate}
-                  onRate={handleRate}
-                  onSource={handleSource}
-                  onSelectSection={handleSelectSection}
-                  selectedSectionId={selectedSectionId}
-                  onSave={handleSave}
-                  onChangeSectionTitle={handleChangeSectionTitle}
-                  onChangeSectionContent={handleChangeSectionContent}
-                  onChangeSubsectionTitle={handleChangeSubsectionTitle}
-                  onChangeSubsectionContent={handleChangeSubsectionContent}
-                  onRegenerateWithAI={handleRegenerateWithAI}
-                />
-              )
-            })()}
+          {/* Proposal Content Section */}
+          <div className='flex flex-col gap-[21px]'>
+            {/* Regenerated Header with Show Comments Button */}
+            <div className='flex items-start justify-between'>
+              <p className="flex-1 text-[#828282] font-['Inter',sans-serif] text-[18px] font-normal italic leading-[24px] overflow-hidden text-ellipsis whitespace-nowrap">
+                {content.regeneratedHeader}
+              </p>
+              
+              {/* Show Comments Button */}
+              <button
+                onClick={handleToggleComments}
+                className='flex items-center gap-[11px] px-[20px] py-[10px] rounded-[6px] hover:bg-white transition-colors shrink-0 ml-[20px]'
+              >
+                <Users width={19} height={14} color='#0D54FF' strokeWidth={1.6} />
+                <span className="text-[#050505] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
+                  Show Comments
+                </span>
+                <ChevronRight width={10} height={18} color='#050505' />
+              </button>
+            </div>
+
+            {/* Main Content */}
+            <div className='flex flex-col gap-[30px]'>
+              <p className="text-[#050505] font-['Inter',sans-serif] text-[18px] font-normal leading-[24.14px] whitespace-pre-line">
+                {content.mainContent}
+              </p>
+
+              {/* Subsections */}
+              {content.subsections.map((subsection) => (
+                <div key={subsection.id} className='flex flex-col gap-[15px]'>
+                  {/* Subsection Header */}
+                  <div className='flex items-center gap-[13px]'>
+                    <h3 className="flex-1 text-[#050505] font-['Inter',sans-serif] text-[20px] font-normal leading-[27px] underline">
+                      {subsection.title}
+                    </h3>
+                    <button
+                      onClick={() => handleDeleteSubsection(subsection.id)}
+                      className='hover:opacity-70 shrink-0'
+                      aria-label="Delete subsection"
+                    >
+                      <Trash2 width={13} height={16} color='#050505' />
+                    </button>
+                  </div>
+
+                  {/* Subsection Content */}
+                  <p 
+                    className={`text-[#050505] font-['Inter',sans-serif] text-[18px] font-normal leading-[24.14px] whitespace-pre-line ${subsection.isItalic ? 'italic text-[#828282]' : ''} ${subsection.isCollapsed ? 'line-clamp-3 overflow-hidden' : ''}`}
+                    style={subsection.isCollapsed ? {
+                      display: '-webkit-box',
+                      WebkitBoxOrient: 'vertical',
+                      WebkitLineClamp: 3
+                    } : {}}
+                  >
+                    {subsection.content}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 

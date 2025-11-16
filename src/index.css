@@ -44,6 +44,28 @@ html, body, #root {
   --color-sidebar-border: #d9d9d9;
   --color-chat-bg: #f9f9f9;
   --color-chat-placeholder: #737373;
+  
+  /* Additional gradient variables for agent huddle and chat */
+  --gradient-agent-huddle-bg: linear-gradient(82.57deg, rgba(0,255,225,0.07) 1.86%, rgba(13,84,255,0.07) 44.08%, rgba(149,36,198,0.07) 110.73%);
+  --gradient-agent-text: linear-gradient(84.69deg, rgba(0,255,225,1) 27.09%, rgba(13,84,255,1) 15.15%, rgba(149,36,198,1) 93.31%);
+  --gradient-assistant-header: linear-gradient(82.57deg, rgba(0,255,225,1) 3.76%, rgba(13,84,255,1) 44.08%, rgba(149,36,198,1) 110.73%);
+  --gradient-avatar-bg: linear-gradient(102deg, #00FFE1 -1.03%, #0D54FF 36.82%, #9524C6 100.49%);
+  
+  /* Agent huddle colors */
+  --color-agent-status-text: rgba(19, 60, 159, 0.50);
+  --color-proposal-builder-icon: #247cff;
+  
+  /* Editor colors */
+  --color-regenerating-text: #828282;
+  --color-editor-border: #c6c6c6;
+  --color-toolbar-divider: #d8d8d8;
+  
+  /* Chat sidebar colors */
+  --color-chat-sidebar-bg: #f0eded;
+  --color-chat-sidebar-border: #d9d9d9;
+  --color-chat-header-border: #dddddd;
+  --color-chat-input-bg: #f9f9f9;
+  --color-chat-input-border: #e5e5e5;
 }
 
 /* Typography utilities */
@@ -166,6 +188,48 @@ html, body, #root {
 
 @utility shadow-assistant-header {
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Additional typography utilities for GenerateAIBlank */
+@utility agent-status-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--color-agent-status-text);
+}
+
+@utility regenerating-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-regenerating-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@utility section-title-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 21px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+@utility chat-message-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 26px;
+  color: var(--color-text-black);
+}
+
+@utility gradient-text-agent {
+  background: var(--gradient-agent-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Loading spinner animation */
