@@ -24,20 +24,19 @@ const AgentHuddleBar = ({ agentStatus }) => {
       </div>
 
       {/* Right side - Proposal Writer and Builder */}
-      <div className="flex items-center gap-[7px]">
+      <div className="flex items-center gap-[15px]">
         {/* Proposal Writer Agent */}
-        <div className='flex items-center gap-[9px]'>
+        <div className='flex items-center gap-[9px] px-[20px] py-[13px] rounded-[107px] border-[1.5px] border-[#C7D7FF] bg-white shadow-[0_4px_8px_0_rgba(0,0,0,0.06)_inset]'>
           <ProposalWriterIcon width={22} height={21} color="#0D54FF" />
           <span className="text-[#505050] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px]">
             {agentStatus?.proposalWriter || 'Proposal Writer Agent is working..'}
           </span>
         </div>
 
-        {/* Proposal Builder with badges */}
-        <div className='flex items-center gap-[10px] px-[20px] py-[12px] border-[1.5px] rounded-[9px]' style={{
-        borderImage: 'linear-gradient(84.69deg, rgba(0,255,225,1) 27.09%, rgba(13,84,255,1) 15.15%, rgba(149,36,198,1) 93.31%) 1',
-        borderImageSlice: 1
-      }}>
+        {/* Proposal Builder with badges - outer container with border */}
+        <div className='flex items-center gap-[10px] px-[20px] py-[12px] rounded-[9px] border-[1.5px] bg-white' style={{
+          borderImage: 'linear-gradient(to right, #00FFE1, #0D54FF, #9524C6, #FF8900) 1'
+        }}>
           <div className='flex items-center gap-[6px]'>
             <ProposalBuilderIconSmall width={27} height={16} color="#247CFF" />
             <span className="font-['Inter',sans-serif] text-[18px] font-semibold leading-[24px] bg-gradient-to-r from-[#00FFE1] via-[#0D54FF] to-[#9524C6] bg-clip-text text-transparent">

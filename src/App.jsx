@@ -7,6 +7,7 @@ import AddOpprtunityDetails from './components/proposal/upload_document/add_oppo
 import AiLoader from './components/proposal/AI_generated_Proposals/AiLoader/AiLoader'
 import AiProposalPage from './components/proposal/AI_generated_Proposals/Ai_proposal/AiProposalPage'
 import GeneratedWithAI from './components/proposal/AI_generated_Proposals/Ai_proposal/GeneratedWithAI'
+import GenerateAIBlank from './components/proposal/AI_generated_Proposals/Ai_proposal/GenerateAIBlank'
 import PreviewProposalPage from './components/proposal/AI_generated_Proposals/Ai_proposal/preview/PreviewProposalPage'
 import AddSection from './components/proposal/AI_generated_Proposals/Ai_proposal/addSection/AddSection'
  
@@ -22,6 +23,7 @@ function AppContent() {
           <Route path="/add_opportunity-details" element={<AddOpprtunityDetails />} />
           <Route path="/ai-proposal_page" element={<AiProposalPage />} />
           <Route path="/generated-with-ai" element={<GeneratedWithAI />} />
+          <Route path="/generate-ai-blank" element={<GenerateAIBlank />} />
           <Route path="/ai_loader" element={<AiLoader />} />
           <Route path="/preview-proposal" element={<PreviewProposalPage />} />
           <Route path="/add-section" element={<AddSection isOpen={true} />} />
