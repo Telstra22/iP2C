@@ -4,29 +4,29 @@ export const mockRootProps = {
   templates: [
     {
       id: "1",
-      name: "AI generate Word Proposal",
+      name: "Standard",
       description: "Word Document",
-      headerColor: "#1a2e61",
+      headerColor: "#1E3A5F",
       headerText: "Create AI generated proposal for all the sections selected in outline in a Word document",
-      logoType: "blue",
+      documentType: "word",
       isSelected: true
     },
     {
       id: "2",
-      name: "Excel-Based RFP Response",
+      name: "RFP Response",
       description: "Excel Document",
-      headerColor: "#0544dd",
+      headerColor: "#0D54FF",
       headerText: "Respond to RFPs in Excel, where AI generates answers beside each question",
-      logoType: "blue",
+      documentType: "excel",
       isSelected: false
     },
     {
       id: "3",
-      name: "Customizable Case Study Deck",
+      name: "Case study",
       description: "PPT Presentation",
-      headerColor: "#e86035",
+      headerColor: "#E86035",
       headerText: "Insert and tailor past case studies to strengthen your proposal.",
-      logoType: "orange",
+      documentType: "powerpoint",
       isSelected: false
     },
     {

@@ -15,10 +15,13 @@ const ActiveStatusBadge = () => {
   )
 }
 
-const AgentBadge = ({ label }) => {
+const AgentBadge = ({ label, backgroundColor = '#FFFFFF' }) => {
   return (
     <div className='w-[30px] h-[30px] rounded-full p-[2px] bg-gradient-to-r from-[#00FFE1] via-[#0D54FF] to-[#9524C6]'>
-      <div className='w-full h-full rounded-full bg-white flex items-center justify-center'>
+      <div 
+        className='w-full h-full rounded-full flex items-center justify-center'
+        style={{ backgroundColor }}
+      >
         <span className="text-[#050505] font-['Inter',sans-serif] text-[15.68px] font-medium leading-normal">
           {label}
         </span>
@@ -30,26 +33,17 @@ const AgentBadge = ({ label }) => {
 const OrchestratorHeader = () => {
   return (
     <div 
-      className='flex items-center justify-between px-[20px] h-[77px] border-b border-[#DDDDDD] shadow-[0px_4px_12px_rgba(0,0,0,0.08)]'
+      className='flex items-center justify-between w-[491px] h-[77px] px-[20px] py-[12px] flex-shrink-0 border-b border-[#DDD] shadow-[0_4px_12px_0_rgba(0,0,0,0.08)]'
       style={{
-        background: 'linear-gradient(81.03deg, rgba(0,255,225,0.81) 29.03%, rgba(13,84,255,0.81) 25%, rgba(90,57,223,0.81) 80.06%, rgba(149,36,198,0.81) 145.24%, rgba(255,137,0,0.81) 223.68%)'
+        background: 'linear-gradient(81deg, rgba(0, 255, 225, 0.81) -29.04%, rgba(13, 84, 255, 0.81) 24.99%, rgba(90, 57, 223, 0.81) 80.05%, rgba(149, 36, 198, 0.81) 145.23%, rgba(255, 137, 0, 0.81) 223.67%)'
       }}
     >
       <div className='flex items-center gap-[10px]'>
         {/* Orchestrator Icon */}
-        <svg width="35" height="32" viewBox="0 0 35 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g style={{ mixBlendMode: 'multiply' }}>
-            <path d="M17.5 0L35 16L17.5 32L0 16L17.5 0Z" fill="url(#orchestrator_gradient)"/>
-          </g>
-          <defs>
-            <linearGradient id="orchestrator_gradient" x1="0" y1="16" x2="35" y2="16" gradientUnits="userSpaceOnUse">
-              <stop offset="0.0186" stopColor="#00FFE1"/>
-              <stop offset="0.4407" stopColor="#0D54FF"/>
-              <stop offset="1.1073" stopColor="#9524C6"/>
-            </linearGradient>
-          </defs>
+        <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 38 38" fill="none">
+          <path d="M25.3357 4.75009C30.5813 4.75009 34.8357 9.01718 34.8357 14.2406V33.2501H12.6706C7.42348 33.2501 3.16906 28.983 3.16906 23.7596V17.4168H6.33572V23.7596C6.34033 25.4373 7.00959 27.0448 8.19694 28.23C9.38428 29.4153 10.9929 30.0818 12.6706 30.0834H31.6691V14.2406C31.6645 12.5632 30.9954 10.9559 29.8084 9.7707C28.6214 8.58547 27.0131 7.91885 25.3357 7.91676H15.8357V4.75009H25.3357ZM15.8357 20.5834H12.6691V17.4168H15.8357V20.5834ZM25.3357 20.5834H22.1691V17.4168H25.3357V20.5834ZM5.59156 2.09009C5.65152 1.94186 5.75439 1.81491 5.88698 1.72552C6.01956 1.63613 6.17582 1.58838 6.33572 1.58838C6.49563 1.58838 6.65189 1.63613 6.78447 1.72552C6.91706 1.81491 7.01993 1.94186 7.07989 2.09009L7.48206 3.05592C8.15417 4.6948 9.42922 6.01349 11.0446 6.74034L12.1814 7.24701C12.3267 7.31427 12.4498 7.42172 12.5361 7.55667C12.6223 7.69162 12.6681 7.84843 12.6681 8.00859C12.6681 8.16875 12.6223 8.32557 12.5361 8.46052C12.4498 8.59547 12.3267 8.70292 12.1814 8.77017L10.9781 9.30534C9.40323 10.012 8.15028 11.2831 7.46622 12.8678L7.07514 13.764C7.01427 13.9099 6.91158 14.0346 6.78 14.1223C6.64842 14.21 6.49384 14.2567 6.33572 14.2567C6.17761 14.2567 6.02303 14.21 5.89145 14.1223C5.75987 14.0346 5.65718 13.9099 5.59631 13.764L5.20522 12.8694C4.52111 11.2838 3.26752 10.0121 1.69181 9.30534L0.488474 8.77017C0.342679 8.70311 0.219171 8.59564 0.132594 8.46052C0.0460165 8.3254 0 8.16828 0 8.0078C0 7.84732 0.0460165 7.6902 0.132594 7.55508C0.219171 7.41996 0.342679 7.31249 0.488474 7.24543L1.62531 6.73876C3.24065 6.01299 4.51623 4.69547 5.18939 3.05751L5.59156 2.09009Z" fill="white"/>
         </svg>
-        <h2 className="text-[#FFFFFF] font-['Inter',sans-serif] text-[22px] font-semibold leading-[34px]">
+        <h2 className="text-[#FFFFFF] font-['Inter',sans-serif] text-[22px] font-semibold leading-[34px]" style={{ fontWeight: 600 }}>
           ORCHESTRATOR AGENT
         </h2>
       </div>
@@ -59,9 +53,17 @@ const OrchestratorHeader = () => {
 }
 
 const OpportunityManagerCard = ({ data }) => {
+  // Define background colors for each agent badge
+  const agentColors = {
+    'OE': '#D3EDFE',
+    'RS': '#FBFED3', 
+    'OV': '#D3FEEF',
+    'CC': '#FFE5DE'
+  }
+
   return (
     <div 
-      className='flex items-center gap-[10px] px-[20px] py-[20px] border-[1.5px] rounded-[9px] mx-[20px] mt-[22px] bg-white'
+      className='flex items-center justify-between px-[20px] py-[20px] border-[1.5px] rounded-[9px] mx-[20px] mt-[22px] bg-white'
       style={{
         borderImage: 'linear-gradient(84.69deg, rgba(0,255,225,1) 27.09%, rgba(13,84,255,1) 15.15%, rgba(149,36,198,1) 93.31%) 1',
         borderImageSlice: 1
@@ -72,23 +74,24 @@ const OpportunityManagerCard = ({ data }) => {
         <svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="24" height="21" rx="2" fill="#0D54FF"/>
         </svg>
-        <span className="text-[#050505] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
+        <span className="text-[#0D54FF] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
           {data.title}
         </span>
       </div>
       
       {/* Right side: Sound wave + Badges */}
-      <div className='flex items-center gap-[7px] ml-auto'>
+      <div className='flex items-center gap-[7px]'>
         <svg width="28" height="31" viewBox="0 0 28 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="0" y="8" width="4" height="15" rx="2" fill="#0D54FF"/>
-          <rect x="8" y="0" width="4" height="31" rx="2" fill="#0D54FF"/>
-          <rect x="16" y="8" width="4" height="15" rx="2" fill="#0D54FF"/>
-          <rect x="24" y="4" width="4" height="23" rx="2" fill="#0D54FF"/>
+          <path d="M-0.0034,10.9999v9" stroke="#0D54FF" strokeWidth="3" strokeLinecap="round"/>
+          <path d="M6.9966,5.9999v19" stroke="#0D54FF" strokeWidth="3" strokeLinecap="round"/>
+          <path d="M13.9966,-0.0001v31" stroke="#0D54FF" strokeWidth="3" strokeLinecap="round"/>
+          <path d="M20.9966,5.9999v19" stroke="#0D54FF" strokeWidth="3" strokeLinecap="round"/>
+          <path d="M27.9966,10.9999v9" stroke="#0D54FF" strokeWidth="3" strokeLinecap="round"/>
         </svg>
-        <div className='flex items-center'>
+        <div className='flex items-center' style={{ gap: '-6.79px' }}>
           {data.agents.map((agent, index) => (
-            <div key={agent} style={{ marginLeft: index > 0 ? '-6.79px' : '0' }}>
-              <AgentBadge label={agent} />
+            <div key={agent} style={{ marginLeft: index > 0 ? '-6.79px' : '0', zIndex: data.agents.length - index }}>
+              <AgentBadge label={agent} backgroundColor={agentColors[agent] || '#FFFFFF'} />
             </div>
           ))}
         </div>
@@ -154,7 +157,7 @@ const AgentActivityCard = ({ activity, showCheckmark }) => {
       </div>
 
       {/* Content Card on RIGHT */}
-      <div className='flex flex-col gap-[7px] px-[12px] py-[12px] rounded-[4px] border border-[#D9D9D9] bg-white' style={{ width: '352px' }}>
+      <div className='flex flex-col gap-[7px] px-[12px] py-[12px] rounded-[4px] border border-[#D9D9D9] bg-white flex-1'>
         <h3 
           className={`font-['Inter',sans-serif] text-[20px] font-${activity.hasGradientTitle ? 'semibold' : 'medium'} leading-[27px]`}
           style={activity.hasGradientTitle ? {
