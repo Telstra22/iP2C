@@ -494,11 +494,11 @@ const OpportunitySummery = () => {
 
           {showLoadingModal && (
             <div className='fixed inset-0 bg-black/30 backdrop-blur-[1px] flex items-center justify-center z-40'>
-              <div className='bg-white rounded-[12px] border border-[#CFCFCF] shadow-[0px_4px_8px_2px_rgba(0,0,0,0.07)] flex flex-col gap-[22px] px-[50px] py-[53px] w-[690px]'>
+              <div className='bg-white rounded-[12px] border border-[#CFCFCF] shadow-[0px_4px_8px_2px_rgba(0,0,0,0.07)] flex flex-col px-[50px] py-[53px] w-[690px]'>
                 {/* Header with gradient logo and title */}
-                <div className='flex items-center gap-[10px]'>
+                <div className='flex items-center gap-[10px] mb-[22px]'>
                   <div 
-                    className='w-[33px] h-[33px] flex items-center justify-center'
+                    className='w-[33px] h-[33px] flex items-center justify-center rounded-[4px]'
                     style={{
                       background: 'linear-gradient(82.57deg, rgba(0,255,225,1) 1.85%, rgba(13,84,255,1) 44.07%, rgba(149,36,198,1) 110.73%)'
                     }}
@@ -506,27 +506,28 @@ const OpportunitySummery = () => {
                     <IP2CLogoIcon width={33} height={33} color="#FFFFFF" />
                   </div>
                   <h2 className="text-[#39393A] font-['Inter',sans-serif] text-[24px] font-semibold leading-[32px]">
-                    {UI_STRINGS.loadingTitle}
+                    AI is generating your summary...
                   </h2>
                 </div>
 
                 {/* Content section */}
-                <div className='flex flex-col items-center gap-[32px]'>
+                <div className='flex flex-col items-center gap-[32px] mb-[22px]'>
                   {/* Circular loader */}
                   <CircularLoader
                     size={119}
                     strokeWidth={8}
                     progress={progress}
+                    animated={true}
                   />
 
                   {/* Estimated wait time */}
                   <p className="text-[#828282] font-['Inter',sans-serif] text-[20px] font-normal leading-[27px]">
-                    {UI_STRINGS.estimatedWait}
+                    Estimated wait time 3-5 minutes
                   </p>
 
                   {/* Resume note */}
                   <p className="w-full text-[#505050] font-['Inter',sans-serif] text-[20px] font-normal leading-[26.82px] text-center">
-                    {UI_STRINGS.resumeNote}
+                    Please continue with other Proposals . You will be notified once the huddle has ended
                   </p>
                 </div>
 
