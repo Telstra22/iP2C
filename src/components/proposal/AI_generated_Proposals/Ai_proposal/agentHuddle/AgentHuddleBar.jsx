@@ -7,9 +7,7 @@ import SoundWaveSmallIcon from '../../../../../assets/icons/SoundWaveSmallIcon'
 const AgentHuddleBar = ({ agentStatus }) => {
 
   return (
-    <div className='flex items-center justify-between px-[70px] h-[77px] border-[1.5px] border-white rounded-b-[7px] shadow-[0px_4px_6px_rgba(0,0,0,0.07)]' style={{
-      background: 'linear-gradient(82.57deg, rgba(0,255,225,0.07) 1.86%, rgba(13,84,255,0.07) 44.08%, rgba(149,36,198,0.07) 110.73%), #ffffff'
-    }}>
+    <div className='flex items-center justify-between border-[1.5px] border-white rounded-b-[7px] shrink-0 overflow-visible w-[1429px] h-[77px] py-[13px] pr-[32px] pl-[70px] bg-[linear-gradient(83deg,_rgba(0,255,225,0.07)_1.85%,_rgba(13,84,255,0.07)_44.08%,_rgba(149,36,198,0.07)_110.73%),_#FFF] shadow-[0_4px_6px_0_rgba(0,0,0,0.07)] animate-pulse'>
       {/* Left Side - Orchestrator Agent */}
       <div className='flex flex-col gap-[1px]'>
         <div className='flex items-center gap-[9px]'>
@@ -18,7 +16,7 @@ const AgentHuddleBar = ({ agentStatus }) => {
             Orchestrator Agent
           </span>
         </div>
-        <span className="text-[rgba(19,60,159,0.50)] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px] ml-[36px]">
+        <span className="text-[rgba(19,60,159,0.50)] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px] ml-[36px] animate-pulse">
           {agentStatus?.orchestrator || 'Huddle in Progress..'}
         </span>
       </div>
@@ -28,7 +26,7 @@ const AgentHuddleBar = ({ agentStatus }) => {
         {/* Proposal Writer Agent */}
         <div className='flex items-center gap-[9px] px-[20px] py-[13px] rounded-[107px] border-[1.5px] border-[#C7D7FF] bg-white shadow-[0_4px_8px_0_rgba(0,0,0,0.06)_inset]'>
           <ProposalWriterIcon width={22} height={21} color="#0D54FF" />
-          <span className="text-[#505050] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px]">
+          <span className="text-[#505050] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px] animate-pulse">
             {agentStatus?.proposalWriter || 'Proposal Writer Agent is working..'}
           </span>
         </div>
@@ -44,7 +42,9 @@ const AgentHuddleBar = ({ agentStatus }) => {
             </span>
           </div>
           
-          <SoundWaveSmallIcon width={28} height={31} />
+          <div className='animate-pulse'>
+            <SoundWaveSmallIcon width={28} height={31} />
+          </div>
           
           <div className='flex items-center'>
             {agentStatus?.proposalBuilder?.agents?.map((agent, index) => (

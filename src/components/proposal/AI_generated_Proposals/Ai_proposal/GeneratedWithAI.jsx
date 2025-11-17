@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Users, ChevronRight, Trash2 } from 'lucide-react'
+import { ChevronDown, Check } from 'lucide-react'
+import EditorToolbar from './editorToolbar/EditorToolbar'
 import Breadcrumb from '../../upload_document/Breadcrumb'
 import ProposalActionButtons from './proposal_section/ProposalActionButtons'
 import ChatSidebar from './agentHuddle/ChatSidebar'
@@ -8,6 +10,8 @@ import CollaborationModal from './collaborate/CollaborationModal'
 import RatingModal from './rating/RatingModal'
 import DocumentSourceModal from './SourceDoc/DocumentSourceModal'
 import PreviewProposalPage from './preview/PreviewProposalPage'
+import CommentsPanel from './comments/CommentsPanel'
+import { comments as commentsData } from './comments/commentsMockData'
 import { mockRootProps, mockProposalContent } from './GeneratedWithAIMockData'
 import GeneratedAIHuddle from './GeneratedAIHuddle'
 
@@ -19,6 +23,11 @@ const GeneratedWithAI = () => {
   const [showDocumentSourceModal, setShowDocumentSourceModal] = useState(false)
   const [showPreview, setShowPreview] = useState(false)
   const [content, setContent] = useState(mockProposalContent)
+  const [showSectionsList, setShowSectionsList] = useState(false)
+  const [selectedSectionId, setSelectedSectionId] = useState(
+    (mockRootProps.allSections && (mockRootProps.allSections.find(s => s.isActive)?.id || mockRootProps.allSections[0]?.id)) || 1
+  )
+  
 
   const handleDeleteSubsection = (subsectionId) => {
     setContent(prev => ({
@@ -41,6 +50,7 @@ const GeneratedWithAI = () => {
   }
 
   const handleToggleComments = () => setShowComments(!showComments)
+  const handleRegenerateWithAI = () => {}
   const handleCollaborate = () => setShowCollaborationModal(true)
   const handleCloseCollaboration = () => setShowCollaborationModal(false)
   const handleRate = () => setShowRatingModal(true)
@@ -73,67 +83,115 @@ const GeneratedWithAI = () => {
             />
           </div>
 
-          {/* Proposal Content Section */}
-          <div className='flex flex-col gap-[21px]'>
-            {/* Regenerated Header with Show Comments Button */}
-            <div className='flex items-start justify-between'>
-              <p className="flex-1 text-[#828282] font-['Inter',sans-serif] text-[18px] font-normal italic leading-[24px] overflow-hidden text-ellipsis whitespace-nowrap">
-                {content.regeneratedHeader}
-              </p>
-              
-              {/* Show Comments Button */}
-              <button
-                onClick={handleToggleComments}
-                className='flex items-center gap-[11px] px-[20px] py-[10px] rounded-[6px] hover:bg-white transition-colors shrink-0 ml-[20px]'
-              >
-                <Users width={19} height={14} color='#0D54FF' strokeWidth={1.6} />
-                <span className="text-[#050505] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
-                  Show Comments
-                </span>
-                <ChevronRight width={10} height={18} color='#050505' />
-              </button>
+          {/* allSections Dropdown (only dropdown UI, no section content) */}
+          <div className='flex flex-col gap-[13px] w-[483px] mb-[13px]'>
+            <div className='relative'>
+              <div className='bg-white rounded-[9px] border border-[#C6C6C6] shadow-[0px_4px_14px_rgba(0,0,0,0.12)] px-[20px] py-[16px]'>
+                <button
+                  onClick={() => setShowSectionsList(!showSectionsList)}
+                  className='flex items-center justify-between w-full hover:opacity-70'
+                >
+                  <span className="text-[#000000] font-['Inter',sans-serif] text-[21px] font-semibold leading-[28px]">
+                    {(mockRootProps.allSections || []).find(s => s.id === selectedSectionId)?.title || 'Select Section'}
+                  </span>
+                  <ChevronDown
+                    width={30}
+                    height={30}
+                    color='#000000'
+                    className={`transform transition-transform ${showSectionsList ? 'rotate-180' : ''}`}
+                  />
+                </button>
+              </div>
+
+              {showSectionsList && (
+                <div className='absolute right-0 top-full mt-2 z-50 bg-white rounded-[12px] border border-[#E5E5E5] shadow-[0px_4px_8px_rgba(0,0,0,0.1)] p-[24px] w-[483px]'>
+                  <div className='flex flex-col gap-[20px]'>
+                    {(mockRootProps.allSections || []).map((item) => (
+                      <div
+                        key={item.id}
+                        className='flex items-center justify-between cursor-pointer hover:opacity-80'
+                        onClick={() => { setSelectedSectionId(item.id); setShowSectionsList(false); }}
+                      >
+                        <span className="text-[#050505] font-['Inter',sans-serif] text-[20px] font-normal leading-[27px]">
+                          {item.title}
+                        </span>
+                        {(selectedSectionId ? item.id === selectedSectionId : item.isActive) && (
+                          <Check size={24} color='#0D54FF' strokeWidth={3} />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
+          </div>
 
-            {/* Main Content */}
-            <div className='flex flex-col gap-[30px]'>
-              <p className="text-[#050505] font-['Inter',sans-serif] text-[18px] font-normal leading-[24.14px] whitespace-pre-line">
-                {content.mainContent}
-              </p>
+          {/* Editor Toolbar and Content (using mockProposalContent) */}
+          <div className='rounded-tr-[9px] rounded-br-[9px] rounded-bl-[9px] border border-[#C6C6C6] bg-white shadow-[0px_4px_14px_rgba(0,0,0,0.12)]'>
+            <EditorToolbar
+              showComments={showComments}
+              onToggleComments={handleToggleComments}
+              onCollaborate={handleCollaborate}
+              onRate={handleRate}
+              onSource={handleSource}
+            />
 
-              {/* Subsections */}
-              {content.subsections.map((subsection) => (
-                <div key={subsection.id} className='flex flex-col gap-[15px]'>
-                  {/* Subsection Header */}
-                  <div className='flex items-center gap-[13px]'>
-                    <h3 className="flex-1 text-[#050505] font-['Inter',sans-serif] text-[20px] font-normal leading-[27px] underline">
-                      {subsection.title}
-                    </h3>
-                    <button
-                      onClick={() => handleDeleteSubsection(subsection.id)}
-                      className='hover:opacity-70 shrink-0'
-                      aria-label="Delete subsection"
-                    >
-                      <Trash2 width={13} height={16} color='#050505' />
-                    </button>
+            {/* Content with optional Comments Panel */}
+            <div className='px-[40px] pb-[24px]'>
+              <div className={`${showComments ? 'flex gap-[24px] items-start' : 'block'}`}>
+                {/* Content column */}
+                <div className={`${showComments ? 'flex-1' : 'w-full'}`}>
+                  {/* Header and Main Content */}
+                  <div className='pb-[20px]'>
+                    <p className="text-[#828282] font-['Inter',sans-serif] text-[18px] font-normal italic leading-[24px] overflow-hidden text-ellipsis whitespace-nowrap">
+                      {content.regeneratedHeader}
+                    </p>
+                    <div className='mt-[21px]'>
+                      <p className="text-[#050505] font-['Inter',sans-serif] text-[18px] font-normal leading-[24.14px] whitespace-pre-line">
+                        {content.mainContent}
+                      </p>
+                    </div>
                   </div>
 
-                  {/* Subsection Content */}
-                  <p 
-                    className={`text-[#050505] font-['Inter',sans-serif] text-[18px] font-normal leading-[24.14px] whitespace-pre-line ${subsection.isItalic ? 'italic text-[#828282]' : ''} ${subsection.isCollapsed ? 'line-clamp-3 overflow-hidden' : ''}`}
-                    style={subsection.isCollapsed ? {
-                      display: '-webkit-box',
-                      WebkitBoxOrient: 'vertical',
-                      WebkitLineClamp: 3
-                    } : {}}
-                  >
-                    {subsection.content}
-                  </p>
+                  {/* Subsections */}
+                  <div className='flex flex-col gap-[30px]'>
+                    {content.subsections.map((subsection) => (
+                      <div key={subsection.id} className='flex flex-col gap-[15px]'>
+                        <div className='flex items-center gap-[13px]'>
+                          <h3 className="flex-1 text-[#050505] font-['Inter',sans-serif] text-[20px] font-normal leading-[27px] underline">
+                            {subsection.title}
+                          </h3>
+                          <button
+                            onClick={() => handleDeleteSubsection(subsection.id)}
+                            className='hover:opacity-70 shrink-0'
+                            aria-label="Delete subsection"
+                          >
+                            <Trash2 width={13} height={16} color='#050505' />
+                          </button>
+                        </div>
+                        <p
+                          className={`text-[#050505] font-['Inter',sans-serif] text-[18px] font-normal leading-[24.14px] whitespace-pre-line ${subsection.isItalic ? 'italic text-[#828282]' : ''} ${subsection.isCollapsed ? 'line-clamp-3 overflow-hidden' : ''}`}
+                          style={subsection.isCollapsed ? {
+                            display: '-webkit-box',
+                            WebkitBoxOrient: 'vertical',
+                            WebkitLineClamp: 3
+                          } : {}}
+                        >
+                          {subsection.content}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              ))}
+
+                {/* Comments column (right) */}
+                {showComments && (
+                  <CommentsPanel comments={commentsData} />
+                )}
+              </div>
             </div>
           </div>
         </div>
-
         {/* Right Side - Chat Sidebar */}
         <ChatSidebar />
       </div>

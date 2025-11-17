@@ -14,27 +14,12 @@ const GeneratedAIHuddle = ({ onClose }) => {
   ]
 
   return (
-    <div 
-      className='flex items-center justify-between border-[1.5px] border-white rounded-b-[7px] shrink-0 overflow-visible'
-      style={{
-        width: '1429px',
-        height: '77px',
-        padding: '13px 32px 13px 70px',
-        background: 'linear-gradient(83deg, rgba(0, 255, 225, 0.07) 1.85%, rgba(13, 84, 255, 0.07) 44.08%, rgba(149, 36, 198, 0.07) 110.73%), #FFF',
-        boxShadow: '0 4px 6px 0 rgba(0, 0, 0, 0.07)'
-      }}
-    >
+    <div className='flex items-center justify-between border-[1.5px] border-white rounded-b-[7px] shrink-0 overflow-visible w-[1429px] h-[77px] py-[13px] pr-[32px] pl-[70px] bg-[linear-gradient(83deg,_rgba(0,255,225,0.07)_1.85%,_rgba(13,84,255,0.07)_44.08%,_rgba(149,36,198,0.07)_110.73%),_#FFF] shadow-[0_4px_6px_0_rgba(0,0,0,0.07)]'>
       {/* Left Side - Orchestrator Agent */}
       <div className='flex items-center gap-[9px]'>
         <OrchestratorAgentIcon width={27} height={21} />
         <span 
-          className="font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]"
-          style={{
-            background: 'linear-gradient(84.69deg, rgba(0,255,225,1) 27.09%, rgba(13,84,255,1) 15.15%, rgba(149,36,198,1) 93.31%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text'
-          }}
+          className="font-['Inter',sans-serif] text-[20px] font-medium leading-[27px] bg-[linear-gradient(84.69deg,_rgba(0,255,225,1)_27.09%,_rgba(13,84,255,1)_15.15%,_rgba(149,36,198,1)_93.31%)] bg-clip-text text-transparent"
         >
           Orchestrator Agent
         </span>
@@ -43,16 +28,11 @@ const GeneratedAIHuddle = ({ onClose }) => {
       {/* Right Side - Agent Badges, Status Text, and Close Button */}
       <div className='flex items-center'>
         {/* Agent Badges with Check Marks - wrapped to ensure full visibility */}
-        <div className='flex items-center mr-[34px]' style={{ paddingBottom: '8px' }}>
+        <div className='flex items-center mr-[34px] pb-[8px]'>
           {agentBadges.map(({ label, BadgeComponent }, index) => (
             <div 
               key={label} 
-              className='relative shrink-0' 
-              style={{ 
-                marginLeft: index > 0 ? '-5.68px' : '0',
-                width: '41.785px',
-                height: '50px'
-              }}
+              className={`relative shrink-0 ${index > 0 ? 'ml-[-5.68px]' : ''} w-[41.785px] h-[50px]`}
             >
               {/* Badge Circle Background with Label */}
               <div className='relative w-[41.785px] h-[41.785px]'>
@@ -72,12 +52,7 @@ const GeneratedAIHuddle = ({ onClose }) => {
                 </div>
                 {/* Green Check Mark positioned at bottom */}
                 <div 
-                  className='absolute flex items-center justify-center w-[13.395px] h-[13.395px] p-[2.679px] rounded-[6.697px] bg-[#56A72B]'
-                  style={{ 
-                    gap: '3.349px',
-                    left: '23.441px',
-                    bottom: '-3.088px'
-                  }}
+                  className='absolute flex items-center justify-center w-[13.395px] h-[13.395px] p-[2.679px] rounded-[6.697px] bg-[#56A72B] gap-[3.349px] left-[23.441px] bottom-[-3.088px]'
                 >
                   <GreenCheckIcon 
                     width={7.278} 
@@ -92,11 +67,7 @@ const GeneratedAIHuddle = ({ onClose }) => {
 
         {/* Status Text */}
         <span 
-          className="shrink-0 text-[18px] font-normal leading-[24px] mr-[33px]"
-          style={{
-            color: 'rgba(19, 60, 159, 0.60)',
-            fontFamily: 'Inter, sans-serif'
-          }}
+          className="shrink-0 text-[18px] font-normal leading-[24px] mr-[33px] text-[rgba(19,60,159,0.60)] font-['Inter',sans-serif]"
         >
           Huddle ended after 0m 42secs..
         </span>
@@ -104,19 +75,14 @@ const GeneratedAIHuddle = ({ onClose }) => {
         {/* Close Button */}
         <button 
           onClick={onClose}
-          className='flex items-center justify-center shrink-0 hover:opacity-70 transition-opacity'
-          style={{ width: '21px', height: '21px' }}
+          className='flex items-center justify-center shrink-0 hover:opacity-70 transition-opacity w-[21px] h-[21px]'
           aria-label="Close"
         >
           <CloseIcon 
             width={21} 
             height={21} 
-            style={{ 
-              width: '21px', 
-              height: '21px',
-              color: '#505050',
-              display: 'block'
-            }}
+            color="#505050"
+            className="block"
           />
         </button>
       </div>
