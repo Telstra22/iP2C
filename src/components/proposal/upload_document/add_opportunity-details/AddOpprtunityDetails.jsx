@@ -149,8 +149,7 @@ const UploadProposalDocument = () => {
                   <span className="text-[#FF0000]">*</span>
                 </label>
                 <p className="text-[#505050] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px]">
-                  Select a maximum of 5 files to upload. File format must be
-                  Word, CSV or PDF. Total file size maximum: 10 MB.
+                  Select a maximum of 5 files to upload. File format must be .ppt, .doc, .csv or .pdf. Total file size maximum: 10 MB.
                 </p>
                 {mainUploadCount === 5 && (
                   <p className="text-[#FF0000] font-['Inter',sans-serif] text-[18px] font-medium leading-[24px]">
@@ -170,10 +169,10 @@ const UploadProposalDocument = () => {
             <div className="flex flex-col gap-[20px] pb-[50px]">
               <div className="flex flex-col gap-[8px]">
                 <label className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-semibold leading-[30px]">
-                  Upload Customer Questionnaire.xlsx (Optional)
+                  Upload Customer Questionnaire.xlsx (optional)
                 </label>
                 <p className="text-[#505050] font-['Inter',sans-serif] text-[20px] font-normal leading-[27px]">
-                  Please download and fill the Customer RFp Questionnaire and
+                  Please download and fill the Customer RFP Questionnaire and
                   upload it in the below field
                 </p>
               </div>

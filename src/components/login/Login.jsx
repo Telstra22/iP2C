@@ -74,7 +74,7 @@ function Login() {
         <div className="flex-1 flex items-center justify-center px-5 md:px-8 lg:px-12 xl:px-16 2xl:px-[195px] overflow-hidden">
           <div className="w-full max-w-[600px]">
             <h1 className="text-[#505050] font-['Inter',sans-serif] text-[40px] font-medium leading-[51px] mb-[30px]">
-              Welcome Back!
+              Welcome back!
             </h1>
 
             {/* Sales Function */}

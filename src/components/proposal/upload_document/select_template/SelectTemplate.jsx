@@ -4,6 +4,7 @@ import TemplateCard from './TemplateCard.jsx'
 import { mockRootProps } from './SelectTemplateMockData.js'
 import FileUploadZone from '../add_opportunity-details/FileUploadZone.jsx'
 import AiLoader from '../../AI_generated_Proposals/AiLoader/AiLoader.jsx'
+import PreviewTemplate from './PreviewTemplate.jsx'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const SelectTemplate = forwardRef(({ onTemplateSelect, onUploadChange, errorMessage, clearError, errorTick = 0, showLoader: showLoaderProp = false }, ref) => {
@@ -16,6 +17,8 @@ const SelectTemplate = forwardRef(({ onTemplateSelect, onUploadChange, errorMess
   const [uploadedFiles, setUploadedFiles] = useState([])
   const [localError, setLocalError] = useState('')
   const [localErrorTick, setLocalErrorTick] = useState(0)
+  const [previewTemplate, setPreviewTemplate] = useState(null)
+  const [showPreview, setShowPreview] = useState(false)
 
   const handleTemplateSelect = templateId => {
     setTemplates(prevTemplates =>
@@ -27,6 +30,16 @@ const SelectTemplate = forwardRef(({ onTemplateSelect, onUploadChange, errorMess
     if (onTemplateSelect) onTemplateSelect()
     if (clearError) clearError()
     if (localError) setLocalError('')
+  }
+
+  const handlePreview = (template) => {
+    setPreviewTemplate(template)
+    setShowPreview(true)
+  }
+
+  const handleClosePreview = () => {
+    setShowPreview(false)
+    setPreviewTemplate(null)
   }
 
 // Lightweight Toast component (auto hides after duration)
@@ -158,6 +171,7 @@ const Toast = ({ message, duration = 3000, trigger = 0 }) => {
                     template={template}
                     onSelect={handleTemplateSelect}
                     isSelected={template.isSelected}
+                    onPreview={handlePreview}
                   />
                 ))}
               </div>
@@ -197,6 +211,13 @@ const Toast = ({ message, duration = 3000, trigger = 0 }) => {
           </div>
         </div>
         </div>
+        
+        {/* Preview Modal */}
+        <PreviewTemplate 
+          isOpen={showPreview}
+          onClose={handleClosePreview}
+          template={previewTemplate}
+        />
       </div>
       </>
     )

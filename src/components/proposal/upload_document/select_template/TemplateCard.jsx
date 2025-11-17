@@ -1,5 +1,5 @@
 import React from 'react';
-import { Check, FileText } from 'lucide-react';
+import { Check, FileText, Eye } from 'lucide-react';
 
 // Document type icon component - Microsoft Office style icons
 const DocumentIcon = ({ type }) => {
@@ -53,8 +53,15 @@ const DocumentIcon = ({ type }) => {
   return null;
 };
 
-const TemplateCard = ({ template, onSelect, isSelected }) => {
+const TemplateCard = ({ template, onSelect, isSelected, onPreview }) => {
   const { name, description, headerColor, headerText, documentType } = template;
+
+  const handlePreviewClick = (e) => {
+    e.stopPropagation()
+    if (onPreview) {
+      onPreview(template)
+    }
+  }
 
   return (
     <div className="w-[393px] h-[313px] border border-[#c6c6c6] rounded-[9px] overflow-hidden flex flex-col gap-[21px] shadow-[0px_4px_13px_rgba(0,0,0,0.08)]">
@@ -67,6 +74,15 @@ const TemplateCard = ({ template, onSelect, isSelected }) => {
         <p className="text-white font-['Inter',sans-serif] text-[19px] font-medium leading-[25.48px] max-w-[318px]">
           {headerText}
         </p>
+        
+        {/* Eye Icon - Top Right */}
+        <button
+          onClick={handlePreviewClick}
+          className="absolute top-[18px] right-[16px] hover:opacity-80 transition-opacity"
+          aria-label="Preview template"
+        >
+          <Eye width={20} height={14} color="#FFFFFF" strokeWidth={2} />
+        </button>
       </div>
 
       {/* Template Info and Button */}
