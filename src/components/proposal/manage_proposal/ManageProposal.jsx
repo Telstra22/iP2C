@@ -123,7 +123,7 @@ function ManageProposal () {
                 </h1>
 
                 {/* Right Section - Avatars */}
-                <div className={AVATARS_ROW_CLASS}>
+                {/* <div className={AVATARS_ROW_CLASS}>
                   <div className={`${AVATAR_CIRCLE_CLASS} z-30`}>
                     <span className="text-white font-['Inter',sans-serif] text-[20px] font-medium leading-normal">
                       AM
@@ -142,7 +142,7 @@ function ManageProposal () {
                   >
                     <Plus size={24} color='#505050' />
                   </button>
-                </div>
+                </div> */}
               </div>
 
               {/* Search and Filters Row */}

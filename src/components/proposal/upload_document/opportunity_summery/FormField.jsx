@@ -2,7 +2,7 @@ import React, { useRef, useState, useMemo } from "react";
 import { ChevronDown, CalendarDays, Info } from "lucide-react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { parse, format } from "date-fns";
+import { parse, format, isValid } from "date-fns";
 
 const FormField = ({
   label,
@@ -15,6 +15,7 @@ const FormField = ({
   disabled = false,
 }) => {
   const dpRef = useRef(null);
+  const [localDate, setLocalDate] = useState(null);
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
 
@@ -35,15 +36,24 @@ const FormField = ({
     return normalizedOptions.filter((o) => o.label.toLowerCase().includes(q));
   }, [normalizedOptions, query]);
 
-  // Parse datetime format "MM/dd/yyyy HH:mm"
-  const selectedDate =
-    (type === "date" || type === "datetime") &&
-    typeof value === "string" &&
-    value
-      ? value.includes(" ")
-        ? parse(value, "MM/dd/yyyy HH:mm", new Date())
-        : parse(value, "MM/dd/yyyy", new Date())
-      : null;
+  // Parse incoming value into a Date for DatePicker
+  // Supports: "yyyy-MM-dd" (ISO-like), "MM/dd/yyyy", and "MM/dd/yyyy HH:mm"
+  const parsedPropDate = (() => {
+    if (!(type === "date" || type === "datetime")) return null;
+    if (!value) return null;
+    if (value instanceof Date) return isValid(value) ? value : null;
+    if (typeof value !== "string") return null;
+    let d;
+    if (value.includes(" ")) {
+      d = parse(value, "MM/dd/yyyy HH:mm", new Date());
+    } else if (/^\d{4}-\d{2}-\d{2}/.test(value)) {
+      d = parse(value, "yyyy-MM-dd", new Date());
+    } else {
+      d = parse(value, "MM/dd/yyyy", new Date());
+    }
+    return isValid(d) ? d : null;
+  })();
+  const selectedDate = parsedPropDate || localDate;
   return (
     <div className="flex flex-col gap-[10px]">
       <label
@@ -119,15 +129,18 @@ const FormField = ({
               ref={dpRef}
               selected={selectedDate}
               onChange={(d) => {
+                setLocalDate(d || null);
                 onChange({
-                  target: { value: d ? format(d, "MM/dd/yyyy HH:mm") : "" },
+                  // Store datetime with ISO-like date and 24h time: yyyy-MM-dd HH:mm
+                  target: { value: d ? format(d, "yyyy-MM-dd HH:mm") : "" },
                 });
               }}
               showTimeSelect
               timeFormat="hh:mm aa"
               timeIntervals={15}
-              dateFormat="hh:mm aa, MM/dd/yyyy"
-              placeholderText="HH:MM AM/PM, MM/DD/YYYY"
+              // Display date portion as yyyy-MM-dd
+              dateFormat="yyyy-MM-dd hh:mm aa"
+              placeholderText="YYYY-MM-DD HH:MM AM/PM"
               className="w-full pr-[56px] pl-[20px] py-[12px] text-[#050505] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px] border border-[#E0E0E0] rounded-[7px] bg-white cursor-pointer focus:outline-none focus:border-[#0D54FF]"
               shouldCloseOnSelect
               popperPlacement="bottom-start"
@@ -135,10 +148,10 @@ const FormField = ({
             <div
               aria-label="Open calendar"
               onClick={() => {
-                if (
-                  dpRef.current &&
-                  typeof dpRef.current.setFocus === "function"
-                ) {
+                if (!dpRef.current) return;
+                if (typeof dpRef.current.setOpen === 'function') {
+                  dpRef.current.setOpen(true);
+                } else if (typeof dpRef.current.setFocus === 'function') {
                   dpRef.current.setFocus();
                 }
               }}
@@ -146,10 +159,10 @@ const FormField = ({
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
                   e.preventDefault();
-                  if (
-                    dpRef.current &&
-                    typeof dpRef.current.setFocus === "function"
-                  ) {
+                  if (!dpRef.current) return;
+                  if (typeof dpRef.current.setOpen === 'function') {
+                    dpRef.current.setOpen(true);
+                  } else if (typeof dpRef.current.setFocus === 'function') {
                     dpRef.current.setFocus();
                   }
                 }
@@ -165,12 +178,14 @@ const FormField = ({
               ref={dpRef}
               selected={selectedDate}
               onChange={(d) => {
+                setLocalDate(d || null);
                 onChange({
-                  target: { value: d ? format(d, "MM/dd/yyyy") : "" },
+                  // Store as ISO-like string to match mock data: "yyyy-MM-dd"
+                  target: { value: d ? format(d, "yyyy-MM-dd") : "" },
                 });
               }}
-              dateFormat="MM/dd/yyyy"
-              placeholderText="MM/DD/YYYY"
+              dateFormat="yyyy-MM-dd"
+              placeholderText="YYYY-MM-DD"
               className="w-full pr-[56px] pl-[20px] py-[12px] text-[#050505] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px] border border-[#E0E0E0] rounded-[7px] bg-white cursor-pointer focus:outline-none focus:border-[#0D54FF]"
               shouldCloseOnSelect
               popperPlacement="bottom-start"
@@ -208,7 +223,7 @@ const FormField = ({
               <>
                 <span className="absolute left-[20px] top-1/2 -translate-y-1/2 text-[#050505] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px] pointer-events-none">$
                 </span>
-                {!value && (
+                {(value === '' || value === null || value === undefined) && (
                   <span className="absolute left-[44px] top-1/2 -translate-y-1/2 text-[#B4B4B4] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px] pointer-events-none">
                     Not available
                   </span>

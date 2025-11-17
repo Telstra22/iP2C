@@ -49,9 +49,6 @@ const OpportunitySummery = () => {
   // Local editable content for each collapsible section (initialized from mock data)
   const [sectionContentState, setSectionContentState] = useState({
     ...SECTION_CONTENT,
-    opportunityBrief: OPPORTUNITY_BRIEF,
-    problemStatement: PROBLEM_STATEMENT,
-    scopeOfWork: KEY_DLIVERABLES,
   })
 
   // Static texts (opportunityBrief/problemStatement/scopeOfWork are now in sectionContentState)
@@ -80,7 +77,7 @@ const OpportunitySummery = () => {
     // reset to original
     setSectionContentState(prev => ({
       ...prev,
-      opportunityBrief: OPPORTUNITY_BRIEF
+      opportunityBrief: SECTION_CONTENT.opportunityBrief
     }))
     setActiveEditable(null)
   }
@@ -93,7 +90,7 @@ const OpportunitySummery = () => {
   const handleProblemStatementDiscard = () => {
     setSectionContentState(prev => ({
       ...prev,
-      problemStatement: PROBLEM_STATEMENT
+      problemStatement: SECTION_CONTENT.problemStatement
     }))
     setActiveEditable(null)
   }
@@ -104,7 +101,7 @@ const OpportunitySummery = () => {
   }
 
   const handleScopeDiscard = () => {
-    setSectionContentState(prev => ({ ...prev, scopeOfWork: KEY_DLIVERABLES }))
+    setSectionContentState(prev => ({ ...prev, scopeOfWork: SECTION_CONTENT.scopeOfWork }))
     setActiveEditable(null)
   }
 
@@ -259,12 +256,12 @@ const OpportunitySummery = () => {
         options: productOptions,
         type: 'dropdown'
       },
-      {
-        label: 'Sub Product',
-        field: 'subProduct',
-        options: subProductOptions,
-        type: 'dropdown'
-      },
+      // {
+      //   label: 'Sub Product',
+      //   field: 'subProduct',
+      //   options: subProductOptions,
+      //   type: 'dropdown'
+      // },
       {
         label: 'Submission Date',
         field: 'submissionDate',
