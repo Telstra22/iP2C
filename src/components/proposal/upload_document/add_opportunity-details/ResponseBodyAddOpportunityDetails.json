@@ -116,3 +116,28 @@
     }
   }
 }
+
+****************************************
+{'status': 'success',
+'opportunity_id': 'A001K0132578HWb16AAD',
+'final_base_values': {
+  'customer_name': 'Total Brick',
+  'new_renewal': 'new',
+  'industry': 'Property development and management',
+  'product_type': 'Mobility',
+  'product': 'Mobile Networks',
+  'sub_product': '',
+  'business_unit': 'Telstra Business',
+  'partner_name': 'splendra pvt ltd',
+  'archetype': '2',
+  'CIDN': '8856342637',
+  'submission_date': '2025-10-01',
+  'customer_estimated_budget': 0},
+'rfx_summary': {'Opportunity_Brief': 'Total Brick, a diversified property group in Australia, is seeking to review and potentially renew its Mobility services contract. The purpose of this RFI is to evaluate current services and explore market offerings to improve alignment with organizational needs. The objective is to identify a reliable and cost-effective provider for mobile voice and data services.',
+  'Problem_Statement': "Total Brick's existing contract for Mobility services has expired, necessitating a review to ensure continued reliable and cost-effective service. The organization requires a reputable provider with a strong portfolio and mature security practices. The challenge is to procure services that meet the needs of approximately 1200 mobile voice and data services, 430 data-only services, and 2 satellite voice services.",
+  'Key_Deliverables': 'The vendor is expected to deliver reliable mobile voice and data services, detailed pricing and cost breakdowns, operational support tools, billing processes, service-level agreements, ESG considerations, LEO satellite services, innovations in mobile services, security practices, customer support, and scalability and flexibility options.',
+  'Technical_Requirements': 'Vendors must provide coverage maps, including 5G availability and rural/remote support, details on LEO satellite service capabilities, and security protocols compliant with Australian regulations. They should also offer system integration options with ITSM tools and compatibility with CMDB.',
+  'Functional_Requirements': 'The services should include tools for ordering, reporting, and managing mobile fleets, self-service portals, consolidated billing, usage reporting, 24/7 technical support, and the ability to scale services. Flexibility to adjust plans without penalties and integration with emerging technologies like IoT or eSIM is also required.',
+  'Vendor_Questions': 'Vendors are required to provide information on financials, operational support, billing processes, SLAs, ESG considerations, satellite services, innovations, security practices, customer support, scalability, and flexibility. They should also address their vendor profile, cost structure, incentives, service inclusions, network coverage, and operational support.',
+  'Terms_and_Conditions': 'The RFI process includes a timetable with key dates, such as the RFI issuance on December 9, 2024, and the closing date on January 31, 2025. Vendors must sign a mutual NDA before the RFI is issued. Responses should be emailed by the deadline, and Total Brick reserves the right to vary the timetable.'
+  }}
