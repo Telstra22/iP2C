@@ -3,16 +3,16 @@
 export const INITIAL_FORM_DATA = {
   customer: "Total Brick",
   businessUnit: "Telstra Business",
-  partner: "Abc Pvt Ltd",
+  partner: "splendra pvt ltd",
   archetype: "2",
-  industry: "Banking",
+  industry: "Property development and management",
   newRenewal: "New",
   cidn: "8856342637",
   productHierarchy: "Mobility",
-  product: "",
+  product: "Mobile Networks",
   subProduct: "",
-  submissionDate: "01/10/2025 09:00",
-  budget: "",
+  submissionDate: "2025-10-01",
+  budget: 0,
 };
 
 export const OPPORTUNITY_BRIEF =
@@ -54,21 +54,21 @@ export const UI_STRINGS = {
 // Static content for collapsible sections
 export const SECTION_CONTENT = {
   opportunityBrief:
-    "Total Brick, a leading diversified property group in Australia, is seeking proposals for reliable and cost-effective mobile voice and data services to support its operations nationwide. The company is reviewing its mobility services to identify improvements and align with evolving business needs.",
+    "Total Brick, a diversified property group in Australia, is seeking to review and potentially renew its Mobility services contract. The purpose of this RFI is to evaluate current services and explore market offerings to improve alignment with organizational needs. The objective is to identify a reliable and cost-effective provider for mobile voice and data services.",
   problemStatement:
-    "The current contract for mobility services has expired. Total Brick needs to evaluate new offerings to ensure continued service quality, security, and value, while addressing gaps or inefficiencies in the existing setup.",
+    "Total Brick's existing contract for Mobility services has expired, necessitating a review to ensure continued reliable and cost-effective service. The organization requires a reputable provider with a strong portfolio and mature security practices. The challenge is to procure services that meet the needs of approximately 1200 mobile voice and data services, 430 data-only services, and 2 satellite voice services.",
   scopeOfWork:
-    "Provision of approximately 1200 mobile voice & data services, 430 data-only services, and 2 satellite voice services.  Excludes managed services such as Mobile Device Management (MDM).  Services must cover ordering, reporting, billing, operational support, and scalability.",
-  desiredOutcomes: 'Seamless nationwide coverage with robust connectivity for all mobile devices. Enhanced security measures to protect sensitive data and ensure compliance. Streamlined ordering, billing, and reporting processes for efficiency. Strong vendor support with clear SLAs and responsiveness. Scalability to accommodate future growth and technological advancements.',
+    "The vendor is expected to deliver reliable mobile voice and data services, detailed pricing and cost breakdowns, operational support tools, billing processes, service-level agreements, ESG considerations, LEO satellite services, innovations in mobile services, security practices, customer support, and scalability and flexibility options.",
   technicalRequirements:
-    "Nationwide 4G/5G coverage, including rural and remote areas. Support for Low Earth Orbit (LEO) satellite services. Integration with ITSM tools (e.g., ServiceNow), CMDB compatibility, and auto-enablement features. Mature security protocols, data sovereignty, and compliance with Australian regulations.",
+    "Vendors must provide coverage maps, including 5G availability and rural/remote support, details on LEO satellite service capabilities, and security protocols compliant with Australian regulations. They should also offer system integration options with ITSM tools and compatibility with CMDB.",
   functionalRequirements:
-    "Self-service portals, dedicated account management, and efficient ordering/tracking systems. Consolidated billing, usage reporting, and trend analysis. SLAs for activation, fault resolution, and ongoing operations. Scalability and flexibility to adjust plans as business needs change.",
+    "The services should include tools for ordering, reporting, and managing mobile fleets, self-service portals, consolidated billing, usage reporting, 24/7 technical support, and the ability to scale services. Flexibility to adjust plans without penalties and integration with emerging technologies like IoT or eSIM is also required.",
   vendorQuestions:
-    "Detailed pricing and breakdowns, including discounts and incentives. Information on operational support, billing processes, and SLAs. ESG initiatives, innovations, and futureproofing strategies. Security practices and customer support capabilities. Roadmap for LEO satellite services and device management options.",
+    "Vendors are required to provide information on financials, operational support, billing processes, SLAs, ESG considerations, satellite services, innovations, security practices, customer support, scalability, and flexibility. They should also address their vendor profile, cost structure, incentives, service inclusions, network coverage, and operational support.",
   terms:
-    "All mutual NDAs must be signed before RFI issuance. The timetable is indicative and may change at Total Brick's discretion. Responses must be submitted by 5pm, Friday 31st January 2025. Evaluation will consider vendor profile, cost structure, service inclusions, network coverage, and ESG commitments.",
+    "The RFI process includes a timetable with key dates, such as the RFI issuance on December 9, 2024, and the closing date on January 31, 2025. Vendors must sign a mutual NDA before the RFI is issued. Responses should be emailed by the deadline, and Total Brick reserves the right to vary the timetable.",
 };
+
 export const customers = [
   "Total Brick",
   "Vensi",
@@ -79,11 +79,12 @@ export const customers = [
 
 export const businessUnit = ["Telstra Business","Telstra Enterprise"];
 
-export const partner = ["Abc Pvt Ltd","Xyz Pvt Ltd","Def Pvt Ltd"];
+export const partner = ["splendra pvt ltd","Abc Pvt Ltd","Xyz Pvt Ltd","Def Pvt Ltd"];
 
 export const archetype = ["2", "3", "4", "5", "6"];
 
 export const industries = [
+  "Property development and management",
   "Banking",
   "Telecommunication",
   "Healthcare",
@@ -472,3 +473,5 @@ export const productToSubProducts = {
     "My Network",
   ],
 };
+
+ 
