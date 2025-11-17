@@ -293,15 +293,15 @@ const OpportunitySummery = () => {
 
   return (
     <div className='flex w-full h-full overflow-hidden'>
-      <div className='flex-1 overflow-y-auto'>
-        <div className='w-full max-w-[1330px] bg-white rounded-[9px] px-[37px] py-[37px] mt-[37px] pt-0 pb-[37px] relative'>
+      <div className='flex-1 overflow-y-auto bg-[#F6F6F6]'>
+        <div className='w-full max-w-[1330px] mx-auto pt-[37px] pb-[37px] relative'>
           <ToastContainer position="top-right" theme="light" hideProgressBar={false} />
-        <div
-          aria-hidden={showLoadingModal}
-          className={showLoadingModal ? 'invisible pointer-events-none' : ''}
-        >
-          {/* Header */}
-          <div className="flex flex-col -ml-[35px] -mr-[35px] items-start self-stretch bg-[var(--blacks-0,#FFF)] shadow-[0_4px_6px_0_rgba(0,0,0,0.07)] mb-[40px]">
+          <div
+            aria-hidden={showLoadingModal}
+            className={showLoadingModal ? 'invisible pointer-events-none' : ''}
+          >
+            {/* Header */}
+            <div className="flex flex-col items-start self-stretch bg-white shadow-[0_4px_6px_0_rgba(0,0,0,0.07)] mb-[2px]">
               <div className="flex h-[120px] py-[0px] px-[41px] items-center gap-[25px] self-stretch border-l-[12px] border-[#0D54FF]">
                 <h1 className="text-[#050505] font-['Inter',sans-serif] text-[26px] font-semibold leading-[35px]">
                   AI Generated Opportunity Summary
@@ -309,231 +309,239 @@ const OpportunitySummery = () => {
               </div>
             </div>
 
-          {/* Form Fields Grid */}
-          <div className='flex flex-wrap gap-x-[40px] gap-y-[40px] mb-[30px]'>
-            {fieldConfigs.map(cfg => (
-              <div key={cfg.field} className='w-[calc(33.333%-27px)]'>
-                <FormField
-                  label={cfg.label}
-                  value={formData[cfg.field]}
-                  onChange={handleFieldChange(cfg.field)}
-                  type={cfg.type || 'dropdown'}
-                  options={cfg.options || []}
-                  placeholder={cfg.placeholder || ''}
-                  tooltip={cfg.tooltip || ''}
-                  disabled={!!cfg.disabled}
-                />
+            {/* Input Fields Section - Separate Container */}
+            <div className='bg-white rounded-[9px] shadow-[0px_4px_7px_rgba(0,0,0,0.09)] px-[37px] py-[40px] mb-[24px]'>
+              {/* Form Fields Grid */}
+              <div className='flex flex-wrap gap-x-[40px] gap-y-[40px]'>
+                {fieldConfigs.map(cfg => (
+                  <div key={cfg.field} className='w-[calc(33.333%-27px)]'>
+                    <FormField
+                      label={cfg.label}
+                      value={formData[cfg.field]}
+                      onChange={handleFieldChange(cfg.field)}
+                      type={cfg.type || 'dropdown'}
+                      options={cfg.options || []}
+                      placeholder={cfg.placeholder || ''}
+                      tooltip={cfg.tooltip || ''}
+                      disabled={!!cfg.disabled}
+                    />
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
 
-          {/* Expand All Control */}
-          <div className='flex items-center justify-end gap-[17px] mb-[24px]'>
-            <button
-              onClick={handleExpandAllToggle}
-              className='flex items-center gap-[17px] bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity'
-            >
-              {expandAll ? (
-                <div className='flex w-[20.412px] h-[20.412px] justify-center items-center border border-[#0D54FF] rounded-[2px]'>
-                  <Check
-                    width={19.441}
-                    height={19.441}
-                    color='#0D54FF'
-                    className='w-[19.441px] h-[19.441px]'
-                  />
-                </div>
-              ) : (
-                <div className='flex w-[20.412px] h-[20.412px] justify-center items-center border border-[#0D54FF] rounded-[2px]'>
-                  {/* empty box when not expanded */}
-                </div>
-              )}
-              <span className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px]">
-                Expand all
+            {/* Review and Edit Content with Expand All Control - Outside Container */}
+            <div className='flex items-center justify-between mb-[24px]'>
+              <span className="text-[#050505] font-['Inter',sans-serif] text-[24px] font-normal leading-[32px]">
+                Review and edit content (If necessary)
               </span>
-            </button>
-          </div>
-
-          {/* Collapsible Sections */}
-          <div className='flex flex-col gap-[24px]'>
-            {/* Opportunity Brief - Editable */}
-            <CollapsibleSection
-              title='Opportunity Brief'
-              isExpanded={sectionStates.opportunityBrief}
-              onToggle={() => toggleSection('opportunityBrief')}
-            >
-              <EditableTextArea
-                initialValue={sectionContentState.opportunityBrief}
-                onSave={handleOpportunityBriefSave}
-                onDiscard={handleOpportunityBriefDiscard}
-                showActionsInitially={true}
-                readOnly={activeEditable !== 'opportunityBrief'}
-                onRequestEdit={() => setActiveEditable('opportunityBrief')}
-              />
-            </CollapsibleSection>
-            <div className='border-t border-[#D9D9D9]' />
-
-            {/* Problem Statement - Read-only */}
-            <CollapsibleSection
-              title='Problem Statement'
-              isExpanded={sectionStates.problemStatement}
-              onToggle={() => toggleSection('problemStatement')}
-            >
-              <EditableTextArea
-                initialValue={sectionContentState.problemStatement}
-                onSave={handleProblemStatementSave}
-                onDiscard={handleProblemStatementDiscard}
-                showActionsInitially={true}
-                readOnly={activeEditable !== 'problemStatement'}
-                onRequestEdit={() => setActiveEditable('problemStatement')}
-              />
-            </CollapsibleSection>
-            <div className='border-t border-[#D9D9D9]' />
-
-            {/* Scope of Work - Read-only */}
-            <CollapsibleSection
-              title='Key Deliverables'
-              isExpanded={sectionStates.scopeOfWork}
-              onToggle={() => toggleSection('scopeOfWork')}
-            >
-              <EditableTextArea
-                initialValue={sectionContentState.scopeOfWork}
-                onSave={handleScopeSave}
-                onDiscard={handleScopeDiscard}
-                showActionsInitially={true}
-                readOnly={activeEditable !== 'scopeOfWork'}
-                onRequestEdit={() => setActiveEditable('scopeOfWork')}
-              />
-            </CollapsibleSection>
-            <div className='border-t border-[#D9D9D9]' />
-
-            {/* Technical Requirements */}
-            <CollapsibleSection
-              title='Technical Requirements'
-              isExpanded={sectionStates.technicalRequirements}
-              onToggle={() => toggleSection('technicalRequirements')}
-            >
-              <EditableTextArea
-                initialValue={sectionContentState.technicalRequirements}
-                onSave={handleGenericSave('technicalRequirements')}
-                onDiscard={handleGenericDiscard(
-                  'technicalRequirements',
-                  SECTION_CONTENT.technicalRequirements
+              <button
+                onClick={handleExpandAllToggle}
+                className='flex items-center gap-[17px] bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity'
+              >
+                {expandAll ? (
+                  <div className='flex w-[20.412px] h-[20.412px] justify-center items-center border border-[#0D54FF] rounded-[2px]'>
+                    <Check
+                      width={19.441}
+                      height={19.441}
+                      color='#0D54FF'
+                      className='w-[19.441px] h-[19.441px]'
+                    />
+                  </div>
+                ) : (
+                  <div className='flex w-[20.412px] h-[20.412px] justify-center items-center border border-[#0D54FF] rounded-[2px]'>
+                    {/* empty box when not expanded */}
+                  </div>
                 )}
-                showActionsInitially={true}
-                readOnly={activeEditable !== 'technicalRequirements'}
-                onRequestEdit={() => setActiveEditable('technicalRequirements')}
-              />
-            </CollapsibleSection>
-            <div className='border-t border-[#D9D9D9]' />
+                <span className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px]">
+                  Expand all
+                </span>
+              </button>
+            </div>
 
-            {/* Functional Requirements */}
-            <CollapsibleSection
-              title='Functional Requirements'
-              isExpanded={sectionStates.functionalRequirements}
-              onToggle={() => toggleSection('functionalRequirements')}
-            >
-              <EditableTextArea
-                initialValue={sectionContentState.functionalRequirements}
-                onSave={handleGenericSave('functionalRequirements')}
-                onDiscard={handleGenericDiscard(
-                  'functionalRequirements',
-                  SECTION_CONTENT.functionalRequirements
-                )}
-                showActionsInitially={true}
-                readOnly={activeEditable !== 'functionalRequirements'}
-                onRequestEdit={() => setActiveEditable('functionalRequirements')}
-              />
-            </CollapsibleSection>
-            <div className='border-t border-[#D9D9D9]' />
-
-            {/* Vendor Questions */}
-            <CollapsibleSection
-              title='Vendor Questions'
-              isExpanded={sectionStates.vendorQuestions}
-              onToggle={() => toggleSection('vendorQuestions')}
-            >
-              <EditableTextArea
-                initialValue={sectionContentState.vendorQuestions}
-                onSave={handleGenericSave('vendorQuestions')}
-                onDiscard={handleGenericDiscard(
-                  'vendorQuestions',
-                  SECTION_CONTENT.vendorQuestions
-                )}
-                showActionsInitially={true}
-                readOnly={activeEditable !== 'vendorQuestions'}
-                onRequestEdit={() => setActiveEditable('vendorQuestions')}
-              />
-            </CollapsibleSection>
-            <div className='border-t border-[#D9D9D9]' />
-
-            {/* Terms & Conditions */}
-            <CollapsibleSection
-              title='Terms & Conditions'
-              isExpanded={sectionStates.termsConditions}
-              onToggle={() => toggleSection('termsConditions')}
-            >
-              <EditableTextArea
-                initialValue={sectionContentState.terms}
-                onSave={handleGenericSave('terms')}
-                onDiscard={handleGenericDiscard('terms', SECTION_CONTENT.terms)}
-                showActionsInitially={true}
-                readOnly={activeEditable !== 'termsConditions'}
-                onRequestEdit={() => setActiveEditable('termsConditions')}
-              />
-            </CollapsibleSection>
-          </div>
-        </div>
-
-        {showLoadingModal && (
-          <div className='fixed inset-0 bg-black/30 backdrop-blur-[1px] flex items-center justify-center z-40'>
-            <div className='bg-white rounded-[12px] border border-[#CFCFCF] shadow-[0px_4px_8px_2px_rgba(0,0,0,0.07)] flex flex-col gap-[22px] px-[50px] py-[53px] w-[690px]'>
-              {/* Header with gradient logo and title */}
-              <div className='flex items-center gap-[10px]'>
-                <div 
-                  className='w-[33px] h-[33px] flex items-center justify-center'
-                  style={{
-                    background: 'linear-gradient(82.57deg, rgba(0,255,225,1) 1.85%, rgba(13,84,255,1) 44.07%, rgba(149,36,198,1) 110.73%)'
-                  }}
+            {/* Collapsible Sections Container - Separate White Container */}
+            <div className='bg-white rounded-[9px] shadow-[0px_4px_7px_rgba(0,0,0,0.09)] px-[37px] py-[40px]'>
+              <div className='flex flex-col gap-[24px]'>
+                {/* Opportunity Brief - Editable */}
+                <CollapsibleSection
+                  title='Opportunity Brief'
+                  isExpanded={sectionStates.opportunityBrief}
+                  onToggle={() => toggleSection('opportunityBrief')}
                 >
-                  <IP2CLogoIcon width={33} height={33} color="#FFFFFF" />
-                </div>
-                <h2 className="text-[#39393A] font-['Inter',sans-serif] text-[24px] font-semibold leading-[32px]">
-                  {UI_STRINGS.loadingTitle}
-                </h2>
-              </div>
+                  <EditableTextArea
+                    initialValue={sectionContentState.opportunityBrief}
+                    onSave={handleOpportunityBriefSave}
+                    onDiscard={handleOpportunityBriefDiscard}
+                    showActionsInitially={true}
+                    readOnly={activeEditable !== 'opportunityBrief'}
+                    onRequestEdit={() => setActiveEditable('opportunityBrief')}
+                  />
+                </CollapsibleSection>
+                <div className='border-t border-[#D9D9D9]' />
 
-              {/* Content section */}
-              <div className='flex flex-col items-center gap-[32px]'>
-                {/* Circular loader */}
-                <CircularLoader
-                  size={119}
-                  strokeWidth={8}
-                  progress={progress}
-                />
-
-                {/* Estimated wait time */}
-                <p className="text-[#828282] font-['Inter',sans-serif] text-[20px] font-normal leading-[27px]">
-                  {UI_STRINGS.estimatedWait}
-                </p>
-
-                {/* Resume note */}
-                <p className="w-full text-[#505050] font-['Inter',sans-serif] text-[20px] font-normal leading-[26.82px] text-center">
-                  {UI_STRINGS.resumeNote}
-                </p>
-              </div>
-
-              {/* Cancel button */}
-              <div className='flex justify-end'>
-                <button
-                  onClick={() => setShowLoadingModal(false)}
-                  className="text-[#0D54FF] font-['Inter',sans-serif] text-[22px] font-semibold leading-[30px] bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity"
+                {/* Problem Statement - Read-only */}
+                <CollapsibleSection
+                  title='Problem Statement'
+                  isExpanded={sectionStates.problemStatement}
+                  onToggle={() => toggleSection('problemStatement')}
                 >
-                  Cancel
-                </button>
+                  <EditableTextArea
+                    initialValue={sectionContentState.problemStatement}
+                    onSave={handleProblemStatementSave}
+                    onDiscard={handleProblemStatementDiscard}
+                    showActionsInitially={true}
+                    readOnly={activeEditable !== 'problemStatement'}
+                    onRequestEdit={() => setActiveEditable('problemStatement')}
+                  />
+                </CollapsibleSection>
+                <div className='border-t border-[#D9D9D9]' />
+
+                {/* Scope of Work - Read-only */}
+                <CollapsibleSection
+                  title='Key Deliverables'
+                  isExpanded={sectionStates.scopeOfWork}
+                  onToggle={() => toggleSection('scopeOfWork')}
+                >
+                  <EditableTextArea
+                    initialValue={sectionContentState.scopeOfWork}
+                    onSave={handleScopeSave}
+                    onDiscard={handleScopeDiscard}
+                    showActionsInitially={true}
+                    readOnly={activeEditable !== 'scopeOfWork'}
+                    onRequestEdit={() => setActiveEditable('scopeOfWork')}
+                  />
+                </CollapsibleSection>
+                <div className='border-t border-[#D9D9D9]' />
+
+                {/* Technical Requirements */}
+                <CollapsibleSection
+                  title='Technical Requirements'
+                  isExpanded={sectionStates.technicalRequirements}
+                  onToggle={() => toggleSection('technicalRequirements')}
+                >
+                  <EditableTextArea
+                    initialValue={sectionContentState.technicalRequirements}
+                    onSave={handleGenericSave('technicalRequirements')}
+                    onDiscard={handleGenericDiscard(
+                      'technicalRequirements',
+                      SECTION_CONTENT.technicalRequirements
+                    )}
+                    showActionsInitially={true}
+                    readOnly={activeEditable !== 'technicalRequirements'}
+                    onRequestEdit={() => setActiveEditable('technicalRequirements')}
+                  />
+                </CollapsibleSection>
+                <div className='border-t border-[#D9D9D9]' />
+
+                {/* Functional Requirements */}
+                <CollapsibleSection
+                  title='Functional Requirements'
+                  isExpanded={sectionStates.functionalRequirements}
+                  onToggle={() => toggleSection('functionalRequirements')}
+                >
+                  <EditableTextArea
+                    initialValue={sectionContentState.functionalRequirements}
+                    onSave={handleGenericSave('functionalRequirements')}
+                    onDiscard={handleGenericDiscard(
+                      'functionalRequirements',
+                      SECTION_CONTENT.functionalRequirements
+                    )}
+                    showActionsInitially={true}
+                    readOnly={activeEditable !== 'functionalRequirements'}
+                    onRequestEdit={() => setActiveEditable('functionalRequirements')}
+                  />
+                </CollapsibleSection>
+                <div className='border-t border-[#D9D9D9]' />
+
+                {/* Vendor Questions */}
+                <CollapsibleSection
+                  title='Vendor Questions'
+                  isExpanded={sectionStates.vendorQuestions}
+                  onToggle={() => toggleSection('vendorQuestions')}
+                >
+                  <EditableTextArea
+                    initialValue={sectionContentState.vendorQuestions}
+                    onSave={handleGenericSave('vendorQuestions')}
+                    onDiscard={handleGenericDiscard(
+                      'vendorQuestions',
+                      SECTION_CONTENT.vendorQuestions
+                    )}
+                    showActionsInitially={true}
+                    readOnly={activeEditable !== 'vendorQuestions'}
+                    onRequestEdit={() => setActiveEditable('vendorQuestions')}
+                  />
+                </CollapsibleSection>
+                <div className='border-t border-[#D9D9D9]' />
+
+                {/* Terms & Conditions */}
+                <CollapsibleSection
+                  title='Terms & Conditions'
+                  isExpanded={sectionStates.termsConditions}
+                  onToggle={() => toggleSection('termsConditions')}
+                >
+                  <EditableTextArea
+                    initialValue={sectionContentState.terms}
+                    onSave={handleGenericSave('terms')}
+                    onDiscard={handleGenericDiscard('terms', SECTION_CONTENT.terms)}
+                    showActionsInitially={true}
+                    readOnly={activeEditable !== 'termsConditions'}
+                    onRequestEdit={() => setActiveEditable('termsConditions')}
+                  />
+                </CollapsibleSection>
               </div>
             </div>
           </div>
-        )}
+
+          {showLoadingModal && (
+            <div className='fixed inset-0 bg-black/30 backdrop-blur-[1px] flex items-center justify-center z-40'>
+              <div className='bg-white rounded-[12px] border border-[#CFCFCF] shadow-[0px_4px_8px_2px_rgba(0,0,0,0.07)] flex flex-col gap-[22px] px-[50px] py-[53px] w-[690px]'>
+                {/* Header with gradient logo and title */}
+                <div className='flex items-center gap-[10px]'>
+                  <div 
+                    className='w-[33px] h-[33px] flex items-center justify-center'
+                    style={{
+                      background: 'linear-gradient(82.57deg, rgba(0,255,225,1) 1.85%, rgba(13,84,255,1) 44.07%, rgba(149,36,198,1) 110.73%)'
+                    }}
+                  >
+                    <IP2CLogoIcon width={33} height={33} color="#FFFFFF" />
+                  </div>
+                  <h2 className="text-[#39393A] font-['Inter',sans-serif] text-[24px] font-semibold leading-[32px]">
+                    {UI_STRINGS.loadingTitle}
+                  </h2>
+                </div>
+
+                {/* Content section */}
+                <div className='flex flex-col items-center gap-[32px]'>
+                  {/* Circular loader */}
+                  <CircularLoader
+                    size={119}
+                    strokeWidth={8}
+                    progress={progress}
+                  />
+
+                  {/* Estimated wait time */}
+                  <p className="text-[#828282] font-['Inter',sans-serif] text-[20px] font-normal leading-[27px]">
+                    {UI_STRINGS.estimatedWait}
+                  </p>
+
+                  {/* Resume note */}
+                  <p className="w-full text-[#505050] font-['Inter',sans-serif] text-[20px] font-normal leading-[26.82px] text-center">
+                    {UI_STRINGS.resumeNote}
+                  </p>
+                </div>
+
+                {/* Cancel button */}
+                <div className='flex justify-end'>
+                  <button
+                    onClick={() => setShowLoadingModal(false)}
+                    className="text-[#0D54FF] font-['Inter',sans-serif] text-[22px] font-semibold leading-[30px] bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
 
           {showCompletionModal && (
             <div className='fixed inset-0 bg-black/30 backdrop-blur-[1px] flex items-center justify-center z-50'>
