@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import AssistantIcon from '../../../../../assets/icons/AssistantIcon';
 import BotAvatarIcon from '../../../../../assets/icons/BotAvatarIcon';
 import { chatMessages as defaultMessages } from './chatMessagesMockData'
@@ -6,8 +6,40 @@ import { User,Send } from 'lucide-react';
 
 const ChatSidebar = () => {
   const [messages] = useState(defaultMessages);
+  const [visibleMessages, setVisibleMessages] = useState([]);
+  const endRef = useRef(null);
 
   const [inputValue, setInputValue] = useState('');
+
+  // Sequence: start empty, push a temporary typing message into the list, then replace with real message
+  useEffect(() => {
+    let cancelled = false;
+    const timers = [];
+    setVisibleMessages([]);
+    const step = (i) => {
+      if (cancelled || i >= messages.length) return;
+      const m = messages[i];
+      const typingId = `typing-${i}`;
+      const typingType = m.type === 'user' ? 'typing-user' : 'typing-bot';
+      // insert typing placeholder
+      setVisibleMessages(prev => [...prev, { id: typingId, type: typingType }]);
+      // typing duration per message
+      timers.push(setTimeout(() => {
+        if (cancelled) return;
+        // replace typing with actual message
+        setVisibleMessages(prev => prev.filter(x => x.id !== typingId).concat(m));
+        // short pause before next typing starts
+        timers.push(setTimeout(() => step(i + 1), 500));
+      }, 1000));
+    };
+    if (messages.length) step(0);
+    return () => { cancelled = true; timers.forEach(t => clearTimeout(t)); };
+  }, [messages]);
+
+  // Auto-scroll to latest
+  useEffect(() => {
+    try { endRef.current?.scrollIntoView({ behavior: 'smooth' }); } catch {}
+  }, [visibleMessages]);
 
   const handleSend = () => {
     if (inputValue.trim()) {
@@ -36,7 +68,7 @@ const ChatSidebar = () => {
       {/* Messages Area - Scrollable like WhatsApp/Instagram */}
       <div className="flex-1 overflow-y-auto px-[26px] pt-[28px] pb-[28px] min-h-0 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent hover:scrollbar-thumb-gray-400">
         <div className="flex flex-col gap-[28px]">
-          {messages.map((message) => (
+          {visibleMessages.map((message) => (
             <div
               key={message.id}
               className="flex gap-[8px] items-start"
@@ -45,17 +77,23 @@ const ChatSidebar = () => {
               {message.type === 'bot' && (
                 <>
                   <div 
-                    className="flex-shrink-0 w-[30.6px] h-[30.6px] rounded-[18.45px] flex items-center justify-center mt-[4px] p-[8.1px]"
+                    className={`${message.text ? '' : 'animate-pulse'} flex-shrink-0 w-[30.6px] h-[30.6px] rounded-[18.45px] flex items-center justify-center mt-[4px] p-[8.1px]`}
                     style={{
                       background: 'linear-gradient(102deg, #00FFE1 -1.03%, #0D54FF 36.82%, #9524C6 100.49%)'
                     }}
                   >
                     <BotAvatarIcon width={19.8} height={19.8} color='#FFFFFF' />
                   </div>
-                  <div className="flex-1 bg-white rounded-[12px] px-[16px] py-[12px] shadow-[0px_2px_8px_rgba(0,0,0,0.08)]">
-                    <p className="text-[#000000] font-['Inter',sans-serif] text-[20px] font-normal leading-[26px]">
-                      {message.text}
-                    </p>
+                  <div className={`${message.text ? '' : 'animate-pulse'} flex-1 bg-white rounded-[12px] px-[16px] py-[12px] shadow-[0px_2px_8px_rgba(0,0,0,0.08)]`}>
+                    {message.text ? (
+                      <p className="text-[#000000] font-['Inter',sans-serif] text-[20px] font-normal leading-[26px]">{message.text}</p>
+                    ) : (
+                      <div className="flex items-center gap-[4px]">
+                        <span className="w-[6px] h-[6px] rounded-full bg-[#BDBDBD] animate-bounce" style={{ animationDelay: '0ms' }} />
+                        <span className="w-[6px] h-[6px] rounded-full bg-[#BDBDBD] animate-bounce" style={{ animationDelay: '150ms' }} />
+                        <span className="w-[6px] h-[6px] rounded-full bg-[#BDBDBD] animate-bounce" style={{ animationDelay: '300ms' }} />
+                      </div>
+                    )}
                   </div>
                 </>
               )}
@@ -63,13 +101,19 @@ const ChatSidebar = () => {
               {/* User message - avatar on right with gradient circular background */}
               {message.type === 'user' && (
                 <>
-                  <div className="flex-1 bg-white rounded-[12px] px-[16px] py-[12px] shadow-[0px_2px_8px_rgba(0,0,0,0.08)]">
-                    <p className="text-[#000000] font-['Inter',sans-serif] text-[20px] font-normal leading-[26px]">
-                      {message.text}
-                    </p>
+                  <div className={`${message.text ? '' : 'animate-pulse'} flex-1 bg-white rounded-[12px] px-[16px] py-[12px] shadow-[0px_2px_8px_rgba(0,0,0,0.08)]`}>
+                    {message.text ? (
+                      <p className="text-[#000000] font-['Inter',sans-serif] text-[20px] font-normal leading-[26px]">{message.text}</p>
+                    ) : (
+                      <div className="flex items-center gap-[4px] justify-end">
+                        <span className="w-[6px] h-[6px] rounded-full bg-[#BDBDBD] animate-bounce" style={{ animationDelay: '0ms' }} />
+                        <span className="w-[6px] h-[6px] rounded-full bg-[#BDBDBD] animate-bounce" style={{ animationDelay: '150ms' }} />
+                        <span className="w-[6px] h-[6px] rounded-full bg-[#BDBDBD] animate-bounce" style={{ animationDelay: '300ms' }} />
+                      </div>
+                    )}
                   </div>
                   <div 
-                    className="flex-shrink-0 w-[30.6px] h-[30.6px] rounded-[18.45px] flex items-center justify-center mt-[4px] p-[8.1px]"
+                    className={`${message.text ? '' : 'animate-pulse'} flex-shrink-0 w-[30.6px] h-[30.6px] rounded-[18.45px] flex items-center justify-center mt-[4px] p-[8.1px]`}
                     style={{
                       background: 'linear-gradient(102deg, #00FFE1 -1.03%, #0D54FF 36.82%, #9524C6 100.49%)'
                     }}

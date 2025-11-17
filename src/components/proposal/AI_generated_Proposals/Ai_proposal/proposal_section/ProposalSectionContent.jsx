@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import ProposalEditorToolbar from '../editorToolbar/ProposalEditorToolbar'
+import EditorToolbar from '../editorToolbar/EditorToolbar'
 import CommentsPanel from '../comments/CommentsPanel'
 import { Check,Trash2,ChevronDown } from 'lucide-react'
 
@@ -167,7 +167,7 @@ const ProposalSectionContent = ({
           {/* Main Content Area */}
           <div className={`bg-white rounded-tr-[9px] rounded-br-[9px] rounded-bl-[9px] border border-[#C6C6C6] shadow-[0px_4px_14px_rgba(0,0,0,0.12)] w-full min-h-0`}>
             {/* Editor Toolbar */}
-            <ProposalEditorToolbar 
+            <EditorToolbar 
               showComments={showComments}
               onToggleComments={onToggleComments}
               onCollaborate={onCollaborate}

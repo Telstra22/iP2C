@@ -19,7 +19,7 @@ import {
   Orbit
 } from 'lucide-react'
 
-const ProposalEditorToolbar = ({
+const EditorToolbar = ({
   showComments,
   onToggleComments,
   onCollaborate,
@@ -293,4 +293,4 @@ const ProposalEditorToolbar = ({
   )
 }
 
-export default ProposalEditorToolbar
+export default EditorToolbar

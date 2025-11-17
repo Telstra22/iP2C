@@ -98,7 +98,7 @@ const AiProposalPage = () => {
   }
 
   const handleRegenerateWithAI = () => {
-    navigate('/generated-with-ai')
+    navigate('/generate-ai-blank')
   }
 
   const handleToggleComments = () => {

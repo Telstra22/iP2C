@@ -1,8 +1,8 @@
 // Mock data for GenerateAIBlank component
 
 export const mockRootProps = {
-  sectionTitle: "2. MEETING YOUR OBJECTIVES",
   isRegenerating: true,
+  regeneratingMessage: "Regenerating your content...",
   agentStatus: {
     orchestrator: "Huddle in Progress..",
     proposalWriter: "Proposal Writer Agent is working..",

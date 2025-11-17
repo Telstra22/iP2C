@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ActionButtons from './components/ActionButtons';
 import SectionNumberInput from './components/SectionNumberInput';
-import EditorToolbar from './components/EditorToolbar';
+import EditorToolbar from '../editorToolbar/EditorToolbar';
 import ChatAssistant from './components/ChatAssistant';
 import { mockRootProps } from './AddSectionMockData';
 
@@ -17,6 +17,7 @@ const AddSection = ({
   const navigate = useNavigate();
   const [editorContent, setEditorContent] = useState('');
   const [sectionTitle, setSectionTitle] = useState('');
+  const [createdSectionId, setCreatedSectionId] = useState(null);
 
   const handleCancel = () => {
     if (onCancel) {
@@ -31,8 +32,20 @@ const AddSection = ({
     if (onDone) {
       onDone();
     } else {
-      // Save the section and navigate back
-      console.log('Section saved:', editorContent);
+      // Save the section body content for the section created in this flow
+      try {
+        if (createdSectionId) {
+          const raw = localStorage.getItem('sectionsContent') || '[]';
+          const contents = JSON.parse(raw);
+          const idx = contents.findIndex((c) => c.id === createdSectionId);
+          const entry = { id: createdSectionId, title: sectionTitle || '', content: editorContent || '' };
+          if (idx >= 0) contents[idx] = entry; else contents.push(entry);
+          localStorage.setItem('sectionsContent', JSON.stringify(contents));
+        }
+      } catch (e) {
+        console.warn('Failed saving section content', e);
+      }
+      // Navigate back
       navigate('/ai-proposal_page');
     }
     if (onClose) onClose();
@@ -61,11 +74,12 @@ const AddSection = ({
     
     // Save to localStorage
     localStorage.setItem('allSections', JSON.stringify(updatedSections));
+    setCreatedSectionId(nextId);
+    setSectionTitle(title);
     
     console.log('Section added:', newSection);
     
-    // Navigate back to proposal page
-    navigate('/ai-proposal_page');
+    // Stay on this screen to allow adding body content; user will click Done to save content
   };
 
   const handleSectionTitleChange = (title) => {
