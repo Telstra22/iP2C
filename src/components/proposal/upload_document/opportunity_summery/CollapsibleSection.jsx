@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { ChevronDown, ChevronUp, FileCheck } from 'lucide-react'
+import { ChevronDown, FileCheck } from 'lucide-react'
 import VendorQuestionsIcon from '../../../../assets/icons/VendorQuestionsIcon'
+import ChevronUpBlueIcon from '../../../../assets/icons/ChevronUpBlueIcon.svg?react'
 
 const CollapsibleSection = ({
   title,
@@ -51,9 +52,9 @@ const CollapsibleSection = ({
         {isCollapsible && (
           <div>
             {isExpanded ? (
-              <ChevronUp width={25} height={15} className='text-[#050505]' />
+              <ChevronUpBlueIcon width={25} height={15} className='text-[#0D54FF]' />
             ) : (
-              <ChevronDown width={25} height={15} className='text-[#050505]' />
+              <ChevronDown width={25} height={15} className='text-[#0D54FF]' />
             )}
           </div>
         )}
