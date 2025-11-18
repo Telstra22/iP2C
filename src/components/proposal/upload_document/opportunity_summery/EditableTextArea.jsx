@@ -47,19 +47,35 @@ const EditableTextArea = ({ initialValue, onSave, onDiscard, showActionsInitiall
       {readOnly ? (
         <div
           className={
-            "w-full min-h-[81px] px-0 py-0 text-[#050505] font-['Inter',sans-serif] text-[20px] font-normal leading-[26.82px] border-0 shadow-none bg-transparent rounded-[9px] whitespace-pre-wrap break-words"
+            "w-full min-h-[81px] px-0 py-0 text-[#050505] font-['Inter',sans-serif] text-[20px] font-normal leading-[26.82px] border-0 shadow-none bg-transparent rounded-[9px] break-words"
           }
           onClick={() => { if (readOnly && typeof onRequestEdit === 'function') onRequestEdit() }}
-        >
-          {value}
-        </div>
+          style={{ whiteSpace: 'pre-wrap' }}
+          dangerouslySetInnerHTML={{
+            __html: value
+              .split('\n')
+              .map(line => {
+                // Check if line starts with bullet point
+                if (line.trim().startsWith('•')) {
+                  return `<div style="margin-bottom: 8px;">${line}</div>`;
+                }
+                // Check if line starts with asterisk
+                if (line.trim().startsWith('*')) {
+                  return `<div style="margin-bottom: 8px;">${line}</div>`;
+                }
+                // Regular line
+                return line ? `<div>${line}</div>` : '<div><br/></div>';
+              })
+              .join('')
+          }}
+        />
       ) : (
         <textarea
           ref={textAreaRef}
           value={value}
           onChange={handleChange}
           className={
-            "w-full min-h-[81px] text-[#050505] font-['Inter',sans-serif] text-[20px] font-normal leading-[26.82px] border-[1.5px] border-[#0D54FF] shadow-[inset_0px_3px_4px_rgba(0,0,0,0.14)] bg-white px-[22px] py-[20px] rounded-[9px] focus:outline-none resize-none"
+            "w-full min-h-[81px] text-[#050505] font-['Inter',sans-serif] text-[20px] font-normal leading-[26.82px] border-[1.5px] border-[#0D54FF] shadow-[inset_0px_3px_4px_rgba(0,0,0,0.14)] bg-white px-[22px] py-[20px] rounded-[9px] focus:outline-none resize-none whitespace-pre-wrap"
           }
           style={{ overflow: 'hidden' }}
         />

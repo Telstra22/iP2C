@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import FormField from './FormField'
 import CollapsibleSection from './CollapsibleSection'
 import EditableTextArea from './EditableTextArea'
-import { Check } from 'lucide-react'
+import CheckboxCheckedIcon from '../../../assets/icons/CheckboxCheckedIcon.svg?react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Breadcrumb from '../Breadcrumb'
@@ -341,25 +341,18 @@ const OpportunitySummery = () => {
             </div>
 
             {/* Review and Edit Content with Expand All Control - Outside Container */}
-            <div className='flex items-center justify-between mb-[24px] mt-[59px] px-[37px]'>
+            <div className='flex items-center justify-between mb-[24px] mt-[59px]'>
               <span className="text-[#050505] font-['Inter',sans-serif] text-[24px] font-normal leading-[32px]">
-                Review and edit content (If necessary)
+                Review and edit content (If necessary) 
               </span>
               <button
                 onClick={handleExpandAllToggle}
                 className='flex items-center gap-[17px] bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity'
               >
                 {expandAll ? (
-                  <div className='flex w-[20.412px] h-[20.412px] justify-center items-center border border-[#0D54FF] rounded-[2px]'>
-                    <Check
-                      width={19.441}
-                      height={19.441}
-                      color='#0D54FF'
-                      className='w-[19.441px] h-[19.441px]'
-                    />
-                  </div>
+                  <CheckboxCheckedIcon width={13} height={10} className='text-[#0D54FF]' />
                 ) : (
-                  <div className='flex w-[20.412px] h-[20.412px] justify-center items-center border border-[#0D54FF] rounded-[2px]'>
+                  <div className='flex w-[13px] h-[10px] justify-center items-center border border-[#0D54FF] rounded-[2px]'>
                     {/* empty box when not expanded */}
                   </div>
                 )}
@@ -370,134 +363,148 @@ const OpportunitySummery = () => {
             </div>
 
             {/* Collapsible Sections Container - Separate White Container */}
-            <div className='bg-white rounded-[9px] shadow-[0px_4px_7px_rgba(0,0,0,0.09)] px-[37px] py-[40px]'>
-              <div className='flex flex-col gap-[24px]'>
+            <div className='bg-white rounded-[9px] shadow-[0px_4px_7px_rgba(0,0,0,0.09)] px-[14px] py-[40px]'>
+              <div className='flex flex-col'>
                 {/* Opportunity Brief - Editable */}
-                <CollapsibleSection
-                  title='Opportunity Brief'
-                  isExpanded={sectionStates.opportunityBrief}
-                  onToggle={() => toggleSection('opportunityBrief')}
-                >
-                  <EditableTextArea
-                    initialValue={sectionContentState.opportunityBrief}
-                    onSave={handleOpportunityBriefSave}
-                    onDiscard={handleOpportunityBriefDiscard}
-                    showActionsInitially={true}
-                    readOnly={activeEditable !== 'opportunityBrief'}
-                    onRequestEdit={() => setActiveEditable('opportunityBrief')}
-                  />
-                </CollapsibleSection>
-                <div className='border-t border-[#D9D9D9]' />
+                <div className='px-[23px]'>
+                  <CollapsibleSection
+                    title='Opportunity Brief'
+                    isExpanded={sectionStates.opportunityBrief}
+                    onToggle={() => toggleSection('opportunityBrief')}
+                  >
+                    <EditableTextArea
+                      initialValue={sectionContentState.opportunityBrief}
+                      onSave={handleOpportunityBriefSave}
+                      onDiscard={handleOpportunityBriefDiscard}
+                      showActionsInitially={true}
+                      readOnly={activeEditable !== 'opportunityBrief'}
+                      onRequestEdit={() => setActiveEditable('opportunityBrief')}
+                    />
+                  </CollapsibleSection>
+                </div>
+                <div className='border-t border-[#D9D9D9] my-[24px]' />
 
                 {/* Problem Statement - Read-only */}
-                <CollapsibleSection
-                  title='Problem Statement'
-                  isExpanded={sectionStates.problemStatement}
-                  onToggle={() => toggleSection('problemStatement')}
-                >
-                  <EditableTextArea
-                    initialValue={sectionContentState.problemStatement}
-                    onSave={handleProblemStatementSave}
-                    onDiscard={handleProblemStatementDiscard}
-                    showActionsInitially={true}
-                    readOnly={activeEditable !== 'problemStatement'}
-                    onRequestEdit={() => setActiveEditable('problemStatement')}
-                  />
-                </CollapsibleSection>
-                <div className='border-t border-[#D9D9D9]' />
+                <div className='px-[23px]'>
+                  <CollapsibleSection
+                    title='Problem Statement'
+                    isExpanded={sectionStates.problemStatement}
+                    onToggle={() => toggleSection('problemStatement')}
+                  >
+                    <EditableTextArea
+                      initialValue={sectionContentState.problemStatement}
+                      onSave={handleProblemStatementSave}
+                      onDiscard={handleProblemStatementDiscard}
+                      showActionsInitially={true}
+                      readOnly={activeEditable !== 'problemStatement'}
+                      onRequestEdit={() => setActiveEditable('problemStatement')}
+                    />
+                  </CollapsibleSection>
+                </div>
+                <div className='border-t border-[#D9D9D9] my-[24px]' />
 
                 {/* Scope of Work - Read-only */}
-                <CollapsibleSection
-                  title='Key Deliverables'
-                  isExpanded={sectionStates.scopeOfWork}
-                  onToggle={() => toggleSection('scopeOfWork')}
-                >
-                  <EditableTextArea
-                    initialValue={sectionContentState.scopeOfWork}
-                    onSave={handleScopeSave}
-                    onDiscard={handleScopeDiscard}
-                    showActionsInitially={true}
-                    readOnly={activeEditable !== 'scopeOfWork'}
-                    onRequestEdit={() => setActiveEditable('scopeOfWork')}
-                  />
-                </CollapsibleSection>
-                <div className='border-t border-[#D9D9D9]' />
+                <div className='px-[23px]'>
+                  <CollapsibleSection
+                    title='Key Deliverables'
+                    isExpanded={sectionStates.scopeOfWork}
+                    onToggle={() => toggleSection('scopeOfWork')}
+                  >
+                    <EditableTextArea
+                      initialValue={sectionContentState.scopeOfWork}
+                      onSave={handleScopeSave}
+                      onDiscard={handleScopeDiscard}
+                      showActionsInitially={true}
+                      readOnly={activeEditable !== 'scopeOfWork'}
+                      onRequestEdit={() => setActiveEditable('scopeOfWork')}
+                    />
+                  </CollapsibleSection>
+                </div>
+                <div className='border-t border-[#D9D9D9] my-[24px]' />
 
                 {/* Technical Requirements */}
-                <CollapsibleSection
-                  title='Technical Requirements'
-                  isExpanded={sectionStates.technicalRequirements}
-                  onToggle={() => toggleSection('technicalRequirements')}
-                >
-                  <EditableTextArea
-                    initialValue={sectionContentState.technicalRequirements}
-                    onSave={handleGenericSave('technicalRequirements')}
-                    onDiscard={handleGenericDiscard(
-                      'technicalRequirements',
-                      SECTION_CONTENT.technicalRequirements
-                    )}
-                    showActionsInitially={true}
-                    readOnly={activeEditable !== 'technicalRequirements'}
-                    onRequestEdit={() => setActiveEditable('technicalRequirements')}
-                  />
-                </CollapsibleSection>
-                <div className='border-t border-[#D9D9D9]' />
+                <div className='px-[23px]'>
+                  <CollapsibleSection
+                    title='Technical Requirements'
+                    isExpanded={sectionStates.technicalRequirements}
+                    onToggle={() => toggleSection('technicalRequirements')}
+                  >
+                    <EditableTextArea
+                      initialValue={sectionContentState.technicalRequirements}
+                      onSave={handleGenericSave('technicalRequirements')}
+                      onDiscard={handleGenericDiscard(
+                        'technicalRequirements',
+                        SECTION_CONTENT.technicalRequirements
+                      )}
+                      showActionsInitially={true}
+                      readOnly={activeEditable !== 'technicalRequirements'}
+                      onRequestEdit={() => setActiveEditable('technicalRequirements')}
+                    />
+                  </CollapsibleSection>
+                </div>
+                <div className='border-t border-[#D9D9D9] my-[24px]' />
 
                 {/* Functional Requirements */}
-                <CollapsibleSection
-                  title='Functional Requirements'
-                  isExpanded={sectionStates.functionalRequirements}
-                  onToggle={() => toggleSection('functionalRequirements')}
-                >
-                  <EditableTextArea
-                    initialValue={sectionContentState.functionalRequirements}
-                    onSave={handleGenericSave('functionalRequirements')}
-                    onDiscard={handleGenericDiscard(
-                      'functionalRequirements',
-                      SECTION_CONTENT.functionalRequirements
-                    )}
-                    showActionsInitially={true}
-                    readOnly={activeEditable !== 'functionalRequirements'}
-                    onRequestEdit={() => setActiveEditable('functionalRequirements')}
-                  />
-                </CollapsibleSection>
-                <div className='border-t border-[#D9D9D9]' />
+                <div className='px-[23px]'>
+                  <CollapsibleSection
+                    title='Functional Requirements'
+                    isExpanded={sectionStates.functionalRequirements}
+                    onToggle={() => toggleSection('functionalRequirements')}
+                  >
+                    <EditableTextArea
+                      initialValue={sectionContentState.functionalRequirements}
+                      onSave={handleGenericSave('functionalRequirements')}
+                      onDiscard={handleGenericDiscard(
+                        'functionalRequirements',
+                        SECTION_CONTENT.functionalRequirements
+                      )}
+                      showActionsInitially={true}
+                      readOnly={activeEditable !== 'functionalRequirements'}
+                      onRequestEdit={() => setActiveEditable('functionalRequirRequirements')}
+                    />
+                  </CollapsibleSection>
+                </div>
+                <div className='border-t border-[#D9D9D9] my-[24px]' />
 
                 {/* Vendor Questions */}
-                <CollapsibleSection
-                  title='Vendor Questions'
-                  isExpanded={sectionStates.vendorQuestions}
-                  onToggle={() => toggleSection('vendorQuestions')}
-                >
-                  <EditableTextArea
-                    initialValue={sectionContentState.vendorQuestions}
-                    onSave={handleGenericSave('vendorQuestions')}
-                    onDiscard={handleGenericDiscard(
-                      'vendorQuestions',
-                      SECTION_CONTENT.vendorQuestions
-                    )}
-                    showActionsInitially={true}
-                    readOnly={activeEditable !== 'vendorQuestions'}
-                    onRequestEdit={() => setActiveEditable('vendorQuestions')}
-                  />
-                </CollapsibleSection>
-                <div className='border-t border-[#D9D9D9]' />
+                <div className='px-[23px]'>
+                  <CollapsibleSection
+                    title='Vendor Questions'
+                    isExpanded={sectionStates.vendorQuestions}
+                    onToggle={() => toggleSection('vendorQuestions')}
+                  >
+                    <EditableTextArea
+                      initialValue={sectionContentState.vendorQuestions}
+                      onSave={handleGenericSave('vendorQuestions')}
+                      onDiscard={handleGenericDiscard(
+                        'vendorQuestions',
+                        SECTION_CONTENT.vendorQuestions
+                      )}
+                      showActionsInitially={true}
+                      readOnly={activeEditable !== 'vendorQuestions'}
+                      onRequestEdit={() => setActiveEditable('vendorQuestions')}
+                    />
+                  </CollapsibleSection>
+                </div>
+                <div className='border-t border-[#D9D9D9] my-[24px]' />
 
                 {/* Terms & Conditions */}
-                <CollapsibleSection
-                  title='Terms & Conditions'
-                  isExpanded={sectionStates.termsConditions}
-                  onToggle={() => toggleSection('termsConditions')}
-                >
-                  <EditableTextArea
-                    initialValue={sectionContentState.terms}
-                    onSave={handleGenericSave('terms')}
-                    onDiscard={handleGenericDiscard('terms', SECTION_CONTENT.terms)}
-                    showActionsInitially={true}
-                    readOnly={activeEditable !== 'termsConditions'}
-                    onRequestEdit={() => setActiveEditable('termsConditions')}
-                  />
-                </CollapsibleSection>
+                <div className='px-[23px]'>
+                  <CollapsibleSection
+                    title='Terms & Conditions'
+                    isExpanded={sectionStates.termsConditions}
+                    onToggle={() => toggleSection('termsConditions')}
+                  >
+                    <EditableTextArea
+                      initialValue={sectionContentState.terms}
+                      onSave={handleGenericSave('terms')}
+                      onDiscard={handleGenericDiscard('terms', SECTION_CONTENT.terms)}
+                      showActionsInitially={true}
+                      readOnly={activeEditable !== 'termsConditions'}
+                      onRequestEdit={() => setActiveEditable('termsConditions')}
+                    />
+                  </CollapsibleSection>
+                </div>
               </div>
             </div>
           </div>
