@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import FormField from './FormField'
 import CollapsibleSection from './CollapsibleSection'
 import EditableTextArea from './EditableTextArea'
-import CheckboxCheckedIcon from '../../../assets/icons/CheckboxCheckedIcon.svg?react'
+import CheckboxCheckedIcon from '../../../../assets/icons/CheckboxCheckedIcon.svg?react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Breadcrumb from '../Breadcrumb'
@@ -460,7 +460,7 @@ const OpportunitySummery = () => {
                       )}
                       showActionsInitially={true}
                       readOnly={activeEditable !== 'functionalRequirements'}
-                      onRequestEdit={() => setActiveEditable('functionalRequirRequirements')}
+                      onRequestEdit={() => setActiveEditable('functionalRequirements')}
                     />
                   </CollapsibleSection>
                 </div>
