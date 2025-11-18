@@ -96,7 +96,7 @@ const ProposalCard = ({
                 </button>
 
                 {/* Dropdown Menu - Only show for pending status */}
-                {showDropdown && statusKey === 'pending' && (
+                {showDropdown && (statusKey === 'pending' || statusKey === 'overdue') && (
                   <div className="absolute right-0 top-[45px] z-50 min-w-[230px] rounded-[8px] bg-white shadow-[0px_4px_16px_rgba(0,0,0,0.12)] border border-[#E5E5E5] overflow-hidden">
                     <button
                       type="button"

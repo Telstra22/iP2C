@@ -18,7 +18,12 @@ const ActiveStatusBadge = () => {
 
 const AgentBadge = ({ label, backgroundColor = '#FFFFFF' }) => {
   return (
-    <div className='w-[30px] h-[30px] rounded-full p-[2px] bg-gradient-to-r from-[#00FFE1] via-[#0D54FF] to-[#9524C6]'>
+    <div 
+      className='w-[30px] h-[30px] rounded-full p-[2px]'
+      style={{
+        background: 'linear-gradient(83deg, #00FFE1 1.85%, #0D54FF 44.08%, #9524C6 110.73%)'
+      }}
+    >
       <div 
         className='w-full h-full rounded-full flex items-center justify-center'
         style={{ backgroundColor }}
@@ -78,7 +83,15 @@ const OpportunityManagerCard = ({ data }) => {
           {/* Left side: Icon + Title */}
           <div className='flex items-center gap-[6px]'>
             <OpportunityManagerIcon width={24} height={24} color="#0D54FF" />
-            <span className="text-[#0D54FF] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
+            <span 
+              className="font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]"
+              style={{
+                background: 'linear-gradient(85deg, #00FFE1 -26.81%, #0D54FF 15.3%, #9524C6 93.24%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}
+            >
               {data.title}
             </span>
           </div>
@@ -146,7 +159,7 @@ const AgentActivityCard = ({ activity, showCheckmark }) => {
             <div 
               className='w-[46px] h-[46px] rounded-full p-[2.9px]'
               style={{
-                background: 'linear-gradient(135deg, #00FFE1 0%, #0D54FF 50%, #9524C6 100%)'
+                background: 'linear-gradient(83deg, #00FFE1 1.85%, #0D54FF 44.08%, #9524C6 110.73%)'
               }}
             >
               <div 
@@ -196,7 +209,7 @@ const ProgressIndicator = ({ status }) => {
       <span 
         className="font-['Inter',sans-serif] text-[19px] font-normal leading-[25px]"
         style={{
-          background: 'linear-gradient(84.69deg, rgba(0,255,225,1) 27.09%, rgba(13,84,255,1) 15.15%, rgba(149,36,198,1) 93.31%)',
+          background: 'linear-gradient(85deg, #00FFE1 -26.81%, #0D54FF 15.3%, #9524C6 93.24%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           backgroundClip: 'text'

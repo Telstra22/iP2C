@@ -13,8 +13,8 @@ export const standardSectionsData = [
 ]
 
 export const additionalSectionsData = [
-  { id: 'Innovation', label: 'Innovation', selected: false },
-  { id: 'ESG', label: 'ESG', selected: false },
+  { id: 'Technical Innovation', label: 'Technical Innovation', selected: false },
+  { id: 'Environment, social and governance', label: 'Environment, social and governance', selected: false },
   { id: 'Inclusion & Diversity', label: 'Inclusion & Diversity', selected: false },
   { id: 'Sustainability & Differentiators', label: 'Sustainability & Differentiators', selected: false },
   { id: 'People & Change Management', label: 'People & Change Management', selected: false },

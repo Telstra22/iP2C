@@ -55,12 +55,12 @@ const GenerateAIBlank = () => {
   const handleCloseDocumentSource = () => setShowDocumentSourceModal(false);
 
   // After landing on this page, auto-navigate to GeneratedWithAI after 2 minutes
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      navigate('/generated-with-ai');
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, [navigate]);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     navigate('/generated-with-ai');
+  //   }, 2000);
+  //   return () => clearTimeout(timer);
+  // }, [navigate]);
 //navigate('/generated-with-ai');
   const handleToggleSection = () => {
     setIsExpanded(!isExpanded);

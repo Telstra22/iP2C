@@ -26,7 +26,7 @@ const UploadProposalDocument = () => {
   const selectTemplateRef = useRef(null);
 
   // The specific ID that enables the Verify button (per request)
-  const EXPECTED_OPPORTUNITY_ID = "A001K0132578HWb16AAD";
+  const EXPECTED_OPPORTUNITY_ID = "A-01284889";
   const isVerifyEnabled = opportunityId === EXPECTED_OPPORTUNITY_ID;
 
   useEffect(() => {
@@ -105,7 +105,7 @@ const UploadProposalDocument = () => {
                       type="text"
                       value={opportunityId}
                       onChange={(e) => setOpportunityId(e.target.value)}
-                      placeholder="Enter Opportunity ID"
+                      placeholder="Enter Customer Opportunity ID"
                          className="flex-1 bg-transparent text-[#050505] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px] placeholder:text-[#828282] placeholder:font-normal focus:outline-none"
                     />
                     {isVerified && (
