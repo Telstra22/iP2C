@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import { useState, useRef, useEffect } from "react";
 import { STATUS_COLORS } from "./data/manageProposalsData";
-import { Plus, MoreVertical,SquarePen,Eye } from "lucide-react";
+import { Plus, MoreVertical, SquarePen, Eye, Bell } from "lucide-react";
 
 const ProposalCard = ({
   isCreateCard = false,
@@ -14,6 +15,26 @@ const ProposalCard = ({
   statusKey,
 }) => {
   const navigate = useNavigate();
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    };
+
+    if (showDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showDropdown]);
+
   if (isCreateCard) {
     return (
       <>
@@ -64,13 +85,36 @@ const ProposalCard = ({
                   {statusLabel}
                 </span>
               </div>
-              <button
-                type="button"
-                aria-label="More options"
-                className="inline-flex items-center justify-center w-[41px] h-[41px] flex-shrink-0 rounded-full bg-[#F6F6F6]"
-              >
-                <MoreVertical size={24} color="#0D54FF" strokeWidth={2} />
-              </button>
+              <div className="relative" ref={dropdownRef}>
+                <button
+                  type="button"
+                  aria-label="More options"
+                  className="inline-flex items-center justify-center w-[41px] h-[41px] flex-shrink-0 rounded-full bg-[#F6F6F6] hover:bg-[#E8E8E8] transition-colors"
+                  onClick={() => setShowDropdown(!showDropdown)}
+                >
+                  <MoreVertical size={24} color="#0D54FF" strokeWidth={2} />
+                </button>
+
+                {/* Dropdown Menu - Only show for pending status */}
+                {showDropdown && statusKey === 'pending' && (
+                  <div className="absolute right-0 top-[45px] z-50 min-w-[230px] rounded-[8px] bg-white shadow-[0px_4px_16px_rgba(0,0,0,0.12)] border border-[#E5E5E5] overflow-hidden">
+                    <button
+                      type="button"
+                      className="w-full flex items-center gap-[10px] px-[20px] py-[14px] hover:bg-[#F6F6F6] transition-colors"
+                      onClick={() => {
+                        // Handle send reminder action
+                        console.log('Send reminder clicked');
+                        setShowDropdown(false);
+                      }}
+                    >
+                      <Bell size={22} color="#FF8900" strokeWidth={2} />
+                      <span className="text-[#050505] font-['Inter',sans-serif] text-[21px] font-normal leading-[28px]">
+                        Send Reminder
+                      </span>
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
           <p className="text-[#0D54FF] font-['Inter',sans-serif] text-[16px] font-normal leading-[21px] whitespace-nowrap overflow-hidden text-ellipsis">
@@ -83,7 +127,7 @@ const ProposalCard = ({
           <div className="flex items-start gap-[54px]">
             <div className="flex flex-col gap-[1px] flex-1 min-w-0">
               <span className="text-[#A0A0A0] font-['Inter',sans-serif] text-[16px] font-normal leading-[21px]">
-                Opportunity ID
+                Customer Opportunity ID
               </span>
               <p className="text-[#050505] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px] whitespace-nowrap overflow-hidden text-ellipsis">
                 {title}

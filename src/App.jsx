@@ -10,8 +10,8 @@ import GeneratedWithAI from './components/proposal/AI_generated_Proposals/Ai_pro
 import GenerateAIBlank from './components/proposal/AI_generated_Proposals/Ai_proposal/GenerateAIBlank'
 import PreviewProposalPage from './components/proposal/AI_generated_Proposals/Ai_proposal/preview/PreviewProposalPage'
 import AddSection from './components/proposal/AI_generated_Proposals/Ai_proposal/addSection/AddSection'
- 
-
+import OpportunityLoader from './components/proposal/upload_document/opportunity_summery/opportunity_loader/OpportunityLoader'
+import OpportunityDone from './components/proposal/upload_document/opportunity_summery/opportunity_loader/OpportunityDone'
 function AppContent() {
   return (
     <div className="h-screen overflow-hidden flex flex-col">
@@ -27,6 +27,8 @@ function AppContent() {
           <Route path="/ai_loader" element={<AiLoader />} />
           <Route path="/preview-proposal" element={<PreviewProposalPage />} />
           <Route path="/add-section" element={<AddSection isOpen={true} />} />
+          <Route path="/opportunity_loader" element={<OpportunityLoader />} />
+          <Route path="/opportunity_done" element={<OpportunityDone />} />
           <Route path="*" element={<div>404 Not Found</div>} />
         </Routes>
       </div>

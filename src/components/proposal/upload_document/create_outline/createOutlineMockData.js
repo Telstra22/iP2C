@@ -2,24 +2,24 @@
 export const standardSectionsData = [
   { id: 'Introduction', label: 'Introduction', selected: true },
   { id: 'Objectives', label: 'Objectives', selected: true },
-  { id: 'Recommended solution', label: 'Recommended solution', selected: true },
-  { id: 'Commercial summary', label: 'Commercial summary', selected: true },
-  { id: 'Solution partner', label: 'Solution partner', selected: true },
-  { id: 'Account management', label: 'Account management', selected: true },
-  { id: 'Organizational details', label: 'Organizational details', selected: true },
-  { id: 'Customer support', label: 'Customer support', selected: true },
-  { id: 'Proposal terms', label: 'Proposal terms', selected: true },
+  { id: 'Recommended Solution', label: 'Recommended Solution', selected: true },
+  { id: 'Commercial Summary', label: 'Commercial Summary', selected: true },
+  { id: 'Solution Partner', label: 'Solution Partner', selected: true },
+  { id: 'Account Management', label: 'Account Management', selected: true },
+  { id: 'Organizational Details', label: 'Organizational Details', selected: true },
+  { id: 'Customer Support', label: 'Customer Support', selected: true },
+  { id: 'Proposal Ierms', label: 'Proposal Ierms', selected: true },
   { id: 'Conclusion', label: 'Conclusion', selected: true }
 ]
 
 export const additionalSectionsData = [
-  { id: 'Innovation', label: 'Innovation', selected: true },
-  { id: 'Esg', label: 'Esg', selected: true },
-  { id: 'Inclusion & diversity', label: 'Inclusion & diversity', selected: false },
-  { id: 'Sustainability & differentiators', label: 'Sustainability & differentiators', selected: false },
-  { id: 'People & change management', label: 'People & change management', selected: false },
-  { id: 'Risk management', label: 'Risk management', selected: false },
-  { id: 'Integration strategy', label: 'Integration strategy', selected: false },
-  { id: 'Delivery & governance', label: 'Delivery & governance', selected: false },
-  { id: 'Tools & accelerators', label: 'Tools & accelerators', selected: false }
+  { id: 'Innovation', label: 'Innovation', selected: false },
+  { id: 'ESG', label: 'ESG', selected: false },
+  { id: 'Inclusion & Diversity', label: 'Inclusion & Diversity', selected: false },
+  { id: 'Sustainability & Differentiators', label: 'Sustainability & Differentiators', selected: false },
+  { id: 'People & Change Management', label: 'People & Change Management', selected: false },
+  { id: 'Risk Management', label: 'Risk Management', selected: false },
+  { id: 'Integration Strategy', label: 'Integration Strategy', selected: false },
+  { id: 'Delivery & Governance', label: 'Delivery & Governance', selected: false },
+  { id: 'Tools & Accelerators', label: 'Tools & Accelerators', selected: false }
 ]

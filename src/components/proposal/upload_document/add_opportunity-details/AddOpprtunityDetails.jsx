@@ -145,7 +145,7 @@ const UploadProposalDocument = () => {
             <div className="flex flex-col gap-[20px] mb-[54px]">
               <div className="flex flex-col gap-[8px]">
                 <label className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-semibold leading-[30px]">
-                  Upload relevant opportunity documents
+                  Upload Relevant Opportunity Documents
                   <span className="text-[#FF0000]">*</span>
                 </label>
                 <p className="text-[#505050] font-['Inter',sans-serif] text-[18px] font-normal leading-[24px]">

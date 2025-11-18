@@ -3,7 +3,7 @@
 export const INITIAL_FORM_DATA = {
   customer: "Total Brick",
   businessUnit: "Telstra Business",
-  partner: "Splendra pvt ltd",
+  partner: "Splendra Pvt Ltd",
   archetype: "2",
   industry: "Real Estate",
   newRenewal: "New",
@@ -79,15 +79,13 @@ export const customers = [
 
 export const businessUnit = ["Telstra Business","Telstra Enterprise"];
 
-export const partner = ["Splendra pvt ltd","Abc Pvt Ltd","Xyz Pvt Ltd","Def Pvt Ltd"];
+export const partner = ["Splendra Pvt Ltd","Abc Pvt Ltd","Xyz Pvt Ltd","Def Pvt Ltd"];
 
 export const archetype = ["2", "3", "4", "5"];
 
 export const industries = [
   "Real Estate",
-  "Property development and management",
   "Banking",
-  "Telecommunication",
   "Healthcare",
   "Retail",
   "Consumer Services",

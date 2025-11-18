@@ -15,7 +15,7 @@ export const customerOptions = [
 // Industry dropdown options
 export const industryOptions = [
   "Banking",
-  "Telecommunication",
+  "Real Estate",
   "Healthcare",
   "Retail",
   "Consumer Services",
