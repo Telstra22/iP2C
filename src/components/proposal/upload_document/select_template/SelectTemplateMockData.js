@@ -34,8 +34,8 @@ export const mockRootProps = {
       id: "4",
       name: "Standard Template (Phoenix)",
       description: "Word Document",
-      headerColor: "#b9e7ff",
-      headerText: "Create AI generated proposal for all the sections selected in outline in a Word document",
+      headerColor: "#4295C1",
+      headerText: "Access the latest version of the Phoenix Proposal template",
       documentType: "word",
       logoType: "blue",
       isSelected: false

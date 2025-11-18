@@ -6,8 +6,10 @@ import ConnectionIcon from '../../../assets/icons/ConnectionIcon'
 import ListIcon from '../../../assets/icons/ListIcon'
 import TemplateIcon from '../../../assets/icons/TemplateIcon'
 import { Check, MoveLeft } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 const Sidebar = ({ onStepClick, activeStep = 0, completedSteps = [] }) => {
+  const navigate = useNavigate()
   const steps = [
     {
       icon: MoveLeft,
@@ -76,7 +78,7 @@ const Sidebar = ({ onStepClick, activeStep = 0, completedSteps = [] }) => {
                 <div className='flex px-[36px] py-[20px] flex-col items-start gap-[10px] self-stretch bg-[var(--blacks-0,#FFF)] border-b-[2px] border-[#EFEFEF]'>
                   <button
                     type='button'
-                    onClick={() => window.history.back()}
+                    onClick={() => navigate('/manage_proposals')}
                     className='inline-flex items-center gap-[11px] text-[#0D54FF]'
                   >
                     <IconComponent width={step.iconWidth} height={step.iconHeight} color='#0D54FF' />

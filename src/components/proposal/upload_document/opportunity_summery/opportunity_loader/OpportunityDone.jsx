@@ -1,12 +1,32 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CheckmarkSuccessIcon from '../../../../../assets/icons/CheckmarkSuccessIcon.jsx';
 import AISparkleIcon from '../../../../../assets/icons/AISparkleIcon.jsx';
 import OrchestratorSidebar from '../OrchestratorSidebar.jsx';
 import Breadcrumb from '../../Breadcrumb.jsx';
 import Sidebar from '../../Sidebar.jsx';
 import FooterNav from '../../FooterNav.jsx';
+import { mockOrchestratorDataLoading } from '../OrchestratorSidebarMockData.js'
 
 function OpportunityDone({ onDone, onSendMessage, onStepClick, activeStep = 1, completedSteps = [0], onPrevious, onNext }) {
+  const navigate = useNavigate();
+  const totalActivities = mockOrchestratorDataLoading.agentActivities.length
+  const [visibleCount] = useState(totalActivities)
+
+  const sidebarData = useMemo(() => ({
+    ...mockOrchestratorDataLoading,
+    agentActivities: mockOrchestratorDataLoading.agentActivities.slice(0, visibleCount),
+    // show as completed state: checkmarks on, no progress bar
+    huddleStatus: 'Huddle ended after 3m 56secs..',
+    isHuddleInProgress: false
+  }), [visibleCount])
+  const handleDone = () => {
+    if (onDone) return onDone();
+    navigate('/opportunity_summary');
+  }
+  const handleNext = () => {
+    navigate('/opportunity_summary');
+  }
   return (
     <div className="h-full flex flex-col bg-[#f6f6f6] overflow-hidden">
       {/* Breadcrumb */}
@@ -50,7 +70,7 @@ function OpportunityDone({ onDone, onSendMessage, onStepClick, activeStep = 1, c
             {/* Done Button */}
             <div className="flex justify-end">
               <button
-                onClick={onDone}
+                onClick={handleDone}
                 className="text-[22px] font-semibold text-[#0d54ff] hover:text-[#0040d9] transition-colors"
               >
                 Done
@@ -59,8 +79,8 @@ function OpportunityDone({ onDone, onSendMessage, onStepClick, activeStep = 1, c
           </div>
         </div>
 
-        {/* Right Agent Huddle Sidebar - completed state */}
-        <OrchestratorSidebar isLoading={false} onSendMessage={onSendMessage} />
+        {/* Right Agent Huddle Sidebar - completed state with one-by-one reveal */}
+        <OrchestratorSidebar data={sidebarData} isLoading={false} onSendMessage={onSendMessage} />
       </div>
 
       {/* Footer Navigation */}
@@ -68,7 +88,7 @@ function OpportunityDone({ onDone, onSendMessage, onStepClick, activeStep = 1, c
         <FooterNav
           activeStep={activeStep}
           onPrevious={onPrevious}
-          onNext={onNext}
+          onNext={handleNext}
         />
       </div>
     </div>

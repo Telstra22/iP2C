@@ -114,6 +114,24 @@ const ProposalCard = ({
                     </button>
                   </div>
                 )}
+                {/* Dropdown Menu - Only show for active status */}
+                {showDropdown && statusKey === 'active' && (
+                  <div className="absolute right-0 top-[45px] z-50 min-w-[230px] rounded-[8px] bg-white shadow-[0px_4px_16px_rgba(0,0,0,0.12)] border border-[#E5E5E5] overflow-hidden">
+                    <button
+                      type="button"
+                      className="w-full flex items-center gap-[10px] px-[20px] py-[14px] hover:bg-[#F6F6F6] transition-colors"
+                      onClick={() => {
+                        // Handle generate contract action
+                        console.log('Generate Contract clicked');
+                        setShowDropdown(false);
+                      }}
+                    >
+                      <span className="text-[#050505] font-['Inter',sans-serif] text-[21px] font-normal leading-[28px]">
+                        Generate Contract
+                      </span>
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>

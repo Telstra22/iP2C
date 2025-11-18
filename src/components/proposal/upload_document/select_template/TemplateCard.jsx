@@ -78,10 +78,10 @@ const TemplateCard = ({ template, onSelect, isSelected, onPreview }) => {
         {/* Eye Icon - Top Right */}
         <button
           onClick={handlePreviewClick}
-          className="absolute top-[18px] right-[16px] hover:opacity-80 transition-opacity"
+          className="absolute top-[10px] right-[16px] hover:opacity-80 transition-opacity"
           aria-label="Preview template"
         >
-          <Eye width={20} height={14} color="#FFFFFF" strokeWidth={2} />
+          <Eye width={25} height={25} color="#FFFFFF" strokeWidth={2} />
         </button>
       </div>
 

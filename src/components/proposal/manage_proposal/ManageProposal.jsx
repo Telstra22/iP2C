@@ -100,10 +100,6 @@ function ManageProposal () {
         <div className={BREADCRUMB_BAR_CLASS}>
           <div className={`${CONTAINER_CLASS} ${BREADCRUMB_INNER_CLASS}`}>
             <div className={BREADCRUMB_ROW_CLASS}>
-              <span className="text-[#505050] font-['Inter',sans-serif] text-[18px] font-normal leading-normal">
-                Home
-              </span>
-              <ChevronRight size={35} color='#E2E1E0' strokeWidth={2} />
               <span className="text-[#000000] font-['Inter',sans-serif] text-[18px] font-medium leading-normal">
                 Manage proposals
               </span>

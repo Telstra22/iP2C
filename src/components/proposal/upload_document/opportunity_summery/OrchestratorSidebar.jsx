@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Send } from 'lucide-react'
 import { mockOrchestratorData, mockOrchestratorDataLoading } from './OrchestratorSidebarMockData'
 import ProposalBuilderIcon from '../../../../assets/icons/ProposalBuilderIcon'
@@ -63,36 +63,52 @@ const OpportunityManagerCard = ({ data }) => {
   }
 
   return (
-    <div 
-      className='flex items-center justify-between px-[20px] py-[20px] border-[1.5px] rounded-[9px] mx-[20px] mt-[22px] bg-white'
-      style={{
-        borderImage: 'linear-gradient(84.69deg, rgba(0,255,225,1) 27.09%, rgba(13,84,255,1) 15.15%, rgba(149,36,198,1) 93.31%) 1',
-        borderImageSlice: 1
-      }}
-    >
-      {/* Left side: Icon + Title */}
-      <div className='flex items-center gap-[6px]'>
-        <OpportunityManagerIcon width={24} height={24} color="#0D54FF" />
-        <span className="text-[#0D54FF] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
-          {data.title}
-        </span>
-      </div>
-      
-      {/* Right side: Sound wave + Badges */}
-      <div className='flex items-center gap-[7px]'>
-        <svg width="28" height="31" viewBox="0 0 28 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M-0.0034,10.9999v9" stroke="#0D54FF" strokeWidth="3" strokeLinecap="round"/>
-          <path d="M6.9966,5.9999v19" stroke="#0D54FF" strokeWidth="3" strokeLinecap="round"/>
-          <path d="M13.9966,-0.0001v31" stroke="#0D54FF" strokeWidth="3" strokeLinecap="round"/>
-          <path d="M20.9966,5.9999v19" stroke="#0D54FF" strokeWidth="3" strokeLinecap="round"/>
-          <path d="M27.9966,10.9999v9" stroke="#0D54FF" strokeWidth="3" strokeLinecap="round"/>
-        </svg>
-        <div className='flex items-center' style={{ gap: '-6.79px' }}>
-          {data.agents.map((agent, index) => (
-            <div key={agent} style={{ marginLeft: index > 0 ? '-6.79px' : '0', zIndex: data.agents.length - index }}>
-              <AgentBadge label={agent} backgroundColor={agentColors[agent] || '#FFFFFF'} />
+    <div className='mx-[20px] mt-[22px]'>
+      <div
+        className='rounded-[9px] p-[2px]'
+        style={{
+          backgroundImage: `linear-gradient(#FFFFFF, #FFFFFF), linear-gradient(90deg, rgba(13,84,255,0.35) 0%, rgba(149,36,198,0.35) 50%, rgba(0,255,225,0.35) 100%)`,
+          backgroundClip: 'content-box, border-box',
+          backgroundOrigin: 'border-box',
+          backgroundSize: 'auto, 200% 100%',
+          animation: 'borderFlow 7s linear infinite'
+        }}
+      >
+        <div className='flex items-center justify-between px-[20px] py-[20px] rounded-[9px] bg-white'>
+          {/* Left side: Icon + Title */}
+          <div className='flex items-center gap-[6px]'>
+            <OpportunityManagerIcon width={24} height={24} color="#0D54FF" />
+            <span className="text-[#0D54FF] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
+              {data.title}
+            </span>
+          </div>
+          
+          {/* Right side: Sound wave + Badges */}
+          <div className='flex items-center gap-[7px]'>
+            <div className='flex items-end justify-center h-[31px] w-[28px] gap-[4px]'>
+              {Array.from({ length: 5 }).map((_, i) => (
+                <span
+                  key={i}
+                  style={{
+                    width: '3px',
+                    height: '12px',
+                    backgroundColor: '#0D54FF',
+                    display: 'inline-block',
+                    borderRadius: '2px',
+                    animation: 'barPulse 1.1s ease-in-out infinite',
+                    animationDelay: `${i * 0.12}s`
+                  }}
+                />
+              ))}
             </div>
-          ))}
+            <div className='flex items-center' style={{ gap: '-6.79px' }}>
+              {data.agents.map((agent, index) => (
+                <div key={agent} style={{ marginLeft: index > 0 ? '-6.79px' : '0', zIndex: data.agents.length - index }}>
+                  <AgentBadge label={agent} backgroundColor={agentColors[agent] || '#FFFFFF'} />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -237,14 +253,33 @@ const ChatInput = ({ onSend }) => {
 const OrchestratorSidebar = ({ data, onSendMessage, isLoading = false }) => {
   // Use loading data if isLoading is true, otherwise use provided data or default completed data
   const sidebarData = data || (isLoading ? mockOrchestratorDataLoading : mockOrchestratorData)
+  const listEndRef = useRef(null)
+  useEffect(() => {
+    listEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
+  }, [sidebarData.agentActivities?.length])
   
   return (
     <div className='w-[491px] h-full flex flex-col bg-[#F5F0F0] border-l border-[#D9D9D9]'>
+      <style>{`
+        @keyframes gradientMove {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        @keyframes borderFlow {
+          0% { background-position: 0 0, 0% 0%; }
+          100% { background-position: 0 0, 200% 0%; }
+        }
+        @keyframes barPulse {
+          0%, 100% { transform: scaleY(0.5); opacity: 0.6; }
+          50% { transform: scaleY(1.3); opacity: 1; }
+        }
+      `}</style>
       <OrchestratorHeader />
       
       <OpportunityManagerCard data={sidebarData.opportunityManager} />
       
-      <div className='flex-1 overflow-y-auto px-[20px] pt-[22px] pb-[16px] min-h-0'>
+      <div className='flex-1 overflow-y-auto overflow-x-hidden px-[20px] pt-[22px] pb-[16px] min-h-0'>
         <div className='flex flex-col' style={{ gap: sidebarData.isHuddleInProgress ? '22px' : '18px' }}>
           {sidebarData.agentActivities.map((activity) => (
             <AgentActivityCard key={activity.id} activity={activity} showCheckmark={!sidebarData.isHuddleInProgress} />
@@ -260,6 +295,7 @@ const OrchestratorSidebar = ({ data, onSendMessage, isLoading = false }) => {
               <CompletedAgentsBadges />
             </div>
           )}
+          <div ref={listEndRef} />
         </div>
       </div>
       

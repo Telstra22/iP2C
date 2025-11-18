@@ -6,6 +6,9 @@ import FileUploadZone from '../add_opportunity-details/FileUploadZone.jsx'
 import AiLoader from '../../AI_generated_Proposals/AiLoader/AiLoader.jsx'
 import PreviewTemplate from './PreviewTemplate.jsx'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import Breadcrumb from '../Breadcrumb'
+import Sidebar from '../Sidebar'
+import FooterNav from '../FooterNav'
 
 const SelectTemplate = forwardRef(({ onTemplateSelect, onUploadChange, errorMessage, clearError, errorTick = 0, showLoader: showLoaderProp = false }, ref) => {
   const navigate = useNavigate()
@@ -150,7 +153,26 @@ const Toast = ({ message, duration = 3000, trigger = 0 }) => {
         <Toast message={errorMessage || localError} duration={3000} trigger={localErrorTick + errorTick} />
       )}
       <AiLoader isVisible={showLoader || showLoaderProp} onCancel={handleCancelLoader} />
-      <div className="flex flex-col bg-[#F6F6F6] min-h-screen">
+      <div className='w-full h-full bg-[#F6F6F6] flex flex-col overflow-hidden'>
+        {/* Breadcrumb */}
+        <Breadcrumb current={'Select Template'} />
+
+        {/* Main content area */}
+        <div className='flex flex-1 overflow-hidden'>
+          {/* Sidebar */}
+          <Sidebar
+            activeStep={4}
+            completedSteps={[0,1,2,3]}
+            onStepClick={(idx) => {
+              if (idx === 1) navigate('/opportunity_summary')
+              if (idx === 2) navigate('/upload_historical_proposal')
+              if (idx === 3) navigate('/create_outline')
+              if (idx === 4) navigate('/select_template')
+            }}
+          />
+
+          {/* Center content */}
+          <div className="flex-1 overflow-y-auto overflow-x-hidden pl-[30px] pr-[37px] pt-0 pb-[37px]">
         {/* Main Content Card */}
         <div className='w-[1330px] bg-white rounded-[9px] px-[37px] pt-0 pb-[37px] mt-[37px] mb-[37px]'>
         {/* Header (matching Create_Outline design) */}
@@ -185,6 +207,10 @@ const Toast = ({ message, duration = 3000, trigger = 0 }) => {
                     isSelected={template.isSelected}
                     onPreview={handlePreview}
                   />
+                ))}
+                {/* Invisible placeholders to keep row width consistent */}
+                {Array.from({ length: Math.max(0, pageSize - visibleTemplates.length) }).map((_, i) => (
+                  <div key={`placeholder-${i}`} className='w-[393px] h-[313px] invisible' />
                 ))}
               </div>
 
@@ -224,6 +250,19 @@ const Toast = ({ message, duration = 3000, trigger = 0 }) => {
         </div>
         </div>
         
+        {/* Close center content and main area wrappers */}
+        </div>
+        </div>
+
+        {/* Footer Navigation */}
+        <div className='flex-shrink-0'>
+          <FooterNav
+            activeStep={4}
+            onPrevious={() => navigate('/create_outline')}
+            onNext={handleNext}
+          />
+        </div>
+
         {/* Preview Modal */}
         <PreviewTemplate 
           isOpen={showPreview}
@@ -231,7 +270,7 @@ const Toast = ({ message, duration = 3000, trigger = 0 }) => {
           template={previewTemplate}
         />
       </div>
-      </>
+    </>
     )
   })
 
