@@ -249,11 +249,11 @@ function Login() {
         <div className="hidden lg:flex w-1/2 relative overflow-hidden h-full bg-[#FEF9EF]">
           {/* Text content */}
           <div className="absolute left-[60px] xl:left-[100px] 2xl:left-[125px] top-[200px] xl:top-[200px] 2xl:top-[200px] z-10 w-full max-w-[710px]">
-            <h1 className="text-[#505050] font-['Inter',sans-serif] text-[45.15px] font-medium leading-[60.55px] mb-[52px]">
+            <h1 className="text-[#505050] font-['Inter',sans-serif] text-[45.151px] font-bold leading-[134.1%] mb-[52px]" style={{ fontStyle: 'normal', fontWeight: 700 }}>
               <span className="text-[#0D54FF]">Intelligent</span> Proposal to Contract (iP2C)
             </h1>
             <p className="text-[#505050] font-['Inter',sans-serif] text-[24px] font-normal leading-[134.1%]">
-              Agentic AI-powered tool for automated proposal generation with automated contract review and negotiation, enabling a seamless transition from opportunity response to contract finalisation
+              AI-powered tool for automated proposal generation with automated contract review and negotiation, enabling a seamless transition from opportunity response to contract finalisation
             </p>
           </div>
           

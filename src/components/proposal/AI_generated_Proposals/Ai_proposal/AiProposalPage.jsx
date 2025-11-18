@@ -75,10 +75,10 @@ const AiProposalPage = () => {
     try {
       const card = {
         id: '1',
-        title: '001K0132578HWb16AAD',
-        category: 'Banking | Melbourne',
-        customer: 'Total Brick',
-        template: 'Default',
+        title: 'A-01284889',
+        category: 'Real Estate | Melbourne',
+        customer: 'Total Bricks Pvt. Ltd.',
+        template: 'Standard',
         createdOn: 'Sep 25, 2025 06:29 AM',
         updatedOn: 'Sep 25, 2025 06:47 AM',
         statusKey: 'active'

@@ -1,356 +1,178 @@
 // Mock data for AI Proposal Page
 export const mockRootProps = {
-  currentPage: "Ai Generated Proposal",
-  proposalTitle: "AI Generated Proposal",
-  allSections: [
-    { id: 1, title: "1. INTRODUCTION", isActive: true },
-    { id: 2, title: "2. OBJECTIVES" },
-    { id: 3, title: "3. RECOMMENDED SOLUTION" },
-    { id: 4, title: "4. COMMERCIAL SUMMARY" },
-    { id: 5, title: "5. SOLUTION PARTNER" },
-    { id: 6, title: "6. ACCOUNT MANAGEMENT" },
-    { id: 7, title: "7. ORGANIZATIONAL DETAILS" },
-    { id: 8, title: "8. CUSTOMER SUPPORT" },
-    { id: 9, title: "9. PROPOSAL TERMS" },
-    { id: 10, title: "10. CONCLUSION" },
-    { id: 11, title: "11. INNOVATION" },
-    { id: 12, title: "12. ESG" }
-  ],
-  sections: [
-    {
-      id: 1,
-      title: "1. INTRODUCTION",
-      isExpanded: true,
-      content: "In today's fast-paced and technologically driven business environment, Total Brick is poised at a critical juncture where evaluating and optimizing mobility services is not just an option but a necessity. With the rapid adoption of technology and evolving business needs across Australia, it becomes imperative to reassess and realign our existing mobility strategies to ensure they meet both current demands and future growth. As a market leader, Total Brick stands committed to leveraging advanced connectivity solutions that empower our operations and enhance our competitive edge. Our focus remains on delivering a seamless, secure, and cost-effective mobility solution that aligns with our organizational goals and supports our strategic vision.\n\nTotal Brick's partnership with Telstra and imei underscores a shared commitment to fostering innovation and operational efficiency through advanced mobility solutions. This long-standing relationship with Australian enterprises has been instrumental in navigating the complexities of the digital landscape, ensuring that our mobility services are not only cutting-edge but also robust and reliable. By collaborating with Telstra and imei, we have consistently delivered solutions that are tailored to the unique needs of our enterprise, enabling us to maintain a competitive advantage in the market. Our collaboration has been a testament to the power of strategic partnerships in driving business success.\n\nThe proposed solution builds on our existing enterprise mobility plan, with a focus on evaluating current services and assessing market offerings to identify opportunities for improvement. By continuing our course with enhancements for scalability, we aim to provide a secure, efficient, and scalable mobility solution that meets the evolving needs of our business. This approach ensures that Total Brick remains at the forefront of technological innovation, equipped to meet the demands of a rapidly changing market. As we move forward, our commitment to excellence and innovation will guide us in delivering a mobility solution that not only meets but exceeds the expectations of our stakeholders.",
-      subsections: [
+    "currentPage": "AI Generated Proposal",
+    "proposalTitle": "AI Generated Proposal",
+    "allSections": [
         {
-          id: "1.1",
-          title: "1.2 Background",
-          content: "Total Brick stands as a prominent property group, renowned for its ownership, management, and development of diverse real estate assets, including shopping centres, office and industrial properties, residential communities, and retirement living solutions. With a commitment to creating sustainable and thriving communities across the country, Total Brick has consistently demonstrated its ability to adapt and grow in a dynamic market. As the company continues to expand its footprint, the need for robust and reliable communication services becomes increasingly critical. The existing contract for mobility services has expired, prompting a timely review to ensure that the new solution aligns with Total Brick's strategic goals of cost-effectiveness and reliability.\n\nIn the pursuit of a reputable provider, Total Brick seeks to procure reliable, cost-effective mobile voice and data services for its existing fleet in Australia. The ideal solution must not only offer mature security practices but also support the company's innovative and efficient operations. Telstra, with its market-leading mobile network and advanced connectivity solutions, emerges as the ideal provider. By offering a secure, cost-effective mobility solution, Telstra enables Total Brick to maintain its competitive edge and continue its mission of fostering sustainable communities."
+            "id": 1,
+            "title": "1. INTRODUCTION",
+            "isActive": true
         },
         {
-          id: "1.2",
-          title: "1.3 A solution aligned with your vision",
-          content: "In today's rapidly evolving digital landscape, Total Brick stands at the forefront of innovation, seeking to harness cutting-edge technology to drive strategic growth and operational excellence. Our proposal is designed to seamlessly align with your vision by evaluating your current mobility services and identifying opportunities for enhancement. With an existing mobile plan of 200 GB data, the integration of IoT and the adoption of 5G connectivity are pivotal for your expansion into remote workforce enablement. Our solution offers a comprehensive suite of mobile, mobile broadband, and enterprise wireless services, characterized by high-speed, low-latency 5G connectivity. This ensures a secure, cost-effective, and flexible mobility solution without the constraints of lock-in contracts, allowing for the dynamic adaptation of hardware as your needs evolve.\n\nThe impact of our solution extends beyond mere connectivity. By enabling remote work and integrating AI-driven enterprise applications, we facilitate a scalable and efficient operational model. Our commitment to strategic value is underscored by adherence to GDPR and ISO 27001 standards, ensuring compliance and data security. Moreover, our approach promises a 15% reduction in costs and a 10% increase in revenue, aligning with your goal of carbon-neutral operations by 2030. As a trusted partner, Telstra and imei bring a legacy of excellence in advanced connectivity solutions, empowering Total Brick to innovate and lead in the market. Our proposal not only meets your immediate needs but also positions you for sustained growth and success in a competitive landscape."
-        },
-    {
-      id: 10,
-      title: "10. CUSTOMER SUPPORT",
-      isExpanded: true,
-      content: `## Customer Support
-
-Our customer support services are available from 8:30 AM to 8:30 PM, Monday to Friday, excluding public holidays. Customers can reach us through multiple channels including phone, email, webchat, and an online portal. All support is provided by our Australian on-shore Customer Service Centre, ensuring prompt and localized assistance.
-
-| Priority                | Respond Within | Update Every | Restore/Resolve Within | Compliance Target |
-|-------------------------|----------------|--------------|------------------------|-------------------|
-| 1 (Critical)            | 15 mins        | 1 hour       | 4 hours                | 90%               |
-| 2 (Major)               | 30 mins        | 2 hours      | 8 hours                | 90%               |
-| 3 (Minor)               | 1 hour         | 8 hours      | 1 Business Day         | 90%               |
-| 4 (Urgent Request)      | 2 hours        | 12 hours     | 3 Business Days        | 90%               |
-| 5 (Standard Request)    | 3 hours        | 24 hours     | 5 Business Days        | 90%               |`,
-      subsections: []
-    }
-      ]
-    },
-     {
-      id: 2,
-      title: "2. BACKGROUND",
-      isExpanded: true,
-      content: `Total Brick stands as a prominent property group, renowned for its ownership, management, and development of diverse real estate assets, including shopping centres, office and industrial properties, residential communities, and retirement living solutions. With a commitment to creating sustainable and thriving communities across the country, Total Brick has consistently demonstrated its ability to adapt and grow in a dynamic market. As the company continues to expand its footprint, the need for robust and reliable communication services becomes increasingly critical. The existing contract for mobility services has expired, prompting a timely review to ensure that the new solution aligns with Total Brick's strategic goals of cost-effectiveness and reliability.
-
-In the pursuit of a reputable provider, Total Brick seeks to procure reliable, cost-effective mobile voice and data services for its existing fleet in Australia. The ideal solution must not only offer mature security practices but also support the company's innovative and efficient operations. Telstra, with its market-leading mobile network and advanced connectivity solutions, emerges as the ideal provider. By offering a secure, cost-effective mobility solution, Telstra enables Total Brick to maintain its competitive edge and continue its mission of fostering sustainable communities.`,
-      subsections: []
-    },
-      {
-      id: 3,
-      title: "3. SOLUTION ALIGNED WITH YOUR VISION",
-      isExpanded: true,
-      content: `In today's rapidly evolving digital landscape, Total Brick stands at the forefront of innovation, seeking to harness cutting-edge technology to drive strategic growth and operational excellence. Our proposal is designed to seamlessly align with your vision by evaluating your current mobility services and identifying opportunities for enhancement. With an existing mobile plan of 200 GB data, the integration of IoT and the adoption of 5G connectivity are pivotal for your expansion into remote workforce enablement. Our solution offers a comprehensive suite of mobile, mobile broadband, and enterprise wireless services, characterized by high-speed, low-latency 5G connectivity. This ensures a secure, cost-effective, and flexible mobility solution without the constraints of lock-in contracts, allowing for the dynamic adaptation of hardware as your needs evolve.
-
-The impact of our solution extends beyond mere connectivity. By enabling remote work and integrating AI-driven enterprise applications, we facilitate a scalable and efficient operational model. Our commitment to strategic value is underscored by adherence to GDPR and ISO 27001 standards, ensuring compliance and data security. Moreover, our approach promises a 15% reduction in costs and a 10% increase in revenue, aligning with your goal of carbon-neutral operations by 2030. As a trusted partner, Telstra and imei bring a legacy of excellence in advanced connectivity solutions, empowering Total Brick to innovate and lead in the market. Our proposal not only meets your immediate needs but also positions you for sustained growth and success in a competitive landscape.`,
-      subsections: []
-    },
-    {
-      id: 4,
-      title: "4. OBJECTIVES",
-      isExpanded: true,
-      content: `In today's rapidly evolving business landscape, the ability to deliver unique and meaningful experiences is paramount for opening new business opportunities. This strategic intent underscores the necessity for change, as organizations strive to stay competitive and relevant. The dynamic nature of the market demands that businesses not only adapt but also anticipate future needs, ensuring they are well-positioned to capitalize on emerging opportunities. By embracing innovation and leveraging advanced technologies, companies can enhance their operational efficiency and customer engagement, thus driving growth and success.
-
-Our understanding of your business goals and mobility needs has highlighted several key ambitions that are crucial for achieving your strategic objectives. To address these ambitions, Telstra offers tailored solutions designed to meet your specific requirements and propel your business forward.
-
-Customer Ambitions and Telstra Solutions:
-
-• Procure reliable IoT, eSIM, and LEO satellite capabilities
-  - Flexible Solutions: No lock-in contracts on individual services for scalability
-
-• Maintain compliance with Australian data sovereignty and security regulations
-  - Technology Integration: Seamless information flow between internal and external portals
-
-• Provide 24/7 customer support and clear escalation paths
-  - Experts On Call: Access expert mobility managed services to free internal resources
-
-• Procure reliable and cost-effective mobile voice and data services for existing fleet
-  - Right Size Plan Allocation: Eliminate cost and inclusion variances for seamless 5G experience
-
-• Partner with a reputable provider with proven experience and strong security practices
-  - Better Connectivity: Telstra 5G for high-speed and low latency
-
-• Ensure robust coverage including 4G, 5G, and rural/remote areas
-  - Support Hybrid Workforce: Mobilize business on Australia's largest mobile network
-
-• Enable scalability and flexibility to adapt to changing business needs
-  - Overcome Capex Constraints: Maximize available technology funds
-
-• Provide transparent pricing and cost-effectiveness across user profiles
-  - Cost Savings: Optimize expense visibility and reporting to reduce misallocation
-
-• Offer operational support with efficient ordering, reporting, and management tools
-  - Maximize Productivity: Equip workers with speed, responsiveness, and coverage for powerful apps
-
-• Deliver consolidated and accurate billing with advanced analysis capabilities
-  - Cost Savings: Optimize expense visibility and reporting to reduce misallocation
-
-• Include service-level guarantees for activation, fault resolution, and ongoing operations
-  - Experts On Call: Access expert mobility managed services to free internal resources
-
-• Support environmental sustainability and social responsibility initiatives
-  - Support Hybrid Workforce: Mobilize business on Australia's largest mobile network
-
-By aligning your ambitions with Telstra's comprehensive solutions, we are committed to empowering your business to achieve its strategic goals and unlock new opportunities for growth and innovation.`,
-      subsections: []
-    },
-      {
-      id: 5,
-      title: "5. RECOMMENDED SOLUTION",
-      isExpanded: true,
-      content: `In alignment with the RFP goals and the customer's vision, our proposed solution is designed to enhance current mobility services while ensuring scalability and alignment with organizational needs. By evaluating market offerings, we aim to identify opportunities for improvement that align with the customer's objectives. Our solution leverages Telstra's market-leading mobile network and advanced connectivity solutions to meet the rapid technology adoption and evolving business needs across Australia. With a strong commitment to partnership and operational excellence, Telstra and imei continue to support Australian enterprises through innovative and efficient mobility solutions. Our future-ready approach ensures readiness for emerging technologies and scalability, addressing the RFP requirements with precision and foresight.
-
-Core Components
-
-Plans: Our Adaptive Mobility plans with 5G connectivity ensure seamless voice and data services for 1200 lines, supporting shared data pools and enhancing communication efficiency across the organization.
-
-WebPortal_ITSM: Integration with ServiceNOW ITSM via existing APIs facilitates streamlined operations and improved service management, aligning with the customer's integration requirements.
-
-NetworkConnectivity: SIM registration and mobile plan activation provide immediate connectivity, ensuring that all devices are operational from day one, supporting nationwide 4G/5G coverage and rural/remote support.
-
-SecurityCompliance: Access to the imei Intelligence Dashboard ensures ISO 27001 compliance and Australian data sovereignty, reinforcing the customer's security posture and data protection standards.
-
-DeviceAllocation: Procurement and staging services available same or next business day enhance operational efficiency, ensuring that devices are ready for deployment without delay.
-
-Distribution: Our delivery SLAs guarantee timely delivery—metro in 1 day, regional in 2 days, and remote in 3-4 days—ensuring that all regions are supported efficiently, contributing to operational excellence.
-
-Optional
-
-MobileDeviceManagement: By offering expert support for platform/enrollment issues and compliance reporting, this component enhances device management and security policy adherence, providing a strategic advantage in maintaining operational integrity.
-
-ExpenseManager: The integration of carrier bill files into an expense tool with a visual reporting portal offers enhanced financial oversight and efficiency, allowing for strategic financial management and cost control.
-
-VIPSupport: Providing up to 50 Stockland staff with 24x7x365 phone and email support ensures that critical personnel receive priority assistance, enhancing operational reliability and responsiveness.`,
-      subsections: []
-    },
-      {
-      id: 6,
-      title: "6. COMMERCIAL SUMMARY",
-      isExpanded: true,
-      content: `The commercial summary outlines the pricing for the required services over two contract term options: 24 months and 36 months. The proposal includes voice and data plans, data-only services, and satellite voice services, with pricing detailed below.
-
-### Pricing — 24 Months
-
-| Plan             | Plan Type        | Qty  | Unit Price (inc. GST) | Total Price (inc. GST) |
-|------------------|------------------|------|-----------------------|------------------------|
-| Voice Essential  | Voice            | 1200 | USD 53.00             | USD 63,600.00          |
-| MBB Essential    | Mobile Broadband | 430  | USD 22.00             | USD 9,460.00           |
-| TMS Essential    | Satellite        | 2    | USD 55.00             | USD 110.00             |
-| Sub-TOTAL        |                  |      |                       | USD 73,170.00          |
-
-### Pricing — 36 Months
-
-| Plan             | Plan Type        | Qty  | Unit Price (inc. GST) | Total Price (inc. GST) |
-|------------------|------------------|------|-----------------------|------------------------|
-| Voice Essential  | Voice            | 1200 | USD 53.00             | USD 60,420.00          |
-| MBB Essential    | Mobile Broadband | 430  | USD 22.00             | USD 8,987.00           |
-| TMS Essential    | Satellite        | 2    | USD 55.00             | USD 104.50             |
-| Sub-TOTAL        |                  |      |                       | USD 69,511.50          |
-
-Note: The 36-month pricing reflects a 5% discount on the total monthly charges.`,
-      subsections: [
-        {
-          id: "6.1",
-          title: "6.1 Commercial Obligation",
-          content: `The proposed commercial options are offered subject to adherence to certain conditions. These Minimum Commitments, measured on a quarterly basis for the Services, are outlined below:
-
-• Minimum Service Period: 24-months
-• Minimum number of services: TBC based upon final service count
-• Minimum spend: TBC based on final service count
-• During the Minimum Service Period, placeholder_customer_name may change or cancel individual Adaptive Mobility Plans if they continue to meet the Minimum number of services and Minimum spend.
-• If placeholder_customer_name does not meet these Minimum Commitments, you are not eligible for any applied discounts.
-• If placeholder_customer_name does not meet the Minimum Commitments at any time during the Minimum Service Period, Telstra may take the following action for the mentioned level of minimum commitment:
-    - 90% or more - placeholder_customer_name are eligible to access Your Price (discounted) if they meet the relevant conditions.
-    - Under 90%, more than 70% - Telstra may remove discounts and change Your Price to our then current List Price on 30 days’ notice. Telstra reapply discounts and Your Price to the next quarter after placeholder_customer_name meet the Minimum Commitment.
-    - 70% or less - Telstra may remove discounts and change to the List Price on 30 days’ notice. placeholder_customer_name is no longer eligible for Your Price. During a Minimum Service Period, placeholder_customer_name may need to reimburse us for any discounts Telstra applied to your Adaptive Mobility services from the Service Start Date.      
-• Consequences of early termination during Minimum Service Period - If placeholder_customer_name’s Agreement, the Service Schedule, or all Services under the Schedule are cancelled during the Minimum Service Period for any reason other than a material breach, then Telstra may require placeholder_customer_name to reimburse for any discounts Telstra applied to the Services from the Service Start Date until the cancellation date.`
+            "id": 2,
+            "title": "2. OBJECTIVES"
         },
         {
-          id: "6.2",
-          title: "6.2 Discounts",
-          content: `### Telstra Enterprise Fund (TEF)
-
-The Telstra Enterprise Fund (TEF) provides an overview of its benefits, offering a 10% accrual of Eligible Charges for each active Eligible Fund Service, calculated monthly. These funds are contributed at the start of each month and can be used to purchase eligible products and services from Telstra and imei, enhancing customer value through strategic reinvestment in technology.
-
-### Telstra Corporate Perks
-
-The Telstra Corporate Perks program offers a 10% discount on Telstra branded Post-paid Handheld and Mobile Broadband Consumer services. This program extends its benefits to all employees and their family members on the same account, fostering a comprehensive savings opportunity over a 24-month term.
-
-### Mobile Maturity Assessment (MMA)
-
-The Mobile Maturity Assessment (MMA) offer is structured to deliver a concise evaluation of mobility capabilities, taking 1.5 hours to complete. It results in a shared, simple report that ranks eleven key elements of mobility capability, providing actionable insights for strategic improvement.
-
-### 5G Slicing – Proof of Concept Opportunity
-
-The 5G Slicing Proof of Concept (PoC) offers a trial opportunity with a focus on performance assurance. The mobility analytics engine monitors 5G traffic every second, ensuring that billing occurs only if the promised performance is achieved. This trial is available now, with a commercial release anticipated in 2025, positioning participants at the forefront of technological advancement.`
+            "id": 3,
+            "title": "3. RECOMMENDED SOLUTION"
+        },
+        {
+            "id": 4,
+            "title": "4. COMMERCIAL SUMMARY"
+        },
+        {
+            "id": 5,
+            "title": "5. SOLUTION PARTNER"
+        },
+        {
+            "id": 6,
+            "title": "6. ACCOUNT MANAGEMENT"
+        },
+        {
+            "id": 7,
+            "title": "7. ORGANIZATIONAL DETAILS"
+        },
+        {
+            "id": 8,
+            "title": "8. CUSTOMER SUPPORT"
+        },
+        {
+            "id": 9,
+            "title": "9. PROPOSAL TERMS"
+        },
+        {
+            "id": 10,
+            "title": "10. CONCLUSION"
+        },
+        {
+            "id": 11,
+            "title": "11. TECHNICAL INNOVATION"
+        },
+        {
+            "id": 12,
+            "title": "12. Environment, social and governance"
         }
-      ]
-    },
-    {
-      id: 7,
-      title: "7. SOLUTION PARTNER",
-      isExpanded: true,
-      content: `In the realm of enterprise mobility solutions, imei stands as a beacon of innovation and reliability, making it an indispensable strategic partner in our proposal. As a Platinum Partner renowned for its managed mobility services, imei brings over two decades of unparalleled experience in lifecycle management, particularly within the Australian telecommunications landscape. Having pioneered lifecycle management, imei has consistently demonstrated a commitment to excellence, leveraging its global capabilities to deliver comprehensive enterprise mobility solutions. Their adept use of automation and IT Service Management (ITSM) tools ensures operational efficiency, providing clients with streamlined processes that are both effective and cost-efficient. With an impressive Net Promoter Score (NPS) exceeding 80, imei's dedication to customer satisfaction is evident, further solidified by their Essential 8 security grading and Telstra SECOPS clearance, which underscore their commitment to security and compliance.
-
-The synergy between Telstra’s robust infrastructure and imei’s service excellence creates a formidable joint value proposition that serves top-tier Australian enterprises with unmatched precision and reliability. Telstra’s leadership in network infrastructure, combined with imei’s technical expertise and customer-focused approach, ensures that clients receive not only cutting-edge technology but also a seamless service experience. This partnership harnesses the strengths of both entities, offering a comprehensive suite of solutions that address the complex needs of modern enterprises. By integrating Telstra’s expansive network capabilities with imei’s meticulous lifecycle management and technical proficiency, we deliver a holistic solution that empowers businesses to thrive in an increasingly digital world.
-
-Together, Telstra and imei redefine the standards of enterprise mobility, providing clients with a strategic advantage that is both sustainable and scalable. This collaboration is not merely a combination of resources but a fusion of vision and expertise that propels customer success. Enterprises can rely on this partnership to navigate the complexities of mobility management with confidence, knowing they are supported by leaders in both network infrastructure and managed mobility services. As we continue to innovate and expand our offerings, the Telstra-imei alliance remains committed to delivering exceptional value, ensuring that our clients are always at the forefront of technological advancement and operational excellence.`,
-      subsections: []
-    },
-    {
-      id: 8,
-      title: "8. ACCOUNT MANAGEMENT",
-      isExpanded: true,
-      content: `The purpose of this section is to outline the roles and responsibilities associated with the management of accounts and services. This ensures clarity in communication and efficient handling of queries and support requests. The following table dynamically summarizes the roles, organizations involved, and their respective responsibilities, based on the provided categories and metadata.
-
-| Role/Responsibility                        | Organization | Description                                                                 |
-|--------------------------------------------|--------------|-----------------------------------------------------------------------------|
-| Primary vendor contact for account queries | Telstra      | Handles account level queries, governance, and sales enquiries.             |
-| Tactical engagement for technology         | Telstra      | Focuses on technology initiatives and outcomes.                             |
-| Primary partner contact for account queries| imei         | Manages account queries and sales.                                          |
-| Customer Service Helpdesk (L1)             | imei         | Provides support and case updates.                                          |
-| Engineers and specialists (L2 and L3)      | imei         | Offers advanced support for technical issues.                               |
-| Vendor engineers (L4)                      | Telstra      | Responsible for platform support and escalations.                           |
-| Named manager for service delivery         | imei         | Oversees day-to-day service delivery.                                       |
-
-This table is designed to provide a clear and concise overview of the various roles and responsibilities, ensuring that all parties involved are aware of their specific duties and points of contact. This structured approach facilitates effective communication and service management.`,
-      subsections: []
-    },
-    {
-      id: 9,
-      title: "9. ORGANIZATIONAL DETAILS",
-      isExpanded: true,
-      content: `## Organizational Details
-
-Below are the organizational details for the companies involved:
-
-| Field                | Value                                           |
-|----------------------|-------------------------------------------------|
-| Company Name         | Telstra Limited                                 |
-| ACN                  | 086 174 781                                     |
-| ABN                  | 64 086 174 781                                  |
-| Registered Address   | Telstra Limited, 242 Exhibition Street, Melbourne Victoria 3000 |
-| Affiliated Companies | All entities included under Telstra Group Limited |
-| Preferred Contact    | John Doe                                        |
-| Phone                | +61 400 900 800                                 |
-| Email                | John.doe@team.telstra.com                       |
-
-| Field                | Value                                           |
-|----------------------|-------------------------------------------------|
-| Company Name         | imei                                            |
-| ACN                  |                                                 |
-| ABN                  |                                                 |
-| Registered Address   |                                                 |
-| Affiliated Companies | N/A                                             |
-| Preferred Contact    | N/A                                             |
-| Phone                |                                                 |
-| Email                |                                                 |`,
-      subsections: []
-    },
-    {
-      id: 11,
-      title: "11. PROPOSAL TERMS",
-      isExpanded: true,
-      content: `This proposal remains valid for [validity_period] from its date of submission. Some or all of the prices in this proposal may be subject to Telstra’s Our Customer Terms and may change from time to time.
-Acceptance of this proposal, or any part of it, is subject to contract (with Telstra or a Telstra group entity) and product or service availability.
-
-Confidentiality Statement
-The contents of this proposal and any documents provided to you as part of this proposal are confidential information of Telstra and may only be used by you for the purpose of evaluating this proposal. They must not be disclosed to any third party without [COMPANY_NAME]’s prior consent, unless required to do so by law.
-You acknowledge that Telstra may be required to disclose information that you provide to third parties (such as our suppliers) in order to supply the products and services as set out in this proposal.
-Telstra makes no representations or warranties as to the accuracy or completeness of any information provided to you as part of this proposal. You must make your own assessment of the information and satisfy yourself as to its accuracy and completeness.
-
-Intellectual Property
-Telstra and its suppliers retain ownership of all intellectual property subsisting in the contents of this proposal and any documents provided to you as part of this proposal.
-
-Technical Appraisal
-The prices and services in this proposal are based on Telstra’s current understanding of your requirements. Technical appraisals or feasibility assessments by Telstra may be required to determine whether Telstra is able to provide the services. If additional design and construction work is required to provide the service(s) (i.e., installation of network infrastructure), further costs may apply and will be advised to you before the commencement of work.
-
-Tax Statement
-Unless otherwise expressly stated, all prices in this proposal are exclusive of GST and other transactional taxes (including value-added taxes, charges, withholding taxes, duties (including customs duty and stamp duty), excise, sales tax and other similar taxes) which may be imposed by any taxing authority where the services are being delivered. Telstra reserves the right to recover any GST or other transactional taxes.
-
-Transforming Telstra
-Telstra aims to give customers a personalised, seamless experience that makes it easy for them to do what they want when they want. To achieve this vision, we may introduce new generation services and rationalise or exit legacy services (which may include services set out in this proposal), including, as a result of the NBN rollout. We will discuss these developments with you as the review of our services continues and more details are announced.
-
-NBN Roll Out
-The National Broadband Network (NBN) is a Federal Government initiative to build a national network that allows all Australians to have access to high-speed broadband in the premises. Telstra has obligations under the Definitive Agreements with NBN Co to progressively disconnect its copper-based access services and HFC broadband services that are provided to premises in the NBN fixed line footprint.
-The NBN roll-out and our progressive disconnection of copper-based and HFC-based services, in no way, changes our commitment to you as a customer. Most Telstra enterprise and government customers are served by our IP-based products that operate over Telstra's world-class Next IP® and mobile networks. Telstra will continue to deliver services over these networks.`,
-      subsections: []
-    },
-    {
-      id: 12,
-      title: "12. CONCLUSION",
-      isExpanded: true,
-      content: `In conclusion, this proposal for an Adaptive Mobility solution represents a significant opportunity for your enterprise to leverage Telstra and imei's unparalleled expertise and industry-leading capabilities. With our long-standing partnership with Australian enterprises, we have consistently demonstrated our commitment to delivering fit-for-purpose communications technology and mature management practices. Our track record is further validated by an industry-leading Net Promoter Score (NPS) of 86+, underscoring the trust and satisfaction we have earned from our clients. 
-
-Our proposal offers a secure, cost-effective mobility solution that is seamlessly integrated with Australia’s No.1 network. This ensures not only unmatched optimization of your mobility environments but also a robust framework that supports your business's evolving needs. By choosing to partner with us, you are assured of a solution that is both adaptive and forward-thinking, designed to propel your enterprise towards greater efficiency and success. We are confident that our proposal aligns perfectly with your strategic goals and are eager to embark on this journey together. We look forward to the opportunity to demonstrate the transformative impact of our solutions on your business.`,
-      subsections: []
-    },
-    {
-      id: 13,
-      title: "13. INNOVATION",
-      isExpanded: true,
-      content: `### IoT
-
-In the realm of IoT, Telstra is at the forefront of innovation, leveraging its extensive LTE network to support Cat-M1 and NB-IoT technologies, which cover approximately 3 million and 4 million square kilometers, respectively. This expansive coverage ensures robust connectivity for a range of devices, including sensors, wearables, and industrial wireless sensors, as well as Telstra Locator tags. These devices facilitate asset tracking, industrial monitoring, and location services, offering businesses low-cost, subscription-based tracking solutions with long battery life and low data bandwidth. The integration of RedCap 5G NR further enhances this ecosystem by providing mid-tier throughput, bridging the gap between NB-IoT and full 5G capabilities. Telstra's Wireless M2M Control Centre, powered by Cisco-Jasper, offers advanced provisioning, diagnostics, and usage controls, supported by a sophisticated dashboard with reporting tools and alerts. This infrastructure not only empowers employees with modern tools but also fosters long-term sustainability, driving cost efficiency and operational visibility. With support for roaming overseas and comprehensive helpdesk services, Telstra's IoT solutions are tailored to meet the needs of enterprise, government, and remote businesses, ensuring compliance with standards such as ISO/IEC 27001:2022 and ASAE 3150 (SOC2).
-
-### eSIM
-
-Telstra's eSIM technology represents a significant leap forward in digital transformation, enabling quick activation without the need for a physical SIM card. This innovation is compatible with most phones produced post-2020, as well as tablets, laptops, and connected watches, provided the devices support eSIM functionality. By eliminating the need for physical SIM cards, Telstra reduces warehousing and distribution requirements, supporting sustainability by minimizing plastic use and packaging waste. All Telstra plans are available on eSIM, offering the convenience of dual-number usage on a single device, allowing users to seamlessly manage work and personal communications. While eSIMs are not available for number porting from other providers, the digital provisioning process simplifies logistics and enhances user experience. This approach aligns with modern demands for flexibility and environmental responsibility, reinforcing Telstra's commitment to sustainable practices and cutting-edge technology.
-
-### Satellite
-
-Through its partnership with Starlink, Telstra is redefining connectivity for regional and remote areas of Australia, offering satellite home internet and enterprise connectivity solutions. The reseller agreement enables Telstra to provide unlimited data plans with an included home phone line, specifically designed for businesses and households in rural and remote locations. Utilizing Low Earth Orbit (LEO) satellites, this service ensures reliable internet access where traditional infrastructure may be lacking. Additionally, Telstra is pioneering satellite-to-mobile capabilities, currently in the proof-of-concept phase, which promises direct-to-handset text messaging. This innovation is complemented by Smart Fix diagnostics, free delivery, and support centers, ensuring seamless service and customer satisfaction. The monthly satellite plan charges are structured to provide value and flexibility, catering to the unique needs of remote communities. As Telstra prepares for the commercial launch of satellite-to-mobile messaging, it continues to expand its product offerings, enhancing coverage and connectivity options for diverse customer segments.`,
-      subsections: []
-    },
-    {
-      id: 14,
-      title: "14. ESG",
-      isExpanded: true,
-      content: `**ESG Overview**
-
-Telstra is committed to sustainability, inclusion, and governance as core pillars of its ESG strategy.
-
-**Environment**
-
-Telstra's dedication to environmental sustainability is underscored by its adherence to the ISO14001:2015 standard, which guides its environmental management practices. The company actively supports its customers in reducing emissions through innovative tech solutions designed to help them meet their climate goals. In collaboration with Beehive, Telstra has introduced eco-friendly packaging, further demonstrating its commitment to reducing environmental impact. These initiatives not only enhance Telstra's operational sustainability but also empower its customers to pursue their own environmental objectives.
-
-**Social**
-
-Social inclusion is at the heart of Telstra's operations, with a strong focus on increasing Aboriginal participation across the enterprise. The company has established internships and graduate programs specifically tailored for underrepresented groups, ensuring diverse talent is nurtured and integrated into the workforce. This commitment extends beyond employment, as Telstra actively supports educational and career development opportunities for these communities. By fostering an inclusive environment, Telstra is paving the way for a more equitable society.
-
-**Governance**
-
-Telstra's governance framework is built on a foundation of ethical business practices, guided by the UN Guiding Principles and its status as a UN Global Compact signatory since 2011. The company has a robust Modern Slavery Statement, reflecting its commitment to ethical operations and transparency. By aligning with UN SDG Goal 8, Telstra promotes decent work and economic growth, ensuring that its business practices contribute positively to global economic development. This strong governance ethos reinforces Telstra's reputation as a responsible and ethical enterprise.
-
-**Partnership with Indigenous and Underrepresented Communities**
-
-Telstra is dedicated to fostering partnerships with indigenous and underrepresented communities, setting a target to have 1% of its workforce from these groups. The company invests in education and career support initiatives, spending $1.6 million in FY21 with inclusive suppliers and disability-supporting enterprises. Through collaborations with 13 nonprofits, Telstra has successfully employed 522 individuals, demonstrating its commitment to creating meaningful employment opportunities. These efforts are complemented by initiatives like Beehive packaging and disability employment programs, which further enhance Telstra's inclusive business practices.`,
-      subsections: []
-    }
-  ]
-}
+    ],
+    "sections": [
+        {
+            "id": 1,
+            "title": "1. INTRODUCTION",
+            "isExpanded": true,
+            "content": "In today's fast-paced and technologically driven business environment, Total Brick is poised at a critical juncture where evaluating and optimizing mobility services is not just an option but a necessity. With the rapid adoption of technology and evolving business needs across Australia, it becomes imperative to reassess and realign our existing mobility strategies to ensure they meet both current demands and future growth. As a market leader, Total Brick stands committed to leveraging advanced connectivity solutions that empower our operations and enhance our competitive edge. Our focus remains on delivering a seamless, secure, and cost-effective mobility solution that aligns with our organizational goals and supports our strategic vision.\n\nTotal Brick's partnership with Telstra and imei underscores a shared commitment to fostering innovation and operational efficiency through advanced mobility solutions. This long-standing relationship with Australian enterprises has been instrumental in navigating the complexities of the digital landscape, ensuring that our mobility services are not only cutting-edge but also robust and reliable. By collaborating with Telstra and imei, we have consistently delivered solutions that are tailored to the unique needs of our enterprise, enabling us to maintain a competitive advantage in the market. Our collaboration has been a testament to the power of strategic partnerships in driving business success.\n\nThe proposed solution builds on our existing enterprise mobility plan, with a focus on evaluating current services and assessing market offerings to identify opportunities for improvement. By continuing our course with enhancements for scalability, we aim to provide a secure, efficient, and scalable mobility solution that meets the evolving needs of our business. This approach ensures that Total Brick remains at the forefront of technological innovation, equipped to meet the demands of a rapidly changing market. As we move forward, our commitment to excellence and innovation will guide us in delivering a mobility solution that not only meets but exceeds the expectations of our stakeholders.",
+            "subsections": [
+                {
+                    "id": "1.1",
+                    "title": "1.2 Background",
+                    "content": "Total Brick stands as a prominent property group, renowned for its ownership, management, and development of diverse real estate assets, including shopping centres, office and industrial properties, residential communities, and retirement living solutions. With a commitment to creating sustainable and thriving communities across the country, Total Brick has consistently demonstrated its ability to adapt and grow in a dynamic market. As the company continues to expand its footprint, the need for robust and reliable communication services becomes increasingly critical. The existing contract for mobility services has expired, prompting a timely review to ensure that the new solution aligns with Total Brick's strategic goals of cost-effectiveness and reliability.\n\nIn the pursuit of a reputable provider, Total Brick seeks to procure reliable, cost-effective mobile voice and data services for its existing fleet in Australia. The ideal solution must not only offer mature security practices but also support the company's innovative and efficient operations. Telstra, with its market-leading mobile network and advanced connectivity solutions, emerges as the ideal provider. By offering a secure, cost-effective mobility solution, Telstra enables Total Brick to maintain its competitive edge and continue its mission of fostering sustainable communities."
+                },
+                {
+                    "id": "1.2",
+                    "title": "1.3 A solution aligned with your vision",
+                    "content": "In today's rapidly evolving digital landscape, Total Brick stands at the forefront of innovation, seeking to harness cutting-edge technology to drive strategic growth and operational excellence. Our proposal is designed to seamlessly align with your vision by evaluating your current mobility services and identifying opportunities for enhancement. With an existing mobile plan of 200 GB data, the integration of IoT and the adoption of 5G connectivity are pivotal for your expansion into remote workforce enablement. Our solution offers a comprehensive suite of mobile, mobile broadband, and enterprise wireless services, characterized by high-speed, low-latency 5G connectivity. This ensures a secure, cost-effective, and flexible mobility solution without the constraints of lock-in contracts, allowing for the dynamic adaptation of hardware as your needs evolve.\n\nThe impact of our solution extends beyond mere connectivity. By enabling remote work and integrating AI-driven enterprise applications, we facilitate a scalable and efficient operational model. Our commitment to strategic value is underscored by adherence to GDPR and ISO 27001 standards, ensuring compliance and data security. Moreover, our approach promises a 15% reduction in costs and a 10% increase in revenue, aligning with your goal of carbon-neutral operations by 2030. As a trusted partner, Telstra and imei bring a legacy of excellence in advanced connectivity solutions, empowering Total Brick to innovate and lead in the market. Our proposal not only meets your immediate needs but also positions you for sustained growth and success in a competitive landscape."
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "title": "2. OBJECTIVES",
+            "isExpanded": true,
+            "content": "In today's rapidly evolving business landscape, the ability to deliver unique and meaningful experiences is paramount for opening new business opportunities. This strategic intent underscores the necessity for change, as organizations strive to stay competitive and relevant. The dynamic nature of the market demands that businesses not only adapt but also anticipate future needs, ensuring they are well-positioned to capitalize on emerging opportunities. By embracing innovation and leveraging advanced technologies, companies can enhance their operational efficiency and customer engagement, thus driving growth and success.\n\nOur understanding of your business goals and mobility needs has highlighted several key ambitions that are crucial for achieving your strategic objectives. To address these ambitions, Telstra offers tailored solutions designed to meet your specific requirements and propel your business forward.\n\nCustomer Ambitions and Telstra Solutions:\n\n\u2022 Procure reliable IoT, eSIM, and LEO satellite capabilities\n  - Flexible Solutions: No lock-in contracts on individual services for scalability\n\n\u2022 Maintain compliance with Australian data sovereignty and security regulations\n  - Technology Integration: Seamless information flow between internal and external portals\n\n\u2022 Provide 24/7 customer support and clear escalation paths\n  - Experts On Call: Access expert mobility managed services to free internal resources\n\n\u2022 Procure reliable and cost-effective mobile voice and data services for existing fleet\n  - Right Size Plan Allocation: Eliminate cost and inclusion variances for seamless 5G experience\n\n\u2022 Partner with a reputable provider with proven experience and strong security practices\n  - Better Connectivity: Telstra 5G for high-speed and low latency\n\n\u2022 Ensure robust coverage including 4G, 5G, and rural/remote areas\n  - Support Hybrid Workforce: Mobilize business on Australia's largest mobile network\n\n\u2022 Enable scalability and flexibility to adapt to changing business needs\n  - Overcome Capex Constraints: Maximize available technology funds\n\n\u2022 Provide transparent pricing and cost-effectiveness across user profiles\n  - Cost Savings: Optimize expense visibility and reporting to reduce misallocation\n\n\u2022 Offer operational support with efficient ordering, reporting, and management tools\n  - Maximize Productivity: Equip workers with speed, responsiveness, and coverage for powerful apps\n\n\u2022 Deliver consolidated and accurate billing with advanced analysis capabilities\n  - Cost Savings: Optimize expense visibility and reporting to reduce misallocation\n\n\u2022 Include service-level guarantees for activation, fault resolution, and ongoing operations\n  - Experts On Call: Access expert mobility managed services to free internal resources\n\n\u2022 Support environmental sustainability and social responsibility initiatives\n  - Support Hybrid Workforce: Mobilize business on Australia's largest mobile network\n\nBy aligning your ambitions with Telstra's comprehensive solutions, we are committed to empowering your business to achieve its strategic goals and unlock new opportunities for growth and innovation.",
+            "subsections": []
+        },
+        {
+            "id": 3,
+            "title": "3. RECOMMENDED SOLUTION",
+            "isExpanded": true,
+            "content": "In alignment with the RFP goals and the customer's vision, our proposed solution is designed to enhance current mobility services while ensuring scalability and alignment with organizational needs. By evaluating market offerings, we aim to identify opportunities for improvement that align with the customer's objectives. Our solution leverages Telstra's market-leading mobile network and advanced connectivity solutions to meet the rapid technology adoption and evolving business needs across Australia. With a strong commitment to partnership and operational excellence, Telstra and imei continue to support Australian enterprises through innovative and efficient mobility solutions. Our future-ready approach ensures readiness for emerging technologies and scalability, addressing the RFP requirements with precision and foresight.\n\nCore Components\n\nPlans: Our Adaptive Mobility plans with 5G connectivity ensure seamless voice and data services for 1200 lines, supporting shared data pools and enhancing communication efficiency across the organization.\n\nWebPortal_ITSM: Integration with ServiceNOW ITSM via existing APIs facilitates streamlined operations and improved service management, aligning with the customer's integration requirements.\n\nNetworkConnectivity: SIM registration and mobile plan activation provide immediate connectivity, ensuring that all devices are operational from day one, supporting nationwide 4G/5G coverage and rural/remote support.\n\nSecurityCompliance: Access to the imei Intelligence Dashboard ensures ISO 27001 compliance and Australian data sovereignty, reinforcing the customer's security posture and data protection standards.\n\nDeviceAllocation: Procurement and staging services available same or next business day enhance operational efficiency, ensuring that devices are ready for deployment without delay.\n\nDistribution: Our delivery SLAs guarantee timely delivery\u2014metro in 1 day, regional in 2 days, and remote in 3-4 days\u2014ensuring that all regions are supported efficiently, contributing to operational excellence.\n\nOptional\n\nMobileDeviceManagement: By offering expert support for platform/enrollment issues and compliance reporting, this component enhances device management and security policy adherence, providing a strategic advantage in maintaining operational integrity.\n\nExpenseManager: The integration of carrier bill files into an expense tool with a visual reporting portal offers enhanced financial oversight and efficiency, allowing for strategic financial management and cost control.\n\nVIPSupport: Providing up to 50 Stockland staff with 24x7x365 phone and email support ensures that critical personnel receive priority assistance, enhancing operational reliability and responsiveness.",
+            "subsections": []
+        },
+        {
+            "id": 4,
+            "title": "4. COMMERCIAL SUMMARY",
+            "isExpanded": true,
+            "content": "The commercial summary outlines the pricing for the required services over two contract term options: 24 months and 36 months. The proposal includes voice and data plans, data-only services, and satellite voice services, with pricing detailed below.\n\n### Pricing \u2014 24 Months\n\n| Plan             | Plan Type        | Qty  | Unit Price (inc. GST) | Total Price (inc. GST) |\n|------------------|------------------|------|-----------------------|------------------------|\n| Voice Essential  | Voice            | 1200 | USD 53.00             | USD 63,600.00          |\n| MBB Essential    | Mobile Broadband | 430  | USD 22.00             | USD 9,460.00           |\n| TMS Essential    | Satellite        | 2    | USD 55.00             | USD 110.00             |\n| Sub-TOTAL        |                  |      |                       | USD 73,170.00          |\n\n### Pricing \u2014 36 Months\n\n| Plan             | Plan Type        | Qty  | Unit Price (inc. GST) | Total Price (inc. GST) |\n|------------------|------------------|------|-----------------------|------------------------|\n| Voice Essential  | Voice            | 1200 | USD 53.00             | USD 60,420.00          |\n| MBB Essential    | Mobile Broadband | 430  | USD 22.00             | USD 8,987.00           |\n| TMS Essential    | Satellite        | 2    | USD 55.00             | USD 104.50             |\n| Sub-TOTAL        |                  |      |                       | USD 69,511.50          |\n\nNote: The 36-month pricing reflects a 5% discount on the total monthly charges.",
+            "subsections": [
+                {
+                    "id": "4.1",
+                    "title": "4.1 Commercial Obligation",
+                    "content": "The proposed commercial options are offered subject to adherence to certain conditions. These Minimum Commitments, measured on a quarterly basis for the Services, are outlined below:\n\n\u2022 Minimum Service Period: 24-months\n\u2022 Minimum number of services: TBC based upon final service count\n\u2022 Minimum spend: TBC based on final service count\n\u2022 During the Minimum Service Period, placeholder_customer_name may change or cancel individual Adaptive Mobility Plans if they continue to meet the Minimum number of services and Minimum spend.\n\u2022 If placeholder_customer_name does not meet these Minimum Commitments, you are not eligible for any applied discounts.\n\u2022 If placeholder_customer_name does not meet the Minimum Commitments at any time during the Minimum Service Period, Telstra may take the following action for the mentioned level of minimum commitment:\n    - 90% or more - placeholder_customer_name are eligible to access Your Price (discounted) if they meet the relevant conditions.\n    - Under 90%, more than 70% - Telstra may remove discounts and change Your Price to our then current List Price on 30 days\u2019 notice. Telstra reapply discounts and Your Price to the next quarter after placeholder_customer_name meet the Minimum Commitment.\n    - 70% or less - Telstra may remove discounts and change to the List Price on 30 days\u2019 notice. placeholder_customer_name is no longer eligible for Your Price. During a Minimum Service Period, placeholder_customer_name may need to reimburse us for any discounts Telstra applied to your Adaptive Mobility services from the Service Start Date.      \n\u2022 Consequences of early termination during Minimum Service Period - If placeholder_customer_name\u2019s Agreement, the Service Schedule, or all Services under the Schedule are cancelled during the Minimum Service Period for any reason other than a material breach, then Telstra may require placeholder_customer_name to reimburse for any discounts Telstra applied to the Services from the Service Start Date until the cancellation date."
+                },
+                {
+                    "id": "4.2",
+                    "title": "4.2 Discounts",
+                    "content": "### Telstra Enterprise Fund (TEF)\n\nThe Telstra Enterprise Fund (TEF) provides an overview of its benefits, offering a 10% accrual of Eligible Charges for each active Eligible Fund Service, calculated monthly. These funds are contributed at the start of each month and can be used to purchase eligible products and services from Telstra and imei, enhancing customer value through strategic reinvestment in technology.\n\n### Telstra Corporate Perks\n\nThe Telstra Corporate Perks program offers a 10% discount on Telstra branded Post-paid Handheld and Mobile Broadband Consumer services. This program extends its benefits to all employees and their family members on the same account, fostering a comprehensive savings opportunity over a 24-month term.\n\n### Mobile Maturity Assessment (MMA)\n\nThe Mobile Maturity Assessment (MMA) offer is structured to deliver a concise evaluation of mobility capabilities, taking 1.5 hours to complete. It results in a shared, simple report that ranks eleven key elements of mobility capability, providing actionable insights for strategic improvement.\n\n### 5G Slicing \u2013 Proof of Concept Opportunity\n\nThe 5G Slicing Proof of Concept (PoC) offers a trial opportunity with a focus on performance assurance. The mobility analytics engine monitors 5G traffic every second, ensuring that billing occurs only if the promised performance is achieved. This trial is available now, with a commercial release anticipated in 2025, positioning participants at the forefront of technological advancement."
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "title": "5. SOLUTION PARTNER",
+            "isExpanded": true,
+            "content": "In the realm of enterprise mobility solutions, imei stands as a beacon of innovation and reliability, making it an indispensable strategic partner in our proposal. As a Platinum Partner renowned for its managed mobility services, imei brings over two decades of unparalleled experience in lifecycle management, particularly within the Australian telecommunications landscape. Having pioneered lifecycle management, imei has consistently demonstrated a commitment to excellence, leveraging its global capabilities to deliver comprehensive enterprise mobility solutions. Their adept use of automation and IT Service Management (ITSM) tools ensures operational efficiency, providing clients with streamlined processes that are both effective and cost-efficient. With an impressive Net Promoter Score (NPS) exceeding 80, imei's dedication to customer satisfaction is evident, further solidified by their Essential 8 security grading and Telstra SECOPS clearance, which underscore their commitment to security and compliance.\n\nThe synergy between Telstra\u2019s robust infrastructure and imei\u2019s service excellence creates a formidable joint value proposition that serves top-tier Australian enterprises with unmatched precision and reliability. Telstra\u2019s leadership in network infrastructure, combined with imei\u2019s technical expertise and customer-focused approach, ensures that clients receive not only cutting-edge technology but also a seamless service experience. This partnership harnesses the strengths of both entities, offering a comprehensive suite of solutions that address the complex needs of modern enterprises. By integrating Telstra\u2019s expansive network capabilities with imei\u2019s meticulous lifecycle management and technical proficiency, we deliver a holistic solution that empowers businesses to thrive in an increasingly digital world.\n\nTogether, Telstra and imei redefine the standards of enterprise mobility, providing clients with a strategic advantage that is both sustainable and scalable. This collaboration is not merely a combination of resources but a fusion of vision and expertise that propels customer success. Enterprises can rely on this partnership to navigate the complexities of mobility management with confidence, knowing they are supported by leaders in both network infrastructure and managed mobility services. As we continue to innovate and expand our offerings, the Telstra-imei alliance remains committed to delivering exceptional value, ensuring that our clients are always at the forefront of technological advancement and operational excellence.",
+            "subsections": []
+        },
+        {
+            "id": 6,
+            "title": "6. ACCOUNT MANAGEMENT",
+            "isExpanded": true,
+            "content": "The purpose of this section is to outline the roles and responsibilities associated with the management of accounts and services. This ensures clarity in communication and efficient handling of queries and support requests. The following table dynamically summarizes the roles, organizations involved, and their respective responsibilities, based on the provided categories and metadata.\n\n| Role/Responsibility                        | Organization | Description                                                                 |\n|--------------------------------------------|--------------|-----------------------------------------------------------------------------|\n| Primary vendor contact for account queries | Telstra      | Handles account level queries, governance, and sales enquiries.             |\n| Tactical engagement for technology         | Telstra      | Focuses on technology initiatives and outcomes.                             |\n| Primary partner contact for account queries| imei         | Manages account queries and sales.                                          |\n| Customer Service Helpdesk (L1)             | imei         | Provides support and case updates.                                          |\n| Engineers and specialists (L2 and L3)      | imei         | Offers advanced support for technical issues.                               |\n| Vendor engineers (L4)                      | Telstra      | Responsible for platform support and escalations.                           |\n| Named manager for service delivery         | imei         | Oversees day-to-day service delivery.                                       |\n\nThis table is designed to provide a clear and concise overview of the various roles and responsibilities, ensuring that all parties involved are aware of their specific duties and points of contact. This structured approach facilitates effective communication and service management.",
+            "subsections": []
+        },
+        {
+            "id": 7,
+            "title": "7. ORGANIZATIONAL DETAILS",
+            "isExpanded": true,
+            "content": "## Organizational Details\n\nBelow are the organizational details for the companies involved:\n\n| Field                | Value                                           |\n|----------------------|-------------------------------------------------|\n| Company Name         | Telstra Limited                                 |\n| ACN                  | 086 174 781                                     |\n| ABN                  | 64 086 174 781                                  |\n| Registered Address   | Telstra Limited, 242 Exhibition Street, Melbourne Victoria 3000 |\n| Affiliated Companies | All entities included under Telstra Group Limited |\n| Preferred Contact    | John Doe                                        |\n| Phone                | +61 400 900 800                                 |\n| Email                | John.doe@team.telstra.com                       |\n\n| Field                | Value                                           |\n|----------------------|-------------------------------------------------|\n| Company Name         | imei                                            |\n| ACN                  |                                                 |\n| ABN                  |                                                 |\n| Registered Address   |                                                 |\n| Affiliated Companies | N/A                                             |\n| Preferred Contact    | N/A                                             |\n| Phone                |                                                 |\n| Email                |                                                 |",
+            "subsections": []
+        },
+        {
+            "id": 8,
+            "title": "8. CUSTOMER SUPPORT",
+            "isExpanded": true,
+            "content": "## Customer Support\n\nOur customer support services are available from 8:30 AM to 8:30 PM, Monday to Friday, excluding public holidays. Customers can reach us through multiple channels including phone, email, webchat, and an online portal. All support is provided by our Australian on-shore Customer Service Centre, ensuring prompt and localized assistance.\n\n| Priority                | Respond Within | Update Every | Restore/Resolve Within | Compliance Target |\n|-------------------------|----------------|--------------|------------------------|-------------------|\n| 1 (Critical)            | 15 mins        | 1 hour       | 4 hours                | 90%               |\n| 2 (Major)               | 30 mins        | 2 hours      | 8 hours                | 90%               |\n| 3 (Minor)               | 1 hour         | 8 hours      | 1 Business Day         | 90%               |\n| 4 (Urgent Request)      | 2 hours        | 12 hours     | 3 Business Days        | 90%               |\n| 5 (Standard Request)    | 3 hours        | 24 hours     | 5 Business Days        | 90%               |",
+            "subsections": []
+        },
+        {
+            "id": 9,
+            "title": "9. PROPOSAL TERMS",
+            "isExpanded": true,
+            "content": "\nThis proposal remains valid for [validity_period] from its date of submission. Some or all of the prices in this proposal may be subject to Telstra\u2019s Our Customer Terms and may change from time to time.\nAcceptance of this proposal, or any part of it, is subject to contract (with Telstra or a Telstra group entity) and product or service availability.\n\nConfidentiality Statement\nThe contents of this proposal and any documents provided to you as part of this proposal are confidential information of Telstra and may only be used by you for the purpose of evaluating this proposal. They must not be disclosed to any third party without [COMPANY_NAME]\u2019s prior consent, unless required to do so by law.\nYou acknowledge that Telstra may be required to disclose information that you provide to third parties (such as our suppliers) in order to supply the products and services as set out in this proposal.\nTelstra makes no representations or warranties as to the accuracy or completeness of any information provided to you as part of this proposal. You must make your own assessment of the information and satisfy yourself as to its accuracy and completeness.\n\nIntellectual Property\nTelstra and its suppliers retain ownership of all intellectual property subsisting in the contents of this proposal and any documents provided to you as part of this proposal.\n\nTechnical Appraisal\nThe prices and services in this proposal are based on Telstra\u2019s current understanding of your requirements. Technical appraisals or feasibility assessments by Telstra may be required to determine whether Telstra is able to provide the services. If additional design and construction work is required to provide the service(s) (i.e., installation of network infrastructure), further costs may apply and will be advised to you before the commencement of work.\n\nTax Statement\nUnless otherwise expressly stated, all prices in this proposal are exclusive of GST and other transactional taxes (including value-added taxes, charges, withholding taxes, duties (including customs duty and stamp duty), excise, sales tax and other similar taxes) which may be imposed by any taxing authority where the services are being delivered. Telstra reserves the right to recover any GST or other transactional taxes.\n\nTransforming Telstra\nTelstra aims to give customers a personalised, seamless experience that makes it easy for them to do what they want when they want. To achieve this vision, we may introduce new generation services and rationalise or exit legacy services (which may include services set out in this proposal), including, as a result of the NBN rollout. We will discuss these developments with you as the review of our services continues and more details are announced.\n\nNBN Roll Out\nThe National Broadband Network (NBN) is a Federal Government initiative to build a national network that allows all Australians to have access to high-speed broadband in the premises. Telstra has obligations under the Definitive Agreements with NBN Co to progressively disconnect its copper-based access services and HFC broadband services that are provided to premises in the NBN fixed line footprint.\nThe NBN roll-out and our progressive disconnection of copper-based and HFC-based services, in no way, changes our commitment to you as a customer. Most Telstra enterprise and government customers are served by our IP-based products that operate over Telstra's world-class Next IP\u00ae and mobile networks. Telstra will continue to deliver services over these networks.\n            ",
+            "subsections": []
+        },
+        {
+            "id": 10,
+            "title": "10. CONCLUSION",
+            "isExpanded": true,
+            "content": "In conclusion, this proposal for an Adaptive Mobility solution represents a significant opportunity for your enterprise to leverage Telstra and imei's unparalleled expertise and industry-leading capabilities. With our long-standing partnership with Australian enterprises, we have consistently demonstrated our commitment to delivering fit-for-purpose communications technology and mature management practices. Our track record is further validated by an industry-leading Net Promoter Score (NPS) of 86+, underscoring the trust and satisfaction we have earned from our clients. \n\nOur proposal offers a secure, cost-effective mobility solution that is seamlessly integrated with Australia\u2019s No.1 network. This ensures not only unmatched optimization of your mobility environments but also a robust framework that supports your business's evolving needs. By choosing to partner with us, you are assured of a solution that is both adaptive and forward-thinking, designed to propel your enterprise towards greater efficiency and success. We are confident that our proposal aligns perfectly with your strategic goals and are eager to embark on this journey together. We look forward to the opportunity to demonstrate the transformative impact of our solutions on your business.",
+            "subsections": []
+        },
+        {
+            "id": 11,
+            "title": "11. TECHNICAL INNOVATION",
+            "isExpanded": true,
+            "content": "### IoT\n\nIn the realm of IoT, Telstra is at the forefront of innovation, leveraging its extensive LTE network to support Cat-M1 and NB-IoT technologies, which cover approximately 3 million and 4 million square kilometers, respectively. This expansive coverage ensures robust connectivity for a range of devices, including sensors, wearables, and industrial wireless sensors, as well as Telstra Locator tags. These devices facilitate asset tracking, industrial monitoring, and location services, offering businesses low-cost, subscription-based tracking solutions with long battery life and low data bandwidth. The integration of RedCap 5G NR further enhances this ecosystem by providing mid-tier throughput, bridging the gap between NB-IoT and full 5G capabilities. Telstra's Wireless M2M Control Centre, powered by Cisco-Jasper, offers advanced provisioning, diagnostics, and usage controls, supported by a sophisticated dashboard with reporting tools and alerts. This infrastructure not only empowers employees with modern tools but also fosters long-term sustainability, driving cost efficiency and operational visibility. With support for roaming overseas and comprehensive helpdesk services, Telstra's IoT solutions are tailored to meet the needs of enterprise, government, and remote businesses, ensuring compliance with standards such as ISO/IEC 27001:2022 and ASAE 3150 (SOC2).\n\n### eSIM\n\nTelstra's eSIM technology represents a significant leap forward in digital transformation, enabling quick activation without the need for a physical SIM card. This innovation is compatible with most phones produced post-2020, as well as tablets, laptops, and connected watches, provided the devices support eSIM functionality. By eliminating the need for physical SIM cards, Telstra reduces warehousing and distribution requirements, supporting sustainability by minimizing plastic use and packaging waste. All Telstra plans are available on eSIM, offering the convenience of dual-number usage on a single device, allowing users to seamlessly manage work and personal communications. While eSIMs are not available for number porting from other providers, the digital provisioning process simplifies logistics and enhances user experience. This approach aligns with modern demands for flexibility and environmental responsibility, reinforcing Telstra's commitment to sustainable practices and cutting-edge technology.\n\n### Satellite\n\nThrough its partnership with Starlink, Telstra is redefining connectivity for regional and remote areas of Australia, offering satellite home internet and enterprise connectivity solutions. The reseller agreement enables Telstra to provide unlimited data plans with an included home phone line, specifically designed for businesses and households in rural and remote locations. Utilizing Low Earth Orbit (LEO) satellites, this service ensures reliable internet access where traditional infrastructure may be lacking. Additionally, Telstra is pioneering satellite-to-mobile capabilities, currently in the proof-of-concept phase, which promises direct-to-handset text messaging. This innovation is complemented by Smart Fix diagnostics, free delivery, and support centers, ensuring seamless service and customer satisfaction. The monthly satellite plan charges are structured to provide value and flexibility, catering to the unique needs of remote communities. As Telstra prepares for the commercial launch of satellite-to-mobile messaging, it continues to expand its product offerings, enhancing coverage and connectivity options for diverse customer segments.",
+            "subsections": []
+        },
+        {
+            "id": 12,
+            "title": "12. Environment, social and governance",
+            "isExpanded": true,
+            "content": "**ESG Overview**\n\nTelstra is committed to sustainability, inclusion, and governance as core pillars of its ESG strategy.\n\n**Environment**\n\nTelstra's dedication to environmental sustainability is underscored by its adherence to the ISO14001:2015 standard, which guides its environmental management practices. The company actively supports its customers in reducing emissions through innovative tech solutions designed to help them meet their climate goals. In collaboration with Beehive, Telstra has introduced eco-friendly packaging, further demonstrating its commitment to reducing environmental impact. These initiatives not only enhance Telstra's operational sustainability but also empower its customers to pursue their own environmental objectives.\n\n**Social**\n\nSocial inclusion is at the heart of Telstra's operations, with a strong focus on increasing Aboriginal participation across the enterprise. The company has established internships and graduate programs specifically tailored for underrepresented groups, ensuring diverse talent is nurtured and integrated into the workforce. This commitment extends beyond employment, as Telstra actively supports educational and career development opportunities for these communities. By fostering an inclusive environment, Telstra is paving the way for a more equitable society.\n\n**Governance**\n\nTelstra's governance framework is built on a foundation of ethical business practices, guided by the UN Guiding Principles and its status as a UN Global Compact signatory since 2011. The company has a robust Modern Slavery Statement, reflecting its commitment to ethical operations and transparency. By aligning with UN SDG Goal 8, Telstra promotes decent work and economic growth, ensuring that its business practices contribute positively to global economic development. This strong governance ethos reinforces Telstra's reputation as a responsible and ethical enterprise.\n\n**Partnership with Indigenous and Underrepresented Communities**\n\nTelstra is dedicated to fostering partnerships with indigenous and underrepresented communities, setting a target to have 1% of its workforce from these groups. The company invests in education and career support initiatives, spending $1.6 million in FY21 with inclusive suppliers and disability-supporting enterprises. Through collaborations with 13 nonprofits, Telstra has successfully employed 522 individuals, demonstrating its commitment to creating meaningful employment opportunities. These efforts are complemented by initiatives like Beehive packaging and disability employment programs, which further enhance Telstra's inclusive business practices.",
+            "subsections": []
+        },
+        {
+            "id": 13,
+            "title": "13. BACKGROUND",
+            "isExpanded": true,
+            "content": "Total Brick stands as a prominent property group, renowned for its ownership, management, and development of diverse real estate assets, including shopping centres, office and industrial properties, residential communities, and retirement living solutions. With a commitment to creating sustainable and thriving communities across the country, Total Brick has consistently demonstrated its ability to adapt and grow in a dynamic market. As the company continues to expand its footprint, the need for robust and reliable communication services becomes increasingly critical. The existing contract for mobility services has expired, prompting a timely review to ensure that the new solution aligns with Total Brick's strategic goals of cost-effectiveness and reliability.\n\nIn the pursuit of a reputable provider, Total Brick seeks to procure reliable, cost-effective mobile voice and data services for its existing fleet in Australia. The ideal solution must not only offer mature security practices but also support the company's innovative and efficient operations. Telstra, with its market-leading mobile network and advanced connectivity solutions, emerges as the ideal provider. By offering a secure, cost-effective mobility solution, Telstra enables Total Brick to maintain its competitive edge and continue its mission of fostering sustainable communities.",
+            "subsections": []
+        },
+        {
+            "id": 14,
+            "title": "14. SOLUTION ALIGNED WITH YOUR VISION",
+            "isExpanded": true,
+            "content": "In today's rapidly evolving digital landscape, Total Brick stands at the forefront of innovation, seeking to harness cutting-edge technology to drive strategic growth and operational excellence. Our proposal is designed to seamlessly align with your vision by evaluating your current mobility services and identifying opportunities for enhancement. With an existing mobile plan of 200 GB data, the integration of IoT and the adoption of 5G connectivity are pivotal for your expansion into remote workforce enablement. Our solution offers a comprehensive suite of mobile, mobile broadband, and enterprise wireless services, characterized by high-speed, low-latency 5G connectivity. This ensures a secure, cost-effective, and flexible mobility solution without the constraints of lock-in contracts, allowing for the dynamic adaptation of hardware as your needs evolve.\n\nThe impact of our solution extends beyond mere connectivity. By enabling remote work and integrating AI-driven enterprise applications, we facilitate a scalable and efficient operational model. Our commitment to strategic value is underscored by adherence to GDPR and ISO 27001 standards, ensuring compliance and data security. Moreover, our approach promises a 15% reduction in costs and a 10% increase in revenue, aligning with your goal of carbon-neutral operations by 2030. As a trusted partner, Telstra and imei bring a legacy of excellence in advanced connectivity solutions, empowering Total Brick to innovate and lead in the market. Our proposal not only meets your immediate needs but also positions you for sustained growth and success in a competitive landscape.",
+            "subsections": []
+        }
+    ]
+};

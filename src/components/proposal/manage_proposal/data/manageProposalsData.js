@@ -8,9 +8,9 @@ export const STATUS_COLORS = {
 export const proposalsData = [
   {
     id: '1',
-    title: 'A001K0132578HWb16AAD',
-    category: 'Banking | Melbourne',
-    customer: 'Total Brick',
+    title: 'A-01284889',
+    category: 'Real Estate | Melbourne',
+    customer: 'Total Bricks Pvt. Ltd.',
     template: 'Standard',
     createdOn: 'Sep 25, 2025 06:29 AM',
     updatedOn: 'Sep 25, 2025 06:47 AM',
@@ -18,7 +18,7 @@ export const proposalsData = [
   },
   {
     id: '2',
-    title: '201K0137392HWb16AAS',
+    title: 'A-28301280',
     category: 'Retail | Sydney',
     customer: 'Vensi',
     template: 'RFP Response',
@@ -28,7 +28,7 @@ export const proposalsData = [
   },
   {
     id: '3',
-    title: 'A268K0132578HWb1BKO',
+    title: 'A-93756284',
     category: 'Healthcare | Sydney',
     customer: 'Citrus Company',
     template: 'Case Study',
@@ -38,8 +38,8 @@ export const proposalsData = [
   },
   {
     id: '4',
-    title: 'A034K0132578HW16BSY',
-    category: 'Healthcare | Melbourne',
+    title: 'A-74839251',
+    category: 'Banking | Sydney',
     customer: 'Motivc',
     template: 'RFP Response',
     createdOn: 'Sep 27, 2025 09:31 AM',
@@ -48,8 +48,8 @@ export const proposalsData = [
   },
   {
     id: '5',
-    title: 'A524K0132578HW16BBA',
-    category: 'Banking | Sydney',
+    title: 'A-27485210',
+    category: 'Healthcare | Melbourne',
     customer: 'Yost',
     template: 'Case Study',
     createdOn: 'Sep 23, 2025 10:29 AM',
