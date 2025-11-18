@@ -3,6 +3,7 @@ import { Send } from 'lucide-react'
 import { mockOrchestratorData, mockOrchestratorDataLoading } from './OrchestratorSidebarMockData'
 import ProposalBuilderIcon from '../../../../assets/icons/ProposalBuilderIcon'
 import CompletedAgentsBadgesIcon from '../../../../assets/icons/CompletedAgentsBadges'
+import OpportunityManagerIcon from '../../../../assets/icons/OpportunityManagerIcon'
 
 const ActiveStatusBadge = () => {
   return (
@@ -71,9 +72,7 @@ const OpportunityManagerCard = ({ data }) => {
     >
       {/* Left side: Icon + Title */}
       <div className='flex items-center gap-[6px]'>
-        <svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="24" height="21" rx="2" fill="#0D54FF"/>
-        </svg>
+        <OpportunityManagerIcon width={24} height={24} color="#0D54FF" />
         <span className="text-[#0D54FF] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
           {data.title}
         </span>
@@ -118,14 +117,12 @@ const AgentActivityCard = ({ activity, showCheckmark }) => {
         {activity.icon ? (
           // Gradient icon for Opportunity Manager
           <div 
-            className='w-[30px] h-[26px] rounded-[2px] flex items-center justify-center'
+            className='w-[45.65px] h-[45.65px] rounded-[48.45px] flex items-center justify-center p-[8.1px]'
             style={{
-              background: 'linear-gradient(84.69deg, rgba(0,255,225,1) 27.09%, rgba(13,84,255,1) 15.15%, rgba(149,36,198,1) 93.31%)'
+              background: 'linear-gradient(102deg, #00FFE1 -1.03%, #0D54FF 36.82%, #9524C6 100.49%)'
             }}
           >
-            <svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="24" height="21" rx="2" fill="#FFFFFF"/>
-            </svg>
+            <OpportunityManagerIcon width={30.352} height={30.352} color="#FFFFFF" />
           </div>
         ) : (
           // Regular badge with gradient border

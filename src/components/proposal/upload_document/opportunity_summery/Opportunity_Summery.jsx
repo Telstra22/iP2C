@@ -331,7 +331,7 @@ const OpportunitySummery = () => {
             </div>
 
             {/* Review and Edit Content with Expand All Control - Outside Container */}
-            <div className='flex items-center justify-between mb-[24px]'>
+            <div className='flex items-center justify-between mb-[24px] mt-[59px] px-[37px]'>
               <span className="text-[#050505] font-['Inter',sans-serif] text-[24px] font-normal leading-[32px]">
                 Review and edit content (If necessary)
               </span>

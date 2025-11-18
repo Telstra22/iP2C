@@ -9,6 +9,7 @@ export const mockRootProps = {
       headerColor: "#1E3A5F",
       headerText: "Create AI generated proposal for all the sections selected in outline in a Word document",
       documentType: "word",
+      filePath: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
       isSelected: true
     },
     {
@@ -31,30 +32,31 @@ export const mockRootProps = {
     },
     {
       id: "4",
-      name: "Solution & Pricing",
-      description: "PPT Presentation & Word Document",
+      name: "Standard Template (Phoenix)",
+      description: "Word Document",
       headerColor: "#b9e7ff",
-      headerText: "Solution and pricing details for comprehensive proposals",
+      headerText: "Create AI generated proposal for all the sections selected in outline in a Word document",
+      documentType: "word",
       logoType: "blue",
       isSelected: false
     },
-    {
-      id: "5",
-      name: "Executive summary",
-      description: "PPT Presentation & Word Document",
-      headerColor: "#00559f",
-      headerText: "Executive summary for high-level overview",
-      logoType: "blue",
-      isSelected: false
-    },
-    {
-      id: "6",
-      name: "Non standard products",
-      description: "PPT Presentation & Word Document",
-      headerColor: "#fff3d8",
-      headerText: "Non-standard products and custom solutions",
-      logoType: "blue",
-      isSelected: false
-    }
+    // {
+    //   id: "5",
+    //   name: "Executive summary",
+    //   description: "PPT Presentation & Word Document",
+    //   headerColor: "#00559f",
+    //   headerText: "Executive summary for high-level overview",
+    //   logoType: "blue",
+    //   isSelected: false
+    // },
+    // {
+    //   id: "6",
+    //   name: "Non standard products",
+    //   description: "PPT Presentation & Word Document",
+    //   headerColor: "#fff3d8",
+    //   headerText: "Non-standard products and custom solutions",
+    //   logoType: "blue",
+    //   isSelected: false
+    // }
   ]
 };

@@ -69,7 +69,7 @@ const Source_Connection = () => {
         <div className='flex h-[120px] py-[0px] px-[41px] items-center gap-[25px] self-stretch border-l-[12px] border-[#0D54FF]'>
           <div className='flex flex-col gap-[8px]'>
             <h1 className="text-[#050505] font-['Inter',sans-serif] text-[26px] font-semibold leading-[35px]">
-              Upload Historical Proposals (Optional)
+              Upload Historical Proposals (optional)
             </h1>
             <span className="overflow-hidden text-ellipsis font-['Inter',sans-serif] text-[22px] font-normal leading-[134.1%] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:1] text-[var(--black-80,#505050)]">
               Upload any relevant past proposals to be referenced

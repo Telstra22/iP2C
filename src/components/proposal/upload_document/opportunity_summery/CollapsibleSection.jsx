@@ -44,7 +44,7 @@ const CollapsibleSection = ({
       >
         <div className='flex items-center gap-[10px]'>
           {hasSpecialIcon && !isExpanded && renderSpecialIcon()}
-          <h3 className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-medium leading-[30px]">
+          <h3 className="text-[#0D54FF] font-['Inter',sans-serif] text-[22px] font-medium leading-[30px]">
             {title}
           </h3>
         </div>

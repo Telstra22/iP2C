@@ -4,6 +4,7 @@ import TemplateCard from './TemplateCard.jsx'
 import { mockRootProps } from './SelectTemplateMockData.js'
 import FileUploadZone from '../add_opportunity-details/FileUploadZone.jsx'
 import AiLoader from '../../AI_generated_Proposals/AiLoader/AiLoader.jsx'
+import PreviewTemplate from './PreviewTemplate.jsx'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const SelectTemplate = forwardRef(({ onTemplateSelect, onUploadChange, errorMessage, clearError, errorTick = 0, showLoader: showLoaderProp = false }, ref) => {
@@ -16,6 +17,8 @@ const SelectTemplate = forwardRef(({ onTemplateSelect, onUploadChange, errorMess
   const [uploadedFiles, setUploadedFiles] = useState([])
   const [localError, setLocalError] = useState('')
   const [localErrorTick, setLocalErrorTick] = useState(0)
+  const [previewTemplate, setPreviewTemplate] = useState(null)
+  const [showPreview, setShowPreview] = useState(false)
 
   const handleTemplateSelect = templateId => {
     setTemplates(prevTemplates =>
@@ -27,6 +30,17 @@ const SelectTemplate = forwardRef(({ onTemplateSelect, onUploadChange, errorMess
     if (onTemplateSelect) onTemplateSelect()
     if (clearError) clearError()
     if (localError) setLocalError('')
+  }
+
+  const handlePreview = (template) => {
+    // Pass through the template; PreviewTemplate will map by documentType
+    setPreviewTemplate(template)
+    setShowPreview(true)
+  }
+
+  const handleClosePreview = () => {
+    setShowPreview(false)
+    setPreviewTemplate(null)
   }
 
 // Lightweight Toast component (auto hides after duration)
@@ -90,16 +104,27 @@ const Toast = ({ message, duration = 3000, trigger = 0 }) => {
   const isNextEnabled = hasSelectedTemplate || hasUploadedFile
 
   const handleCarouselPrevious = () => {
-    setCurrentIndex(prev => Math.max(0, prev - 1))
+    const pageSize = 3
+    setCurrentIndex(prev => Math.max(0, prev - pageSize))
   }
 
   const handleCarouselNext = () => {
-    setCurrentIndex(prev => Math.min(templates.length - 3, prev + 1))
+    const pageSize = 3
+    const remainder = templates.length % pageSize
+    const lastStart = templates.length === 0
+      ? 0
+      : (remainder === 0 ? Math.max(0, templates.length - pageSize) : templates.length - remainder)
+    setCurrentIndex(prev => Math.min(lastStart, prev + pageSize))
   }
 
-  const visibleTemplates = templates.slice(currentIndex, currentIndex + 3)
+  const pageSize = 3
+  const visibleTemplates = templates.slice(currentIndex, currentIndex + pageSize)
   const isAtStart = currentIndex === 0
-  const isAtEnd = currentIndex >= templates.length - 3
+  const remainder = templates.length % pageSize
+  const lastStart = templates.length === 0
+    ? 0
+    : (remainder === 0 ? Math.max(0, templates.length - pageSize) : templates.length - remainder)
+  const isAtEnd = currentIndex >= lastStart
 
   // Expose triggerNext to parent (Footer Next will call this)
   useImperativeHandle(ref, () => ({
@@ -158,6 +183,7 @@ const Toast = ({ message, duration = 3000, trigger = 0 }) => {
                     template={template}
                     onSelect={handleTemplateSelect}
                     isSelected={template.isSelected}
+                    onPreview={handlePreview}
                   />
                 ))}
               </div>
@@ -165,7 +191,7 @@ const Toast = ({ message, duration = 3000, trigger = 0 }) => {
               {/* Right Arrow */}
               <button
                 onClick={handleCarouselNext}
-                disabled={currentIndex >= templates.length - 3}
+                disabled={isAtEnd}
                 className="flex-shrink-0 disabled:opacity-30 disabled:pointer-events-none disabled:cursor-not-allowed hover:opacity-70 transition-opacity"
                 aria-label="Next templates"
               >
@@ -197,6 +223,13 @@ const Toast = ({ message, duration = 3000, trigger = 0 }) => {
           </div>
         </div>
         </div>
+        
+        {/* Preview Modal */}
+        <PreviewTemplate 
+          isOpen={showPreview}
+          onClose={handleClosePreview}
+          template={previewTemplate}
+        />
       </div>
       </>
     )

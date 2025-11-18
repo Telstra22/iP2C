@@ -114,7 +114,7 @@ const FileUploadZone = forwardRef(({ maxFiles = 5, maxSizeMB = 10, onFilesChange
           </div>
           {showUploadGuidelines ? (
             <span className="text-[var(--blacks-40,#A0A0A0)] font-['Inter',sans-serif] text-[18px] font-normal leading-[134.1%] whitespace-nowrap">
-              {guidelinesText ?? 'Select a maximum of 5 files to upload. File format must be .ppt, .doc, .xlsx or .pdf. Total file size maximum: 10 MB.'}
+              {guidelinesText ?? 'Select a maximum of 5 files to upload. File format must be .ppt, .doc, .csv or .pdf. Total file size maximum: 10 MB.'}
             </span>
           ) : (
             <span className="text-[var(--blacks-40,#A0A0A0)] font-['Inter',sans-serif] text-[18px] font-normal leading-[134.1%] whitespace-nowrap">

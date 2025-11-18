@@ -86,7 +86,7 @@ function Create_Outline() {
                 Create Outline
               </h1>
               <span className="text-[#505050] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px]">
-                Select headings to create your Opportunity response outline
+                Select headings to create your opportunity response outline
               </span>
             </div>
           </div>
