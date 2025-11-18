@@ -33,6 +33,7 @@ const SelectTemplate = forwardRef(({ onTemplateSelect, onUploadChange, errorMess
   }
 
   const handlePreview = (template) => {
+    // Pass through the template; PreviewTemplate will map by documentType
     setPreviewTemplate(template)
     setShowPreview(true)
   }
@@ -103,16 +104,27 @@ const Toast = ({ message, duration = 3000, trigger = 0 }) => {
   const isNextEnabled = hasSelectedTemplate || hasUploadedFile
 
   const handleCarouselPrevious = () => {
-    setCurrentIndex(prev => Math.max(0, prev - 1))
+    const pageSize = 3
+    setCurrentIndex(prev => Math.max(0, prev - pageSize))
   }
 
   const handleCarouselNext = () => {
-    setCurrentIndex(prev => Math.min(templates.length - 3, prev + 1))
+    const pageSize = 3
+    const remainder = templates.length % pageSize
+    const lastStart = templates.length === 0
+      ? 0
+      : (remainder === 0 ? Math.max(0, templates.length - pageSize) : templates.length - remainder)
+    setCurrentIndex(prev => Math.min(lastStart, prev + pageSize))
   }
 
-  const visibleTemplates = templates.slice(currentIndex, currentIndex + 3)
+  const pageSize = 3
+  const visibleTemplates = templates.slice(currentIndex, currentIndex + pageSize)
   const isAtStart = currentIndex === 0
-  const isAtEnd = currentIndex >= templates.length - 3
+  const remainder = templates.length % pageSize
+  const lastStart = templates.length === 0
+    ? 0
+    : (remainder === 0 ? Math.max(0, templates.length - pageSize) : templates.length - remainder)
+  const isAtEnd = currentIndex >= lastStart
 
   // Expose triggerNext to parent (Footer Next will call this)
   useImperativeHandle(ref, () => ({
@@ -179,7 +191,7 @@ const Toast = ({ message, duration = 3000, trigger = 0 }) => {
               {/* Right Arrow */}
               <button
                 onClick={handleCarouselNext}
-                disabled={currentIndex >= templates.length - 3}
+                disabled={isAtEnd}
                 className="flex-shrink-0 disabled:opacity-30 disabled:pointer-events-none disabled:cursor-not-allowed hover:opacity-70 transition-opacity"
                 aria-label="Next templates"
               >

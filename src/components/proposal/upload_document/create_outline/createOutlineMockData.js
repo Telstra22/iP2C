@@ -1,25 +1,25 @@
 // Outline sections used by Create_Outline
 export const standardSectionsData = [
-  { id: 'executive-summary', label: 'INTRODUCTION', selected: true },
-  { id: 'meeting-objectives', label: 'OBJECTIVES', selected: true },
-  { id: 'commercial', label: 'RECOMMENDED SOLUTION', selected: true },
-  { id: 'proposed-solution', label: 'COMMERCIAL SUMMARY', selected: true },
-  { id: 'appendices', label: 'SOLUTION PARTNER', selected: true },
-  { id: 'proposal-terms', label: 'ACCOUNT MANAGEMENT', selected: true },
-  { id: 'telstra-team', label: 'ORGANIZATIONAL DETAILS', selected: true },
-  { id: 'inclusion&diversity', label: 'CUSTOMER SUPPORT', selected: false },
-  { id: 'sustainability&differentiators', label: 'ROPOSAL TERMS', selected: false },
-  { id: 'people&changemanagement', label: ' CONCLUSION', selected: false },
-  { id: 'riskmanagement', label: 'INNOVATION', selected: false },
-  { id: 'integrationstrategy', label: 'ESG', selected: false }
+  { id: 'Introduction', label: 'Introduction', selected: true },
+  { id: 'Objectives', label: 'Objectives', selected: true },
+  { id: 'Recommended solution', label: 'Recommended solution', selected: true },
+  { id: 'Commercial summary', label: 'Commercial summary', selected: true },
+  { id: 'Solution partner', label: 'Solution partner', selected: true },
+  { id: 'Account management', label: 'Account management', selected: true },
+  { id: 'Organizational details', label: 'Organizational details', selected: true },
+  { id: 'Customer support', label: 'Customer support', selected: true },
+  { id: 'Proposal terms', label: 'Proposal terms', selected: true },
+  { id: 'Conclusion', label: 'Conclusion', selected: true }
 ]
 
 export const additionalSectionsData = [
-  { id: 'inclusion&diversity', label: 'Inclusion & Diversity', selected: false },
-  { id: 'sustainability&differentiators', label: 'Sustainability & Differentiators', selected: false },
-  { id: 'people&changemanagement', label: 'People & Change Management', selected: false },
-  { id: 'riskmanagement', label: 'Risk Management', selected: false },
-  { id: 'integrationstrategy', label: 'Integration Strategy', selected: false },
-  { id: 'delivery&governance', label: 'Delivery & Governance', selected: false },
-  { id: 'tools&accelerators', label: 'Tools & Accelerators', selected: false }
+  { id: 'Innovation', label: 'Innovation', selected: true },
+  { id: 'Esg', label: 'Esg', selected: true },
+  { id: 'Inclusion & diversity', label: 'Inclusion & diversity', selected: false },
+  { id: 'Sustainability & differentiators', label: 'Sustainability & differentiators', selected: false },
+  { id: 'People & change management', label: 'People & change management', selected: false },
+  { id: 'Risk management', label: 'Risk management', selected: false },
+  { id: 'Integration strategy', label: 'Integration strategy', selected: false },
+  { id: 'Delivery & governance', label: 'Delivery & governance', selected: false },
+  { id: 'Tools & accelerators', label: 'Tools & accelerators', selected: false }
 ]

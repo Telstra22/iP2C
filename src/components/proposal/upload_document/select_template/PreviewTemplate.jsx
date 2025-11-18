@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { X } from 'lucide-react'
-import DocViewer, { DocViewerRenderers } from '@cyntler/react-doc-viewer'
 
 const PreviewTemplate = ({ isOpen, onClose, template }) => {
   if (!isOpen || !template) return null
@@ -9,25 +8,25 @@ const PreviewTemplate = ({ isOpen, onClose, template }) => {
   const getDocumentPath = (documentType) => {
     switch (documentType) {
       case 'word':
-        return '/select_template/Telstra-Standard-Proposal-Template_v3 1.docx'
+        return '/select_template/Telstra-Standard-Proposal-Template_v3-1.docx'
       case 'excel':
-        return '/select_template/Excel Based RFP Response.xlsx'
+        return '/select_template/Excel-Based-RFP-Response.xlsx'
       case 'powerpoint':
-        return '/select_template/Control Centre  - Customer Presentation_2306.pptx'
+        return '/select_template/Control-Centre-Customer-Presentation_2306.pptx'
       default:
         return null
     }
   }
 
-  const documentPath = getDocumentPath(template.documentType)
-  
-  // Prepare document for DocViewer
-  const docs = documentPath ? [
-    {
-      uri: documentPath,
-      fileName: documentPath.split('/').pop()
-    }
-  ] : []
+  // Simplest direct path from /public
+  const documentPath = template.filePath || getDocumentPath(template.documentType)
+  const toPublicPath = (p) => {
+    if (!p) return ''
+    // If already absolute http(s), just return as-is; else ensure it starts with '/'
+    if (/^https?:\/\//i.test(p)) return p
+    return p.startsWith('/') ? p : `/${p}`
+  }
+  const srcPath = toPublicPath(documentPath)
 
   return (
     <div className='fixed inset-0 bg-black/50 backdrop-blur-[1px] flex items-center justify-center z-50'>
@@ -50,30 +49,8 @@ const PreviewTemplate = ({ isOpen, onClose, template }) => {
         <div className='flex-1 flex items-center justify-center bg-[#F6F6F6] p-[40px] overflow-hidden'>
           <div className='relative w-full h-full flex items-center justify-center'>
             {/* Document Preview Container */}
-            <div className='w-[821px] h-full bg-white rounded-[4px] shadow-[0px_4px_16px_rgba(0,0,0,0.15)] overflow-hidden'>
-              {docs.length > 0 ? (
-                <DocViewer
-                  documents={docs}
-                  pluginRenderers={DocViewerRenderers}
-                  config={{
-                    header: {
-                      disableHeader: true,
-                      disableFileName: true,
-                      retainURLParams: false
-                    },
-                    csvDelimiter: ',',
-                    pdfZoom: {
-                      defaultZoom: 1.0,
-                      zoomJump: 0.1
-                    },
-                    pdfVerticalScrollByDefault: true
-                  }}
-                  style={{
-                    width: '100%',
-                    height: '100%'
-                  }}
-                />
-              ) : (
+            <div className='w-[821px] h-full bg-white rounded-[4px] shadow-[0px_4px_16px_rgba(0,0,0,0.15)] overflow-auto'>
+              {srcPath ? (
                 <div className='w-full h-full flex flex-col items-center justify-center gap-[20px] p-[40px]'>
                   <div className='w-[120px] h-[120px] rounded-full bg-[#0D54FF]/10 flex items-center justify-center'>
                     <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -94,11 +71,16 @@ const PreviewTemplate = ({ isOpen, onClose, template }) => {
                   </div>
                   <div className='mt-[20px] text-center'>
                     <p className="text-[#505050] font-['Inter',sans-serif] text-[16px] font-normal leading-[22px]">
-                      Document preview unavailable
+                      Document preview below (browser will handle rendering or download)
                     </p>
-                    <p className="text-[#A0A0A0] font-['Inter',sans-serif] text-[14px] font-normal leading-[20px] mt-[8px]">
-                      Template: {template.documentType === 'word' ? 'Word Document' : template.documentType === 'excel' ? 'Excel Spreadsheet' : 'PowerPoint Presentation'}
-                    </p>
+                  </div>
+                  <iframe title='file-preview' src={srcPath} className='w-full h-[900px] border-0' />
+                </div>
+              ) : (
+                <div className='w-full h-full flex items-center justify-center p-[24px]'>
+                  <div className='text-center px-[24px]'>
+                    <p className="text-[#505050] font-['Inter',sans-serif] text-[16px] leading-[22px] mb-[8px]">Unsupported or missing file.</p>
+                    <p className="text-[#A0A0A0] font-['Inter',sans-serif] text-[14px] leading-[20px]">Place the file under /public and set its path like '/select_template/yourfile.ext'.</p>
                   </div>
                 </div>
               )}
