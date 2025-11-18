@@ -34,7 +34,7 @@ const AgentBadge = ({ label, backgroundColor = '#FFFFFF' }) => {
 const OrchestratorHeader = () => {
   return (
     <div 
-      className='flex items-center justify-between w-[491px] h-[77px] px-[20px] py-[12px] flex-shrink-0 border-b border-[#DDD] shadow-[0_4px_12px_0_rgba(0,0,0,0.08)]'
+      className='flex items-center justify-between w-full h-[77px] px-[20px] py-[12px] flex-shrink-0 border-b border-[#DDD] shadow-[0_4px_12px_0_rgba(0,0,0,0.08)]'
       style={{
         background: 'linear-gradient(81deg, rgba(0, 255, 225, 0.81) -29.04%, rgba(13, 84, 255, 0.81) 24.99%, rgba(90, 57, 223, 0.81) 80.05%, rgba(149, 36, 198, 0.81) 145.23%, rgba(255, 137, 0, 0.81) 223.67%)'
       }}
@@ -239,12 +239,12 @@ const OrchestratorSidebar = ({ data, onSendMessage, isLoading = false }) => {
   const sidebarData = data || (isLoading ? mockOrchestratorDataLoading : mockOrchestratorData)
   
   return (
-    <div className='w-[491px] h-[906px] flex flex-col bg-[#F5F0F0] border-l border-[#D9D9D9]'>
+    <div className='w-[491px] h-full flex flex-col bg-[#F5F0F0] border-l border-[#D9D9D9]'>
       <OrchestratorHeader />
       
       <OpportunityManagerCard data={sidebarData.opportunityManager} />
       
-      <div className='flex-1 overflow-y-auto px-[20px] pt-[22px] pb-[16px]'>
+      <div className='flex-1 overflow-y-auto px-[20px] pt-[22px] pb-[16px] min-h-0'>
         <div className='flex flex-col' style={{ gap: sidebarData.isHuddleInProgress ? '22px' : '18px' }}>
           {sidebarData.agentActivities.map((activity) => (
             <AgentActivityCard key={activity.id} activity={activity} showCheckmark={!sidebarData.isHuddleInProgress} />

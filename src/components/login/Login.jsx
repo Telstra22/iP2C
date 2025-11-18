@@ -69,10 +69,35 @@ function Login() {
 
   return (
     <>
-      <div className="h-full overflow-hidden font-['Inter',sans-serif] flex flex-col lg:flex-row bg-[#FEF9EF]">
+      {/* Header */}
+      <header className="w-full h-24 bg-white shadow-[0px_4px_9px_1px_rgba(0,0,0,0.07)] fixed top-0 left-0 right-0 z-50">
+        <div className="flex justify-between items-center h-full px-[66px]">
+          {/* Left: Logo section */}
+          <div className="flex items-center gap-1.5 max-sm:gap-1">
+            <div className="text-[#191919] text-[20px] font-medium font-['Graphik'] leading-normal max-sm:text-lg" style={{ fontStyle: 'normal' }}>
+                iP2C
+              </div>
+            <div className="text-black text-xl font-normal max-sm:text-lg">|</div>
+            <img
+              src="/telstra-logo.png"
+              alt="Telstra Logo"
+              className="w-[58px] h-[33px] aspect-[58/33] max-sm:w-[45px] max-sm:h-[25px]"
+            />
+          </div>
+
+          {/* Right: Icons */}
+          <div className="flex items-center gap-[33px]">
+            <button className="p-1" aria-label="Notifications">
+              <img src="/header-icons.svg" alt="" className="w-[175px] h-[58px]" />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div className="h-screen w-screen overflow-hidden font-['Inter',sans-serif] flex flex-col lg:flex-row bg-[#FEF9EF]">
         {/* Left: Login form */}
-        <div className="flex-1 flex items-center justify-center px-5 md:px-8 lg:px-12 xl:px-16 2xl:px-[195px] overflow-hidden">
-          <div className="w-full max-w-[600px]">
+        <div className="w-full lg:w-1/2 flex items-start justify-start px-5 md:px-8 lg:px-12 xl:px-16 2xl:pl-[195px] 2xl:pr-[100px] pt-[110px] 2xl:pt-[110px] overflow-y-auto">
+          <div className="w-full max-w-[601px]">
             <h1 className="text-[#505050] font-['Inter',sans-serif] text-[40px] font-medium leading-[51px] mb-[30px]">
               Welcome back!
             </h1>
@@ -198,23 +223,14 @@ function Login() {
               {/* Sign In Button */}
               <button
                 type="submit"
-                className="w-full h-[66px] rounded-[8px] bg-[#0D54FF] flex items-center justify-center text-white font-['Inter',sans-serif] text-[24px] font-semibold leading-[32px] hover:bg-[#0D54FF]/90 transition-colors mb-[58px]"
+                className="w-full h-[66px] rounded-[8px] bg-[#0D54FF] flex items-center justify-center text-white font-['Inter',sans-serif] text-[22px] font-semibold leading-[30px] hover:bg-[#0D54FF]/90 transition-colors mb-[30px]"
               >
                 Sign In
               </button>
             </form>
 
-            {/* OR Divider */}
-            <div className="flex items-center gap-[16px] mb-[37px]">
-              <div className="flex-1 border-t border-[#B4B4B4]" />
-              <span className="text-[#828282] font-['Inter',sans-serif] text-[20px] font-normal leading-[27px]">
-                OR
-              </span>
-              <div className="flex-1 border-t border-[#B4B4B4]" />
-            </div>
-
             {/* Create Account */}
-            <div className="flex items-center justify-center gap-[8px]">
+            <div className="flex items-center justify-center gap-[8px] pb-[50px]">
               <span className="text-[#828282] font-['Inter',sans-serif] text-[20px] font-normal leading-[27px]">
                 Don't have an account ?
               </span>
@@ -229,16 +245,19 @@ function Login() {
         </div>
 
         {/* Right: Brand / Info */}
-        <div className="hidden lg:flex flex-1 relative overflow-hidden h-full flex-col justify-between pl-[60px] xl:pl-[100px] 2xl:pl-[125px] pr-0 pt-[10vh] xl:pt-[12vh] 2xl:pt-[200px] pb-[8vh] xl:pb-[10vh] 2xl:pb-[100px]">
-          <div className="relative z-10 w-full max-w-[710px] flex-shrink-0 pr-[80px] xl:pr-[120px] 2xl:pr-[85px]">
-            <h1 className="text-[#505050] font-['Inter',sans-serif] text-[45.15px] font-bold leading-[60.55px] mb-[52px]">
+        <div className="hidden lg:flex w-1/2 relative overflow-hidden h-full bg-[#FEF9EF]">
+          {/* Text content */}
+          <div className="absolute left-[60px] xl:left-[100px] 2xl:left-[125px] top-[200px] xl:top-[200px] 2xl:top-[200px] z-10 w-full max-w-[710px]">
+            <h1 className="text-[#505050] font-['Inter',sans-serif] text-[45.15px] font-medium leading-[60.55px] mb-[52px]">
               <span className="text-[#0D54FF]">Intelligent</span> Proposal to Contract (iP2C)
             </h1>
             <p className="text-[#505050] font-['Inter',sans-serif] text-[24px] font-normal leading-[134.1%]">
               Agentic AI-powered tool for automated proposal generation with automated contract review and negotiation, enabling a seamless transition from opportunity response to contract finalisation
             </p>
           </div>
-          <div className="mt-auto self-end pointer-events-none select-none">
+          
+          {/* Illustration */}
+          <div className="absolute bottom-0 right-0 pointer-events-none select-none">
             <img
               src="/login-illustration.svg"
               alt="AI-Powered Proposal & Contract Builder"

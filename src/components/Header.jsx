@@ -22,7 +22,7 @@ function Header() {
               <img
                 src={telstraLogo}
                 alt="Telstra Logo"
-                className="w-[58px] h-[33px] aspect-[58/33] bg-center bg-cover bg-no-repeat max-sm:w-[45px] max-sm:h-[25px]"
+                className="w-[58px] h-[33px] aspect-[58/33] max-sm:w-[45px] max-sm:h-[25px]"
               />
             </div>
 
@@ -56,7 +56,7 @@ function Header() {
           <img
             src="/src/assets/images/telstra-logo.png"
             alt="Telstra Logo"
-            className="w-[58px] h-[33px] aspect-[58/33] bg-center bg-cover bg-no-repeat max-sm:w-[45px] max-sm:h-[25px]"
+            className="w-[58px] h-[33px] aspect-[58/33] max-sm:w-[45px] max-sm:h-[25px]"
           />
         </div>
         

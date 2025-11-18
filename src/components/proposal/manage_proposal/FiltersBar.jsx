@@ -465,7 +465,7 @@ function FiltersBar ({
           )}
         </button>
         <span className="text-[#828282] font-['Inter',sans-serif] text-[16px] font-normal leading-normal whitespace-nowrap">
-          Product type
+          Product Type
         </span>
         <span className="text-[#0D54FF] font-['Inter',sans-serif] text-[16px] font-medium leading-normal whitespace-nowrap">
           {locations.length === 0 ? 'All' : `${locations.length} selected`}

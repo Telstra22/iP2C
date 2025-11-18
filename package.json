@@ -14,15 +14,18 @@
     "@cyntler/react-doc-viewer": "^1.17.1",
     "@tailwindcss/vite": "^4.1.14",
     "date-fns": "^4.1.0",
+    "docx-preview": "^0.3.7",
     "lucide-react": "^0.545.0",
     "react": "^19.1.1",
     "react-datepicker": "^8.8.0",
+    "react-doc-viewer": "^0.1.15",
     "react-dom": "^19.1.1",
-    "react-file-viewer": "^1.2.1",
+    "react-pdf": "^10.2.0",
     "react-router-dom": "^7.9.4",
     "react-toastify": "^11.0.5",
     "serve": "^14.2.3",
-    "tailwindcss": "^4.1.14"
+    "tailwindcss": "^4.1.14",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
