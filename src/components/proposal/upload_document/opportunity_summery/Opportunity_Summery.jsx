@@ -417,6 +417,7 @@ const OpportunitySummery = () => {
                       showActionsInitially={true}
                       readOnly={activeEditable !== 'scopeOfWork'}
                       onRequestEdit={() => setActiveEditable('scopeOfWork')}
+                      compactBullets={true}
                     />
                   </CollapsibleSection>
                 </div>

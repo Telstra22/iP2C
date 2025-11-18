@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Trash2, Check } from 'lucide-react'
 import { UI_STRINGS } from './mockData'
 
-const EditableTextArea = ({ initialValue, onSave, onDiscard, showActionsInitially = false, readOnly = false, onRequestEdit }) => {
+const EditableTextArea = ({ initialValue, onSave, onDiscard, showActionsInitially = false, readOnly = false, onRequestEdit, compactBullets = false }) => {
   const [value, setValue] = useState(initialValue ?? '')
   const [isEdited, setIsEdited] = useState(showActionsInitially)
   const textAreaRef = React.useRef(null)
@@ -55,16 +55,20 @@ const EditableTextArea = ({ initialValue, onSave, onDiscard, showActionsInitiall
             __html: value
               .split('\n')
               .map(line => {
+                const bulletLineStyle = compactBullets
+                  ? 'margin-bottom: 4px; line-height: 20px;'
+                  : 'margin-bottom: 6px; line-height: 22px;'
                 // Check if line starts with bullet point
                 if (line.trim().startsWith('•')) {
-                  return `<div style="margin-bottom: 8px;">${line}</div>`;
+                  return `<div style="${bulletLineStyle}">${line}</div>`;
                 }
                 // Check if line starts with asterisk
                 if (line.trim().startsWith('*')) {
-                  return `<div style="margin-bottom: 8px;">${line}</div>`;
+                  const replaced = line.replace(/^\s*\*\s?/, '• ')
+                  return `<div style="margin-bottom: 8px;">${replaced}</div>`;
                 }
                 // Regular line
-                return line ? `<div>${line}</div>` : '<div><br/></div>';
+                return line ? `<div>${line}</div>` : ' ';
               })
               .join('')
           }}
