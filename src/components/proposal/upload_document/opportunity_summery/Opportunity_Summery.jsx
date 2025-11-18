@@ -1,15 +1,15 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import IP2CLogoIcon from '../../../../assets/icons/IP2CLogoIcon'
-import CircularLoader from '../../../../assets/icons/CircularLoader'
-import ProgressBarItem from './ProgressBarItem'
-import CompletionModal from './CompletionModal'
+import { useNavigate } from 'react-router-dom'
 import FormField from './FormField'
 import CollapsibleSection from './CollapsibleSection'
 import EditableTextArea from './EditableTextArea'
-import OrchestratorSidebar from './OrchestratorSidebar'
-import { Check,Info } from 'lucide-react'
+import { Check } from 'lucide-react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Breadcrumb from '../Breadcrumb'
+import Sidebar from '../Sidebar'
+import FooterNav from '../FooterNav'
+
 import {
   INITIAL_FORM_DATA,
   OPPORTUNITY_BRIEF,
@@ -29,7 +29,8 @@ import {
 import { UI_STRINGS } from './mockData'
 
 const OpportunitySummery = () => {
-  const [showLoadingModal, setShowLoadingModal] = useState(true)
+  const navigate = useNavigate()
+  const [showLoadingModal, setShowLoadingModal] = useState(false)
   const [showCompletionModal, setShowCompletionModal] = useState(false)
   const [progress, setProgress] = useState(0)
   const [expandAll, setExpandAll] = useState(true)
@@ -292,14 +293,23 @@ const OpportunitySummery = () => {
   }
 
   return (
-    <div className='flex w-full h-full overflow-hidden'>
-      <div className='flex-1 overflow-y-auto bg-[#F6F6F6]'>
-        <div className='w-full max-w-[1330px] mx-auto pt-[37px] pb-[37px] relative'>
-          <ToastContainer position="top-right" theme="light" hideProgressBar={false} />
-          <div
-            aria-hidden={showLoadingModal}
-            className={showLoadingModal ? 'invisible pointer-events-none' : ''}
-          >
+    <div className='w-full h-full bg-[#F6F6F6] flex flex-col overflow-hidden'>
+      {/* Breadcrumb */}
+      <Breadcrumb current={'Opportunity Summary'} />
+
+      {/* Main content area */}
+      <div className='flex flex-1 overflow-hidden'>
+        {/* Sidebar */}
+        <Sidebar
+          activeStep={1}
+          completedSteps={[0]}
+          onStepClick={() => navigate('/add_opportunity-details')}
+        />
+
+        {/* Center content */}
+        <div className='flex-1 overflow-y-auto overflow-x-hidden pl-[30px] pr-[37px] pt-0 pb-[37px]'>
+          <div className='w-full max-w-[1330px] mx-auto pt-[37px] pb-[0px] relative'>
+            <ToastContainer position="top-right" theme="light" hideProgressBar={false} />
             {/* Header */}
             <div className="flex flex-col items-start self-stretch bg-white shadow-[0_4px_6px_0_rgba(0,0,0,0.07)] mb-[2px]">
               <div className="flex h-[120px] py-[0px] px-[41px] items-center gap-[25px] self-stretch border-l-[12px] border-[#0D54FF]">
@@ -492,75 +502,16 @@ const OpportunitySummery = () => {
             </div>
           </div>
 
-          {showLoadingModal && (
-            <div className='fixed inset-0 bg-black/30 backdrop-blur-[1px] flex items-center justify-center z-40'>
-              <div className='bg-white rounded-[12px] border border-[#CFCFCF] shadow-[0px_4px_8px_2px_rgba(0,0,0,0.07)] flex flex-col px-[50px] py-[53px] w-[690px]'>
-                {/* Header with gradient logo and title */}
-                <div className='flex items-center gap-[10px] mb-[22px]'>
-                  <div 
-                    className='w-[33px] h-[33px] flex items-center justify-center rounded-[4px]'
-                    style={{
-                      background: 'linear-gradient(82.57deg, rgba(0,255,225,1) 1.85%, rgba(13,84,255,1) 44.07%, rgba(149,36,198,1) 110.73%)'
-                    }}
-                  >
-                    <IP2CLogoIcon width={33} height={33} color="#FFFFFF" />
-                  </div>
-                  <h2 className="text-[#39393A] font-['Inter',sans-serif] text-[24px] font-semibold leading-[32px]">
-                    AI is generating your summary...
-                  </h2>
-                </div>
-
-                {/* Content section */}
-                <div className='flex flex-col items-center gap-[32px] mb-[22px]'>
-                  {/* Circular loader */}
-                  <CircularLoader
-                    size={119}
-                    strokeWidth={8}
-                    progress={progress}
-                    animated={true}
-                  />
-
-                  {/* Estimated wait time */}
-                  <p className="text-[#828282] font-['Inter',sans-serif] text-[20px] font-normal leading-[27px]">
-                    Estimated wait time 3-5 minutes
-                  </p>
-
-                  {/* Resume note */}
-                  <p className="w-full text-[#505050] font-['Inter',sans-serif] text-[20px] font-normal leading-[26.82px] text-center">
-                    Please continue with other Proposals . You will be notified once the huddle has ended
-                  </p>
-                </div>
-
-                {/* Cancel button */}
-                <div className='flex justify-end'>
-                  <button
-                    onClick={() => setShowLoadingModal(false)}
-                    className="text-[#0D54FF] font-['Inter',sans-serif] text-[22px] font-semibold leading-[30px] bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity"
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {showCompletionModal && (
-            <div className='fixed inset-0 bg-black/30 backdrop-blur-[1px] flex items-center justify-center z-50'>
-              <CompletionModal onDone={handleDone} />
-            </div>
-          )}
         </div>
       </div>
-      
-      {/* Orchestrator Sidebar - Show when loading modal or completion modal is visible */}
-      {(showLoadingModal || showCompletionModal) && (
-        <div className='relative z-50'>
-          <OrchestratorSidebar 
-            onSendMessage={handleSendMessage}
-            isLoading={showLoadingModal}
-          />
-        </div>
-      )}
+      {/* Footer Navigation */}
+      <div className='flex-shrink-0'>
+        <FooterNav
+          activeStep={1}
+          onPrevious={() => navigate('/add_opportunity-details')}
+          onNext={() => navigate('/upload_historical_proposal')}
+        />
+      </div>
     </div>
   )
 }

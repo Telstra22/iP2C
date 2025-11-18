@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import { Check } from 'lucide-react'
 import FileUploadZone from '../add_opportunity-details/FileUploadZone.jsx'
+import { useNavigate } from 'react-router-dom'
+import FooterNav from '../FooterNav.jsx'
+import Breadcrumb from '../Breadcrumb.jsx'
+import Sidebar from '../Sidebar.jsx'
 
 // Reusable Checkbox Component
 const Checkbox = ({ checked, onChange, label, size = 'default' }) => {
@@ -36,6 +40,7 @@ const Checkbox = ({ checked, onChange, label, size = 'default' }) => {
 }
 
 const Source_Connection = () => {
+  const navigate = useNavigate()
   const [sources, setSources] = useState([
     { id: 'phoenix', name: 'Phoenix', checked: true },
     { id: 'seismic', name: 'Seismic', checked: true },
@@ -63,6 +68,26 @@ const Source_Connection = () => {
   }
 
   return (
+    <div className='w-full h-full bg-[#F6F6F6] flex flex-col overflow-hidden'>
+      {/* Breadcrumb */}
+      <Breadcrumb current={'Upload Historical Proposal'} />
+
+      {/* Main content area */}
+      <div className='flex flex-1 overflow-hidden'>
+        {/* Sidebar */}
+        <Sidebar
+          activeStep={2}
+          completedSteps={[0,1]}
+          onStepClick={(idx) => {
+            if (idx === 1) navigate('/opportunity_summary')
+            if (idx === 2) navigate('/upload_historical_proposal')
+            if (idx === 3) navigate('/create_outline')
+            if (idx === 4) navigate('/select_template')
+          }}
+        />
+
+        {/* Center content */}
+        <div className='flex-1 overflow-y-auto overflow-x-hidden pl-[30px] pr-[37px] pt-0 pb-[37px]'>
     <div className='w-full bg-white rounded-[9px] px-[37px] py-[37px] mt-[37px] pt-0 pb-[37px]'>
       {/* Header with Status Indicator */}
       <div className='flex flex-col -ml-[35px] -mr-[35px] items-start self-stretch bg-[var(--blacks-0,#FFF)] shadow-[0_4px_6px_0_rgba(0,0,0,0.07)] mb-[40px]'>
@@ -120,6 +145,16 @@ const Source_Connection = () => {
           </div> */}
         </div>
       </div>
+    </div>
+        </div>
+      </div>
+      <div className='flex-shrink-0'>
+      <FooterNav
+        activeStep={2}
+        onPrevious={() => navigate('/opportunity_summary')}
+        onNext={() => navigate('/create_outline')}
+      />
+    </div>
     </div>
   )
 }

@@ -12,6 +12,11 @@ import PreviewProposalPage from './components/proposal/AI_generated_Proposals/Ai
 import AddSection from './components/proposal/AI_generated_Proposals/Ai_proposal/addSection/AddSection'
 import OpportunityLoader from './components/proposal/upload_document/opportunity_summery/opportunity_loader/OpportunityLoader'
 import OpportunityDone from './components/proposal/upload_document/opportunity_summery/opportunity_loader/OpportunityDone'
+import OpportunitySummery from './components/proposal/upload_document/opportunity_summery/Opportunity_Summery'
+import Source_Connection from './components/proposal/upload_document/upload_historical_proposal/Upload_Historical_Proposal'
+import Create_Outline from './components/proposal/upload_document/create_outline/Create_Outline'
+import SelectTemplate from './components/proposal/upload_document/select_template/SelectTemplate'
+
 function AppContent() {
   return (
     <div className="h-screen overflow-hidden flex flex-col">
@@ -29,6 +34,10 @@ function AppContent() {
           <Route path="/add-section" element={<AddSection isOpen={true} />} />
           <Route path="/opportunity_loader" element={<OpportunityLoader />} />
           <Route path="/opportunity_done" element={<OpportunityDone />} />
+          <Route path="/opportunity_summary" element={<OpportunitySummery />} />
+          <Route path="/upload_historical_proposal" element={<Source_Connection />} />
+          <Route path="/create_outline" element={<Create_Outline />} />
+          <Route path="/select_template" element={<SelectTemplate />} />
           <Route path="*" element={<div>404 Not Found</div>} />
         </Routes>
       </div>

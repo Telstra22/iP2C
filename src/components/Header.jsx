@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import telstraLogo from '../assets/images/telstra-logo.png';
-import { Bell, Grip, UserRound } from 'lucide-react';
-import { useLocation } from 'react-router-dom';
+import { Bell, Grip, UserRound, LogOut } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function Header() {
   const location = useLocation();
+  const navigate = useNavigate();
   const isLoginPage = location.pathname === '/';
+  const [showProfileMenu, setShowProfileMenu] = useState(false)
+  const profileRef = useRef(null)
+
+  useEffect(() => {
+    const onDocClick = (e) => {
+      if (!profileRef.current) return
+      if (!profileRef.current.contains(e.target)) setShowProfileMenu(false)
+    }
+    document.addEventListener('mousedown', onDocClick)
+    return () => document.removeEventListener('mousedown', onDocClick)
+  }, [])
 
   if (isLoginPage) {
     return (
@@ -69,18 +81,32 @@ function Header() {
             <Grip width={25} height={25} color="#050505" />
           </button>
           <div className="w-px h-[59px] bg-(--color-border-gray) max-sm:h-10" />
-          <div className="flex items-center gap-[15px] max-sm:gap-2">
+          <div ref={profileRef} className="relative flex items-center gap-[15px] max-sm:gap-2">
             <span 
               className="text-[#191919] text-[20px] font-medium leading-normal max-sm:text-base whitespace-nowrap"
               style={{ fontFamily: 'Graphik, sans-serif' }}
             >
               Alex Anderson
             </span>
-            <img
+            <button type="button" onClick={() => setShowProfileMenu(v => !v)} aria-haspopup="menu" aria-expanded={showProfileMenu}>
+              <img
               src="/alex-anderson-profile.png"
               alt="Alex Anderson profile"
               className="w-[38px] h-[39px] rounded-full object-cover max-sm:w-8 max-sm:h-8"
-            />
+              />
+            </button>
+            {showProfileMenu && (
+              <div role="menu" className="absolute right-0 top-[calc(100%+8px)] z-50 min-w-[180px] rounded-[8px] border border-[#E5E5E5] bg-white shadow-[0_8px_20px_rgba(0,0,0,0.12)]">
+                <button
+                  type="button"
+                  onClick={() => { setShowProfileMenu(false); navigate('/') }}
+                  className="w-full flex items-center gap-3 px-4 py-3 hover:bg-[#F6F6F6] text-left"
+                >
+                  <LogOut width={18} height={18} color="#050505" />
+                  <span className="text-[#050505] text-[16px] leading-[22px]">Logout</span>
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

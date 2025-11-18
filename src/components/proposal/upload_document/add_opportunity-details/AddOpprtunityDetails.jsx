@@ -62,10 +62,8 @@ const UploadProposalDocument = () => {
       const isGenerateEnabled =
         opportunityId.trim().length > 0 && mainUploadCount >= 1;
       if (!isGenerateEnabled) return;
-      // Mark step 0 as complete and go to step 1 (Opportunity Summary)
-      setCompletedSteps((prev) => (prev.includes(0) ? prev : [...prev, 0]));
-      setAllowSummary(true);
-      setActiveStep(1);
+      // Redirect to full-screen loader flow
+      navigate('/opportunity_loader');
       return;
     }
     // When on Select Template step, delegate to child to show loader and navigate

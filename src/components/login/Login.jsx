@@ -9,6 +9,7 @@ import {
   TOGGLE_ICON_BTN_CLASS,
   getCheckboxBoxClass,
 } from "./styles/loginFormClasses";
+import telstraLogo from '../../assets/images/telstra-logo.png';
 // Profile selection will use a native <select> instead of RadioButton
 
 
@@ -79,7 +80,7 @@ function Login() {
               </div>
             <div className="text-black text-xl font-normal max-sm:text-lg">|</div>
             <img
-              src="/telstra-logo.png"
+              src={telstraLogo}
               alt="Telstra Logo"
               className="w-[58px] h-[33px] aspect-[58/33] max-sm:w-[45px] max-sm:h-[25px]"
             />
