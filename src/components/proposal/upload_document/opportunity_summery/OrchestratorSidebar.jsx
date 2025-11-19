@@ -173,9 +173,9 @@ const AgentActivityCard = ({ activity, showCheckmark }) => {
             </div>
             {showCheckmark && (
               <div className='absolute bottom-0 right-0'>
-                <svg width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                {/* <svg width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M1 4L4 7L10 1" stroke="#56A72B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+                </svg> */}
               </div>
             )}
           </>
@@ -223,9 +223,41 @@ const ProgressIndicator = ({ status }) => {
 }
 
 const CompletedAgentsBadges = () => {
+  const badges = [
+    { label: 'OE', bgColor: '#D3EDFE' },
+    { label: 'RS', bgColor: '#FBFED3' },
+    { label: 'OV', bgColor: '#D3FEEF' },
+    { label: 'CC', bgColor: '#FFE5DE' }
+  ]
+
   return (
-    <div className='w-[479px]'>
-      <CompletedAgentsBadgesIcon width={479} height={62.391} />
+    <div className='flex items-center' style={{ gap: '-8.48px' }}>
+      {badges.map((badge, index) => (
+        <div
+          key={badge.label}
+          className='relative rounded-full p-[2.9px]'
+          style={{
+            marginLeft: index > 0 ? '-8.48px' : '0',
+            background: 'linear-gradient(83deg, #00FFE1 1.85%, #0D54FF 44.08%, #9524C6 110.73%)',
+            zIndex: badges.length - index
+          }}
+        >
+          <div 
+            className='w-[56.2px] h-[56.2px] rounded-full flex items-center justify-center'
+            style={{ backgroundColor: badge.bgColor }}
+          >
+            <span className="text-[#050505] font-['Inter',sans-serif] text-[26.74px] font-medium leading-normal">
+              {badge.label}
+            </span>
+          </div>
+          {/* Green checkmark badge */}
+          <div className='absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[20px] h-[20px] rounded-full bg-[#56A72B] flex items-center justify-center'>
+            <svg width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 4L4 7L10 1" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      ))}
     </div>
   )
 }
@@ -302,17 +334,18 @@ const OrchestratorSidebar = ({ data, onSendMessage, isLoading = false }) => {
             <ProgressIndicator status={sidebarData.huddleStatus} />
           ) : (
             <div className='flex flex-col gap-[18px] mt-[0px]'>
-              <p className="text-[#A0A0A0] font-['Inter',sans-serif] text-[19px] font-normal leading-[25px]">
+              <p className="text-center text-[#A0A0A0] font-['Inter',sans-serif] text-[19px] font-normal leading-[25px]">
                 {sidebarData.huddleStatus}
               </p>
-              <CompletedAgentsBadges />
+              <div className="flex justify-center"><CompletedAgentsBadges /></div>
+              {/* <CompletedAgentsBadges /> */}
             </div>
           )}
           <div ref={listEndRef} />
         </div>
       </div>
       
-      <ChatInput onSend={onSendMessage} />
+      {/* <ChatInput onSend={onSendMessage} /> */}
     </div>
   )
 }
