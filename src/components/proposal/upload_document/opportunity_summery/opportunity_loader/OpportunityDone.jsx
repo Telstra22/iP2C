@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import CheckmarkSuccessIcon from '../../../../../assets/icons/CheckmarkSuccessIcon.jsx';
 import AISparkleIcon from '../../../../../assets/icons/AISparkleIcon.jsx';
 import OrchestratorSidebar from '../OrchestratorSidebar.jsx';
@@ -10,16 +10,18 @@ import { mockOrchestratorDataLoading } from '../OrchestratorSidebarMockData.js'
 
 function OpportunityDone({ onDone, onSendMessage, onStepClick, activeStep = 1, completedSteps = [0], onPrevious, onNext }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const totalActivities = mockOrchestratorDataLoading.agentActivities.length
   const [visibleCount] = useState(totalActivities)
+  const endedStatusFromState = location?.state?.endedStatus
 
   const sidebarData = useMemo(() => ({
     ...mockOrchestratorDataLoading,
     agentActivities: mockOrchestratorDataLoading.agentActivities.slice(0, visibleCount),
     // show as completed state: checkmarks on, no progress bar
-    huddleStatus: 'Huddle ended after 3m 56secs..',
+    huddleStatus: endedStatusFromState || 'Huddle ended after 3m 56secs..',
     isHuddleInProgress: false
-  }), [visibleCount])
+  }), [visibleCount, endedStatusFromState])
   const handleDone = () => {
     if (onDone) return onDone();
     navigate('/opportunity_summary');

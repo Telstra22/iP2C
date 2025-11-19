@@ -9,7 +9,6 @@ export const mockRootProps = {
       headerColor: "#1E3A5F",
       headerText: "Create AI generated proposal for all the sections selected in outline in a Word document",
       documentType: "word",
-      filePath: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
       isSelected: true
     },
     {

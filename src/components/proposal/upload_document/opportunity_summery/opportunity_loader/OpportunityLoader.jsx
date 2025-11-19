@@ -11,50 +11,67 @@ import { mockOrchestratorDataLoading } from '../OrchestratorSidebarMockData.js'
 function OpportunityLoader({ onCancel, onSendMessage, onStepClick, activeStep = 1, completedSteps = [0], onPrevious, onNext }) {
   const navigate = useNavigate();
   const totalActivities = mockOrchestratorDataLoading.agentActivities.length
-  const [visibleCount, setVisibleCount] = useState(1)
-  const [progress, setProgress] = useState(Math.round((1 / totalActivities) * 100))
+  const [visibleCount, setVisibleCount] = useState(0)
+  const [progress, setProgress] = useState(0)
   const [done, setDone] = useState(false)
   const [startTs] = useState(() => Date.now())
   const [endedStatus, setEndedStatus] = useState('')
 
   useEffect(() => {
-    // reveal next activity every ~1.8s and update progress
+    // reveal next activity on an interval and show 100% in-progress briefly before completing
     if (done) return
-    const interval = setInterval(() => {
+
+    let endTimeoutId;
+    // Calculate interval for each activity so the total completes in 67 seconds
+    const intervalTime = (67 * 1000) / totalActivities; // 67 seconds for total, spread across all activities
+
+    const intervalId = setInterval(() => {
       setVisibleCount((prev) => {
-        const next = Math.min(prev + 1, totalActivities)
-        setProgress(Math.min(100, Math.round((next / totalActivities) * 100)))
+        const next = Math.min(prev + 1, totalActivities);
+        const pct = Math.min(100, Math.round((next / totalActivities) * 100));
+        setProgress(pct);
+        
         if (next === totalActivities) {
-          setDone(true)
+          // stop further increments and delay completion so 100% in-progress is visible
+          clearInterval(intervalId);
+          endTimeoutId = setTimeout(() => setDone(true), 1000); // 1-second delay before marking as done
         }
-        return next
-      })
-    }, 1800)
-    return () => clearInterval(interval)
-  }, [done, totalActivities])
+        return next;
+      });
+    }, intervalTime);
+
+    return () => {
+      clearInterval(intervalId);
+      if (endTimeoutId) clearTimeout(endTimeoutId);
+    };
+  }, [done, totalActivities]);
 
   useEffect(() => {
     if (done) {
-      const ms = Date.now() - startTs
-      const secs = Math.max(1, Math.round(ms / 1000))
-      setEndedStatus(`Huddle ended after ${secs} secs..`)
-      // brief pause to show 100% and status, then navigate
-      const t = setTimeout(() => navigate('/opportunity_done'), 1200)
-      return () => clearTimeout(t)
+      const ms = Date.now() - startTs;
+      const secs = Math.max(1, Math.round(ms / 1000));
+      const m = Math.floor(secs / 60);
+      const s = secs % 60;
+      const status = `Huddle ended after ${m > 0 ? `${m}m ${s} secs` : `${s} secs`}..`;
+      setEndedStatus(status);
+      // brief pause to show 100% and status, then navigate with state
+      const t = setTimeout(() => navigate('/opportunity_done', { state: { endedStatus: status, elapsedSeconds: secs, elapsedMs: ms } }), 1200);
+      return () => clearTimeout(t);
     }
-  }, [done, navigate, startTs])
+  }, [done, navigate, startTs]);
 
   const sidebarData = useMemo(() => ({
     ...mockOrchestratorDataLoading,
     agentActivities: mockOrchestratorDataLoading.agentActivities.slice(0, visibleCount),
     huddleStatus: done ? endedStatus : `Huddle in progress.. ${progress}%`,
     isHuddleInProgress: !done
-  }), [visibleCount, progress, done, endedStatus])
+  }), [visibleCount, progress, done, endedStatus]);
 
   const handleCancel = () => {
     if (onCancel) return onCancel();
     navigate('/opportunity_summary');
   }
+
   return (
     <div className="h-full flex flex-col bg-[#f6f6f6]">
       {/* Breadcrumb */}
@@ -92,7 +109,7 @@ function OpportunityLoader({ onCancel, onSendMessage, onStepClick, activeStep = 
               
               {/* Message */}
               <p className="text-xl text-[#505050] text-center leading-[26.82px]">
-                Please continue with other Proposals . You will be notified once the huddle has ended
+                Please continue with other Proposals. You will be notified once the huddle has ended.
               </p>
             </div>
 

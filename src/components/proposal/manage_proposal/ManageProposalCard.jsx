@@ -187,8 +187,9 @@ const ProposalCard = ({
         <div className="flex items-center justify-center gap-[54px] w-full px-[20px] py-[14px] bg-[#0D54FF]">
           <button
             type="button"
-            className="flex items-center gap-[14px] hover:opacity-90 transition-opacity"
-            onClick={() => navigate('/preview-proposal')}
+            className="flex items-center gap-[14px] transition-opacity opacity-70 cursor-not-allowed"
+            disabled
+            aria-disabled="true"
           >
             <Eye width={24} height={24} color="#FFFFFF" />
             <span className="text-white font-['Inter',sans-serif] text-[20px] font-semibold leading-[27px]">
@@ -198,8 +199,9 @@ const ProposalCard = ({
           <div className="w-[2px] h-[39px] bg-white/41" />
           <button
             type="button"
-            className="flex items-center gap-[14px] hover:opacity-90 transition-opacity"
-            onClick={() => navigate('/ai-proposal_page')}
+            className="flex items-center gap-[14px] transition-opacity opacity-70 cursor-not-allowed"
+            disabled
+            aria-disabled="true"
           >
             <SquarePen width={24} height={24} color="#FFFFFF" />
             <span className="text-white font-['Inter',sans-serif] text-[20px] font-semibold leading-[27px]">
