@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+
 import OrchestratorIcon from '../../../../assets/icons/OrchestratorIcon'
 import ProposalBuilderIcon from '../../../../assets/icons/ProposalBuilderIcon'
-import SoundWaveIcon from '../../../../assets/icons/SoundWaveIcon'
 import ProgressBarIcon from '../../../../assets/icons/ProgressBarIcon'
 import ExpandArrowIcon from '../../../../assets/icons/ExpandArrowIcon'
 import { Send, Check } from 'lucide-react'
+import { mockDataLoading, mockDataDone } from './AiLoaderMockData'
 
-const OrchestratorSidebar = ({ isCompleted = false }) => {
+const OrchestratorSidebar = ({ isCompleted = false, data }) => {
   const [inputValue, setInputValue] = useState('')
 
   const handleSend = () => {
@@ -16,76 +17,77 @@ const OrchestratorSidebar = ({ isCompleted = false }) => {
     }
   }
 
-  const agentBadges = [
-    { id: 'TR', label: 'TR' },
-    { id: 'CR', label: 'CR' },
-    { id: 'EC', label: 'EC' },
-    { id: 'PA', label: 'PA' },
-    { id: 'PW', label: 'PW' },
-    { id: 'EA', label: 'EA' }
+  const defaultAgentBadges = [
+    { id: 'MA', label: 'MA' },
+    { id: 'SC', label: 'SC' },
+    { id: 'PD', label: 'PD' },
+    { id: 'CG', label: 'CG' },
   ]
 
-  const loadingAgents = [
-    {
-      id: 1,
-      name: 'Proposal Builder',
-      description: 'Creates End-to-end proposal, manages template building, solution outline, pricing integration, and draft assembly.',
-      badge: null,
-      isGradient: true
-    },
-    {
-      id: 2,
-      name: 'Template Resolver Agent',
-      description: 'Preparing compliant proposal templates based on RFx and product family...',
-      badge: 'TR',
-      isGradient: false
-    },
-    {
-      id: 3,
-      name: 'Context Retriever Agent',
-      description: 'Retrieveing RFP specific chunks (requirements, constraints, KPIs)',
-      badge: 'CR',
-      isGradient: false
-    }
-  ]
-
-  const completedAgents = [
-    {
-      id: 1,
-      name: 'Orchestrator Extractor Agent',
-      description: 'Successfully prepared compliant proposal templates based on RFx and product family!',
-      badge: 'TR',
-      isGradient: false
-    },
-    {
-      id: 2,
-      name: 'Customer Context Agent',
-      description: 'Successfully retrieved RFP specific chunks (requirements, constraints, KPIs)!',
-      badge: 'CR',
-      isGradient: false
-    }
-  ]
+  const agentBgClasses = {
+    MA: 'bg-[#D3EDFE]',
+    SC: 'bg-[#FFE3DE]',
+    PD: 'bg-[#F9E9FF]',
+    CG: 'bg-[#F9E9FF]'
+  }
 
   const completionBadges = [
-    { id: 'OE', label: 'OE', bgColor: '#D3EDFE', borderColor: '#0D54FF' },
-    { id: 'CC', label: 'CC', bgColor: '#FFE3DE', borderColor: '#FF6B6B' },
-    { id: 'OV', label: 'OV', bgColor: '#F9E9FF', borderColor: '#9524C6' }
+    { id: 'MA', label: 'MA', bgClass: 'bg-[#D3EDFE]', borderClass: 'border-[#0D54FF]' },
+    { id: 'SC', label: 'SC', bgClass: 'bg-[#FFE3DE]', borderClass: 'border-[#FF6B6B]' },
+    { id: 'PD', label: 'PD', bgClass: 'bg-[#F9E9FF]', borderClass: 'border-[#9524C6]' },
+    { id: 'CG', label: 'CG', bgClass: 'bg-[#F9E9FF]', borderClass: 'border-[#9524C6]' }
   ]
 
-  const agents = isCompleted ? completedAgents : loadingAgents
+  const sidebarAgentBadges = data?.opportunityBuilder?.agents
+    ? data.opportunityBuilder.agents.map((code) => ({ id: code, label: code }))
+    : (mockDataLoading.opportunityBuilder?.agents || defaultAgentBadges).map((code) => (
+        typeof code === 'string' ? { id: code, label: code } : code
+      ))
+
+  const baseMock = isCompleted ? mockDataDone : mockDataLoading
+
+  const agents = (data?.agentActivities || baseMock.agentActivities || []).map((activity, index) => ({
+    id: activity.id,
+    name: activity.title,
+    description: activity.description,
+    badge: activity.badge || null,
+    isGradient: activity.hasGradientTitle || false,
+    isFirst: index === 0 && !activity.badge && !isCompleted
+  }))
+
+  const huddleStatusText = data?.huddleStatus
+    ? data.huddleStatus
+    : (isCompleted ? (mockDataDone.huddleStatus || 'Huddle ended after 3m 56secs..') : (mockDataLoading.huddleStatus || 'Huddle in progress..'))
+
+  const isHuddleInProgress = typeof data?.isHuddleInProgress === 'boolean'
+    ? data.isHuddleInProgress
+    : (isCompleted ? (mockDataDone.isHuddleInProgress ?? false) : (mockDataLoading.isHuddleInProgress ?? true))
+
+  const listEndRef = useRef(null)
+
+  useEffect(() => {
+    listEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
+  }, [agents.length])
 
   return (
     <div className='w-[491px] h-full flex flex-col bg-[#F5F0F0] border-l border-[#D9D9D9]'>
+      <style>{`
+        @keyframes barPulse {
+          0%, 100% { transform: scaleY(0.5); opacity: 0.6; }
+          50% { transform: scaleY(1.3); opacity: 1; }
+        }
+      `}</style>
+
       {/* Header with gradient background */}
       <div className='flex items-center justify-between px-[20px] h-[77px] border-b border-[#DDDDDD] shadow-[0px_4px_12px_rgba(0,0,0,0.08)] bg-gradient-to-r from-[rgba(0,255,225,0.81)] via-[rgba(13,84,255,0.81)] to-[rgba(149,36,198,0.81)]'>
         <div className='flex items-center gap-[10px]'>
-          <OrchestratorIcon width={35} height={32} style={{ color: '#FFFFFF' }} />
-          <h2 className="text-[#FFFFFF] font-['Inter',sans-serif] text-[22px] font-semibold leading-[34px]">
+          <OrchestratorIcon width={35} height={32} className='text-white' />
+          <h2 className="text-white font-['Inter',sans-serif] text-[22px] font-semibold leading-[34px]">
             ORCHESTRATOR AGENT
           </h2>
         </div>
         <div className='flex items-center gap-[7.73px] px-[10px] py-[4px] rounded-[4px] border-[1.2px] border-[#FFFFFF]'>
-          <span className="text-[#FFFFFF] font-['Inter',sans-serif] text-[17.4px] font-normal leading-normal">
+          <span className="text-white font-['Inter',sans-serif] text-[17.4px] font-normal leading-normal">
             Active
           </span>
           <div className='w-[11px] h-[11px] rounded-full bg-[#75FF2B]' />
@@ -93,17 +95,11 @@ const OrchestratorSidebar = ({ isCompleted = false }) => {
       </div>
 
       {/* Proposal Builder Section */}
-      <div className='flex items-center justify-between px-[20px] py-[20px] border-[1.5px] rounded-[9px] mx-[16px] mt-[23px]'
-        style={{
-          borderColor: 'transparent',
-          borderImage: 'linear-gradient(84.69deg, rgba(0,255,225,1) 27.09%, rgba(13,84,255,1) 15.15%, rgba(149,36,198,1) 93.31%) 1',
-          borderImageSlice: 1
-        }}
-      >
+      <div className='flex items-center justify-between px-[20px] py-[20px] border-[1.5px] rounded-[9px] mx-[16px] mt-[23px] border-gradient-proposal'>
         <div className='flex items-center gap-[10px]'>
           <div className='relative w-[24px] h-[21px] rounded-[48.45px] p-[2px] bg-gradient-to-r from-[#00FFE1] via-[#0D54FF] to-[#9524C6]'>
             <div className='w-full h-full flex items-center justify-center bg-white rounded-[48.45px]'>
-              <ProposalBuilderIcon width={16} height={13} style={{ color: '#0D54FF' }} />
+              <ProposalBuilderIcon width={16} height={13} className='text-[#0D54FF]' />
             </div>
           </div>
           <span className="text-[#0D54FF] font-['Inter',sans-serif] text-[20px] font-medium leading-[27px]">
@@ -111,16 +107,24 @@ const OrchestratorSidebar = ({ isCompleted = false }) => {
           </span>
         </div>
         <div className='flex items-center gap-[7px]'>
-          <SoundWaveIcon width={28} height={31} />
+          <div className='flex items-end justify-center h-[31px] w-[28px] gap-[4px]'>
+            {Array.from({ length: 5 }).map((_, i) => (
+              <span
+                key={i}
+                className='inline-block w-[3px] h-[12px] rounded-[2px] bg-[#0D54FF] animate-bar-pulse'
+                style={{ animationDelay: `${i * 0.12}s` }}
+              />
+            ))}
+          </div>
           <div className='flex items-center'>
-            {agentBadges.map((badge, index) => (
+            {sidebarAgentBadges.map((badge, index) => (
               <div
                 key={badge.id}
                 className='w-[35px] h-[35px] rounded-full p-[2px] bg-gradient-to-r from-[#00FFE1] via-[#0D54FF] to-[#9524C6]'
                 style={{ marginLeft: index > 0 ? '-6.79px' : '0' }}
               >
-                <div className='w-full h-full rounded-full bg-white flex items-center justify-center'>
-                  <span className="text-[rgba(5,5,5,0.80)] font-['Inter',sans-serif] text-[15.68px] font-medium leading-normal">
+                <div className={`w-full h-full rounded-full flex items-center justify-center ${agentBgClasses[badge.label] || 'bg-white'}`}>
+                  <span className="text-[#050505] font-['Inter',sans-serif] text-[15.68px] font-medium leading-normal">
                     {badge.label}
                   </span>
                 </div>
@@ -131,7 +135,7 @@ const OrchestratorSidebar = ({ isCompleted = false }) => {
       </div>
 
       {/* Agent Cards */}
-      <div className='flex-1 overflow-y-auto px-[16px] pt-[28px] pb-[16px]'>
+      <div className='flex-1 overflow-y-auto overflow-x-hidden px-[16px] pt-[28px] pb-[16px] min-h-0'>
         <div className='flex flex-col gap-[28px]'>
           {agents.map((agent) => (
             <div key={agent.id} className='flex items-start gap-[8px]'>
@@ -147,7 +151,7 @@ const OrchestratorSidebar = ({ isCompleted = false }) => {
               )}
               
               {/* Icon on left for first agent in loading state */}
-              {!isCompleted && agent.id === 1 && !agent.badge && (
+              {agent.isFirst && (
                 <div className='flex-shrink-0 mt-[8px]'>
                   <ExpandArrowIcon width={30} height={26} />
                 </div>
@@ -166,10 +170,10 @@ const OrchestratorSidebar = ({ isCompleted = false }) => {
           ))}
 
           {/* Progress or Completion Section */}
-          {!isCompleted ? (
+          {isHuddleInProgress ? (
             <div className='flex flex-col gap-[8px]'>
               <span className="font-['Inter',sans-serif] text-[19px] font-normal leading-[25px] bg-gradient-to-r from-[#00FFE1] via-[#0D54FF] to-[#9524C6] bg-clip-text text-transparent">
-                Huddle in progress..
+                {huddleStatusText}
               </span>
               <ProgressBarIcon width={292} height={7} />
             </div>
@@ -178,7 +182,7 @@ const OrchestratorSidebar = ({ isCompleted = false }) => {
               {/* Completion Text */}
               <div>
                 <span className="text-[#A0A0A0] font-['Inter',sans-serif] text-[19px] font-normal leading-[25px]">
-                  Huddle ended after 3m 56secs..
+                  {huddleStatusText}
                 </span>
               </div>
 
@@ -187,12 +191,8 @@ const OrchestratorSidebar = ({ isCompleted = false }) => {
                 {completionBadges.map((badge, index) => (
                   <div
                     key={badge.id}
-                    className='relative w-[62px] h-[62px] rounded-full border-[2.9px] flex items-center justify-center'
-                    style={{
-                      marginLeft: index > 0 ? '-8.48px' : '0',
-                      backgroundColor: badge.bgColor,
-                      borderColor: badge.borderColor
-                    }}
+                    className={`relative w-[62px] h-[62px] rounded-full flex items-center justify-center border-[2.9px] ${badge.bgClass} ${badge.borderClass}`}
+                    style={{ marginLeft: index > 0 ? '-8.48px' : '0' }}
                   >
                     <span className="text-[#050505] font-['Inter',sans-serif] text-[26.74px] font-medium leading-normal">
                       {badge.label}
@@ -206,6 +206,7 @@ const OrchestratorSidebar = ({ isCompleted = false }) => {
               </div>
             </>
           )}
+          <div ref={listEndRef} />
         </div>
       </div>
 

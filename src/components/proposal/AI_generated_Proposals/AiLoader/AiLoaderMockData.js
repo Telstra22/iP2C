@@ -84,20 +84,6 @@ export const mockDataLoading = {
       description: "Narrative or structured content using AI successfully produced!",
       hasGradientTitle: false
     },
-    {
-      id: 10,
-      badge: "RS",
-      title: "RFI Summary Extractor",
-      description: "Extracting RFI summary..",
-      hasGradientTitle: false
-    },
-    {
-      id: 11,
-      badge: "RS",
-      title: "RFI Summary Extractor",
-      description: "RFI summary successfully extracted!",
-      hasGradientTitle: false
-    }
   ],
   huddleStatus: "Huddle in progress..",
   isHuddleInProgress: true
@@ -174,20 +160,6 @@ export const mockDataDone = {
       description: "Narrative or structured content using AI successfully produced!",
       hasGradientTitle: false
     },
-    {
-      id: 10,
-      badge: "RS",
-      title: "RFI Summary Extractor",
-      description: "Extracting RFI summary..",
-      hasGradientTitle: false
-    },
-    {
-      id: 11,
-      badge: "RS",
-      title: "RFI Summary Extractor",
-      description: "RFI summary successfully extracted!",
-      hasGradientTitle: false
-    }
   ],
   huddleStatus: "Huddle ended after 3m 56secs..",
   isHuddleInProgress: false

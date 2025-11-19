@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import CircularLoader from '../../../../assets/icons/CircularLoader'
 import AISparkleIcon from '../../../../assets/icons/AISparkleIcon'
@@ -6,21 +6,69 @@ import OrchestratorSidebar from './OrchestratorSidebar'
 import Header from '../../../Header'
 import Breadcrumb from '../../upload_document/Breadcrumb'
 import { Check } from 'lucide-react'
+import { mockDataLoading, mockDataDone } from './AiLoaderMockData'
 
 const AiLoader = ({ onCancel, isVisible = true }) => {
   const navigate = useNavigate()
+  const totalActivities = mockDataLoading.agentActivities.length
+  const [visibleCount, setVisibleCount] = useState(0)
+  const [progress, setProgress] = useState(0)
   const [isCompleted, setIsCompleted] = useState(false)
+  const [startTs] = useState(() => Date.now())
+  const [endedStatus, setEndedStatus] = useState('')
 
   useEffect(() => {
-    if (isVisible && !isCompleted) {
-      // Simulate AI generation time (3.5 seconds)
-      const timer = setTimeout(() => {
-        setIsCompleted(true)
-      }, 3500)
+    if (!isVisible || isCompleted) return
 
-      return () => clearTimeout(timer)
+    let endTimeoutId
+    const intervalTime = (67 * 1000) / totalActivities
+
+    const intervalId = setInterval(() => {
+      setVisibleCount(prev => {
+        const next = Math.min(prev + 1, totalActivities)
+        const pct = Math.min(100, Math.round((next / totalActivities) * 100))
+        setProgress(pct)
+
+        if (next === totalActivities) {
+          clearInterval(intervalId)
+          endTimeoutId = setTimeout(() => setIsCompleted(true), 1000)
+        }
+        return next
+      })
+    }, intervalTime)
+
+    return () => {
+      clearInterval(intervalId)
+      if (endTimeoutId) clearTimeout(endTimeoutId)
     }
-  }, [isVisible, isCompleted])
+  }, [isVisible, isCompleted, totalActivities])
+
+  useEffect(() => {
+    if (isCompleted) {
+      const ms = Date.now() - startTs
+      const secs = Math.max(1, Math.round(ms / 1000))
+      const m = Math.floor(secs / 60)
+      const s = secs % 60
+      const status = `Huddle ended after ${m > 0 ? `${m}m ${s} secs` : `${s} secs`}..`
+      setEndedStatus(status)
+    }
+  }, [isCompleted, startTs])
+
+  const sidebarData = useMemo(() => {
+    const base = isCompleted ? mockDataDone : mockDataLoading
+    const activities = isCompleted
+      ? base.agentActivities
+      : base.agentActivities.slice(0, visibleCount)
+
+    return {
+      ...base,
+      agentActivities: activities,
+      huddleStatus: isCompleted
+        ? (endedStatus || mockDataDone.huddleStatus)
+        : `Huddle in progress.. ${progress}%`,
+      isHuddleInProgress: !isCompleted
+    }
+  }, [isCompleted, visibleCount, progress, endedStatus])
 
   const handleDone = () => {
     navigate('/ai-proposal_page')
@@ -55,7 +103,7 @@ const AiLoader = ({ onCancel, isVisible = true }) => {
 
                 {/* Circular Loader and Wait Time */}
                 <div className='flex flex-col items-center gap-[32px]'>
-                  <CircularLoader size={119} strokeWidth={8} progress={65} animated={true} />
+                  <CircularLoader size={119} strokeWidth={8} progress={progress} animated={true} />
                   <p className="text-[#828282] font-['Inter',sans-serif] text-[20px] font-normal leading-[27px]">
                     Estimated wait time 3-5 minutes
                   </p>
@@ -105,7 +153,7 @@ const AiLoader = ({ onCancel, isVisible = true }) => {
         </div>
 
         {/* Right Side - Orchestrator Sidebar */}
-        <OrchestratorSidebar isCompleted={isCompleted} />
+        <OrchestratorSidebar isCompleted={isCompleted} data={sidebarData} />
       </div>
     </div>
   )
