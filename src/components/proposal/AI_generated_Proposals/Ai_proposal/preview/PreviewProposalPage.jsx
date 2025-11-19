@@ -28,11 +28,7 @@ const PreviewProposalPage = ({ embedded = false, onClose }) => {
   }
 
   const handleEditSection = () => {
-    if (embedded && typeof onClose === 'function') {
-      onClose()
-    } else {
-      navigate('/ai-proposal_page')
-    }
+    navigate('/ai_proposal_page')
   }
 
   const handleExport = () => {

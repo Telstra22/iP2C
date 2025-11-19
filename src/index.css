@@ -261,6 +261,22 @@ html, body, #root {
   background-clip: text;
 }
 
+/* Agent huddle utilities */
+@utility border-gradient-proposal {
+  border-color: transparent;
+  border-image: linear-gradient(84.69deg, rgba(0,255,225,1) 27.09%, rgba(13,84,255,1) 15.15%, rgba(149,36,198,1) 93.31%) 1;
+  border-image-slice: 1;
+}
+
+@keyframes barPulse {
+  0%, 100% { transform: scaleY(0.5); opacity: 0.6; }
+  50% { transform: scaleY(1.3); opacity: 1; }
+}
+
+@utility animate-bar-pulse {
+  animation: barPulse 1.1s ease-in-out infinite;
+}
+
 /* Loading spinner animation */
 @keyframes spin {
   from {

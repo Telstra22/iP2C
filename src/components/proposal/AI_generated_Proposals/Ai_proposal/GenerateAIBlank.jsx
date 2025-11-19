@@ -20,6 +20,8 @@ const GenerateAIBlank = () => {
   const [sectionTitle] = useState(mockRootProps.sectionTitle);
   const [isRegenerating] = useState(mockRootProps.isRegenerating);
   const [agentStatus] = useState(mockRootProps.agentStatus);
+  const [currentAgentStatus, setCurrentAgentStatus] = useState(mockRootProps.agentStatus);
+
   const [isExpanded, setIsExpanded] = useState(true);
   const [showComments, setShowComments] = useState(false);
   const [showCollaborationModal, setShowCollaborationModal] = useState(false);
@@ -42,7 +44,6 @@ const GenerateAIBlank = () => {
     navigate('/manage_proposals');
   };
 
-
   const handleCollaborate = () => setShowCollaborationModal(true);
 
   const handleRegenerateWithAI = () => {};
@@ -54,14 +55,40 @@ const GenerateAIBlank = () => {
   const handleCloseRating = () => setShowRatingModal(false);
   const handleCloseDocumentSource = () => setShowDocumentSourceModal(false);
 
-  // After landing on this page, auto-navigate to GeneratedWithAI after 2 minutes
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     navigate('/generated-with-ai');
-  //   }, 2000);
-  //   return () => clearTimeout(timer);
-  // }, [navigate]);
-//navigate('/generated-with-ai');
+  // Cycle proposalWriter status through four agents, then navigate to GeneratedWithAI
+  useEffect(() => {
+    const messages = [
+      'Metadata Architect is working..',
+      'Section Composer is working..',
+      'Prompt Designer is working..',
+      'Content Generator is working..'
+    ];
+
+    let index = 0;
+
+    // Set initial message immediately
+    setCurrentAgentStatus(prev => ({
+      ...prev,
+      proposalWriter: messages[0]
+    }));
+
+    const interval = setInterval(() => {
+      index += 1;
+
+      if (index < messages.length) {
+        setCurrentAgentStatus(prev => ({
+          ...prev,
+          proposalWriter: messages[index]
+        }));
+      } else {
+        clearInterval(interval);
+        navigate('/generated-with-ai');
+      }
+    }, 3000); // change message every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [navigate]);
+
   const handleToggleSection = () => {
     setIsExpanded(!isExpanded);
   };
@@ -73,7 +100,7 @@ const GenerateAIBlank = () => {
 
       {/* Agent Huddle Bar */}
       
-        <AgentHuddleBar agentStatus={agentStatus} />
+        <AgentHuddleBar agentStatus={currentAgentStatus} />
 
       {/* Main Content Area */}
       <div className="flex-1 flex overflow-hidden min-h-0">

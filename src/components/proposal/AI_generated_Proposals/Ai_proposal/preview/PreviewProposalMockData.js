@@ -5,7 +5,7 @@ export const mockRootProps = {
     { label: 'Login', path: '/login' },
     { label: 'Manage proposals', path: '/manage_proposals' },
     { label: 'Create New Proposal', path: '/create-new-proposal' },
-    { label: 'Ai Generated Proposal', path: '/ai-proposal_page' },
+    { label: 'Ai Generated Proposal', path: '/ai_proposal_page' },
     { label: 'Preview Proposal', path: '/preview-proposal', active: true }
   ],
   proposalContent: {
