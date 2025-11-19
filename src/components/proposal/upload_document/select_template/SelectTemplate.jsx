@@ -109,7 +109,7 @@ const SelectTemplate = forwardRef(
       if (hasSelectedTemplate || hasUploadedFile) {
         setShowLoader(true)
         setTimeout(() => {
-          navigate('/ai-proposal_page')
+          navigate('/ai_proposal_page')
         }, 3500)
       } else {
         setLocalError('Please select a template or upload a document to proceed.')

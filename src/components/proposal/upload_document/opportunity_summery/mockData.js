@@ -1,7 +1,7 @@
 // Mock data for Opportunity Summary UI
 
 export const INITIAL_FORM_DATA = {
-  customer: "Total Brick",
+  customer: "Total Bricks Pvt. Ltd",
   businessUnit: "Telstra Business",
   partner: "Splendra Pvt Ltd",
   archetype: "2",
@@ -70,7 +70,7 @@ export const SECTION_CONTENT = {
 };
 
 export const customers = [
-  "Total Brick",
+  "Total Bricks Pvt. Ltd",
   "Vensi",
   "Citrus Company",
   "Motivc",

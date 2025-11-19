@@ -5,12 +5,14 @@ import CloseIcon from '../../../../assets/icons/CloseIcon'
 import BadgeCircle1 from '../../../../assets/icons/BadgeCircle1'
 import BadgeCircle2 from '../../../../assets/icons/BadgeCircle2'
 import BadgeCircle3 from '../../../../assets/icons/BadgeCircle3'
+import { Check } from 'lucide-react'
 
 const GeneratedAIHuddle = ({ onClose }) => {
   const agentBadges = [
-    { label: 'OE', BadgeComponent: BadgeCircle1 },
-    { label: 'CC', BadgeComponent: BadgeCircle2 },
-    { label: 'OV', BadgeComponent: BadgeCircle3 }
+    { label: 'MA', BadgeComponent: BadgeCircle1 },
+    { label: 'SC', BadgeComponent: BadgeCircle2 },
+    { label: 'PD', BadgeComponent: BadgeCircle3 },
+    { label: 'CG', BadgeComponent: BadgeCircle3 }
   ]
 
   return (
@@ -32,33 +34,27 @@ const GeneratedAIHuddle = ({ onClose }) => {
           {agentBadges.map(({ label, BadgeComponent }, index) => (
             <div 
               key={label} 
-              className={`relative shrink-0 ${index > 0 ? 'ml-[-5.68px]' : ''} w-[41.785px] h-[50px]`}
+              className={`relative shrink-0 ${index > 0 ? 'ml-[-6.5px]' : ''} w-[46px] h-[54px]`}
             >
               {/* Badge Circle Background with Label */}
-              <div className='relative w-[41.785px] h-[41.785px]'>
+              <div className='relative w-[46px] h-[46px]'>
                 {/* Circle Background */}
                 <div className='absolute inset-0'>
                   <BadgeComponent 
-                    width={41.785} 
-                    height={41.785} 
-                    className="shrink-0 w-[41.785px] h-[41.785px]"
+                    width={46} 
+                    height={46} 
+                    className="shrink-0 w-[46px] h-[46px]"
                   />
                 </div>
                 {/* Agent Label - positioned absolutely to center in the visible circle */}
-                <div className='absolute inset-0 flex items-center justify-center pl-[6px]'>
+                <div className='absolute inset-0 flex items-center justify-center pl-[15px]'>
                   <span className="text-[#050505] font-['Inter',sans-serif] text-[17.91px] font-medium leading-[24px]">
                     {label}
                   </span>
                 </div>
-                {/* Green Check Mark positioned at bottom */}
-                <div 
-                  className='absolute flex items-center justify-center w-[13.395px] h-[13.395px] p-[2.679px] rounded-[6.697px] bg-[#56A72B] gap-[3.349px] left-[23.441px] bottom-[-3.088px]'
-                >
-                  <GreenCheckIcon 
-                    width={7.278} 
-                    height={5.369} 
-                    className="shrink-0 w-[7.278px] h-[5.369px] text-white"
-                  />
+                {/* Green Check Mark positioned at bottom - match AI loader completion style */}
+                <div className='absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[16px] h-[16px] rounded-full bg-[#56A72B] flex items-center justify-center'>
+                  <Check size={8} width={16} height={16} color='#FFFFFF' strokeWidth={2.5} />
                 </div>
               </div>
             </div>

@@ -10,6 +10,7 @@ import DocumentSourceModal from './SourceDoc/DocumentSourceModal'
 import PreviewProposalPage from './preview/PreviewProposalPage'
 import { mockRootProps } from './proposal_section/AiProposalPageMockData'
 import { comments as commentsData } from './comments/commentsMockData'
+import { saveNewProposalCard } from './saveNewProposalCard'
 
 const AiProposalPage = () => {
   const navigate = useNavigate()
@@ -72,19 +73,7 @@ const AiProposalPage = () => {
   }
 
   const handleSaveExit = () => {
-    try {
-      const card = {
-        id: '1',
-        title: 'A-01284889',
-        category: 'Real Estate | Melbourne',
-        customer: 'Total Bricks Pvt. Ltd.',
-        template: 'Standard',
-        createdOn: 'Sep 25, 2025 06:29 AM',
-        updatedOn: 'Sep 25, 2025 06:47 AM',
-        statusKey: 'active'
-      }
-      localStorage.setItem('newProposalCard', JSON.stringify(card))
-    } catch {}
+    saveNewProposalCard()
     navigate('/manage_proposals')
   }
 

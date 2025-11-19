@@ -26,7 +26,7 @@ function AppContent() {
           <Route path="/" element={<Login />} />
           <Route path="/manage_proposals" element={<ManageProposal />} />
           <Route path="/add_opportunity-details" element={<AddOpprtunityDetails />} />
-          <Route path="/ai-proposal_page" element={<AiProposalPage />} />
+          <Route path="/ai_proposal_page" element={<AiProposalPage />} />
           <Route path="/generated-with-ai" element={<GeneratedWithAI />} />
           <Route path="/generate-ai-blank" element={<GenerateAIBlank />} />
           <Route path="/ai_loader" element={<AiLoader />} />

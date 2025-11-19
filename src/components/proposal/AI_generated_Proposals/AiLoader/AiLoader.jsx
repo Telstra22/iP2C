@@ -21,7 +21,7 @@ const AiLoader = ({ onCancel, isVisible = true }) => {
     if (!isVisible || isCompleted) return
 
     let endTimeoutId
-    const intervalTime = (67 * 1000) / totalActivities
+    const intervalTime = (90 * 1000) / totalActivities
 
     const intervalId = setInterval(() => {
       setVisibleCount(prev => {
@@ -46,10 +46,9 @@ const AiLoader = ({ onCancel, isVisible = true }) => {
   useEffect(() => {
     if (isCompleted) {
       const ms = Date.now() - startTs
-      const secs = Math.max(1, Math.round(ms / 1000))
-      const m = Math.floor(secs / 60)
-      const s = secs % 60
-      const status = `Huddle ended after ${m > 0 ? `${m}m ${s} secs` : `${s} secs`}..`
+      // Clamp to max 90 seconds so the displayed huddle time does not exceed 90 secs
+      const secs = Math.min(90, Math.max(1, Math.round(ms / 1000)))
+      const status = `Huddle ended after ${secs} secs..`
       setEndedStatus(status)
     }
   }, [isCompleted, startTs])
@@ -63,6 +62,7 @@ const AiLoader = ({ onCancel, isVisible = true }) => {
     return {
       ...base,
       agentActivities: activities,
+      progress,
       huddleStatus: isCompleted
         ? (endedStatus || mockDataDone.huddleStatus)
         : `Huddle in progress.. ${progress}%`,
@@ -71,7 +71,7 @@ const AiLoader = ({ onCancel, isVisible = true }) => {
   }, [isCompleted, visibleCount, progress, endedStatus])
 
   const handleDone = () => {
-    navigate('/ai-proposal_page')
+    navigate('/ai_proposal_page')
   }
 
   if (!isVisible) return null

@@ -7,7 +7,7 @@ export const mockRootProps = {
     orchestrator: "Huddle in Progress..",
     proposalWriter: "Proposal Writer Agent is working..",
     proposalBuilder: {
-      agents: ["OE", "CC", "OV"]
+      agents: ["MA", "SC", "PD", "CG"]
     }
   },
   chatMessages: [

@@ -5,6 +5,8 @@ import EditIcon from '../../../../../assets/icons/EditIcon'
 import SaveCheckIcon from '../../../../../assets/icons/SaveCheckIcon'
 
 const PreviewActionButtons = ({ onDownload, onExport, onEditSection, onSaveExit }) => {
+  const fullUrl = typeof window !== 'undefined' ? window.location.href : ''
+
   return (
     <div className='flex items-center gap-[6px]'>
       {/* Download */}
@@ -50,6 +52,11 @@ const PreviewActionButtons = ({ onDownload, onExport, onEditSection, onSaveExit 
           Save & Exit
         </span>
       </button>
+
+      {/* Display current full browser URL: base + navigated path */}
+      {/* <span className="ml-[12px] text-[#828282] font-['Inter',sans-serif] text-[14px] font-normal leading-[20px] whitespace-nowrap">
+        {fullUrl}
+      </span> */}
     </div>
   )
 }

@@ -12,8 +12,9 @@ import DocumentSourceModal from './SourceDoc/DocumentSourceModal'
 import PreviewProposalPage from './preview/PreviewProposalPage'
 import CommentsPanel from './comments/CommentsPanel'
 import { comments as commentsData } from './comments/commentsMockData'
-import { mockRootProps, mockProposalContent } from './GeneratedWithAIMockData'
+import { mockRootProps } from './GeneratedWithAIMockData'
 import GeneratedAIHuddle from './GeneratedAIHuddle'
+import { saveNewProposalCard } from './saveNewProposalCard'
 
 const GeneratedWithAI = () => {
   const navigate = useNavigate()
@@ -22,12 +23,19 @@ const GeneratedWithAI = () => {
   const [showRatingModal, setShowRatingModal] = useState(false)
   const [showDocumentSourceModal, setShowDocumentSourceModal] = useState(false)
   const [showPreview, setShowPreview] = useState(false)
-  const [content, setContent] = useState(mockProposalContent)
   const [showSectionsList, setShowSectionsList] = useState(false)
-  const [selectedSectionId, setSelectedSectionId] = useState(
-    (mockRootProps.allSections && (mockRootProps.allSections.find(s => s.isActive)?.id || mockRootProps.allSections[0]?.id)) || 1
-  )
-  
+
+  const initialSectionId = (mockRootProps.allSections && (mockRootProps.allSections.find(s => s.isActive)?.id || mockRootProps.allSections[0]?.id)) || 1
+  const [selectedSectionId, setSelectedSectionId] = useState(initialSectionId)
+
+  const getContentFromSection = (section) => ({
+    regeneratedHeader: 'This content is regenerated based on your attached document',
+    mainContent: section?.content || '',
+    subsections: Array.isArray(section?.subsections) ? section.subsections : []
+  })
+
+  const initialSection = mockRootProps.sections?.find(s => s.id === initialSectionId) || mockRootProps.sections?.[0] || null
+  const [content, setContent] = useState(() => getContentFromSection(initialSection))
 
   const handleDeleteSubsection = (subsectionId) => {
     setContent(prev => ({
@@ -45,7 +53,7 @@ const GeneratedWithAI = () => {
   }
 
   const handleSaveExit = () => {
-    console.log('Save and exit')
+    saveNewProposalCard()
     navigate('/manage_proposals')
   }
 
@@ -110,7 +118,14 @@ const GeneratedWithAI = () => {
                       <div
                         key={item.id}
                         className='flex items-center justify-between cursor-pointer hover:opacity-80'
-                        onClick={() => { setSelectedSectionId(item.id); setShowSectionsList(false); }}
+                        onClick={() => {
+                          setSelectedSectionId(item.id)
+                          const section = (mockRootProps.sections || []).find(s => s.id === item.id)
+                          if (section) {
+                            setContent(getContentFromSection(section))
+                          }
+                          setShowSectionsList(false)
+                        }}
                       >
                         <span className="text-[#050505] font-['Inter',sans-serif] text-[20px] font-normal leading-[27px]">
                           {item.title}

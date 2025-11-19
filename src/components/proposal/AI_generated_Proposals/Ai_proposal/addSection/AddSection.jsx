@@ -23,7 +23,7 @@ const AddSection = ({
     if (onCancel) {
       onCancel();
     } else {
-      navigate('/ai-proposal_page');
+      navigate('/ai_proposal_page');
     }
     if (onClose) onClose();
   };
@@ -46,7 +46,7 @@ const AddSection = ({
         console.warn('Failed saving section content', e);
       }
       // Navigate back
-      navigate('/ai-proposal_page');
+      navigate('/ai_proposal_page');
     }
     if (onClose) onClose();
   };
