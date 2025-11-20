@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Bell, Grip } from 'lucide-react';
 import ChevronRightSmallIcon from '../../assets/icons/ChevronRightSmallIcon.svg?react';
 import AISparkleGradientIcon from '../../assets/icons/AISparkleGradientIcon.svg?react';
 import LoadingSpinnerGradient from '../../assets/icons/LoadingSpinnerGradient.svg?react';
 
 const ContractLoader = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate('/contract-review');
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [navigate]);
+
   return (
     <div className="flex flex-col h-screen bg-(--color-background-light)">
       {/* Header */}

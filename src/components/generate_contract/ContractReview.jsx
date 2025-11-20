@@ -47,7 +47,7 @@ function ContractReview() {
           </div>
 
           {/* Editor and Sidebar Layout */}
-          <div className="flex gap-6 h-[calc(100%-120px)]">
+          <div className="flex gap-6" style={{ height: 'calc(100vh - 248px)' }}>
             {/* Left: Contract Editor */}
             <div className="flex-1 min-w-0 flex flex-col">
               {/* Top Row: Section Dropdown and Action Buttons */}
@@ -148,7 +148,8 @@ function ContractReview() {
             </div>
 
             {/* Right: Contract Assistant Sidebar */}
-            <div className="w-[793px] min-w-[793px] h-[950px] bg-(--color-sidebar-bg) border-l border-(--color-sidebar-border) rounded-t-[9px] shadow-[-4px_0px_13px_rgba(0,0,0,0.10)] flex flex-col">
+            <div className="w-[793px] min-w-[793px] h-full bg-(--color-sidebar-bg) border-l border-(--color-sidebar-border) rounded-t-[9px] shadow-[-4px_0px_13px_rgba(0,0,0,0.10)] flex flex-col overflow-hidden">
+
               {/* Header */}
               <div className="flex items-center gap-2.5 px-6 py-[18px] border-b border-(--color-chat-header-border) shadow-assistant-header">
                 <Bot width={24} height={24} className="text-(--color-primary-blue)" />

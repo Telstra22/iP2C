@@ -28,6 +28,7 @@ import BotChatIcon from '../../assets/icons/BotChatIcon.svg?react';
 const ContractIssue = () => {
   const [activeTab, setActiveTab] = useState('Chatbot');
   const [sectionExpanded, setSectionExpanded] = useState(true);
+  const [isReplaced, setIsReplaced] = useState(false);
 
   return (
     <div className="flex flex-col h-screen bg-(--color-background-light)">
@@ -185,9 +186,19 @@ const ContractIssue = () => {
                   <div className="relative mb-[17px] p-[30px] bg-white border border-[#f96449] rounded-lg shadow-[0px_4px_8px_rgba(0,0,0,0.10)]">
                     <span className="absolute top-[16px] left-[30px] text-base font-medium text-[#f96449]">Issue#1</span>
                     <p className="text-lg leading-[23px] text-(--color-text-black) mt-[20px]">
-                      2.1. We agree to supply the Services to you, and you agree to acquire them from us, at the prices and on the terms of this Agreement.
-                      <br /><br />
-                      2.2 We may provide the Services from locations outside of Australia, however this will not reduce our obligations under this Agreement.
+                      {isReplaced ? (
+                        <>
+                          2.1 We agree to supply the Services to you, and you agree to acquire them from us, at the prices and on the terms of this Agreement. The Services may be delivered to, and used by, your locations both within and outside Australia, subject to the terms set out herein.
+                          <br /><br />
+                          2.2 We may provide the Services using personnel or resources located outside of Australia. Regardless of the location from which the Services are delivered or supported, we will ensure that all Services comply with the requirements of this Agreement, including applicable Australian laws, data privacy, and security standards. Any cross-border data transfers or offshore service delivery will be conducted in accordance with your data protection requirements and relevant regulatory obligations, and will not diminish our obligations or your rights under this Agreement.
+                        </>
+                      ) : (
+                        <>
+                          2.1. We agree to supply the Services to you, and you agree to acquire them from us, at the prices and on the terms of this Agreement.
+                          <br /><br />
+                          2.2 We may provide the Services from locations outside of Australia, however this will not reduce our obligations under this Agreement.
+                        </>
+                      )}
                     </p>
                   </div>
 
@@ -286,12 +297,25 @@ const ContractIssue = () => {
                   </p>
                   
                     {/* Replace Button */}
-                    <button className="flex items-center gap-2.5 px-4 py-2 hover:bg-white/50 rounded transition-colors">
+                    <button
+                      className="flex items-center gap-2.5 px-4 py-2 hover:bg-white/50 rounded transition-colors"
+                      onClick={() => setIsReplaced(true)}
+                    >
                       <ReplaceSuggestionIcon width={10} height={8} className="text-(--color-primary-blue)" />
                       <span className="text-lg font-medium text-(--color-primary-blue)" style={{ fontFamily: 'Graphik, sans-serif' }}>
                         Replace Suggestion in Contract
                       </span>
                     </button>
+                    {isReplaced && (
+                      <button
+                        className="flex items-center gap-2.5 px-4 py-2 hover:bg-white/50 rounded transition-colors mt-2"
+                        onClick={() => setIsReplaced(false)}
+                      >
+                        <span className="text-lg font-medium text-(--color-primary-blue)" style={{ fontFamily: 'Graphik, sans-serif' }}>
+                          Revert
+                        </span>
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
