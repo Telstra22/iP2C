@@ -38,7 +38,7 @@ function OpportunityLoader({ onCancel, onSendMessage, onStepClick, activeStep = 
     }
 
     // Calculate interval for each activity so the total completes in 50 seconds
-    const intervalTime = (50 * 1000) / totalActivities // 50 seconds for total, spread across all activities
+    const intervalTime = (20 * 1000) / totalActivities // 50 seconds for total, spread across all activities
 
     const intervalId = setInterval(() => {
       setVisibleCount((prev) => {
