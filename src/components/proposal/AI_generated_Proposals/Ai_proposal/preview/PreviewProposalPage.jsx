@@ -5,6 +5,7 @@ import Breadcrumb from '../../../upload_document/Breadcrumb'
 import PreviewActionButtons from './PreviewActionButtons'
 import ProposalContentSection from '../proposal_section/ProposalContentSection'
 import ProposalEvaluationMetrics from './ProposalEvaluationMetrics'
+import AgentRiskScoreEvaluationMatrics from './AgentRiskScoreEvaluationMatrics'
 import { mockRootProps } from './PreviewProposalMockData'
 import { performDownload } from './downloadUtils'
 
@@ -12,6 +13,7 @@ const PreviewProposalPage = ({ embedded = false, onClose }) => {
   const navigate = useNavigate()
   const [showDownloadModal, setShowDownloadModal] = useState(false)
   const [menuPos, setMenuPos] = useState({ top: 0, left: 0 })
+  const [showAgentRiskScore, setShowAgentRiskScore] = useState(false)
 
   const handleDownloadChoice = (choice) => {
     const sections = mockRootProps.proposalContent.sections || []
@@ -44,7 +46,11 @@ const PreviewProposalPage = ({ embedded = false, onClose }) => {
 
   const handleScoreProposal = (section) => {
     console.log('Score proposal for section:', section)
-    // Implement scoring logic
+    setShowAgentRiskScore(true)
+  }
+
+  const handleBackToMetrics = () => {
+    setShowAgentRiskScore(false)
   }
 
   return (
@@ -85,9 +91,15 @@ const PreviewProposalPage = ({ embedded = false, onClose }) => {
         </div>
 
         {/* Right Side - Proposal Evaluation Metrics */}
-        <ProposalEvaluationMetrics
-          onScoreProposal={handleScoreProposal}
-        />
+        {showAgentRiskScore ? (
+          <AgentRiskScoreEvaluationMatrics
+            onBack={handleBackToMetrics}
+          />
+        ) : (
+          <ProposalEvaluationMetrics
+            onScoreProposal={handleScoreProposal}
+          />
+        )}
       </div>
 
       {showDownloadModal && (

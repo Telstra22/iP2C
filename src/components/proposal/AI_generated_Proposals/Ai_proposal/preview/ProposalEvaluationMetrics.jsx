@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import MetricsIcon from '../../../../../assets/icons/MetricsIcon'
 import ChevronDownIcon from '../../../../../assets/icons/ChevronDownIcon'
+import ChevronUpIcon from '../../../../../assets/icons/ChevronUpIcon'
 
 const ProposalEvaluationMetrics = ({ onScoreProposal }) => {
   const [selectedSection, setSelectedSection] = useState('Executive Summary')
   const [showDropdown, setShowDropdown] = useState(false)
+  const [expandedCriteria, setExpandedCriteria] = useState('Risk Score')
 
   const sections = [
     'Executive Summary',
@@ -30,8 +32,16 @@ const ProposalEvaluationMetrics = ({ onScoreProposal }) => {
     {
       title: 'Client Focus Score',
       description: 'Measures how well the proposal addresses client needs, value outcomes, and business impact.'
+    },
+    {
+      title: 'Accuracy Score',
+      description: 'Evaluates the precision and correctness of information, data, and claims presented in the proposal.'
     }
   ]
+
+  const toggleCriteria = (title) => {
+    setExpandedCriteria(expandedCriteria === title ? null : title)
+  }
 
   const handleScoreClick = () => {
     if (onScoreProposal) {
@@ -111,20 +121,40 @@ const ProposalEvaluationMetrics = ({ onScoreProposal }) => {
           </h3>
           
           <div className='flex flex-col gap-[15px]'>
-            {scoringCriteria.map((criteria, index) => (
-              <div 
-                key={index}
-                className='flex flex-col gap-[8px] px-[20px] py-[14px] border border-[#0D54FF] rounded-[9px]'
-              >
-                <h4 className="text-[#0D54FF] font-['Inter',sans-serif] text-[21px] font-semibold leading-[28px]">
-                  {criteria.title}
-                </h4>
-                <div className='border-t border-[#D9D9D9]' />
-                <p className="text-[#050505] font-['Inter',sans-serif] text-[17px] font-normal leading-[22.80px]">
-                  {criteria.description}
-                </p>
-              </div>
-            ))}
+            {scoringCriteria.map((criteria, index) => {
+              const isExpanded = expandedCriteria === criteria.title
+              return (
+                <div 
+                  key={index}
+                  className='border border-[#0D54FF] rounded-[9px] overflow-hidden'
+                >
+                  <button
+                    onClick={() => toggleCriteria(criteria.title)}
+                    className='w-full flex items-center justify-between px-[20px] py-[14px] hover:bg-[#F6F6F6] transition-colors'
+                  >
+                    <h4 className="text-[#0D54FF] font-['Inter',sans-serif] text-[21px] font-semibold leading-[28px]">
+                      {criteria.title}
+                    </h4>
+                    {isExpanded ? (
+                      <ChevronUpIcon width={19} height={11} color='#0D54FF' />
+                    ) : (
+                      <ChevronDownIcon width={19} height={11} color='#0D54FF' />
+                    )}
+                  </button>
+                  
+                  {isExpanded && (
+                    <>
+                      <div className='mx-[20px] border-t border-[#D9D9D9]' />
+                      <div className='px-[20px] pb-[14px] pt-[8px]'>
+                        <p className="text-[#050505] font-['Inter',sans-serif] text-[17px] font-normal leading-[22.80px]">
+                          {criteria.description}
+                        </p>
+                      </div>
+                    </>
+                  )}
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>
