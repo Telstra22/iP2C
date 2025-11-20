@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ContractHeader from './ContractHeader';
 import ContractRevertText from './ContractRevertText';
-import { contractIssues } from './ContractReviewMockData';
+import { contractIssues, contractContent, contractMockRootProps } from './ContractReviewMockData';
 
 import DownloadIcon from '../../assets/icons/DownloadIcon';
 import SendIcon from '../../assets/icons/SendIcon';
@@ -35,6 +35,42 @@ const ContractIssue = () => {
   const [sectionExpanded, setSectionExpanded] = useState(true);
   const [isReplaced, setIsReplaced] = useState(false);
   const [commentText, setCommentText] = useState('');
+
+  // Section dropdown state (default to SERVICE if available)
+  const initialSectionId =
+    contractMockRootProps.allSections.find((s) => s.id === 2)?.id ||
+    (contractMockRootProps.allSections[0] && contractMockRootProps.allSections[0].id);
+  const [selectedSectionId, setSelectedSectionId] = useState(initialSectionId);
+  const [showSectionsList, setShowSectionsList] = useState(false);
+
+  const handleSelectSection = (id) => {
+    setSelectedSectionId(id);
+    setShowSectionsList(false);
+  };
+
+  const currentSectionTitle =
+    contractMockRootProps.allSections.find((s) => s.id === selectedSectionId)?.title ||
+    (contractMockRootProps.allSections[0] && contractMockRootProps.allSections[0].title);
+
+  // Clauses for the currently selected section from mock data
+  const sectionClauses = contractContent.filter((item) => item.sectionId === selectedSectionId);
+
+  let issueClauses = [];
+  let regularClauses = [];
+
+  if (selectedSectionId === 2) {
+    // Preserve specific split for section 2: 2.1 & 2.2 in issue box, rest in regular content
+    issueClauses = sectionClauses.filter((item) => item.id === '2.1' || item.id === '2.2');
+    regularClauses = sectionClauses.filter(
+      (item) => item.id === '2.3' || item.id === '2.4' || item.id === '2.5'
+    );
+  } else {
+    // Generic split: first clause in issue box, remaining in regular content
+    if (sectionClauses.length > 0) {
+      issueClauses = [sectionClauses[0]];
+      regularClauses = sectionClauses.slice(1);
+    }
+  }
 
   const comments = [
     {
@@ -102,14 +138,50 @@ const ContractIssue = () => {
           <div className="flex-1 min-w-0 flex flex-col pr-6 pb-8">
             {/* Top Row: Section Dropdown and Action Buttons */}
             <div className="flex items-start justify-between gap-[7px] mb-[14px]">
-              {/* Section Dropdown */}
-              <button 
-                onClick={() => setSectionExpanded(!sectionExpanded)}
-                className="flex items-center justify-between w-[470px] h-[55px] px-[15px] py-3 bg-white border border-(--color-border-gray) rounded-md hover:bg-gray-50 transition-colors"
-              >
-                <span className="section-header uppercase">2. Services</span>
-                <ChevronDownSmallIcon width={18} height={10} className="text-(--color-text-primary)" />
-              </button>
+              {/* Section Dropdown - same behavior as ContractReview */}
+              <div className="relative w-[470px]">
+                <div className="bg-white rounded-md border border-(--color-border-gray) px-[15px] py-3 shadow-[0px_4px_14px_rgba(0,0,0,0.12)]">
+                  <button
+                    type="button"
+                    onClick={() => setShowSectionsList(!showSectionsList)}
+                    className="flex items-center justify-between w-full hover:opacity-70"
+                  >
+                    <span className="section-header uppercase truncate">
+                      {currentSectionTitle}
+                    </span>
+                    <ChevronDownSmallIcon
+                      width={18}
+                      height={10}
+                      className={`text-(--color-text-primary) transform transition-transform ${
+                        showSectionsList ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+                </div>
+
+                {showSectionsList && (
+                  <div className="absolute right-0 top-full mt-2 z-50 bg-white rounded-[12px] border border-[#E5E5E5] shadow-[0px_4px_8px_rgba(0,0,0,0.1)] p-[24px] w-[470px]">
+                    <div className="flex flex-col gap-[20px]">
+                      {contractMockRootProps.allSections.map((item) => (
+                        <div
+                          key={item.id}
+                          className="flex items-center justify-between cursor-pointer hover:opacity-80"
+                          onClick={() => handleSelectSection(item.id)}
+                        >
+                          <span className="text-[#050505] font-['Inter',sans-serif] text-[20px] font-normal leading-[27px]">
+                            {item.title}
+                          </span>
+                          {item.id === selectedSectionId && (
+                            <span className="text-[18px] font-semibold text-(--color-primary-blue)">
+                              
+                            </span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
 
               {/* Action Buttons */}
               <div className="flex items-center gap-[7px]">
@@ -217,28 +289,36 @@ const ContractIssue = () => {
                   <p className="text-lg italic text-(--color-italic-text) mb-[22px]">1 issue detected in this section</p>
 
                   {isReplaced ? (
-                    <ContractRevertText onRevert={() => setIsReplaced(false)} />
+                    <ContractRevertText onRevert={() => setIsReplaced(false)} showSidebar={false} />
                   ) : (
                     <>
                       {/* Issue Box */}
                       <div className="relative mb-[17px] p-[30px] bg-white border border-[#f96449] rounded-lg shadow-[0px_4px_8px_rgba(0,0,0,0.10)]">
                         <span className="absolute top-[16px] left-[30px] text-base font-medium text-[#f96449]">Issue#1</span>
                         <p className="text-lg leading-[23px] text-(--color-text-black) mt-[20px]">
-                          2.1. We agree to supply the Services to you, and you agree to acquire them from us, at the prices and on the terms of this Agreement.
-                          <br /><br />
-                          2.2 We may provide the Services from locations outside of Australia, however this will not reduce our obligations under this Agreement.
+                          {issueClauses.map((clause, index) => (
+                            <React.Fragment key={clause.id}>
+                              {clause.id}. {clause.content}
+                              {index < issueClauses.length - 1 && (
+                                <>
+                                  <br />
+                                  <br />
+                                </>
+                              )}
+                            </React.Fragment>
+                          ))}
                         </p>
                       </div>
 
                       {/* Regular Content */}
                       <p className="text-lg leading-[24.14px] text-(--color-text-black)">
-                        2.3 You acknowledge and agree that we use a global services delivery model to deliver our Services to you under this Agreement cost effectively and efficiently. For these purposes, our global services delivery model means that:<br />
-                        Certain Services are delivered by Personnel located in Australia, while other kinds of Services are delivered by Personnel located outside of Australia (including the Philippines, India and Malaysia); and<br />
-                        Personnel located in Australia and outside of Australia may need to access your Customer Data and our Service Related Data to provide Services to you.<br />
-                        2.4 From time to time, we may subcontract our obligations under this Agreement and where we subcontract any of our obligations under this Agreement, we will:<br />
-                        ensure that the subcontractor has all the necessary skills and resources to perform the work they TELSTRA LIMITED (ABN 64 086 174 781) | COMPANY 4 AUSTRALIA PTY LTD CONFIDENTIAL undertake; and not be relieved of our obligations to you under this Agreement for such work.<br />
-                        2.5 We may, without your consent:<br />
-                        directly or indirectly (including by way of intra-group arrangements) subcontract all or any part of this Agreement to another Telstra Group Entity that has the sufficient financial capacity to perform our obligations under this Agreement; and do all things reasonably required to give effect to paragraph (a) above.
+                        {regularClauses.map((clause, index) => (
+                          <React.Fragment key={clause.id}>
+                            {clause.id}. {clause.content}
+                            {index < regularClauses.length - 1 && <br />}
+                            <br />
+                          </React.Fragment>
+                        ))}
                       </p>
                     </>
                   )}

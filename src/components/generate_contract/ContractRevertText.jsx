@@ -5,7 +5,8 @@ import ContractAssistantIcon from '../../assets/icons/ContractAssistantIcon.svg?
 import ThumbsUpIcon from '../../assets/icons/ThumbsUpIcon.svg?react';
 import SmileyEmojiIcon from '../../assets/icons/SmileyEmojiIcon.svg?react';
 
-function ContractRevertText({ onRevert, className = '' }) {
+function ContractRevertText({ onRevert, className = '', showSidebar = true }) {
+
   const [activeTab, setActiveTab] = useState('Comments');
   const [commentText, setCommentText] = useState('');
 
@@ -109,108 +110,110 @@ function ContractRevertText({ onRevert, className = '' }) {
       </div>
 
       {/* Right Side - Contract Assistant Sidebar */}
-      <div className="w-[793px] flex flex-col bg-[#fcfcfc] border-l border-[#d9d9d9] rounded-t-lg shadow-[-4px_0px_13px_rgba(0,0,0,0.10)]">
-        {/* Header */}
-        <div className="flex items-center gap-2.5 px-5 py-4 border-b border-[#dddddd] shadow-[0px_4px_12px_rgba(0,0,0,0.08)]">
-          <ContractAssistantIcon width={35} height={32} className="text-black" />
-          <h2 className="assistant-header-text">Contract Assistant</h2>
-        </div>
+      {showSidebar && (
+        <div className="w-[793px] flex flex-col bg-[#fcfcfc] border-l border-[#d9d9d9] rounded-t-lg shadow-[-4px_0px_13px_rgba(0,0,0,0.10)]">
+          {/* Header */}
+          <div className="flex items-center gap-2.5 px-5 py-4 border-b border-[#dddddd] shadow-[0px_4px_12px_rgba(0,0,0,0.08)]">
+            <ContractAssistantIcon width={35} height={32} className="text-black" />
+            <h2 className="assistant-header-text">Contract Assistant</h2>
+          </div>
 
-        {/* Tabs */}
-        <div className="flex items-center gap-[23px] px-6 pt-6 pb-4">
-          <button 
-            onClick={() => setActiveTab('Issues')}
-            className={activeTab === 'Issues' ? 'tab-text-active' : 'tab-text-inactive'}
-          >
-            Issues
-          </button>
-          <button 
-            onClick={() => setActiveTab('Chatbot')}
-            className={activeTab === 'Chatbot' ? 'tab-text-active' : 'tab-text-inactive'}
-          >
-            Chatbot
-          </button>
-          <button 
-            onClick={() => setActiveTab('Comments')}
-            className={activeTab === 'Comments' ? 'tab-text-active' : 'tab-text-inactive'}
-          >
-            Comments
-          </button>
-        </div>
-
-        {/* Tab underline */}
-        <div className="border-b border-[#d9d9d9]"></div>
-
-        {/* Comments Content */}
-        <div className="flex-1 flex flex-col gap-[23px] px-6 pt-6 pb-6 overflow-y-auto">
-          {comments.map((comment, index) => (
-            <React.Fragment key={comment.id}>
-              {/* Comment Item */}
-              <div className="flex flex-col gap-[13px]">
-                {/* Header with Avatar */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-[21px]">
-                    {/* Avatar Circle */}
-                    <div className={`w-[43px] h-[43px] rounded-full flex items-center justify-center ${comment.initials === 'AB' ? 'bg-[#fb4848]' : 'bg-[#247cff]'}`}>
-                      <span className="comment-avatar-text">{comment.initials}</span>
-                    </div>
-                    {/* Author and Timestamp */}
-                    <div className="flex flex-col -gap-2">
-                      <span className="comment-author-text">{comment.author}</span>
-                      <span className="comment-timestamp-text">{comment.timestamp}</span>
-                    </div>
-                  </div>
-                  {/* More Options Icon */}
-                  <button className="hover:opacity-70">
-                    <MoreHorizontal size={16} className="text-black" />
-                  </button>
-                </div>
-
-                {/* Message */}
-                <p className="comment-message-text">{comment.message}</p>
-
-                {/* Actions Row */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-6">
-                    <span className="comment-reply-text">REPLY</span>
-                    <button className="hover:opacity-80">
-                      <ThumbsUpIcon width={19} height={20} className="text-black" />
-                    </button>
-                  </div>
-                  <span className="comment-number-text">{comment.number}</span>
-                </div>
-
-                {/* Emoji if present */}
-                {comment.hasEmoji && (
-                  <SmileyEmojiIcon width={23} height={23} className="self-start" />
-                )}
-              </div>
-
-              {/* Divider */}
-              {index < comments.length - 1 && (
-                <div className="border-b border-[#d9d9d9]"></div>
-              )}
-            </React.Fragment>
-          ))}
-
-          {/* Divider before input */}
-          <div className="border-b border-[#d9d9d9]"></div>
-
-          {/* Add Comment Section */}
-          <div className="flex flex-col gap-[13px]">
-            <input
-              type="text"
-              value={commentText}
-              onChange={(e) => setCommentText(e.target.value)}
-              placeholder="Add a comment for this section"
-              className="comment-input-text bg-transparent border-none outline-none placeholder:text-[#737373]"
-            />
-            <button className="comment-send-text self-end hover:opacity-80">
-              Send
+          {/* Tabs */}
+          <div className="flex items-center gap-[23px] px-6 pt-6 pb-4">
+            <button 
+              onClick={() => setActiveTab('Issues')}
+              className={activeTab === 'Issues' ? 'tab-text-active' : 'tab-text-inactive'}
+            >
+              Issues
+            </button>
+            <button 
+              onClick={() => setActiveTab('Chatbot')}
+              className={activeTab === 'Chatbot' ? 'tab-text-active' : 'tab-text-inactive'}
+            >
+              Chatbot
+            </button>
+            <button 
+              onClick={() => setActiveTab('Comments')}
+              className={activeTab === 'Comments' ? 'tab-text-active' : 'tab-text-inactive'}
+            >
+              Comments
             </button>
           </div>
+
+          {/* Tab underline */}
+          <div className="border-b border-[#d9d9d9]"></div>
+
+          {/* Comments Content */}
+          <div className="flex-1 flex flex-col gap-[23px] px-6 pt-6 pb-6 overflow-y-auto">
+            {comments.map((comment, index) => (
+              <React.Fragment key={comment.id}>
+                {/* Comment Item */}
+                <div className="flex flex-col gap-[13px]">
+                  {/* Header with Avatar */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-[21px]">
+                      {/* Avatar Circle */}
+                      <div className={`w-[43px] h-[43px] rounded-full flex items-center justify-center ${comment.initials === 'AB' ? 'bg-[#fb4848]' : 'bg-[#247cff]'}`}>
+                        <span className="comment-avatar-text">{comment.initials}</span>
+                      </div>
+                      {/* Author and Timestamp */}
+                      <div className="flex flex-col -gap-2">
+                        <span className="comment-author-text">{comment.author}</span>
+                        <span className="comment-timestamp-text">{comment.timestamp}</span>
+                      </div>
+                    </div>
+                    {/* More Options Icon */}
+                    <button className="hover:opacity-70">
+                      <MoreHorizontal size={16} className="text-black" />
+                    </button>
+                  </div>
+
+                  {/* Message */}
+                  <p className="comment-message-text">{comment.message}</p>
+
+                  {/* Actions Row */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-6">
+                      <span className="comment-reply-text">REPLY</span>
+                      <button className="hover:opacity-80">
+                        <ThumbsUpIcon width={19} height={20} className="text-black" />
+                      </button>
+                    </div>
+                    <span className="comment-number-text">{comment.number}</span>
+                  </div>
+
+                  {/* Emoji if present */}
+                  {comment.hasEmoji && (
+                    <SmileyEmojiIcon width={23} height={23} className="self-start" />
+                  )}
+                </div>
+
+                {/* Divider */}
+                {index < comments.length - 1 && (
+                  <div className="border-b border-[#d9d9d9]"></div>
+                )}
+              </React.Fragment>
+            ))}
+
+            {/* Divider before input */}
+            <div className="border-b border-[#d9d9d9]"></div>
+
+            {/* Add Comment Section */}
+            <div className="flex flex-col gap-[13px]">
+              <input
+                type="text"
+                value={commentText}
+                onChange={(e) => setCommentText(e.target.value)}
+                placeholder="Add a comment for this section"
+                className="comment-input-text bg-transparent border-none outline-none placeholder:text-[#737373]"
+              />
+              <button className="comment-send-text self-end hover:opacity-80">
+                Send
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
