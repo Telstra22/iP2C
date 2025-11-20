@@ -13,6 +13,7 @@ const AiLoader = ({ onCancel, isVisible = true }) => {
   const totalActivities = mockDataLoading.agentActivities.length
   const [visibleCount, setVisibleCount] = useState(0)
   const [progress, setProgress] = useState(0)
+
   const [isCompleted, setIsCompleted] = useState(false)
   const [startTs] = useState(() => Date.now())
   const [endedStatus, setEndedStatus] = useState('')
@@ -21,7 +22,22 @@ const AiLoader = ({ onCancel, isVisible = true }) => {
     if (!isVisible || isCompleted) return
 
     let endTimeoutId
-    const intervalTime = (90 * 1000) / totalActivities
+    let startTimeoutId
+    const firstStepPct = totalActivities > 0 ? Math.round((1 / totalActivities) * 100) : 0
+
+    // First time: wait 1s at 0%, then move to first step and let effect rerun to start interval
+    if (visibleCount === 0 && totalActivities > 0) {
+      startTimeoutId = setTimeout(() => {
+        setVisibleCount(1)
+        setProgress(firstStepPct)
+      }, 1000)
+
+      return () => {
+        if (startTimeoutId) clearTimeout(startTimeoutId)
+      }
+    }
+
+    const intervalTime = (30 * 1000) / totalActivities
 
     const intervalId = setInterval(() => {
       setVisibleCount(prev => {
@@ -40,14 +56,15 @@ const AiLoader = ({ onCancel, isVisible = true }) => {
     return () => {
       clearInterval(intervalId)
       if (endTimeoutId) clearTimeout(endTimeoutId)
+      if (startTimeoutId) clearTimeout(startTimeoutId)
     }
-  }, [isVisible, isCompleted, totalActivities])
+  }, [isVisible, isCompleted, totalActivities, visibleCount])
 
   useEffect(() => {
     if (isCompleted) {
       const ms = Date.now() - startTs
-      // Clamp to max 90 seconds so the displayed huddle time does not exceed 90 secs
-      const secs = Math.min(90, Math.max(1, Math.round(ms / 1000)))
+      // Clamp to max 30 seconds so the displayed huddle time does not exceed 30 secs
+      const secs = Math.min(30, Math.max(1, Math.round(ms / 1000)))
       const status = `Huddle ended after ${secs} secs..`
       setEndedStatus(status)
     }
@@ -105,7 +122,12 @@ const AiLoader = ({ onCancel, isVisible = true }) => {
                 <div className='flex flex-col items-center gap-[32px]'>
                   <CircularLoader size={119} strokeWidth={8} progress={progress} animated={true} />
                   <p className="text-[#828282] font-['Inter',sans-serif] text-[20px] font-normal leading-[27px]">
-                    Estimated wait time 3-5 minutes
+                    Estimated wait time 1-2 minutes
+                  </p>
+                  
+                  {/* Message */}
+                  <p className="text-xl text-[#505050] text-center leading-[26.82px]">
+                    Please continue with other Proposals. You will be notified once the huddle has ended.
                   </p>
                 </div>
 

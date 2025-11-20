@@ -4,6 +4,7 @@ import { mockOrchestratorData, mockOrchestratorDataLoading } from './Orchestrato
 import ProposalBuilderIcon from '../../../../assets/icons/ProposalBuilderIcon'
 import CompletedAgentsBadgesIcon from '../../../../assets/icons/CompletedAgentsBadges'
 import OpportunityManagerIcon from '../../../../assets/icons/OpportunityManagerIcon'
+import SoundWaveIcon from '../../../../assets/icons/SoundWaveIcon'
 
 const ActiveStatusBadge = () => {
   return (
@@ -58,7 +59,7 @@ const OrchestratorHeader = () => {
   )
 }
 
-const OpportunityManagerCard = ({ data }) => {
+const OpportunityManagerCard = ({ data, progressValue = 0 }) => {
   // Define background colors for each agent badge
   const agentColors = {
     'OE': '#D3EDFE',
@@ -76,7 +77,7 @@ const OpportunityManagerCard = ({ data }) => {
           backgroundClip: 'content-box, border-box',
           backgroundOrigin: 'border-box',
           backgroundSize: 'auto, 200% 100%',
-          animation: 'borderFlow 7s linear infinite'
+          animation: progressValue < 100 ? 'borderFlow 7s linear infinite' : 'none'
         }}
       >
         <div className='flex items-center justify-between px-[20px] py-[20px] rounded-[9px] bg-white'>
@@ -98,22 +99,26 @@ const OpportunityManagerCard = ({ data }) => {
           
           {/* Right side: Sound wave + Badges */}
           <div className='flex items-center gap-[7px]'>
-            <div className='flex items-end justify-center h-[31px] w-[28px] gap-[4px]'>
-              {Array.from({ length: 5 }).map((_, i) => (
-                <span
-                  key={i}
-                  style={{
-                    width: '3px',
-                    height: '12px',
-                    backgroundColor: '#0D54FF',
-                    display: 'inline-block',
-                    borderRadius: '2px',
-                    animation: 'barPulse 1.1s ease-in-out infinite',
-                    animationDelay: `${i * 0.12}s`
-                  }}
-                />
-              ))}
-            </div>
+            {progressValue < 100 ? (
+              <div className='flex items-end justify-center h-[31px] w-[28px] gap-[4px]'>
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <span
+                    key={i}
+                    style={{
+                      width: '3px',
+                      height: '12px',
+                      backgroundColor: '#0D54FF',
+                      display: 'inline-block',
+                      borderRadius: '2px',
+                      animation: 'barPulse 1.1s ease-in-out infinite',
+                      animationDelay: `${i * 0.12}s`
+                    }}
+                  />
+                ))}
+              </div>
+            ) : (
+              <SoundWaveIcon width={28} height={31} />
+            )}
             <div className='flex items-center' style={{ gap: '-6.79px' }}>
               {data.agents.map((agent, index) => (
                 <div key={agent} style={{ marginLeft: index > 0 ? '-6.79px' : '0', zIndex: data.agents.length - index }}>
@@ -183,7 +188,7 @@ const AgentActivityCard = ({ activity, showCheckmark }) => {
       </div>
 
       {/* Content Card on RIGHT */}
-      <div className='flex flex-col gap-[7px] px-[12px] py-[12px] rounded-[4px] border border-[#D9D9D9] bg-white flex-1'>
+      <div className='flex flex-col gap-[5px] px-[12px] py-[12px] rounded-[10px] border border-[#D9D9D9] bg-white flex-1'>
         <h3 
           className={`font-['Inter',sans-serif] text-[20px] font-${activity.hasGradientTitle ? 'semibold' : 'medium'} leading-[27px]`}
           style={activity.hasGradientTitle ? {
@@ -298,6 +303,10 @@ const ChatInput = ({ onSend }) => {
 const OrchestratorSidebar = ({ data, onSendMessage, isLoading = false }) => {
   // Use loading data if isLoading is true, otherwise use provided data or default completed data
   const sidebarData = data || (isLoading ? mockOrchestratorDataLoading : mockOrchestratorData)
+  const progressValue = typeof sidebarData?.progress === 'number'
+    ? Math.max(0, Math.min(100, sidebarData.progress))
+    : 0
+
   const listEndRef = useRef(null)
   useEffect(() => {
     listEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
@@ -322,7 +331,7 @@ const OrchestratorSidebar = ({ data, onSendMessage, isLoading = false }) => {
       `}</style>
       <OrchestratorHeader />
       
-      <OpportunityManagerCard data={sidebarData.opportunityManager} />
+      <OpportunityManagerCard data={sidebarData.opportunityManager} progressValue={progressValue} />
       
       <div className='flex-1 overflow-y-auto overflow-x-hidden px-[20px] pt-[22px] pb-[16px] min-h-0'>
         <div className='flex flex-col' style={{ gap: sidebarData.isHuddleInProgress ? '22px' : '18px' }}>

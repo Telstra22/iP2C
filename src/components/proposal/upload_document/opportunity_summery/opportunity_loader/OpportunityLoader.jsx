@@ -21,30 +21,46 @@ function OpportunityLoader({ onCancel, onSendMessage, onStepClick, activeStep = 
     // reveal next activity on an interval and show 100% in-progress briefly before completing
     if (done) return
 
-    let endTimeoutId;
-    // Calculate interval for each activity so the total completes in 67 seconds
-    const intervalTime = (67 * 1000) / totalActivities; // 67 seconds for total, spread across all activities
+    let endTimeoutId
+    let startTimeoutId
+    const firstStepPct = totalActivities > 0 ? Math.round((1 / totalActivities) * 100) : 0
+
+    // First time: wait 1s at 0%, then move to first step and let effect rerun to start interval
+    if (visibleCount === 0 && totalActivities > 0) {
+      startTimeoutId = setTimeout(() => {
+        setVisibleCount(1)
+        setProgress(firstStepPct)
+      }, 1000)
+
+      return () => {
+        if (startTimeoutId) clearTimeout(startTimeoutId)
+      }
+    }
+
+    // Calculate interval for each activity so the total completes in 50 seconds
+    const intervalTime = (50 * 1000) / totalActivities // 50 seconds for total, spread across all activities
 
     const intervalId = setInterval(() => {
       setVisibleCount((prev) => {
-        const next = Math.min(prev + 1, totalActivities);
-        const pct = Math.min(100, Math.round((next / totalActivities) * 100));
-        setProgress(pct);
+        const next = Math.min(prev + 1, totalActivities)
+        const pct = Math.min(100, Math.round((next / totalActivities) * 100))
+        setProgress(pct)
         
         if (next === totalActivities) {
           // stop further increments and delay completion so 100% in-progress is visible
-          clearInterval(intervalId);
-          endTimeoutId = setTimeout(() => setDone(true), 1000); // 1-second delay before marking as done
+          clearInterval(intervalId)
+          endTimeoutId = setTimeout(() => setDone(true), 1000) // 1-second delay before marking as done
         }
-        return next;
-      });
-    }, intervalTime);
+        return next
+      })
+    }, intervalTime)
 
     return () => {
-      clearInterval(intervalId);
-      if (endTimeoutId) clearTimeout(endTimeoutId);
-    };
-  }, [done, totalActivities]);
+      clearInterval(intervalId)
+      if (endTimeoutId) clearTimeout(endTimeoutId)
+      if (startTimeoutId) clearTimeout(startTimeoutId)
+    }
+  }, [done, totalActivities, visibleCount])
 
   useEffect(() => {
     if (done) {
@@ -64,7 +80,8 @@ function OpportunityLoader({ onCancel, onSendMessage, onStepClick, activeStep = 
     ...mockOrchestratorDataLoading,
     agentActivities: mockOrchestratorDataLoading.agentActivities.slice(0, visibleCount),
     huddleStatus: done ? endedStatus : `Huddle in progress.. ${progress}%`,
-    isHuddleInProgress: !done
+    isHuddleInProgress: !done,
+    progress
   }), [visibleCount, progress, done, endedStatus]);
 
   const handleCancel = () => {
@@ -104,7 +121,7 @@ function OpportunityLoader({ onCancel, onSendMessage, onStepClick, activeStep = 
               
               {/* Estimated wait time */}
               <p className="text-xl text-[#828282]">
-                Estimated wait time 3-5 minutes
+                Estimated wait time 1-2 minutes
               </p>
               
               {/* Message */}

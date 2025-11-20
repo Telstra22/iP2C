@@ -3,6 +3,107 @@ import EditorToolbar from '../editorToolbar/EditorToolbar'
 import CommentsPanel from '../comments/CommentsPanel'
 import { Check,Trash2,ChevronDown } from 'lucide-react'
 
+const renderMarkdownContent = (markdown) => {
+  if (!markdown) return ''
+
+  const escapeHtml = (str) =>
+    str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+
+  const lines = markdown.split('\n')
+  const blocks = []
+  let currentBlock = []
+
+  const flushBlock = () => {
+    if (!currentBlock.length) return
+    blocks.push(currentBlock)
+    currentBlock = []
+  }
+
+  lines.forEach((line) => {
+    if (line.trim() === '') {
+      flushBlock()
+    } else {
+      currentBlock.push(line)
+    }
+  })
+  flushBlock()
+
+  const htmlParts = []
+
+  blocks.forEach((block) => {
+    // Headings
+    if (block.length === 1 && block[0].startsWith('### ')) {
+      const text = escapeHtml(block[0].slice(4).trim())
+      htmlParts.push(`<h3 class="text-[18px] font-semibold mb-2">${text}</h3>`)
+      return
+    }
+    if (block.length === 1 && block[0].startsWith('## ')) {
+      const text = escapeHtml(block[0].slice(3).trim())
+      htmlParts.push(`<h2 class="text-[20px] font-semibold mb-2">${text}</h2>`)
+      return
+    }
+
+    const isTableBlock =
+      block.length >= 2 &&
+      block[0].trim().startsWith('|') &&
+      block[1].includes('---')
+
+    if (isTableBlock) {
+      const headerLine = block[0]
+      const separatorLine = block[1]
+      const dataLines = block.slice(2)
+
+      const splitRow = (line) =>
+        line
+          .split('|')
+          .slice(1, -1)
+          .map((cell) => cell.trim())
+
+      const headers = splitRow(headerLine)
+      const separators = splitRow(separatorLine)
+      if (!headers.length || !separators.length) {
+        htmlParts.push(`<p class="mb-3 whitespace-pre-wrap">${escapeHtml(block.join('\n'))}</p>`)
+        return
+      }
+
+      htmlParts.push('<div class="overflow-x-auto mb-4"><table class="min-w-full border-collapse text-[14px]">')
+      htmlParts.push('<thead>')
+      htmlParts.push('<tr>')
+      headers.forEach((h) => {
+        htmlParts.push(`<th class="border border-[#C6C6C6] px-3 py-2 bg-[#F6F6F6] text-left font-semibold">${escapeHtml(h)}</th>`)
+      })
+      htmlParts.push('</tr>')
+      htmlParts.push('</thead>')
+
+      if (dataLines.length) {
+        htmlParts.push('<tbody>')
+        dataLines.forEach((line) => {
+          if (!line.trim()) return
+          const cells = splitRow(line)
+          if (!cells.length) return
+          htmlParts.push('<tr>')
+          cells.forEach((c) => {
+            htmlParts.push(`<td class="border border-[#C6C6C6] px-3 py-2 align-top">${escapeHtml(c)}</td>`)
+          })
+          htmlParts.push('</tr>')
+        })
+        htmlParts.push('</tbody>')
+      }
+
+      htmlParts.push('</table></div>')
+      return
+    }
+
+    // Default paragraph block
+    htmlParts.push(`<p class="mb-3 whitespace-pre-wrap">${escapeHtml(block.join('\n'))}</p>`)
+  })
+
+  return htmlParts.join('')
+}
+
 const ProposalSectionContent = ({ 
   section, 
   onToggleSection, 
@@ -34,7 +135,9 @@ const ProposalSectionContent = ({
   useEffect(() => {
     try {
       if (titleRef.current) titleRef.current.textContent = section?.title || ''
-      if (contentRef.current) contentRef.current.textContent = section?.content || ''
+      if (!section?.isMarkdown && contentRef.current) {
+        contentRef.current.textContent = section?.content || ''
+      }
       if (Array.isArray(section?.subsections)) {
         section.subsections.forEach(ss => {
           const tRef = subsectionTitleRefs.current[ss.id]
@@ -44,7 +147,7 @@ const ProposalSectionContent = ({
         })
       }
     } catch {}
-  }, [section?.id])
+  }, [section?.id, section?.isMarkdown])
 
   const handleAddAttachment = (att) => {
     setAttachments(prev => [...prev, att])
@@ -211,14 +314,21 @@ const ProposalSectionContent = ({
                       ref={titleRef}
                     />
 
-                    {/* Editable Main Section Text (inline) */}
-                    <div
-                      contentEditable
-                      suppressContentEditableWarning
-                      onInput={(e) => onChangeSectionContent && onChangeSectionContent(section.id, e.currentTarget.textContent)}
-                      className={`${showComments ? 'w-[856px]' : 'w-full'} min-h-[140px] text-[#050505] font-['Inter',sans-serif] text-[18px] font-normal leading-[24.14px] outline-none`}
-                      ref={contentRef}
-                    />
+                    {/* Main Section Text */}
+                    {section.isMarkdown ? (
+                      <div
+                        className={`${showComments ? 'w-[856px]' : 'w-full'} min-h-[140px] whitespace-pre-wrap text-[#050505] font-['Inter',sans-serif] text-[18px] font-normal leading-[24.14px] outline-none`}
+                        dangerouslySetInnerHTML={{ __html: renderMarkdownContent(section.content) }}
+                      />
+                    ) : (
+                      <div
+                        contentEditable
+                        suppressContentEditableWarning
+                        onInput={(e) => onChangeSectionContent && onChangeSectionContent(section.id, e.currentTarget.textContent)}
+                        className={`${showComments ? 'w-[856px]' : 'w-full'} min-h-[140px] whitespace-pre-wrap text-[#050505] font-['Inter',sans-serif] text-[18px] font-normal leading-[24.14px] outline-none`}
+                        ref={contentRef}
+                      />
+                    )}
 
                     {/* Subsections */}
                     {section.subsections && section.subsections.map((subsection) => (
@@ -245,7 +355,7 @@ const ProposalSectionContent = ({
                           contentEditable
                           suppressContentEditableWarning
                           onInput={(e) => onChangeSubsectionContent && onChangeSubsectionContent(section.id, subsection.id, e.currentTarget.textContent)}
-                          className={`${showComments ? 'w-[860px]' : 'w-full'} min-h-[120px] text-[#050505] font-['Inter',sans-serif] text-[18px] font-normal leading-[24.14px] outline-none ${subsection.isItalic ? 'italic text-[#828282]' : ''}`}
+                          className={`${showComments ? 'w-[860px]' : 'w-full'} min-h-[120px] whitespace-pre-wrap text-[#050505] font-['Inter',sans-serif] text-[18px] font-normal leading-[24.14px] outline-none ${subsection.isItalic ? 'italic text-[#828282]' : ''}`}
                           ref={(el) => { subsectionContentRefs.current[subsection.id] = el }}
                         />
                       </div>

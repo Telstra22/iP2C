@@ -23,10 +23,7 @@ const RiskScoreSidebar = ({ onRiskAssessment, onSendMessage }) => {
       {/* Risk Score Assessment Button */}
       <button
         onClick={onRiskAssessment}
-        className='flex items-center gap-[10px] px-[20px] py-[24px] border-b border-[#DDDDDD] shadow-[0px_4px_12px_rgba(0,0,0,0.08)] hover:opacity-90 transition-opacity'
-        style={{
-          background: 'linear-gradient(83.12deg, rgba(0,255,225,1) 22.75%, rgba(13,84,255,1) 32.11%, rgba(149,36,198,1) 108.54%)'
-        }}
+        className='flex items-center gap-[10px] px-[20px] py-[24px] border-b border-[#DDDDDD] shadow-[0px_4px_12px_rgba(0,0,0,0.08)] hover:opacity-90 transition-opacity bg-[linear-gradient(83.12deg,_rgba(0,255,225,1)_22.75%,_rgba(13,84,255,1)_32.11%,_rgba(149,36,198,1)_108.54%)]'
       >
         <LightningIcon width={35} height={32} color='#FFFFFF' />
         <span className="text-[#FFFFFF] font-['Inter',sans-serif] text-[22px] font-semibold leading-normal">

@@ -1,7 +1,7 @@
 // Mock data for the AddSection component
 
 export const mockRootProps = {
-  sectionNumber: "10",
+  sectionNumber: "13",
   isOpen: true,
   onClose: () => console.log("Close modal"),
   onDone: () => console.log("Done clicked"),

@@ -20,7 +20,8 @@ function OpportunityDone({ onDone, onSendMessage, onStepClick, activeStep = 1, c
     agentActivities: mockOrchestratorDataLoading.agentActivities.slice(0, visibleCount),
     // show as completed state: checkmarks on, no progress bar
     huddleStatus: endedStatusFromState || 'Huddle ended after 3m 56secs..',
-    isHuddleInProgress: false
+    isHuddleInProgress: false,
+    progress: 100
   }), [visibleCount, endedStatusFromState])
   const handleDone = () => {
     if (onDone) return onDone();

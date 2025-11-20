@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
+
 import MetricsIcon from '../../../../../assets/icons/MetricsIcon'
 import ChevronUpIcon from '../../../../../assets/icons/ChevronUpIcon'
 import ChevronDownIcon from '../../../../../assets/icons/ChevronDownIcon'
@@ -15,11 +16,94 @@ const RiskScoreProcessCheck = () => {
     accuracy: false
   })
 
+  const [expandedSummarySection, setExpandedSummarySection] = useState(null)
+
+  const containerRef = useRef(null)
+  const sectionRefs = {
+    risk: useRef(null),
+    compliance: useRef(null),
+    clientFocus: useRef(null),
+    accuracy: useRef(null)
+  }
+  const summaryRefs = {
+    risk: useRef(null),
+    compliance: useRef(null),
+    clientFocus: useRef(null),
+    accuracy: useRef(null)
+  }
+
+  const scrollIntoViewIfNeeded = (ref) => {
+    if (!ref?.current || !containerRef.current) return
+
+    const container = containerRef.current
+    const element = ref.current
+
+    const containerRect = container.getBoundingClientRect()
+    const elementRect = element.getBoundingClientRect()
+
+    if (elementRect.top < containerRect.top || elementRect.bottom > containerRect.bottom) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
   const toggleSection = (section) => {
-    setExpandedSections(prev => ({
-      ...prev,
-      [section]: !prev[section]
-    }))
+    // For top-level sections, enforce accordion behaviour
+    if (['risk', 'compliance', 'clientFocus', 'accuracy'].includes(section)) {
+      setExpandedSections(prev => {
+        const currentlyOpen = !!prev[section]
+        const nextState = {
+          ...prev,
+          risk: false,
+          compliance: false,
+          clientFocus: false,
+          accuracy: false,
+          // toggle the clicked one
+          [section]: !currentlyOpen
+        }
+
+        const next = nextState
+
+        if (!currentlyOpen) {
+          setTimeout(() => {
+            scrollIntoViewIfNeeded(sectionRefs[section])
+          }, 0)
+        }
+
+        return next
+      })
+
+      // Whenever we switch top-level sections, close any open Summary subsection
+      setExpandedSummarySection(null)
+      return
+    }
+
+    // For other keys (summary, suggestions), just toggle normally
+    setExpandedSections(prev => {
+      const next = {
+        ...prev,
+        [section]: !prev[section]
+      }
+
+      if (section === 'suggestions') {
+        const topLevel = expandedSections.risk
+          ? 'risk'
+          : expandedSections.compliance
+            ? 'compliance'
+            : expandedSections.clientFocus
+              ? 'clientFocus'
+              : expandedSections.accuracy
+                ? 'accuracy'
+                : null
+
+        if (topLevel) {
+          setTimeout(() => {
+            scrollIntoViewIfNeeded(summaryRefs[topLevel])
+          }, 0)
+        }
+      }
+
+      return next
+    })
   }
 
   const scoreData = {
@@ -147,10 +231,7 @@ const RiskScoreProcessCheck = () => {
             <div className='flex flex-col'>
               {/* Gradient Score Section */}
               <div 
-                className='px-[31px] py-[28px] flex flex-col items-center gap-[20px]'
-                style={{
-                  background: 'linear-gradient(90deg, #0D54FF 0%, #7B3FE4 100%)'
-                }}
+                className='px-[31px] py-[28px] flex flex-col items-center gap-[20px] bg-[linear-gradient(90deg,#0D54FF_0%,#7B3FE4_100%)]'
               >
                 <p className="text-[#FFFFFF] font-['Inter',sans-serif] text-[17px] font-medium leading-[18px]">
                   Document Risk Score
@@ -187,19 +268,19 @@ const RiskScoreProcessCheck = () => {
                 {/* Summary */}
                 <div className='flex flex-col'>
                   <button
-                    onClick={() => toggleSection('summary')}
+                    onClick={() => setExpandedSummarySection(prev => prev === 'risk' ? null : 'risk')}
                     className='flex items-center justify-between py-[8px] hover:bg-[#F6F6F6] transition-colors'
                   >
                     <h4 className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-semibold leading-[30px]">
                       Summary
                     </h4>
-                    {expandedSections.summary ? (
+                    {expandedSummarySection === 'risk' ? (
                       <ChevronUpIcon width={19} height={11} color='#050505' />
                     ) : (
                       <ChevronDownIcon width={19} height={11} color='#050505' />
                     )}
                   </button>
-                  {expandedSections.summary && (
+                  {expandedSummarySection === 'risk' && (
                     <div className='pt-[12px] flex flex-col gap-[18px]'>
                       {summaryContent.map((text, index) => (
                         <p key={index} className="text-[#050505] font-['Inter',sans-serif] text-[18px] font-normal leading-[25.22px]">
@@ -304,19 +385,19 @@ const RiskScoreProcessCheck = () => {
                 {/* Summary */}
                 <div className='flex flex-col'>
                   <button
-                    onClick={() => toggleSection('summary')}
+                    onClick={() => setExpandedSummarySection(prev => prev === 'compliance' ? null : 'compliance')}
                     className='flex items-center justify-between py-[8px] hover:bg-[#F6F6F6] transition-colors'
                   >
                     <h4 className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-semibold leading-[30px]">
                       Summary
                     </h4>
-                    {expandedSections.summary ? (
+                    {expandedSummarySection === 'compliance' ? (
                       <ChevronUpIcon width={19} height={11} color='#050505' />
                     ) : (
                       <ChevronDownIcon width={19} height={11} color='#050505' />
                     )}
                   </button>
-                  {expandedSections.summary && (
+                  {expandedSummarySection === 'compliance' && (
                     <div className='pt-[12px] flex flex-col gap-[18px]'>
                       {complianceSummaryContent.map((text, index) => (
                         <p key={index} className="text-[#050505] font-['Inter',sans-serif] text-[18px] font-normal leading-[25.22px]">
@@ -421,19 +502,19 @@ const RiskScoreProcessCheck = () => {
                 {/* Summary */}
                 <div className='flex flex-col'>
                   <button
-                    onClick={() => toggleSection('summary')}
+                    onClick={() => setExpandedSummarySection(prev => prev === 'clientFocus' ? null : 'clientFocus')}
                     className='flex items-center justify-between py-[8px] hover:bg-[#F6F6F6] transition-colors'
                   >
                     <h4 className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-semibold leading-[30px]">
                       Summary
                     </h4>
-                    {expandedSections.summary ? (
+                    {expandedSummarySection === 'clientFocus' ? (
                       <ChevronUpIcon width={19} height={11} color='#050505' />
                     ) : (
                       <ChevronDownIcon width={19} height={11} color='#050505' />
                     )}
                   </button>
-                  {expandedSections.summary && (
+                  {expandedSummarySection === 'clientFocus' && (
                     <div className='pt-[12px] flex flex-col gap-[18px]'>
                       {clientFocusSummaryContent.map((text, index) => (
                         <p key={index} className="text-[#050505] font-['Inter',sans-serif] text-[18px] font-normal leading-[25.22px]">
@@ -531,19 +612,19 @@ const RiskScoreProcessCheck = () => {
               <div className='bg-white px-[16px] py-[18px] flex flex-col gap-[18px]'>
                 <div className='flex flex-col'>
                   <button
-                    onClick={() => toggleSection('summary')}
+                    onClick={() => setExpandedSummarySection(prev => prev === 'accuracy' ? null : 'accuracy')}
                     className='flex items-center justify-between py-[8px] hover:bg-[#F6F6F6] transition-colors'
                   >
                     <h4 className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-semibold leading-[30px]">
                       Summary
                     </h4>
-                    {expandedSections.summary ? (
+                    {expandedSummarySection === 'accuracy' ? (
                       <ChevronUpIcon width={19} height={11} color='#050505' />
                     ) : (
                       <ChevronDownIcon width={19} height={11} color='#050505' />
                     )}
                   </button>
-                  {expandedSections.summary && (
+                  {expandedSummarySection === 'accuracy' && (
                     <div className='pt-[12px] flex flex-col gap-[18px]'>
                       {accuracySummaryContent.map((text, index) => (
                         <p key={index} className="text-[#050505] font-['Inter',sans-serif] text-[18px] font-normal leading-[25.22px]">
