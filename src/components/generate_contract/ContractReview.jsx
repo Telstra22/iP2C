@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ChevronRight, Star, Users, Sparkles, Bot, RefreshCw } from 'lucide-react';
+import { ChevronRight, ChevronDown, Check, Star, Users, Sparkles, Bot, RefreshCw } from 'lucide-react';
+
 import { useNavigate } from 'react-router-dom';
 import DownloadIcon from '../../assets/icons/DownloadIcon';
 import SendIcon from '../../assets/icons/SendIcon';
@@ -19,6 +20,25 @@ function ContractReview() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('Issues');
   const [isExpanded, setIsExpanded] = useState(true);
+  const initialSectionId =
+    contractMockRootProps.allSections.find((s) => s.isActive)?.id ||
+    (contractMockRootProps.allSections[0] && contractMockRootProps.allSections[0].id);
+  const [selectedSectionId, setSelectedSectionId] = useState(initialSectionId);
+  const [showSectionsList, setShowSectionsList] = useState(false);
+
+  const handleSelectSection = (id) => {
+    setSelectedSectionId(id);
+    setShowSectionsList(false);
+    setIsExpanded(true);
+  };
+
+  const currentSectionTitle =
+    contractMockRootProps.allSections.find((s) => s.id === selectedSectionId)?.title ||
+    (contractMockRootProps.allSections[0] && contractMockRootProps.allSections[0].title);
+
+  const currentSectionContent = contractContent.filter(
+    (section) => section.sectionId === selectedSectionId
+  );
 
   return (
     <div className="flex flex-col h-screen bg-(--color-background-light)">
@@ -53,20 +73,45 @@ function ContractReview() {
               {/* Top Row: Section Dropdown and Action Buttons */}
               <div className="flex items-start justify-between gap-4 mb-[14px]">
                 {/* Section Dropdown - Left Side */}
-                <div className="flex w-[423px] h-[55px] px-[15px] py-3 justify-center items-start gap-2.5 bg-white border border-(--color-border-gray) rounded-md">
-                  <div className="flex items-center gap-2">
-                    <span className="section-header">{contractMockRootProps.allSections[0].title}</span>
-                    <button 
-                      onClick={() => setIsExpanded(!isExpanded)}
-                      className="p-1 hover:bg-gray-100 rounded transition-colors"
+                <div className="relative w-[483px]">
+                  <div className="bg-white rounded-md border border-(--color-border-gray) px-[15px] py-3 shadow-[0px_4px_14px_rgba(0,0,0,0.12)]">
+                    <button
+                      type="button"
+                      onClick={() => setShowSectionsList(!showSectionsList)}
+                      className="flex items-center justify-between w-full hover:opacity-70"
                     >
-                      <ChevronRight 
-                        width={18} 
-                        height={10} 
-                        className={`text-(--color-text-primary) transition-transform ${isExpanded ? 'rotate-90' : ''}`}
+                      <span className="section-header truncate">
+                        {currentSectionTitle}
+                      </span>
+                      <ChevronDown
+                        width={24}
+                        height={24}
+                        color="#000000"
+                        className={`transform transition-transform ${showSectionsList ? 'rotate-180' : ''}`}
                       />
                     </button>
                   </div>
+
+                  {showSectionsList && (
+                    <div className="absolute right-0 top-full mt-2 z-50 bg-white rounded-[12px] border border-[#E5E5E5] shadow-[0px_4px_8px_rgba(0,0,0,0.1)] p-[24px] w-[483px]">
+                      <div className="flex flex-col gap-[20px]">
+                        {contractMockRootProps.allSections.map((item) => (
+                          <div
+                            key={item.id}
+                            className="flex items-center justify-between cursor-pointer hover:opacity-80"
+                            onClick={() => handleSelectSection(item.id)}
+                          >
+                            <span className="text-[#050505] font-['Inter',sans-serif] text-[20px] font-normal leading-[27px]">
+                              {item.title}
+                            </span>
+                            {item.id === selectedSectionId && (
+                              <Check size={24} color="#0D54FF" strokeWidth={3} />
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Action Buttons - Right Side */}
@@ -79,7 +124,7 @@ function ContractReview() {
                     <Users width={20} height={20} className="text-(--color-text-primary)" />
                     <span className="text-[18px] font-medium text-(--color-text-primary)">Collaborate</span>
                   </button>
-                  <button 
+                  <button
                     className="flex items-center justify-between gap-2.5 w-[299px] h-[55px] px-4 py-2.5 rounded-md hover:opacity-90 transition-opacity"
                     style={{
                       background: 'linear-gradient(85deg, rgba(0, 255, 225, 0.78) -24.07%, rgba(13, 84, 255, 0.78) 16.75%, rgba(149, 36, 198, 0.78) 64.85%, rgba(255, 137, 0, 0.78) 146.63%), #FFF'
@@ -104,33 +149,33 @@ function ContractReview() {
                   <div className="flex-1 flex flex-col overflow-hidden">
                     {/* Toolbar */}
                     <div className="flex items-center gap-[19px] px-6 py-[10px] border-b border-(--color-border-gray)">
-                        <div className="flex items-center gap-5">
-                          <BoldIcon width={16} height={22} className="text-(--color-text-primary) cursor-pointer hover:opacity-70" />
-                          <ItalicIcon width={15} height={19} className="text-(--color-text-primary) cursor-pointer hover:opacity-70" />
-                          <ItalicIcon width={11} height={18} className="text-(--color-text-primary) cursor-pointer hover:opacity-70" />
-                          <UnderlineIcon width={16} height={21} className="text-(--color-text-primary) cursor-pointer hover:opacity-70" />
-                        </div>
-                        <div className="w-[2px] h-[39px] bg-(--color-toolbar-divider)" />
-                        <AlignLeftIcon width={23} height={17} className="text-(--color-text-primary) cursor-pointer hover:opacity-70" />
-                        <div className="w-[2px] h-[39px] bg-(--color-toolbar-divider)" />
-                        <div className="cursor-pointer hover:opacity-70">
-                          <svg width="23" height="17" viewBox="0 0 23 17" fill="none">
-                            <circle cx="2" cy="2" r="2" fill="currentColor" className="text-(--color-text-primary)" />
-                            <rect x="6" y="0" width="17" height="4" fill="currentColor" className="text-(--color-text-primary)" />
-                            <circle cx="2" cy="8.5" r="2" fill="currentColor" className="text-(--color-text-primary)" />
-                            <rect x="6" y="6.5" width="17" height="4" fill="currentColor" className="text-(--color-text-primary)" />
-                            <circle cx="2" cy="15" r="2" fill="currentColor" className="text-(--color-text-primary)" />
-                            <rect x="6" y="13" width="17" height="4" fill="currentColor" className="text-(--color-text-primary)" />
-                          </svg>
-                        </div>
-                        <div className="w-[2px] h-[39px] bg-(--color-toolbar-divider)" />
-                        <AttachmentDropdownIcon width={53} height={30} className="text-(--color-text-primary) cursor-pointer hover:opacity-70" />
-                        <div className="w-[2px] h-[39px] bg-(--color-toolbar-divider)" />
-                        <LinkIcon width={21} height={22} className="text-(--color-text-primary) cursor-pointer hover:opacity-70" />
-                        <div className="w-[2px] h-[39px] bg-(--color-toolbar-divider)" />
-                        <DeleteIcon width={21} height={24} className="text-(--color-text-primary) cursor-pointer hover:opacity-70" />
-                        <div className="w-[2px] h-[39px] bg-(--color-toolbar-divider)" />
-                        <CopyDocIcon width={20} height={20} className="text-(--color-text-primary) cursor-pointer hover:opacity-70" />
+                      <div className="flex items-center gap-5">
+                        <BoldIcon width={16} height={22} className="text-(--color-text-primary) cursor-pointer hover:opacity-70" />
+                        <ItalicIcon width={15} height={19} className="text-(--color-text-primary) cursor-pointer hover:opacity-70" />
+                        <ItalicIcon width={11} height={18} className="text-(--color-text-primary) cursor-pointer hover:opacity-70" />
+                        <UnderlineIcon width={16} height={21} className="text-(--color-text-primary) cursor-pointer hover:opacity-70" />
+                      </div>
+                      <div className="w-[2px] h-[39px] bg-(--color-toolbar-divider)" />
+                      <AlignLeftIcon width={23} height={17} className="text-(--color-text-primary) cursor-pointer hover:opacity-70" />
+                      <div className="w-[2px] h-[39px] bg-(--color-toolbar-divider)" />
+                      <div className="cursor-pointer hover:opacity-70">
+                        <svg width="23" height="17" viewBox="0 0 23 17" fill="none">
+                          <circle cx="2" cy="2" r="2" fill="currentColor" className="text-(--color-text-primary)" />
+                          <rect x="6" y="0" width="17" height="4" fill="currentColor" className="text-(--color-text-primary)" />
+                          <circle cx="2" cy="8.5" r="2" fill="currentColor" className="text-(--color-text-primary)" />
+                          <rect x="6" y="6.5" width="17" height="4" fill="currentColor" className="text-(--color-text-primary)" />
+                          <circle cx="2" cy="15" r="2" fill="currentColor" className="text-(--color-text-primary)" />
+                          <rect x="6" y="13" width="17" height="4" fill="currentColor" className="text-(--color-text-primary)" />
+                        </svg>
+                      </div>
+                      <div className="w-[2px] h-[39px] bg-(--color-toolbar-divider)" />
+                      <AttachmentDropdownIcon width={53} height={30} className="text-(--color-text-primary) cursor-pointer hover:opacity-70" />
+                      <div className="w-[2px] h-[39px] bg-(--color-toolbar-divider)" />
+                      <LinkIcon width={21} height={22} className="text-(--color-text-primary) cursor-pointer hover:opacity-70" />
+                      <div className="w-[2px] h-[39px] bg-(--color-toolbar-divider)" />
+                      <DeleteIcon width={21} height={24} className="text-(--color-text-primary) cursor-pointer hover:opacity-70" />
+                      <div className="w-[2px] h-[39px] bg-(--color-toolbar-divider)" />
+                      <CopyDocIcon width={20} height={20} className="text-(--color-text-primary) cursor-pointer hover:opacity-70" />
                     </div>
 
                     {/* Content Area */}
@@ -139,7 +184,7 @@ function ContractReview() {
                         No issues detected in this section
                       </p>
                       <div className="body-text whitespace-pre-line">
-                        {contractContent
+                        {currentSectionContent
                           .map((section) => `${section.title}\n${section.content}`)
                           .join('\n\n')}
                       </div>
