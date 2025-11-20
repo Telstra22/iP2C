@@ -24,7 +24,7 @@ function Login() {
   const navigate = useNavigate();
 
   const isValidCredentials = (email, password) =>
-    email?.toLowerCase() === "alex.anderson@telstra.com" && password === "12345";
+    email?.toLowerCase() === "alex.anderson@team.telstra.com" && password === "12345";
 
   useEffect(() => {
     try {

@@ -13,7 +13,7 @@ import DeleteIcon from '../../assets/icons/DeleteIcon';
 import CopyDocIcon from '../../assets/icons/CopyDocIcon';
 import ContractHeader from './ContractHeader';
 import Breadcrumb from './Breadcrumb';
-import { contractIssues, contractContent } from './ContractReviewMockData';
+import { contractIssues, contractContent, contractMockRootProps } from './ContractReviewMockData';
 
 function ContractReview() {
   const navigate = useNavigate();
@@ -47,7 +47,7 @@ function ContractReview() {
           </div>
 
           {/* Editor and Sidebar Layout */}
-          <div className="flex gap-6 h-[calc(100%-120px)]">
+          <div className="flex gap-6" style={{ height: 'calc(100vh - 248px)' }}>
             {/* Left: Contract Editor */}
             <div className="flex-1 min-w-0 flex flex-col">
               {/* Top Row: Section Dropdown and Action Buttons */}
@@ -55,7 +55,7 @@ function ContractReview() {
                 {/* Section Dropdown - Left Side */}
                 <div className="flex w-[423px] h-[55px] px-[15px] py-3 justify-center items-start gap-2.5 bg-white border border-(--color-border-gray) rounded-md">
                   <div className="flex items-center gap-2">
-                    <span className="section-header">1. THIS AGREEMENT  </span>
+                    <span className="section-header">{contractMockRootProps.allSections[0].title}</span>
                     <button 
                       onClick={() => setIsExpanded(!isExpanded)}
                       className="p-1 hover:bg-gray-100 rounded transition-colors"
@@ -139,7 +139,9 @@ function ContractReview() {
                         No issues detected in this section
                       </p>
                       <div className="body-text whitespace-pre-line">
-                        {contractContent}
+                        {contractContent
+                          .map((section) => `${section.title}\n${section.content}`)
+                          .join('\n\n')}
                       </div>
                     </div>
                   </div>
@@ -148,7 +150,8 @@ function ContractReview() {
             </div>
 
             {/* Right: Contract Assistant Sidebar */}
-            <div className="w-[793px] min-w-[793px] h-[950px] bg-(--color-sidebar-bg) border-l border-(--color-sidebar-border) rounded-t-[9px] shadow-[-4px_0px_13px_rgba(0,0,0,0.10)] flex flex-col">
+            <div className="w-[793px] min-w-[793px] h-full bg-(--color-sidebar-bg) border-l border-(--color-sidebar-border) rounded-t-[9px] shadow-[-4px_0px_13px_rgba(0,0,0,0.10)] flex flex-col overflow-hidden">
+
               {/* Header */}
               <div className="flex items-center gap-2.5 px-6 py-[18px] border-b border-(--color-chat-header-border) shadow-assistant-header">
                 <Bot width={24} height={24} className="text-(--color-primary-blue)" />
