@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import ContractHeader from './ContractHeader';
+import ContractRevertText from './ContractRevertText';
+
 import DownloadIcon from '../../assets/icons/DownloadIcon';
 import SendIcon from '../../assets/icons/SendIcon';
 import BoldIcon from '../../assets/icons/BoldIcon';
@@ -181,37 +183,33 @@ const ContractIssue = () => {
               <div className="flex-1 overflow-y-auto px-[37px] py-[22px]">
                 <div className="mb-[21px]">
                   <p className="text-lg italic text-(--color-italic-text) mb-[22px]">1 issue detected in this section</p>
-                  
-                  {/* Issue Box */}
-                  <div className="relative mb-[17px] p-[30px] bg-white border border-[#f96449] rounded-lg shadow-[0px_4px_8px_rgba(0,0,0,0.10)]">
-                    <span className="absolute top-[16px] left-[30px] text-base font-medium text-[#f96449]">Issue#1</span>
-                    <p className="text-lg leading-[23px] text-(--color-text-black) mt-[20px]">
-                      {isReplaced ? (
-                        <>
-                          2.1 We agree to supply the Services to you, and you agree to acquire them from us, at the prices and on the terms of this Agreement. The Services may be delivered to, and used by, your locations both within and outside Australia, subject to the terms set out herein.
-                          <br /><br />
-                          2.2 We may provide the Services using personnel or resources located outside of Australia. Regardless of the location from which the Services are delivered or supported, we will ensure that all Services comply with the requirements of this Agreement, including applicable Australian laws, data privacy, and security standards. Any cross-border data transfers or offshore service delivery will be conducted in accordance with your data protection requirements and relevant regulatory obligations, and will not diminish our obligations or your rights under this Agreement.
-                        </>
-                      ) : (
-                        <>
+
+                  {isReplaced ? (
+                    <ContractRevertText onRevert={() => setIsReplaced(false)} />
+                  ) : (
+                    <>
+                      {/* Issue Box */}
+                      <div className="relative mb-[17px] p-[30px] bg-white border border-[#f96449] rounded-lg shadow-[0px_4px_8px_rgba(0,0,0,0.10)]">
+                        <span className="absolute top-[16px] left-[30px] text-base font-medium text-[#f96449]">Issue#1</span>
+                        <p className="text-lg leading-[23px] text-(--color-text-black) mt-[20px]">
                           2.1. We agree to supply the Services to you, and you agree to acquire them from us, at the prices and on the terms of this Agreement.
                           <br /><br />
                           2.2 We may provide the Services from locations outside of Australia, however this will not reduce our obligations under this Agreement.
-                        </>
-                      )}
-                    </p>
-                  </div>
+                        </p>
+                      </div>
 
-                  {/* Regular Content */}
-                  <p className="text-lg leading-[24.14px] text-(--color-text-black)">
-                    2.3 You acknowledge and agree that we use a global services delivery model to deliver our Services to you under this Agreement cost effectively and efficiently. For these purposes, our global services delivery model means that:<br />
-                    Certain Services are delivered by Personnel located in Australia, while other kinds of Services are delivered by Personnel located outside of Australia (including the Philippines, India and Malaysia); and<br />
-                    Personnel located in Australia and outside of Australia may need to access your Customer Data and our Service Related Data to provide Services to you.<br />
-                    2.4 From time to time, we may subcontract our obligations under this Agreement and where we subcontract any of our obligations under this Agreement, we will:<br />
-                    ensure that the subcontractor has all the necessary skills and resources to perform the work they TELSTRA LIMITED (ABN 64 086 174 781) | COMPANY 4 AUSTRALIA PTY LTD CONFIDENTIAL undertake; and not be relieved of our obligations to you under this Agreement for such work.<br />
-                    2.5 We may, without your consent:<br />
-                    directly or indirectly (including by way of intra-group arrangements) subcontract all or any part of this Agreement to another Telstra Group Entity that has the sufficient financial capacity to perform our obligations under this Agreement; and do all things reasonably required to give effect to paragraph (a) above.
-                  </p>
+                      {/* Regular Content */}
+                      <p className="text-lg leading-[24.14px] text-(--color-text-black)">
+                        2.3 You acknowledge and agree that we use a global services delivery model to deliver our Services to you under this Agreement cost effectively and efficiently. For these purposes, our global services delivery model means that:<br />
+                        Certain Services are delivered by Personnel located in Australia, while other kinds of Services are delivered by Personnel located outside of Australia (including the Philippines, India and Malaysia); and<br />
+                        Personnel located in Australia and outside of Australia may need to access your Customer Data and our Service Related Data to provide Services to you.<br />
+                        2.4 From time to time, we may subcontract our obligations under this Agreement and where we subcontract any of our obligations under this Agreement, we will:<br />
+                        ensure that the subcontractor has all the necessary skills and resources to perform the work they TELSTRA LIMITED (ABN 64 086 174 781) | COMPANY 4 AUSTRALIA PTY LTD CONFIDENTIAL undertake; and not be relieved of our obligations to you under this Agreement for such work.<br />
+                        2.5 We may, without your consent:<br />
+                        directly or indirectly (including by way of intra-group arrangements) subcontract all or any part of this Agreement to another Telstra Group Entity that has the sufficient financial capacity to perform our obligations under this Agreement; and do all things reasonably required to give effect to paragraph (a) above.
+                      </p>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
@@ -311,9 +309,9 @@ const ContractIssue = () => {
                         className="flex items-center gap-2.5 px-4 py-2 hover:bg-white/50 rounded transition-colors mt-2"
                         onClick={() => setIsReplaced(false)}
                       >
-                        <span className="text-lg font-medium text-(--color-primary-blue)" style={{ fontFamily: 'Graphik, sans-serif' }}>
+                        {/* <span className="text-lg font-medium text-(--color-primary-blue)" style={{ fontFamily: 'Graphik, sans-serif' }}>
                           Revert
-                        </span>
+                        </span> */}
                       </button>
                     )}
                   </div>
