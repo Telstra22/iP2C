@@ -217,7 +217,7 @@ const ContractIssue = () => {
                   <p className="text-lg italic text-(--color-italic-text) mb-[22px]">1 issue detected in this section</p>
 
                   {isReplaced ? (
-                    <ContractRevertText onRevert={() => setIsReplaced(false)} />
+                    <ContractRevertText onRevert={() => setIsReplaced(false)} showSidebar={false} />
                   ) : (
                     <>
                       {/* Issue Box */}
