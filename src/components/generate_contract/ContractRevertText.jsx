@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { MoreHorizontal } from 'lucide-react';
 import RevertArrowIcon from '../../assets/icons/RevertArrowIcon.svg?react';
 import ContractAssistantIcon from '../../assets/icons/ContractAssistantIcon.svg?react';
 import ThumbsUpIcon from '../../assets/icons/ThumbsUpIcon.svg?react';
@@ -141,48 +142,48 @@ function ContractRevertText({ onRevert, className = '' }) {
         <div className="border-b border-[#d9d9d9]"></div>
 
         {/* Comments Content */}
-        <div className="flex-1 flex flex-col gap-[23px] p-6 overflow-y-auto">
+        <div className="flex-1 flex flex-col gap-[23px] px-6 pt-6 pb-6 overflow-y-auto">
           {comments.map((comment, index) => (
             <React.Fragment key={comment.id}>
-              <div className="flex flex-col gap-[11px]">
-                {/* Avatar placeholder */}
-                <div className="w-0 h-0"></div>
-
-                {/* Comment Content */}
-                <div className="flex flex-col gap-[13px]">
-                  {/* Header */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-[21px]">
-                      <div className={`w-[43px] h-[43px] rounded-full flex items-center justify-center ${comment.initials === 'AB' ? 'bg-[#fb4848]' : 'bg-[#247cff]'}`}>
-                        <span className="comment-avatar-text">{comment.initials}</span>
-                      </div>
-                      <div className="flex flex-col gap-[-8px]">
-                        <span className="comment-author-text">{comment.author}</span>
-                        <span className="comment-timestamp-text">{comment.timestamp}</span>
-                      </div>
+              {/* Comment Item */}
+              <div className="flex flex-col gap-[13px]">
+                {/* Header with Avatar */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-[21px]">
+                    {/* Avatar Circle */}
+                    <div className={`w-[43px] h-[43px] rounded-full flex items-center justify-center ${comment.initials === 'AB' ? 'bg-[#fb4848]' : 'bg-[#247cff]'}`}>
+                      <span className="comment-avatar-text">{comment.initials}</span>
                     </div>
-                    <div className="w-4 h-1 bg-black"></div>
-                  </div>
-
-                  {/* Message */}
-                  <p className="comment-message-text">{comment.message}</p>
-
-                  {/* Actions */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-6">
-                      <button className="flex items-center gap-1 hover:opacity-80">
-                        <span className="comment-reply-text">REPLY</span>
-                        <ThumbsUpIcon width={19} height={20} className="text-black" />
-                      </button>
+                    {/* Author and Timestamp */}
+                    <div className="flex flex-col -gap-2">
+                      <span className="comment-author-text">{comment.author}</span>
+                      <span className="comment-timestamp-text">{comment.timestamp}</span>
                     </div>
-                    <span className="comment-number-text">{comment.number}</span>
                   </div>
-
-                  {/* Emoji if present */}
-                  {comment.hasEmoji && (
-                    <SmileyEmojiIcon width={23} height={23} className="self-start" />
-                  )}
+                  {/* More Options Icon */}
+                  <button className="hover:opacity-70">
+                    <MoreHorizontal size={16} className="text-black" />
+                  </button>
                 </div>
+
+                {/* Message */}
+                <p className="comment-message-text">{comment.message}</p>
+
+                {/* Actions Row */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-6">
+                    <span className="comment-reply-text">REPLY</span>
+                    <button className="hover:opacity-80">
+                      <ThumbsUpIcon width={19} height={20} className="text-black" />
+                    </button>
+                  </div>
+                  <span className="comment-number-text">{comment.number}</span>
+                </div>
+
+                {/* Emoji if present */}
+                {comment.hasEmoji && (
+                  <SmileyEmojiIcon width={23} height={23} className="self-start" />
+                )}
               </div>
 
               {/* Divider */}
@@ -202,7 +203,7 @@ function ContractRevertText({ onRevert, className = '' }) {
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
               placeholder="Add a comment for this section"
-              className="comment-input-text bg-transparent border-none outline-none"
+              className="comment-input-text bg-transparent border-none outline-none placeholder:text-[#737373]"
             />
             <button className="comment-send-text self-end hover:opacity-80">
               Send
