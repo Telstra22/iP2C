@@ -71,7 +71,7 @@ function Login() {
     <>
       <div className="h-screen w-screen overflow-hidden font-['Inter',sans-serif] flex flex-col lg:flex-row bg-[#FEF9EF]">
         {/* Left: Login form */}
-        <div className="w-full lg:w-1/2 flex items-start justify-start px-5 md:px-8 lg:px-12 xl:px-16 2xl:pl-[195px] 2xl:pr-[100px] pt-[110px] 2xl:pt-[110px] overflow-y-auto">
+        <div className="w-full lg:w-1/2 flex items-start justify-start px-5 md:px-8 lg:px-12 xl:px-16 2xl:pl-[195px] 2xl:pr-[100px] pt-[150px] 2xl:pt-[160px] overflow-y-auto">
           <div className="w-full max-w-[601px]">
             <h1 className="text-[#505050] font-['Inter',sans-serif] text-[40px] font-medium leading-[51px] mb-[30px]">
               Welcome back!

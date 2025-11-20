@@ -121,8 +121,7 @@ const ProposalCard = ({
                       type="button"
                       className="w-full flex items-center gap-[10px] px-[20px] py-[14px] hover:bg-[#F6F6F6] transition-colors"
                       onClick={() => {
-                        // Handle generate contract action
-                        console.log('Generate Contract clicked');
+                        navigate('/contract-review');
                         setShowDropdown(false);
                       }}
                     >
