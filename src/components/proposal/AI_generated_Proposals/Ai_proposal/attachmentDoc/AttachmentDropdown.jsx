@@ -36,14 +36,14 @@ const AttachmentDropdown = ({ isOpen, onClose, onSelectOption }) => {
           onClick={() => handleOptionClick('document')}
           className="text-left text-[#050505] font-['Inter',sans-serif] text-[21px] font-normal leading-normal hover:opacity-70 transition-opacity"
         >
-          1. Attach Ref document
+          Attach Ref document
         </button>
-        <button
+        {/* <button
           onClick={() => handleOptionClick('image')}
           className="text-left text-[#050505] font-['Inter',sans-serif] text-[21px] font-normal leading-normal hover:opacity-70 transition-opacity"
         >
           2. Attach image
-        </button>
+        </button> */}
       </div>
     </div>
   )

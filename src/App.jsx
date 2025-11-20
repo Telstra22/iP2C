@@ -1,5 +1,5 @@
 import './App.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import Login from './components/login/Login'
 import ManageProposal from './components/proposal/manage_proposal/ManageProposal'
 import Header from './components/Header'
@@ -18,11 +18,19 @@ import Create_Outline from './components/proposal/upload_document/create_outline
 import SelectTemplate from './components/proposal/upload_document/select_template/SelectTemplate'
 import AgentRiskScoreEvaluationMatrics from './components/proposal/AI_generated_Proposals/Ai_proposal/preview/AgentRiskScoreEvaluationMatrics'
 import RiskScoreProcessCheck from './components/proposal/AI_generated_Proposals/Ai_proposal/preview/RiskScoreProcessCheck'
+import ContractReview from './components/generate_contract/ContractReview'
+import ContractIssue from './components/generate_contract/ContractIssue'
+import ContractLoader from './components/generate_contract/ContractLoader'
 
 function AppContent() {
+  const location = useLocation();
+  const isContractReview = location.pathname === '/contract-review';
+  const isContractIssue = location.pathname === '/contract-issue';
+  const isContractLoader = location.pathname === '/contract-loader';
+  
   return (
     <div className="h-screen overflow-hidden flex flex-col">
-      <Header />
+      {!isContractReview && !isContractIssue && !isContractLoader && <Header />}
       <div className="flex-1 overflow-hidden">
         <Routes>
           <Route path="/" element={<Login />} />
@@ -42,6 +50,9 @@ function AppContent() {
           <Route path="/select_template" element={<SelectTemplate />} />
           <Route path="/agentRiskScoreEvaluationMatrics" element={<AgentRiskScoreEvaluationMatrics />} />
           <Route path="/riskscoreprocesscheck" element={<RiskScoreProcessCheck />} />
+          <Route path="/contract-review" element={<ContractReview />} />
+          <Route path="/contract-issue" element={<ContractIssue />} />
+          <Route path="/contract-loader" element={<ContractLoader />} />
           <Route path="*" element={<div>404 Not Found</div>} />
         </Routes>
       </div>

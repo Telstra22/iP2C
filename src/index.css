@@ -95,6 +95,11 @@ html, body, #root {
   --color-chat-header-border: #dddddd;
   --color-chat-input-bg: #f9f9f9;
   --color-chat-input-border: #e5e5e5;
+  
+  /* Contract Review specific colors */
+  --color-issue-text: #a0a0a0;
+  --color-issue-link: #0d54ff;
+  --color-italic-text: #828282;
 }
 
 /* Typography utilities */
@@ -243,6 +248,29 @@ html, body, #root {
   font-family: 'Inter', sans-serif;
   font-size: 21px;
   font-weight: 600;
+}
+
+/* Contract Revert Text utilities */
+@utility contract-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 23px;
+  color: var(--color-text-primary);
+}
+
+@utility revert-label-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #a0a0a0;
+}
+
+@utility revert-button-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #3b3b3b;
   color: var(--color-text-primary);
 }
 
@@ -259,6 +287,42 @@ html, body, #root {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Contract Review utilities */
+@utility contract-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+@utility section-header {
+  font-family: 'Inter', sans-serif;
+  font-size: 21px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+@utility tab-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+@utility issue-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--color-text-primary);
+}
+
+@utility issue-number {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--color-issue-text);
 }
 
 /* Agent huddle utilities */

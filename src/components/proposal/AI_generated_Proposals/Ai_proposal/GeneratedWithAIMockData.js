@@ -35,5 +35,5 @@ export const mockRootProps = {
 };
 
 export const mockProposalContent = {
-  regeneratedHeader: "This content is regenerated based on your attached document",
+  // regeneratedHeader: "This content is regenerated based on your attached document",
 };
