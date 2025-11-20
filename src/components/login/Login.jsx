@@ -9,7 +9,6 @@ import {
   TOGGLE_ICON_BTN_CLASS,
   getCheckboxBoxClass,
 } from "./styles/loginFormClasses";
-import telstraLogo from '../../assets/images/telstra-logo.png';
 // Profile selection will use a native <select> instead of RadioButton
 
 
@@ -70,31 +69,6 @@ function Login() {
 
   return (
     <>
-      {/* Header */}
-      <header className="w-full h-24 bg-white shadow-[0px_4px_9px_1px_rgba(0,0,0,0.07)] fixed top-0 left-0 right-0 z-50">
-        <div className="flex justify-between items-center h-full px-[66px]">
-          {/* Left: Logo section */}
-          <div className="flex items-center gap-1.5 max-sm:gap-1">
-            <div className="text-[#191919] text-[20px] font-medium font-['Graphik'] leading-normal max-sm:text-lg" style={{ fontStyle: 'normal' }}>
-                iP2C
-              </div>
-            <div className="text-black text-xl font-normal max-sm:text-lg">|</div>
-            <img
-              src={telstraLogo}
-              alt="Telstra Logo"
-              className="w-[58px] h-[33px] aspect-[58/33] max-sm:w-[45px] max-sm:h-[25px]"
-            />
-          </div>
-
-          {/* Right: Icons */}
-          <div className="flex items-center gap-[33px]">
-            <button className="p-1" aria-label="Notifications">
-              <img src="/header-icons.svg" alt="" className="w-[175px] h-[58px]" />
-            </button>
-          </div>
-        </div>
-      </header>
-
       <div className="h-screen w-screen overflow-hidden font-['Inter',sans-serif] flex flex-col lg:flex-row bg-[#FEF9EF]">
         {/* Left: Login form */}
         <div className="w-full lg:w-1/2 flex items-start justify-start px-5 md:px-8 lg:px-12 xl:px-16 2xl:pl-[195px] 2xl:pr-[100px] pt-[110px] 2xl:pt-[110px] overflow-y-auto">

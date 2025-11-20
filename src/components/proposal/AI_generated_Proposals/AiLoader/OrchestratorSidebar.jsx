@@ -7,6 +7,7 @@ import ExpandArrowIcon from '../../../../assets/icons/ExpandArrowIcon'
 import { Send, Check } from 'lucide-react'
 import { mockDataLoading, mockDataDone } from './AiLoaderMockData'
 import OpportunityManagerIcon from '../../../../assets/icons/OpportunityManagerIcon'
+import SoundWaveIcon from '../../../../assets/icons/SoundWaveIcon'
 
 const OrchestratorSidebar = ({ isCompleted = false, data }) => {
   const [inputValue, setInputValue] = useState('')
@@ -137,15 +138,19 @@ const OrchestratorSidebar = ({ isCompleted = false, data }) => {
 
             {/* Right side: Sound wave + Badges */}
             <div className='flex items-center gap-[7px]'>
-              <div className='flex items-end justify-center h-[31px] w-[28px] gap-[4px]'>
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <span
-                    key={i}
-                    className='inline-block w-[3px] h-[12px] rounded-[2px] bg-[#0D54FF] animate-bar-pulse'
-                    style={{ animationDelay: `${i * 0.12}s` }}
-                  />
-                ))}
-              </div>
+              {progressValue < 100 ? (
+                <div className='flex items-end justify-center h-[31px] w-[28px] gap-[4px]'>
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <span
+                      key={i}
+                      className='inline-block w-[3px] h-[12px] rounded-[2px] bg-[#0D54FF] animate-bar-pulse'
+                      style={{ animationDelay: `${i * 0.12}s` }}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <SoundWaveIcon width={28} height={31} />
+              )}
               <div className='flex items-center' style={{ gap: '-6.79px' }}>
                 {sidebarAgentBadges.map((badge, index) => (
                   <div
@@ -198,7 +203,7 @@ const OrchestratorSidebar = ({ isCompleted = false, data }) => {
               ) : null}
 
               {/* Agent Info Card */}
-              <div className='flex-1 flex flex-col gap-[7px] px-[12px] py-[12px] rounded-[4px] border border-[#D9D9D9] bg-white'>
+              <div className='flex-1 flex flex-col gap-[5px] px-[12px] py-[12px] rounded-[10px] border border-[#D9D9D9] bg-white'>
                 <h3 className={`font-['Inter',sans-serif] text-[18px] font-medium leading-[27px] ${agent.isGradient ? 'bg-gradient-to-r from-[#00FFE1] via-[#0D54FF] to-[#9524C6] bg-clip-text text-transparent' : 'text-[#050505]'}`}>
                   {agent.name}
                 </h3>
@@ -263,7 +268,7 @@ const OrchestratorSidebar = ({ isCompleted = false, data }) => {
       </div>
 
       {/* Input Area at bottom */}
-      <div className='h-[89px] px-[28px] flex items-center bg-[#F9F9F9]'>
+      {/* <div className='h-[89px] px-[28px] flex items-center bg-[#F9F9F9]'>
         <div className='flex items-center gap-[12px] flex-1'>
           <input
             type='text'
@@ -281,7 +286,7 @@ const OrchestratorSidebar = ({ isCompleted = false, data }) => {
             <Send width={24} height={24} color='#050505' strokeWidth={1.5} />
           </button>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

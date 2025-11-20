@@ -6,17 +6,21 @@ import PreviewActionButtons from './PreviewActionButtons'
 import ProposalContentSection from '../proposal_section/ProposalContentSection'
 import ProposalEvaluationMetrics from './ProposalEvaluationMetrics'
 import AgentRiskScoreEvaluationMatrics from './AgentRiskScoreEvaluationMatrics'
-import { mockRootProps } from './PreviewProposalMockData'
+import RiskScoreProcessCheck from './RiskScoreProcessCheck'
+import { mockRootProps } from '../proposal_section/AiProposalPageMockData'
 import { performDownload } from './downloadUtils'
+import { saveNewProposalCard } from '../saveNewProposalCard'
 
 const PreviewProposalPage = ({ embedded = false, onClose }) => {
   const navigate = useNavigate()
   const [showDownloadModal, setShowDownloadModal] = useState(false)
   const [menuPos, setMenuPos] = useState({ top: 0, left: 0 })
   const [showAgentRiskScore, setShowAgentRiskScore] = useState(false)
+  const [showRiskScoreProcess, setShowRiskScoreProcess] = useState(false)
 
   const handleDownloadChoice = (choice) => {
-    const sections = mockRootProps.proposalContent.sections || []
+    const sections = mockRootProps.sections || []
+
     performDownload(choice, sections)
     setShowDownloadModal(false)
   }
@@ -30,7 +34,17 @@ const PreviewProposalPage = ({ embedded = false, onClose }) => {
   }
 
   const handleEditSection = () => {
-    navigate('/ai_proposal_page')
+    const currentPath = typeof window !== 'undefined' ? window.location.pathname : ''
+
+    if (embedded && typeof onClose === 'function') {
+      onClose()
+
+      if (currentPath !== '/ai_proposal_page') {
+        navigate('/ai_proposal_page')
+      }
+    } else {
+      navigate('/ai_proposal_page')
+    }
   }
 
   const handleExport = () => {
@@ -40,13 +54,14 @@ const PreviewProposalPage = ({ embedded = false, onClose }) => {
 
   const handleSaveExit = () => {
     console.log('Save and exit')
-    // Implement save and exit logic
+    saveNewProposalCard()
     navigate('/manage_proposals')
   }
 
   const handleScoreProposal = (section) => {
     console.log('Score proposal for section:', section)
     setShowAgentRiskScore(true)
+    setShowRiskScoreProcess(false)
   }
 
   const handleBackToMetrics = () => {
@@ -82,7 +97,7 @@ const PreviewProposalPage = ({ embedded = false, onClose }) => {
             {/* Proposal Content */}
             <div className='bg-white rounded-[9px] border border-[#D9D9D9] shadow-[0px_4px_14px_rgba(0,0,0,0.12)] px-[32px] py-[40px]'>
               <div className='flex flex-col gap-[40px]'>
-                {mockRootProps.proposalContent.sections.map((section) => (
+                {mockRootProps.sections.map((section) => (
                   <ProposalContentSection key={section.id} section={section} />
                 ))}
               </div>
@@ -91,8 +106,11 @@ const PreviewProposalPage = ({ embedded = false, onClose }) => {
         </div>
 
         {/* Right Side - Proposal Evaluation Metrics */}
-        {showAgentRiskScore ? (
+        {showRiskScoreProcess ? (
+          <RiskScoreProcessCheck />
+        ) : showAgentRiskScore ? (
           <AgentRiskScoreEvaluationMatrics
+            onComplete={() => setShowRiskScoreProcess(true)}
             onBack={handleBackToMetrics}
           />
         ) : (

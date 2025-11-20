@@ -48,7 +48,6 @@ const SelectTemplate = forwardRef(
 
 
     const [currentIndex, setCurrentIndex] = useState(0)
-    const [showLoader, setShowLoader] = useState(false)
     const [uploadedFiles, setUploadedFiles] = useState([])
     const [localError, setLocalError] = useState('')
     const [localErrorTick, setLocalErrorTick] = useState(0)
@@ -107,10 +106,7 @@ const SelectTemplate = forwardRef(
       const hasUploadedFile = uploadedFiles.length > 0
 
       if (hasSelectedTemplate || hasUploadedFile) {
-        setShowLoader(true)
-        setTimeout(() => {
-          navigate('/ai_proposal_page')
-        }, 3500)
+        navigate('/ai_loader')
       } else {
         setLocalError('Please select a template or upload a document to proceed.')
         setLocalErrorTick(t => t + 1)
@@ -163,8 +159,6 @@ const SelectTemplate = forwardRef(
         {(errorMessage || localError) && (
           <Toast message={errorMessage || localError} duration={3000} trigger={localErrorTick + errorTick} />
         )}
-
-        <AiLoader isVisible={showLoader || showLoaderProp} onCancel={() => setShowLoader(false)} />
 
         <div className="w-full h-full bg-[#F6F6F6] flex flex-col overflow-hidden">
           <Breadcrumb current={'Select Template'} />

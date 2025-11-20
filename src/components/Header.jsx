@@ -22,9 +22,9 @@ function Header() {
   if (isLoginPage) {
     return (
       <>
-        {/* Header (Pre-login variant) */}
-        <header className="w-full h-24 bg-white shadow-[0_4px_9px_1px_rgba(0,0,0,0.07)] relative">
-          <div className="flex justify-between items-center h-full px-[66px] max-lg:px-5 max-sm:px-4">
+        {/* Header (Pre-login variant moved from Login.jsx) */}
+        <header className="w-full h-24 bg-white shadow-[0px_4px_9px_1px_rgba(0,0,0,0.07)] fixed top-0 left-0 right-0 z-50">
+          <div className="flex justify-between items-center h-full px-[66px]">
             {/* Left: Logo section */}
             <div className="flex items-center gap-1.5 max-sm:gap-1">
               <div className="text-[#191919] text-[20px] font-medium font-['Graphik'] leading-normal max-sm:text-lg" style={{ fontStyle: 'normal' }}>
@@ -39,12 +39,9 @@ function Header() {
             </div>
 
             {/* Right: Icons */}
-            <div className="flex items-center gap-[84px] max-lg:gap-5 max-sm:gap-4">
-              <button className="p-1 shrink-0" aria-label="Notifications">
-                <Bell width={22} height={24} color="#0D54FF" />
-              </button>
-              <button className="p-1 shrink-0" aria-label="Account">
-                <UserRound width={18} height={18} color="#0D54FF" />
+            <div className="flex items-center gap-[33px]">
+              <button className="p-1" aria-label="Notifications">
+                <img src="/header-icons.svg" alt="" className="w-[175px] h-[58px]" />
               </button>
             </div>
           </div>

@@ -78,8 +78,10 @@ const ProposalEvaluationMetrics = ({ onScoreProposal }) => {
           </label>
           <div className='relative'>
             <button
-              onClick={() => setShowDropdown(!showDropdown)}
-              className='w-full flex items-center justify-between px-[20px] py-[9px] bg-white border border-[#D9D9D9] rounded-[6px] hover:border-[#0D54FF] transition-colors'
+              type='button'
+              disabled
+              aria-disabled='true'
+              className='w-full flex items-center justify-between px-[20px] py-[9px] bg-white border border-[#D9D9D9] rounded-[6px] cursor-not-allowed'
             >
               <span className="text-[#A0A0A0] font-['Inter',sans-serif] text-[22px] font-normal leading-[30px]">
                 {selectedSection}

@@ -60,7 +60,7 @@ export const mockDataLoading = {
       id: 6,
       badge: "PD",
       title: "Prompt Designer",
-      description: "VDesigning structured prompts for consistent generation..",
+      description: "Designing structured prompts for consistent generation..",
       hasGradientTitle: false
     },
     {
@@ -136,7 +136,7 @@ export const mockDataDone = {
       id: 6,
       badge: "PD",
       title: "Prompt Designer",
-      description: "VDesigning structured prompts for consistent generation..",
+      description: "Designing structured prompts for consistent generation..",
       hasGradientTitle: false
     },
     {
