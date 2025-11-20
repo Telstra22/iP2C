@@ -199,10 +199,10 @@ const OrchestratorSidebar = ({ isCompleted = false, data }) => {
 
               {/* Agent Info Card */}
               <div className='flex-1 flex flex-col gap-[7px] px-[12px] py-[12px] rounded-[4px] border border-[#D9D9D9] bg-white'>
-                <h3 className={`font-['Inter',sans-serif] text-[20px] font-medium leading-[27px] ${agent.isGradient ? 'bg-gradient-to-r from-[#00FFE1] via-[#0D54FF] to-[#9524C6] bg-clip-text text-transparent' : 'text-[#050505]'}`}>
+                <h3 className={`font-['Inter',sans-serif] text-[18px] font-medium leading-[27px] ${agent.isGradient ? 'bg-gradient-to-r from-[#00FFE1] via-[#0D54FF] to-[#9524C6] bg-clip-text text-transparent' : 'text-[#050505]'}`}>
                   {agent.name}
                 </h3>
-                <p className="font-['Inter',sans-serif] text-[20px] font-normal leading-[26.82px] italic text-[#828282]">
+                <p className="font-['Inter',sans-serif] text-[16px] font-normal leading-[26.82px] italic text-[#828282]">
                   {agent.description}
                 </p>
               </div>

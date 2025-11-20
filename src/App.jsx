@@ -16,6 +16,8 @@ import OpportunitySummery from './components/proposal/upload_document/opportunit
 import Source_Connection from './components/proposal/upload_document/upload_historical_proposal/Upload_Historical_Proposal'
 import Create_Outline from './components/proposal/upload_document/create_outline/Create_Outline'
 import SelectTemplate from './components/proposal/upload_document/select_template/SelectTemplate'
+import AgentRiskScoreEvaluationMatrics from './components/proposal/AI_generated_Proposals/Ai_proposal/preview/AgentRiskScoreEvaluationMatrics'
+import RiskScoreProcessCheck from './components/proposal/AI_generated_Proposals/Ai_proposal/preview/RiskScoreProcessCheck'
 
 function AppContent() {
   return (
@@ -38,6 +40,8 @@ function AppContent() {
           <Route path="/upload_historical_proposal" element={<Source_Connection />} />
           <Route path="/create_outline" element={<Create_Outline />} />
           <Route path="/select_template" element={<SelectTemplate />} />
+          <Route path="/agentRiskScoreEvaluationMatrics" element={<AgentRiskScoreEvaluationMatrics />} />
+          <Route path="/riskscoreprocesscheck" element={<RiskScoreProcessCheck />} />
           <Route path="*" element={<div>404 Not Found</div>} />
         </Routes>
       </div>
