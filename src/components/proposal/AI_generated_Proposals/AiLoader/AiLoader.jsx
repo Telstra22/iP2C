@@ -37,7 +37,7 @@ const AiLoader = ({ onCancel, isVisible = true }) => {
       }
     }
 
-    const intervalTime = (30 * 1000) / totalActivities
+    const intervalTime = (40 * 1000) / totalActivities
 
     const intervalId = setInterval(() => {
       setVisibleCount(prev => {
