@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ContractHeader from './ContractHeader';
 import ContractRevertText from './ContractRevertText';
+import { contractIssues } from './ContractReviewMockData';
 
 import DownloadIcon from '../../assets/icons/DownloadIcon';
 import SendIcon from '../../assets/icons/SendIcon';
@@ -26,11 +27,42 @@ import ContractAssistantIcon from '../../assets/icons/ContractAssistantIcon.svg?
 import ReplaceSuggestionIcon from '../../assets/icons/ReplaceSuggestionIcon.svg?react';
 import SendMessageIcon from '../../assets/icons/SendMessageIcon.svg?react';
 import BotChatIcon from '../../assets/icons/BotChatIcon.svg?react';
+import ThumbsUpIcon from '../../assets/icons/ThumbsUpIcon.svg?react';
+import SmileyEmojiIcon from '../../assets/icons/SmileyEmojiIcon.svg?react';
 
 const ContractIssue = () => {
   const [activeTab, setActiveTab] = useState('Chatbot');
   const [sectionExpanded, setSectionExpanded] = useState(true);
   const [isReplaced, setIsReplaced] = useState(false);
+  const [commentText, setCommentText] = useState('');
+
+  const comments = [
+    {
+      id: 1,
+      author: 'Andrew Bernard',
+      initials: 'AB',
+      timestamp: '27 minutes ago',
+      message: 'Hey @Alex.anderson Can you have a look at this please?',
+      number: '#1',
+    },
+    {
+      id: 2,
+      author: 'Alex Anderson',
+      initials: 'AA',
+      timestamp: '12 minutes ago',
+      message: 'Hi @Andrew.bernard looking into this now',
+      number: '#2',
+      hasEmoji: true,
+    },
+    {
+      id: 3,
+      author: 'Andrew Bernard',
+      initials: 'AB',
+      timestamp: '1 minute ago',
+      message: 'Hey thanks a ton!',
+      number: '#3',
+    },
+  ];
 
   return (
     <div className="flex flex-col h-screen bg-(--color-background-light)">
@@ -273,50 +305,147 @@ const ContractIssue = () => {
 
             {/* Content Area */}
             <div className="flex-1 overflow-y-auto bg-(--color-chat-sidebar-bg) px-[26px] py-[28px]">
-              {/* Suggestion Content Box */}
-              <div className="flex flex-col items-start self-stretch bg-white rounded px-[18px] pr-[18px] pl-3 py-3" style={{ gap: '-4px' }}>
-                <div className="flex items-start gap-2 w-full">
-                  {/* Bot Chat Icon on Left */}
-                  <BotChatIcon width={18} height={16} className="text-(--color-text-primary) mt-1 flex-shrink-0" />
-                  
-                  <div className="flex-1">
-                  <p className="text-xl leading-[30px] text-(--color-text-black)" style={{ fontFamily: 'Inter, sans-serif' }}>
-                    Here is a suggestion for #Issue1:
-                  </p>
-                  <p className="text-xl leading-[30px] text-(--color-text-black) mt-6 mb-6" style={{ fontFamily: 'Inter, sans-serif' }}>
-                    2.1 We agree to supply the Services to you, and you agree to acquire them from us, at the prices and on the terms of this Agreement. The Services may be delivered to, and used by, your locations both within and outside Australia, subject to the terms set out herein.
-                    <br /><br />
-                    2.2 We may provide the Services using personnel or resources located outside of Australia. Regardless of the location from which the Services are delivered or supported, we will ensure that all Services comply with the requirements of this Agreement, including applicable Australian laws, data privacy, and security standards. Any cross-border data transfers or offshore service delivery will be conducted in accordance with your data protection requirements and relevant regulatory obligations, and will not diminish our obligations or your rights under this Agreement.
-                    <br />
-                    This wording clarifies:<br />
-                    Services can be delivered and used both within and outside Australia.<br />
-                    Telstra's obligations remain unchanged regardless of delivery location.<br />
-                    Compliance with Australian law, data privacy, and security is explicitly required for offshore delivery.
-                  </p>
-                  
-                    {/* Replace Button */}
-                    <button
-                      className="flex items-center gap-2.5 px-4 py-2 hover:bg-white/50 rounded transition-colors"
-                      onClick={() => setIsReplaced(true)}
-                    >
-                      <ReplaceSuggestionIcon width={10} height={8} className="text-(--color-primary-blue)" />
-                      <span className="text-lg font-medium text-(--color-primary-blue)" style={{ fontFamily: 'Graphik, sans-serif' }}>
-                        Replace Suggestion in Contract
-                      </span>
-                    </button>
-                    {isReplaced && (
-                      <button
-                        className="flex items-center gap-2.5 px-4 py-2 hover:bg-white/50 rounded transition-colors mt-2"
-                        onClick={() => setIsReplaced(false)}
-                      >
-                        {/* <span className="text-lg font-medium text-(--color-primary-blue)" style={{ fontFamily: 'Graphik, sans-serif' }}>
-                          Revert
-                        </span> */}
-                      </button>
-                    )}
+              {activeTab === 'Issues' && (
+                <div className="flex flex-col gap-[18px]">
+                  {/* Issues Count Card */}
+                  <div className="relative h-[83px] rounded-lg overflow-hidden">
+                    <div className="absolute inset-0" style={{background: 'linear-gradient(90deg, #0d54ff 0%, #9524c6 100%)'}} />
+                    <div className="relative h-full flex flex-col items-center justify-center text-white">
+                      <div className="text-[64px] font-semibold leading-[1]">10</div>
+                      <div className="text-[18px] font-normal leading-[1.2]">Issues detected</div>
+                    </div>
+                  </div>
+
+                  {/* Issues List */}
+                  <div className="flex flex-col">
+                    {contractIssues.map((issue, index) => (
+                      <React.Fragment key={issue.id}>
+                        {index > 0 && <div className="h-px bg-(--color-sidebar-border)" />}
+                        <div className="flex items-center justify-between py-[18px]">
+                          <div className="flex items-center gap-3 flex-1 min-w-0">
+                            <span className="issue-title flex-shrink truncate">{issue.title}</span>
+                            <span className="issue-number flex-shrink-0">{issue.issueNumber}</span>
+                          </div>
+                          <button 
+                            className="text-[18px] font-normal text-(--color-issue-link) hover:underline flex-shrink-0 ml-4"
+                          >
+                            Open
+                          </button>
+                        </div>
+                      </React.Fragment>
+                    ))}
                   </div>
                 </div>
-              </div>
+              )}
+
+              {activeTab === 'Comments' && (
+                <div className="flex flex-col gap-[23px] h-full">
+                  <div className="flex-1 flex flex-col gap-[23px] overflow-y-auto">
+                    {comments.map((comment, index) => (
+                      <React.Fragment key={comment.id}>
+                        <div className="flex flex-col gap-[11px]">
+                          {/* Avatar placeholder (aligned with design) */}
+                          <div className="w-0 h-0"></div>
+
+                          {/* Comment Content */}
+                          <div className="flex flex-col gap-[13px]">
+                            {/* Header */}
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-[21px]">
+                                <div className={`w-[43px] h-[43px] rounded-full flex items-center justify-center ${comment.initials === 'AB' ? 'bg-[#fb4848]' : 'bg-[#247cff]'}`}>
+                                  <span className="comment-avatar-text">{comment.initials}</span>
+                                </div>
+                                <div className="flex flex-col gap-[-8px]">
+                                  <span className="comment-author-text">{comment.author}</span>
+                                  <span className="comment-timestamp-text">{comment.timestamp}</span>
+                                </div>
+                              </div>
+                              <div className="w-4 h-1 bg-black"></div>
+                            </div>
+
+                            {/* Message */}
+                            <p className="comment-message-text">{comment.message}</p>
+
+                            {/* Actions */}
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-6">
+                                <button className="flex items-center gap-1 hover:opacity-80">
+                                  <span className="comment-reply-text">REPLY</span>
+                                  <ThumbsUpIcon width={19} height={20} className="text-black" />
+                                </button>
+                              </div>
+                              <span className="comment-number-text">{comment.number}</span>
+                            </div>
+
+                            {/* Emoji if present */}
+                            {comment.hasEmoji && (
+                              <SmileyEmojiIcon width={23} height={23} className="self-start" />
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Divider */}
+                        {index < comments.length - 1 && (
+                          <div className="border-b border-[#d9d9d9]"></div>
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </div>
+
+                  {/* Divider before input */}
+                  <div className="border-b border-[#d9d9d9]"></div>
+
+                  {/* Add Comment Section */}
+                  <div className="flex flex-col gap-[13px]">
+                    <input
+                      type="text"
+                      value={commentText}
+                      onChange={(e) => setCommentText(e.target.value)}
+                      placeholder="Add a comment for this section"
+                      className="comment-input-text bg-transparent border-none outline-none"
+                    />
+                    <button className="comment-send-text self-end hover:opacity-80">
+                      Send
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'Chatbot' && (
+                <div className="flex flex-col items-start self-stretch bg-white rounded px-[18px] pr-[18px] pl-3 py-3" style={{ gap: '-4px' }}>
+                  <div className="flex items-start gap-2 w-full">
+                    {/* Bot Chat Icon on Left */}
+                    <BotChatIcon width={18} height={16} className="text-(--color-text-primary) mt-1 flex-shrink-0" />
+                    
+                    <div className="flex-1">
+                      <p className="text-xl leading-[30px] text-(--color-text-black)" style={{ fontFamily: 'Inter, sans-serif' }}>
+                        Here is a suggestion for #Issue1:
+                      </p>
+                      <p className="text-xl leading-[30px] text-(--color-text-black) mt-6 mb-6" style={{ fontFamily: 'Inter, sans-serif' }}>
+                        2.1 We agree to supply the Services to you, and you agree to acquire them from us, at the prices and on the terms of this Agreement. The Services may be delivered to, and used by, your locations both within and outside Australia, subject to the terms set out herein.
+                        <br /><br />
+                        2.2 We may provide the Services using personnel or resources located outside of Australia. Regardless of the location from which the Services are delivered or supported, we will ensure that all Services comply with the requirements of this Agreement, including applicable Australian laws, data privacy, and security standards. Any cross-border data transfers or offshore service delivery will be conducted in accordance with your data protection requirements and relevant regulatory obligations, and will not diminish our obligations or your rights under this Agreement.
+                        <br />
+                        This wording clarifies:<br />
+                        Services can be delivered and used both within and outside Australia.<br />
+                        Telstra's obligations remain unchanged regardless of delivery location.<br />
+                        Compliance with Australian law, data privacy, and security is explicitly required for offshore delivery.
+                      </p>
+                      
+                      {/* Replace Button */}
+                      <button
+                        className="flex items-center gap-2.5 px-4 py-2 hover:bg-white/50 rounded transition-colors"
+                        onClick={() => setIsReplaced(true)}
+                      >
+                        <ReplaceSuggestionIcon width={10} height={8} className="text-(--color-primary-blue)" />
+                        <span className="text-lg font-medium text-(--color-primary-blue)" style={{ fontFamily: 'Graphik, sans-serif' }}>
+                          Replace Suggestion in Contract
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Chat Input */}

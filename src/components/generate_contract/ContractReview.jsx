@@ -13,7 +13,7 @@ import DeleteIcon from '../../assets/icons/DeleteIcon';
 import CopyDocIcon from '../../assets/icons/CopyDocIcon';
 import ContractHeader from './ContractHeader';
 import Breadcrumb from './Breadcrumb';
-import { contractIssues, contractContent } from './ContractReviewMockData';
+import { contractIssues, contractContent, contractMockRootProps } from './ContractReviewMockData';
 
 function ContractReview() {
   const navigate = useNavigate();
@@ -55,7 +55,7 @@ function ContractReview() {
                 {/* Section Dropdown - Left Side */}
                 <div className="flex w-[423px] h-[55px] px-[15px] py-3 justify-center items-start gap-2.5 bg-white border border-(--color-border-gray) rounded-md">
                   <div className="flex items-center gap-2">
-                    <span className="section-header">1. THIS AGREEMENT  </span>
+                    <span className="section-header">{contractMockRootProps.allSections[0].title}</span>
                     <button 
                       onClick={() => setIsExpanded(!isExpanded)}
                       className="p-1 hover:bg-gray-100 rounded transition-colors"
@@ -139,7 +139,9 @@ function ContractReview() {
                         No issues detected in this section
                       </p>
                       <div className="body-text whitespace-pre-line">
-                        {contractContent}
+                        {contractContent
+                          .map((section) => `${section.title}\n${section.content}`)
+                          .join('\n\n')}
                       </div>
                     </div>
                   </div>
