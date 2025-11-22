@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Header from '../../../Header'
 import Breadcrumb from '../../upload_document/Breadcrumb'
 import ProposalActionButtons from './proposal_section/ProposalActionButtons'
 import ProposalSectionContent from './proposal_section/ProposalSectionContent'
@@ -120,61 +121,66 @@ const AiProposalPage = () => {
 
   return (
     <div className='w-full h-screen bg-[#F6F6F6] flex flex-col overflow-hidden'>
-
-      {/* Breadcrumb */}
+      {/* Header & Breadcrumb for AI Proposal flow */}
+      <Header />
       <Breadcrumb current={mockRootProps.currentPage} />
 
       {/* Main Content Area */}
       <div className='flex-1 flex overflow-hidden min-h-0'>
-        {/* Left Side - Proposal Content */}
-        <div className='flex-1 overflow-y-auto px-[68px] py-[37px] pb-[120px] min-h-0'>
-          {/* Title and Action Buttons */}
-          <div className='flex items-center justify-between mb-[13px]'>
-            <h1 className="text-[#050505] font-['Inter',sans-serif] text-[28px] font-semibold leading-[38px]">
-              {mockRootProps.proposalTitle}
-            </h1>
-            <ProposalActionButtons
-              onAddSection={handleAddSection}
-              onPreview={handlePreview}
-              onSaveExit={handleSaveExit}
-            />
-          </div>
-
-
-          {/* Proposal Section (single, based on dropdown selection) */}
-          <div className='flex flex-col gap-[13px]'>
-            {(() => {
-              const section = sections.find((s) => s.id === selectedSectionId) || sections[0]
-              return (
-                <ProposalSectionContent
-                  key={section.id}
-                  section={section}
-                  onToggleSection={handleToggleSection}
-                  onDeleteSubsection={handleDeleteSubsection}
-                  showSectionsList={showSectionsList}
-                  allSections={mockRootProps.allSections}
-                  comments={commentsData}
-                  showComments={showComments}
-                  onToggleComments={handleToggleComments}
-                  onCollaborate={handleCollaborate}
-                  onRate={handleRate}
-                  onSource={handleSource}
-                  onSelectSection={handleSelectSection}
-                  selectedSectionId={selectedSectionId}
-                  onSave={handleSave}
-                  onChangeSectionTitle={handleChangeSectionTitle}
-                  onChangeSectionContent={handleChangeSectionContent}
-                  onChangeSubsectionTitle={handleChangeSubsectionTitle}
-                  onChangeSubsectionContent={handleChangeSubsectionContent}
-                  onRegenerateWithAI={handleRegenerateWithAI}
+        {showPreview ? (
+          <PreviewProposalPage embedded onClose={() => setShowPreview(false)} />
+        ) : (
+          <>
+            {/* Left Side - Proposal Content */}
+            <div className='flex-1 overflow-y-auto px-[68px] py-[37px] pb-[120px] min-h-0'>
+              {/* Title and Action Buttons */}
+              <div className='flex items-center justify-between mb-[13px]'>
+                <h1 className="text-[#050505] font-['Inter',sans-serif] text-[28px] font-semibold leading-[38px]">
+                  {mockRootProps.proposalTitle}
+                </h1>
+                <ProposalActionButtons
+                  onAddSection={handleAddSection}
+                  onPreview={handlePreview}
+                  onSaveExit={handleSaveExit}
                 />
-              )
-            })()}
-          </div>
-        </div>
+              </div>
 
-        {/* Right Side - Chat Sidebar */}
-        <ChatSidebar />
+              {/* Proposal Section (single, based on dropdown selection) */}
+              <div className='flex flex-col gap-[13px]'>
+                {(() => {
+                  const section = sections.find((s) => s.id === selectedSectionId) || sections[0]
+                  return (
+                    <ProposalSectionContent
+                      key={section.id}
+                      section={section}
+                      onToggleSection={handleToggleSection}
+                      onDeleteSubsection={handleDeleteSubsection}
+                      showSectionsList={showSectionsList}
+                      allSections={mockRootProps.allSections}
+                      comments={commentsData}
+                      showComments={showComments}
+                      onToggleComments={handleToggleComments}
+                      onCollaborate={handleCollaborate}
+                      onRate={handleRate}
+                      onSource={handleSource}
+                      onSelectSection={handleSelectSection}
+                      selectedSectionId={selectedSectionId}
+                      onSave={handleSave}
+                      onChangeSectionTitle={handleChangeSectionTitle}
+                      onChangeSectionContent={handleChangeSectionContent}
+                      onChangeSubsectionTitle={handleChangeSubsectionTitle}
+                      onChangeSubsectionContent={handleChangeSubsectionContent}
+                      onRegenerateWithAI={handleRegenerateWithAI}
+                    />
+                  )
+                })()}
+              </div>
+            </div>
+
+            {/* Right Side - Chat Sidebar */}
+            <ChatSidebar />
+          </>
+        )}
       </div>
 
       {/* Collaboration Modal */}
@@ -194,15 +200,6 @@ const AiProposalPage = () => {
         isOpen={showDocumentSourceModal}
         onClose={handleCloseDocumentSource}
       />
-
-      {/* Preview Overlay (no routing) */}
-      {showPreview && (
-        <div className='fixed inset-0 bg-black/30 backdrop-blur-[1px] z-50 flex'>
-          <div className='flex-1 bg-white shadow-[0_4px_16px_rgba(0,0,0,0.12)]'>
-            <PreviewProposalPage embedded onClose={() => setShowPreview(false)} />
-          </div>
-        </div>
-      )}
     </div>
   )
 }

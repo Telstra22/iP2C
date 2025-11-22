@@ -1,55 +1,16 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 
-import MetricsIcon from '../../../../../assets/icons/MetricsIcon'
+import { RiskMetricsHeader } from './RiskMetricsHeader'
+import { agents as agentsMock, topBadges as topBadgesMock } from './RiskScoreMockData'
+
 import BotAvatarIcon from '../../../../../assets/icons/BotAvatarIcon'
 import SoundWaveIcon from '../../../../../assets/icons/SoundWaveIcon'
 import OpportunityManagerIcon from '../../../../../assets/icons/OpportunityManagerIcon'
 
 const AgentRiskScoreEvaluationMatrics = ({ onComplete }) => {
 
-  const agents = [
-    {
-      id: 'proposal-evaluator',
-      name: 'Proposal Evaluator',
-      description: 'Creates End-to-end proposal, manages template building, solution outline, pricing integration, and draft assembly.',
-      badge: null,
-      hasGradientText: true,
-      icon: true
-    },
-    {
-      id: 'risk-scorer',
-      name: 'Risk Scorer',
-      description: 'Assessing proposal content to identify and score potential delivery, financial, or reputation risks..',
-      badge: 'TR',
-      badgeColor: '#D4F1FF',
-      hasGradientText: false,
-      icon: null
-    },
-    {
-      id: 'compliance-checker',
-      name: 'Compliance Checker',
-      description: 'Evaluating alignment with RFP requirements, internal standards, and mandatory terms...',
-      badge: 'CR',
-      badgeColor: '#FFE8F5',
-      hasGradientText: false,
-      icon: null
-    },
-    {
-      id: 'customer-centricity',
-      name: 'Customer Centricity',
-      description: 'Measuring how well the proposal addresses client needs, value outcomes, and business impact...',
-      badge: 'CR',
-      badgeColor: '#FFE8F5',
-      hasGradientText: false,
-      icon: null
-    }
-  ]
-
-  const topBadges = [
-    { text: 'TR', bgColor: '#D4F1FF' },
-    { text: 'CR', bgColor: '#FFE8F5' },
-    { text: 'EA', bgColor: '#FFFACD' }
-  ]
+  const agents = agentsMock
+  const topBadges = topBadgesMock
 
   const totalAgents = agents.length
   const [visibleCount, setVisibleCount] = useState(1)
@@ -119,27 +80,13 @@ const AgentRiskScoreEvaluationMatrics = ({ onComplete }) => {
           50% { transform: scaleY(1.3); opacity: 1; }
         }
       `}</style>
-
-      {/* Header - match OrchestratorSidebar gradient + Active badge */}
-      <div
-        className="flex items-center justify-between w-full h-[77px] px-[20px] py-[12px] flex-shrink-0 border-b border-[#DDDDDD] shadow-[0_4px_12px_0_rgba(0,0,0,0.08)] bg-[linear-gradient(81deg,_rgba(0,255,225,0.81)_-29.04%,_rgba(13,84,255,0.81)_24.99%,_rgba(90,57,223,0.81)_80.05%,_rgba(149,36,198,0.81)_145.23%,_rgba(255,137,0,0.81)_223.67%)]"
-      >
-        <div className='flex items-center gap-[10px]'>
-          <MetricsIcon width={35} height={32} color='#FFFFFF' />
-          <h2 className="text-[#FFFFFF] font-['Inter',sans-serif] text-[22px] font-semibold leading-[34px]">
-            Agent Risk Score
-          </h2>
-        </div>
-        <div className='flex items-center gap-[7.73px] px-[10px] py-[4px] rounded-[4px] border-[1.2px] border-white'>
-          <span className="text-white font-['Inter',sans-serif] text-[17.4px] font-normal leading-normal">
-            Active
-          </span>
-          <div className='w-[11px] h-[11px] rounded-full bg-[#75FF2B]' />
-        </div>
+      <div className='bg-white'>
+        <RiskMetricsHeader />
       </div>
 
       {/* Content */}
       <div className='flex-1 px-[21px] pt-[23px] pb-[30px] flex flex-col gap-[20px] overflow-y-auto'>
+
         {/* Proposal Evaluator Badge - match OpportunityManagerCard styling */}
         <div className='mx-[0px]'>
           <div

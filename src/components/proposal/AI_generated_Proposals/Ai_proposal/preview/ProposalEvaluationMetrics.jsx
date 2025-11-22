@@ -1,43 +1,13 @@
 import React, { useState } from 'react'
-import MetricsIcon from '../../../../../assets/icons/MetricsIcon'
 import ChevronDownIcon from '../../../../../assets/icons/ChevronDownIcon'
 import ChevronUpIcon from '../../../../../assets/icons/ChevronUpIcon'
+import { RiskMetricsHeader } from './RiskMetricsHeader'
+import { sections, scoringCriteria } from './RiskScoreMockData'
 
 const ProposalEvaluationMetrics = ({ onScoreProposal }) => {
   const [selectedSection, setSelectedSection] = useState('Executive Summary')
   const [showDropdown, setShowDropdown] = useState(false)
-  const [expandedCriteria, setExpandedCriteria] = useState('Risk Score')
-
-  const sections = [
-    'Executive Summary',
-    'Meeting Your Objectives',
-    'Service and Solution Overview',
-    'Commercial',
-    'Detail on the Proposed Solution',
-    'Appendices',
-    'Proposal Terms',
-    'Your Telstra Team',
-    'Terms & Conditions'
-  ]
-
-  const scoringCriteria = [
-    {
-      title: 'Risk Score',
-      description: 'Assesses potential delivery, financial, or operational risks and the clarity of mitigation plans.'
-    },
-    {
-      title: 'Compliance Score',
-      description: 'Evaluates alignment with RFP requirements, internal standards, and mandatory terms.'
-    },
-    {
-      title: 'Client Focus Score',
-      description: 'Measures how well the proposal addresses client needs, value outcomes, and business impact.'
-    },
-    {
-      title: 'Accuracy Score',
-      description: 'Evaluates the precision and correctness of information, data, and claims presented in the proposal.'
-    }
-  ]
+  const [expandedCriteria, setExpandedCriteria] = useState('Accuracy Score')
 
   const toggleCriteria = (title) => {
     setExpandedCriteria(expandedCriteria === title ? null : title)
@@ -51,13 +21,7 @@ const ProposalEvaluationMetrics = ({ onScoreProposal }) => {
 
   return (
     <div className='w-[491px] h-full flex flex-col border-l border-[#D9D9D9] bg-[#FCFCFC] shadow-[-4px_0px_13px_rgba(0,0,0,0.10)]'>
-      {/* Header */}
-      <div className='flex items-center gap-[10px] px-[20px] py-[24px] border-b border-[#DDDDDD] shadow-[0px_4px_12px_rgba(0,0,0,0.08)]'>
-        <MetricsIcon width={35} height={32} color='#050505' />
-        <h2 className="text-[#050505] font-['Inter',sans-serif] text-[22px] font-semibold leading-[34px]">
-          Proposal Evaluation Metrics
-        </h2>
-      </div>
+      <RiskMetricsHeader />
 
       {/* Description */}
       <div className='px-[21px] pt-[21px] pb-[19px]'>
@@ -171,7 +135,7 @@ const ProposalEvaluationMetrics = ({ onScoreProposal }) => {
           className='w-full px-[20px] py-[12px] bg-[#0D54FF] hover:bg-[#0040D9] rounded-[6px] transition-colors'
         >
           <span className="text-[#FFFFFF] font-['Inter',sans-serif] text-[22px] font-medium leading-[30px]">
-            Score my Proposal
+            Score My Proposal
           </span>
         </button>
       </div>

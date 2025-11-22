@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Header from '../../../../Header'
-import Breadcrumb from '../../../upload_document/Breadcrumb'
+
 import PreviewActionButtons from './PreviewActionButtons'
 import ProposalContentSection from '../proposal_section/ProposalContentSection'
 import ProposalEvaluationMetrics from './ProposalEvaluationMetrics'
@@ -70,12 +69,6 @@ const PreviewProposalPage = ({ embedded = false, onClose }) => {
 
   return (
     <div className='w-full h-full bg-[#F6F6F6] flex flex-col overflow-hidden'>
-      {/* Header */}
-      <Header />
-
-      {/* Breadcrumb */}
-      <Breadcrumb current="Preview Proposal" />
-
       {/* Main Content Area */}
       <div className='flex-1 flex overflow-hidden min-h-0'>
         {/* Left Side - Proposal Content */}

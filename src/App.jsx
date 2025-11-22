@@ -8,7 +8,6 @@ import AiLoader from './components/proposal/AI_generated_Proposals/AiLoader/AiLo
 import AiProposalPage from './components/proposal/AI_generated_Proposals/Ai_proposal/AiProposalPage'
 import GeneratedWithAI from './components/proposal/AI_generated_Proposals/Ai_proposal/GeneratedWithAI'
 import GenerateAIBlank from './components/proposal/AI_generated_Proposals/Ai_proposal/GenerateAIBlank'
-import PreviewProposalPage from './components/proposal/AI_generated_Proposals/Ai_proposal/preview/PreviewProposalPage'
 import AddSection from './components/proposal/AI_generated_Proposals/Ai_proposal/addSection/AddSection'
 import OpportunityLoader from './components/proposal/upload_document/opportunity_summery/opportunity_loader/OpportunityLoader'
 import OpportunityDone from './components/proposal/upload_document/opportunity_summery/opportunity_loader/OpportunityDone'
@@ -16,8 +15,6 @@ import OpportunitySummery from './components/proposal/upload_document/opportunit
 import Source_Connection from './components/proposal/upload_document/upload_historical_proposal/Upload_Historical_Proposal'
 import Create_Outline from './components/proposal/upload_document/create_outline/Create_Outline'
 import SelectTemplate from './components/proposal/upload_document/select_template/SelectTemplate'
-import AgentRiskScoreEvaluationMatrics from './components/proposal/AI_generated_Proposals/Ai_proposal/preview/AgentRiskScoreEvaluationMatrics'
-import RiskScoreProcessCheck from './components/proposal/AI_generated_Proposals/Ai_proposal/preview/RiskScoreProcessCheck'
 import ContractReview from './components/generate_contract/ContractReview'
 import ContractIssue from './components/generate_contract/ContractIssue'
 import ContractLoader from './components/generate_contract/ContractLoader'
@@ -27,10 +24,11 @@ function AppContent() {
   const isContractReview = location.pathname === '/contract-review';
   const isContractIssue = location.pathname === '/contract-issue';
   const isContractLoader = location.pathname === '/contract-loader';
+  const isAiProposalPage = location.pathname === '/ai_proposal_page';
   
   return (
     <div className="h-screen overflow-hidden flex flex-col">
-      {!isContractReview && !isContractIssue && !isContractLoader && <Header />}
+      {!isContractReview && !isContractIssue && !isContractLoader && !isAiProposalPage && <Header />}
       <div className="flex-1 overflow-hidden">
         <Routes>
           <Route path="/" element={<Login />} />
@@ -40,7 +38,6 @@ function AppContent() {
           <Route path="/generated-with-ai" element={<GeneratedWithAI />} />
           <Route path="/generate-ai-blank" element={<GenerateAIBlank />} />
           <Route path="/ai_loader" element={<AiLoader />} />
-          <Route path="/preview-proposal" element={<PreviewProposalPage />} />
           <Route path="/add-section" element={<AddSection isOpen={true} />} />
           <Route path="/opportunity_loader" element={<OpportunityLoader />} />
           <Route path="/opportunity_done" element={<OpportunityDone />} />
@@ -48,8 +45,6 @@ function AppContent() {
           <Route path="/upload_historical_proposal" element={<Source_Connection />} />
           <Route path="/create_outline" element={<Create_Outline />} />
           <Route path="/select_template" element={<SelectTemplate />} />
-          <Route path="/agentRiskScoreEvaluationMatrics" element={<AgentRiskScoreEvaluationMatrics />} />
-          <Route path="/riskscoreprocesscheck" element={<RiskScoreProcessCheck />} />
           <Route path="/contract-review" element={<ContractReview />} />
           <Route path="/contract-issue" element={<ContractIssue />} />
           <Route path="/contract-loader" element={<ContractLoader />} />
